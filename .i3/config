@@ -223,9 +223,6 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# run sony bluetooth script
-bindsym $mod+F10 exec /home/danny/scripts/sony.sh
-
 bindsym $mod+Shift+Ctrl+n exec "/home/danny/scripts/connect_sony.sh"
 bindsym $mod+Shift+Ctrl+m exec "/home/danny/scripts/disconnect_sony.sh"
 
@@ -273,18 +270,16 @@ bindsym $mod+Shiftx exec --no-startup-id blurlock
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-#exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 #exec --no-startup-id setxkbmap -option caps:swapescape
 exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
+
 # exec_always --no-startup-id xautolock -time 0.1 -locker /usr/bin/slock
 #exec_always --no-startup-id xautolock -time 0.1 -locker ~/scripts/autolock.sh
+
 exec --no-startup-id ff-theme-util
 exec --no-startup-id fix_xcursor
 exec "~/.screenlayout/default-thinkpad.sh"
@@ -293,16 +288,9 @@ exec "~/.screenlayout/default-thinkpad.sh"
 exec --no-startup-id fcitx
 exec GTK_IM_MODULE=fcitx XMODIFIERS=@im=fcitx QT_IM_MODULE=fcitx
 
-# exec --no-startup-id i3-msg 'workspace 10; exec cryptomator'
-
 exec ~/.local/share/tresorit/tresorit --hidden
 exec protonmail-bridge --no-window
-
-# start redshift
-# exec redshift -l geoclue2
 exec --no-startup-id redshift-gtk
-
-exec sudo virsh net-start default
 exec --no-startup-id /home/danny/packages/todoist-0.5.0-linux-x64/todoist
 exec --no-startup-id minetime
 exec caffeine
@@ -437,9 +425,5 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-
-
-
 
 exec_always xset r rate 200 60

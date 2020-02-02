@@ -17,8 +17,6 @@ set splitright
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-" Plugin 'VundleVim/Vundle.vim'
 call plug#begin('~/.vim/plugged')
 
 " <============================================>
@@ -39,11 +37,8 @@ Plug 'junegunn/gv.vim'
 "[styling]
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
-" Plug 'liuchengxu/space-vim-theme'
 Plug 'jacoborus/tender.vim'
 Plug 'junegunn/goyo.vim'
-" Plug 'junegunn/limelight.vim'
-" Plug 'altercation/vim-colors-solarized'
 Plug 'ayu-theme/ayu-vim'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'crusoexia/vim-javascript-lib'
@@ -57,21 +52,14 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
-" Plug 'ternjs/tern_for_vim'
-" Plug 'vim-syntastic/syntastic'
 Plug 'dense-analysis/ale'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'lumiliet/vim-twig'
 Plug 'vim-scripts/indentpython.vim'
-" Plug 'Valloric/YouCompleteMe'
 Plug 'pangloss/vim-javascript'
 Plug 'ap/vim-css-color'
 Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
-
 
 " Syntax highlight
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -82,10 +70,9 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown', {'rtp': 'after'}
 Plug 'adelarsq/vim-matchit'
-" Plug 'SirVer/ultisnips'
+
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
-" Plug 'garbas/vim-snipmate'
 " <============================================>
 " All of your Plugins must be added before the following line
 " call vundle#end()            " required
@@ -132,7 +119,6 @@ set number
 set shiftwidth=4
 set tabstop=4
 set smarttab
-" incremental search
 set incsearch
 
 " keep 5 lines when top focusing
@@ -158,16 +144,9 @@ set si
 
 set bg=dark
 set cursorline
-" let ayucolor="light"  " for light version of theme
-" let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-" colorscheme sublimemonokai 
 colorscheme vim-monokai-tasty
 let g:airline_theme='monokai_tasty'
-
-
 let g:airline_powerline_fonts = 1
-
 let g:sublimemonokai_term_italic = 1
 
 " nerdtree settings
@@ -187,23 +166,12 @@ map <C-l> <C-w>l
 
 map <C-p> :Files<CR>
 
-" syntastic suggested settings
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-
 fun! CheckChages()
     set autoread
     checkt
 endfun
 
 nmap <leader>gr call CheckChanges()
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
 
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :w<CR>
@@ -222,8 +190,8 @@ set foldmethod=indent
 set foldlevel=99
 set encoding=utf-8
 
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" let g:ycm_autoclose_preview_window_after_completion=1
+" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 function LambdaDeploy()
   execute '! lddeploy %'
@@ -252,7 +220,6 @@ nnoremap <C-V>     v
 vnoremap    v   <C-V>
 vnoremap <C-V>     v
 
-
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
 
 exec "set listchars=nbsp:~"
@@ -264,17 +231,6 @@ nmap <Leader>nn <Plug>VimwikiIndex
 map <Leader>ds :pu=strftime('%Y-%m-%d')<CR>
 
 set omnifunc=syntaxcomplete#Complete
-
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<Leader>h"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
-
-
 
 " au BufNewFile,BufRead *.ejs set filetype=html
 "
@@ -323,7 +279,6 @@ endfunction
 " Remap for rename current word
 nmap <F2> <Plug>(coc-rename)
 
-
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
 function! IsNERDTreeOpen()        
@@ -341,15 +296,6 @@ endfunction
 
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * call SyncTree()
-
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1

@@ -107,7 +107,6 @@ alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 
-alias virtnet='sudo virsh net-start default'
 alias media='sudo mount 192.168.0.240:/volume1/Media /mnt/media'
 alias aup="yay -Syu --aur" 
 alias rmorphans='pacman -Qdt'
@@ -162,10 +161,6 @@ ex ()
   fi
 }
 
-# better yaourt colors
-export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
-
-
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -173,10 +168,14 @@ alias rc='vim ~/.bashrc'
 alias src='source ~/.bashrc'
 alias v='nvim'
 alias vim='nvim'
+
+#multi monitor
 alias hdmimon='~/.screenlayout/hdmimon.sh'
+alias home-both='~/.screenlayout/home-both.sh'
 alias dualmon='~/.screenlayout/dual-monitor.sh'
 alias homemon='~/.screenlayout/home-hdmi.sh'
 alias thinkpad-screen='~/.screenlayout/default-thinkpad.sh'
+
 alias vimkeyswap='~/scripts/swap-esc-and-caps.sh'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias mouseon='synclient TouchpadOff=0'
@@ -184,7 +183,6 @@ alias swapdb='python /home/danny/s1t2/dbs/swap_db.py'
 alias awsls="aws ec2 describe-instances --query 'Reservations[].Instances[].[PublicIpAddress,Tags[?Key==\`Name\`].Value[]]' --output text | sed '$!N;s/\n/ /'"
 alias r='ranger'
 alias esckey='setxkbmap -option caps:swapescape'
-alias home-both='~/.screenlayout/home-both.sh'
 
 ####
 # git alias
