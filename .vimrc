@@ -5,7 +5,7 @@ syntax enable
 set undodir=~/.vim/undodir
 set undofile
 set clipboard=unnamedplus
-
+set mouse=a
 
 inoremap jk <esc>
 
@@ -46,6 +46,8 @@ Plug 'patstockwell/vim-monokai-tasty'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mboughaba/i3config.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'hashivim/vim-terraform'
+Plug 'godlygeek/tabular'
 
 " [programming]
 Plug 'tpope/vim-commentary'
@@ -63,6 +65,7 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Syntax highlight
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " [workflow]
 Plug 'tpope/vim-unimpaired'
@@ -70,6 +73,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown', {'rtp': 'after'}
 Plug 'adelarsq/vim-matchit'
+Plug 'unblevable/quick-scope'
 
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
@@ -80,6 +84,14 @@ Plug 'honza/vim-snippets'
 call plug#end()
 
 
+" Trigger a highlight in the appropriate direction when pressing these keys:
+augroup qs_colors
+  autocmd!
+  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+augroup END
+
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -115,11 +127,38 @@ set number
 " replace tabs with spaces
 " set expandtab
 
-" set tab width to 4
-set shiftwidth=4
-set tabstop=4
 set smarttab
 set incsearch
+
+" by default, the indent is 2 spaces. 
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+
+
+"ts = 'number of spaces that <Tab> in file uses'
+"sts = 'number of spaces that <Tab> uses while editing' 
+"sw = 'number of spaces to use for (auto)indent step' 
+
+" for html/rb files, 2 spaces
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+
+" for js/coffee/jade files, 4 spaces
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab 
+autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
+
+" php and twig
+autocmd Filetype php setlocal ts=4 sw=4 sts=4
+autocmd Filetype twig setlocal ts=4 sw=4 sts=4
+
+autocmd Filetype vue setlocal ts=2 sw=2 sts=2 expandtab
+autocmd Filetype yml setlocal ts=2 sw=2 sts=2 expandtab
+autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
+
+
+
 
 " keep 5 lines when top focusing
 set scrolloff=5
@@ -163,6 +202,9 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+nmap j gj
+nmap k gk
 
 map <C-p> :Files<CR>
 
@@ -244,6 +286,7 @@ set pyxversion=3
 
 " COC SETUP
 let g:coc_global_extensions = [
+	\ 'coc-marketplace',
 	\ 'coc-json', 
 	\ 'coc-html', 
 	\ 'coc-css', 
@@ -255,8 +298,10 @@ let g:coc_global_extensions = [
 	\ 'coc-highlight',
 	\ 'coc-phpls',
 	\ 'coc-tsserver',
-	\ 'coc-vetur',
-	\ 'coc-python'
+	\ 'coc-vetur' ,
+	\ 'coc-python',
+	\ 'coc-scssmodules',
+	\ 'coc-sh'
 	\ ]
 
 " Remap keys for gotos
@@ -310,3 +355,40 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+"
+"
+"
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Add > at current position without closing the current tag, default is ''
+let g:closetag_close_shortcut = '<leader>>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" fixes alacritty mouse
+" set ttymouse=srg
+"
+"
+"
+" function Meow()
+"   ! make bust-cache
+" endfunction
+
+" autocmd BufWritePost * call Meow() 
+"
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+
+
+"python.jediEnabled": false

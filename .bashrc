@@ -107,14 +107,13 @@ alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 
-alias media='sudo mount 192.168.0.240:/volume1/Media /mnt/media'
+alias media='sudo mount 192.168.0.230:/volume1/Media /mnt/media'
 alias aup="yay -Syu --aur" 
 alias rmorphans='pacman -Qdt'
 
 alias vrc="v $HOME/.vimrc"
 alias arc="v $HOME/.aws/credentials"
 alias c="clear"
-alias aws='aws --profile dk'
 
 complete -C '/home/danny/.local/bin/aws_completer' aws
 
@@ -171,6 +170,7 @@ alias vim='nvim'
 
 #multi monitor
 alias hdmimon='~/.screenlayout/hdmimon.sh'
+alias usbCmon='~/.screenlayout/usbCmon.sh'
 alias home-both='~/.screenlayout/home-both.sh'
 alias dualmon='~/.screenlayout/dual-monitor.sh'
 alias homemon='~/.screenlayout/home-hdmi.sh'
@@ -210,6 +210,77 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-alias s1t2='source ~/s1t2/scripts/s1t2.sh'
+# alias s1t2='source ~/s1t2/scripts/s1t2.sh'
+# alias boris-s1t2='source ~/s1t2/scripts/boris-setup.sh'
 
 
+function dockerDbIp {
+	CONTAINER=$(grep DB_CONTAINER_NAME .env | sed 's/.*[=]//g')
+	docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER | xclip -sel clip
+}
+
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
+
+source '/etc/profile.d/autojump.bash'
+
+complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
+
+
+source ~/scripts/aws/aws.sh
+source ~/scripts/git/git.sh
+
+alias getPermissionsAsNum='stat -c "%a %n"'
+
+
+function showKeys()
+{
+	xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+}
+
+alias aws='aws --profile $AWS_PROFILE'
+alias co='git checkout'
+
+
+#cleanup aliases
+alias calcures='calcurse -C "$XDG_CONFIG_HOME"/calcurse -D "$XDG_DATA_HOME"/calcurse'
+
+alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc'
+
+# export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+# export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+
+function rcloneRestore()
+{
+	rclone copy 'Backblaze encryption':$1 $HOME/restore/
+}
+
+alias scandevices='sudo nmap -sn 192.168.1.1/24'
+
+function myip()
+{
+	IP=$(curl http://checkip.amazonaws.com/) > /dev/null && echo $IP
+}
+alias myinternalip='internal-ip --ipv4'
+
+function checkNet()
+{
+	if ping -c 1 google.com &>/dev/null; then
+	  echo "It appears you have a working internet connection"
+	else 
+		echo "NBN FUCKED!!!"
+	fi
+}
+
+alias calibreUpdate='sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin'
+alias vpnlordst='sudo openvpn ~/.vpn/lordst/lordst.ovpn'
+
+alias trp='trash-put'
+alias tre='trash-empty'
+alias trl='trash-list'
+alias trr='trash-restore'
+alias trm='trash-rm'
+
+# alias rm='trp'
+
+complete -C /usr/local/bin/terraform terraform
