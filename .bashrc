@@ -100,20 +100,8 @@ fi
 
 unset use_color safe_term match_lhs sh
 
-alias today="date '+%y%m%d'"
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
-alias more=less
 
-alias media='sudo mount 192.168.0.230:/volume1/Media /mnt/media'
-alias aup="yay -Syu --aur" 
-alias rmorphans='pacman -Qdt'
 
-alias vrc="v $HOME/.vimrc"
-alias arc="v $HOME/.aws/credentials"
-alias c="clear"
 
 complete -C '/home/danny/.local/bin/aws_completer' aws
 
@@ -135,71 +123,14 @@ shopt -s expand_aliases
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
 
-#
-# # ex - archive extractor
-# # usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias rc='vim ~/.bashrc'
-alias src='source ~/.bashrc'
-alias v='nvim'
-alias vim='nvim'
-
-#multi monitor
-alias hdmimon='~/.screenlayout/hdmimon.sh'
-alias usbCmon='~/.screenlayout/usbCmon.sh'
-alias home-both='~/.screenlayout/home-both.sh'
-alias dualmon='~/.screenlayout/dual-monitor.sh'
-alias homemon='~/.screenlayout/home-hdmi.sh'
-alias thinkpad-screen='~/.screenlayout/default-thinkpad.sh'
-
-alias vimkeyswap='~/scripts/swap-esc-and-caps.sh'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias mouseon='synclient TouchpadOff=0'
-alias swapdb='python /home/danny/s1t2/dbs/swap_db.py'
-alias awsls="aws ec2 describe-instances --query 'Reservations[].Instances[].[PublicIpAddress,Tags[?Key==\`Name\`].Value[]]' --output text | sed '$!N;s/\n/ /'"
-alias r='ranger'
-alias esckey='setxkbmap -option caps:swapescape'
 
-####
-# git alias
-##
-alias gs='git status'
-alias gp='git pull'
-alias gd='git diff'
-alias gc='git checkout'
-
-export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source /usr/share/bash-completion/completions/git
-
 
 alias tmux="TERM=screen-256color-bce tmux"
 
@@ -214,13 +145,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # alias boris-s1t2='source ~/s1t2/scripts/boris-setup.sh'
 
 
-function dockerDbIp {
-	CONTAINER=$(grep DB_CONTAINER_NAME .env | sed 's/.*[=]//g')
-	docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER | xclip -sel clip
-}
 
-alias setclip="xclip -selection c"
-alias getclip="xclip -selection c -o"
 
 source '/etc/profile.d/autojump.bash'
 
@@ -230,57 +155,8 @@ complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-
 source ~/scripts/aws/aws.sh
 source ~/scripts/git/git.sh
 
-alias getPermissionsAsNum='stat -c "%a %n"'
 
-
-function showKeys()
-{
-	xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
-}
-
-alias aws='aws --profile $AWS_PROFILE'
-alias co='git checkout'
-
-
-#cleanup aliases
-alias calcures='calcurse -C "$XDG_CONFIG_HOME"/calcurse -D "$XDG_DATA_HOME"/calcurse'
-
-alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc'
-
-# export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
-# export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
-
-function rcloneRestore()
-{
-	rclone copy 'Backblaze encryption':$1 $HOME/restore/
-}
-
-alias scandevices='sudo nmap -sn 192.168.1.1/24'
-
-function myip()
-{
-	IP=$(curl http://checkip.amazonaws.com/) > /dev/null && echo $IP
-}
-alias myinternalip='internal-ip --ipv4'
-
-function checkNet()
-{
-	if ping -c 1 google.com &>/dev/null; then
-	  echo "It appears you have a working internet connection"
-	else 
-		echo "NBN FUCKED!!!"
-	fi
-}
-
-alias calibreUpdate='sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin'
 alias vpnlordst='sudo openvpn ~/.vpn/lordst/lordst.ovpn'
 
-alias trp='trash-put'
-alias tre='trash-empty'
-alias trl='trash-list'
-alias trr='trash-restore'
-alias trm='trash-rm'
-
-# alias rm='trp'
 
 complete -C /usr/local/bin/terraform terraform

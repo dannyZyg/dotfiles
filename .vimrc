@@ -6,17 +6,34 @@ set undodir=~/.vim/undodir
 set undofile
 set clipboard=unnamedplus
 set mouse=a
+set nowrap
+set number
+set number relativenumber
+set history=1000
 
-inoremap jk <esc>
+" show the cursor position
+set ruler
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" show incomplete Command
+set showcmd
+
+" show useful command suggestions
+set wildmenu
+set smarttab
+set smartindent
+set incsearch
+
+" by default, the indent is 2 spaces.
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
 set splitbelow
 set splitright
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
 
+set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
 
 " <============================================>
@@ -48,6 +65,8 @@ Plug 'mboughaba/i3config.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'hashivim/vim-terraform'
 Plug 'godlygeek/tabular'
+Plug 'sainnhe/gruvbox-material'
+Plug 'kovetskiy/sxhkd-vim'
 
 " [programming]
 Plug 'tpope/vim-commentary'
@@ -107,45 +126,19 @@ filetype plugin indent on    " required
 " Put the rest of your .vimrc file here
 let g:SimpylFold_docstring_preview=1
 
-set number relativenumber
-
-" keep 1000 items in the history
-set history=1000
-
-" show the cursor position
-set ruler
-
-" show incomplete Command
-set showcmd
-
-" show useful command suggestions
-set wildmenu
-
-" show line numbers
-set number
-
-" replace tabs with spaces
-" set expandtab
-
-set smarttab
-set incsearch
-
-" by default, the indent is 2 spaces. 
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
 
 
 
 "ts = 'number of spaces that <Tab> in file uses'
-"sts = 'number of spaces that <Tab> uses while editing' 
-"sw = 'number of spaces to use for (auto)indent step' 
+"sts = 'number of spaces that <Tab> uses while editing'
+"sw = 'number of spaces to use for (auto)indent step'
 
 " for html/rb files, 2 spaces
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype json setlocal ts=2 sw=2 expandtab
 
 " for js/coffee/jade files, 4 spaces
-autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab 
+autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 "expandtab
 autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 
@@ -157,6 +150,8 @@ autocmd Filetype vue setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype yml setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
 
+" for cs files, 2 spaces
+autocmd Filetype cs setlocal ts=2 sw=2 expandtab!
 
 
 
@@ -183,14 +178,21 @@ set si
 
 set bg=dark
 set cursorline
-colorscheme vim-monokai-tasty
-let g:airline_theme='monokai_tasty'
-let g:airline_powerline_fonts = 1
-let g:sublimemonokai_term_italic = 1
+
+" autocmd vimenter * colorscheme gruvbox
+colorscheme gruvbox-material
+
+let g:gruvbox_material_palette = 'mix' "mix | origninal | material
+let g:airline_theme = 'gruvbox_material'
+
+" colorscheme vim-monokai-tasty
+" let g:airline_theme='monokai_tasty'
+" let g:airline_powerline_fonts = 1
+" let g:sublimemonokai_term_italic = 1
 
 " nerdtree settings
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-t> :NERDTreeToggle<CR>
 
 hi CursorLine cterm=underline
@@ -209,8 +211,8 @@ nmap k gk
 map <C-p> :Files<CR>
 
 fun! CheckChages()
-    set autoread
-    checkt
+	set autoread
+	checkt
 endfun
 
 nmap <leader>gr call CheckChanges()
@@ -236,14 +238,19 @@ set encoding=utf-8
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 function LambdaDeploy()
-  execute '! lddeploy %'
+  execute '! ~/scripts/aws/lambda-cmd.sh deploy %'
 endfunction
 map <Leader>dd :call LambdaDeploy()<CR>
 
 function LambdaInvoke()
-  execute '! ldinvoke %'
+  execute '! ~/scripts/aws/lambda-cmd.sh invoke %'
 endfunction
 map <Leader>di :call LambdaInvoke()<CR>
+
+function LambdaUpdateLayer()
+  execute '! ~/scripts/aws/lambda-cmd.sh layer %'
+endfunction
+map <Leader>lu :call LambdaUpdateLayer()<CR>
 
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
@@ -255,9 +262,8 @@ map <Leader>mc :InstantMarkdownStop<CR>
 
 
 "====[ Swap v and CTRL-V, because Block mode is more useful that Visual mode "]======
-
-nnoremap    v   <C-V>
-nnoremap <C-V>     v
+nnoremap v <C-V>
+nnoremap <C-V> v
 
 vnoremap    v   <C-V>
 vnoremap <C-V>     v
@@ -287,10 +293,12 @@ set pyxversion=3
 " COC SETUP
 let g:coc_global_extensions = [
 	\ 'coc-marketplace',
-	\ 'coc-json', 
-	\ 'coc-html', 
-	\ 'coc-css', 
-	\ 'coc-pairs', 
+	\ 'coc-lists',
+	\ 'coc-syntax',
+	\ 'coc-json',
+	\ 'coc-html',
+	\ 'coc-css',
+	\ 'coc-pairs',
 	\ 'coc-snippets',
 	\ 'coc-markdownlint',
 	\ 'coc-vimlsp',
@@ -301,7 +309,9 @@ let g:coc_global_extensions = [
 	\ 'coc-vetur' ,
 	\ 'coc-python',
 	\ 'coc-scssmodules',
-	\ 'coc-sh'
+	\ 'coc-sh',
+	\ 'coc-gitignore',
+	\ 'coc-jest',
 	\ ]
 
 " Remap keys for gotos
@@ -324,23 +334,6 @@ endfunction
 " Remap for rename current word
 nmap <F2> <Plug>(coc-rename)
 
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-function! IsNERDTreeOpen()        
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
-
-" Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -355,8 +348,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-"
-"
 "
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
@@ -376,19 +367,88 @@ let g:closetag_close_shortcut = '<leader>>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" fixes alacritty mouse
-" set ttymouse=srg
-"
-"
-"
-" function Meow()
-"   ! make bust-cache
-" endfunction
-
-" autocmd BufWritePost * call Meow() 
-"
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 
-
 "python.jediEnabled": false
+
+"" Enable true color 启用终端24位色
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+
+inoremap jk <esc>
+noremap <leader>u :UndotreeShow<CR>
+noremap <leader>ps :Rg<SPACE>
+
+" Move selection chunks up and down - follow indent
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" trim whitespace on save
+autocmd BufWritePre * :call TrimWhitespace()
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+" allows rip grep to find your git root for faster search
+if executable('rg')
+	let g:rg_derive_root='true'
+endif
+
+"restart sxhkd if editing the rc
+autocmd BufWritePost *sxhkdrc !killall sxhkd; setsid sxhkd &
+
+
+" NERDTree
+
+" " sync open file with NERDTree
+" " Check if NERDTree is open or active
+" function! IsNERDTreeOpen()
+"   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+" endfunction
+
+" " " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" " file, and we're not in vimdiff
+" function! SyncTree()
+"   if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+"     NERDTreeFind
+"     wincmd p
+"   endif
+" endfunction
+
+" " Highlight currently open buffer in NERDTree
+" autocmd BufEnter * call SyncTree()
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+function! Getbgcol()
+  return synIDattr(hlID("Normal"), "bg")
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', Getbgcol())
+call NERDTreeHighlightFile('ini', 'yellow', 'none', '#eb5234', Getbgcol())
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', Getbgcol())
+call NERDTreeHighlightFile('yml', 'yellow', 'none', '#eb5234', Getbgcol())
+call NERDTreeHighlightFile('config', 'yellow', 'none', '#eb5234', Getbgcol())
+call NERDTreeHighlightFile('conf', 'yellow', 'none', '#eb5234', Getbgcol())
+call NERDTreeHighlightFile('json', 'yellow', 'none', '#eb5234', Getbgcol())
+call NERDTreeHighlightFile('html', 'yellow', 'none', '#eb5234', Getbgcol())
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', Getbgcol())
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', Getbgcol())
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', Getbgcol())
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', Getbgcol())
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', Getbgcol())
+call NERDTreeHighlightFile('vue', 'green', 'none', '#1aab5d', Getbgcol())
