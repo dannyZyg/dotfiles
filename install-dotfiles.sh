@@ -27,7 +27,7 @@ function linkDotfile {
 
   elif [ -f "${HOME}/${destFile}" ]; then
     echo "Backing up existing file: ${destFile}"
-	createDir ${HOME}/${destDir}
+    createDir ${backupDir}/${destDir}
     mv ${HOME}/${destFile} ${backupDir}/${destFile}_${dateStr}
   fi
 
