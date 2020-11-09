@@ -85,7 +85,10 @@ bindkey '^e' edit-command-line
 source ~/dotfiles/aliases.sh
 source ~/dotfiles/functions.sh
 source ~/scripts/aws/aws.sh
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+fi
 
 eval "$(pyenv init -)"
 
