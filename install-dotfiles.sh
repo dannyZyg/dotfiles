@@ -1,45 +1,81 @@
 #!/bin/bash
-dotfilesDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-function linkDotfile {
-  dest="${2}"
-  dateStr=$(date +%Y-%m-%d-%H%M)
+dotfilesDir="${HOME}/dotfiles"
+backupDir="${HOME}/dotfiles/backups"
 
-  if [ -h ~/${1} ]; then
-    # Existing symlink 
-    echo "Removing existing symlink: ${dest}"
-    rm ${dest} 
+# function createBackupSubDir() {
+# 	if [ ! -d "${backupDir}/${1}" ]; then
+# 		echo "Creating backup sub directory for $1"
+# 		mkdir -p ${backupDir}/${1}
+# 	fi
+# }
 
-  elif [ -f "${dest}" ]; then
-    # Existing file
-    echo "Backing up existing file: ${dest}"
-    mv ${dest}{,.${dateStr}}
+# function createConfigSubDir() {
+# 	if [ ! -d "${HOME}/${1}" ]; then
+# 		echo "Creating config sub directory for $1"
+# 		mkdir -p ${HOME}/${1}
+# 	fi
+# }
 
-  elif [ -d "${dest}" ]; then
-    # Existing dir
-    echo "Backing up existing dir: ${dest}"
-    mv ${dest}{,.${dateStr}}
-  fi
-
-  echo "Creating new symlink: ${dest}"
-  ln -s ${dotfilesDir}/${1} ${dest}
+function createDir() {
+	if [ ! -d "${1}" ]; then
+		echo "Creating directory for ${1}"
+		mkdir -p ${1}
+	fi
 }
 
-# linkDotfile .vim
-linkDotfile .vimrc ~
+function setupNvimPlugins() {
+	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+		   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	nvim +PluginInstall +qall
+}
+
+function linkDotfile {
+  destFile="${1}"
+  destDir=$(dirname ${destFile})
+  dateStr=$(date +%Y-%m-%d-%H%M)
+
+  if [ -h "${HOME}/${destFile}" ]; then
+    echo "Removing existing symlink: ${HOME}/${destFile}"
+	rm ${HOME}/${destFile}
+
+  elif [ -f "${HOME}/${destFile}" ]; then
+    echo "Backing up existing file: ${destFile}"
+	createDir ${HOME}/${destDir}
+    mv ${HOME}/${destFile} ${backupDir}/${destFile}_${dateStr}
+  fi
+
+  echo "Creating new symlink: ${PWD}/${destFile} -> ${HOME}/${destFile}"
+  createDir ${HOME}/${destDir}
+  ln -s ${PWD}/${destFile} ${HOME}/${destFile}
+}
+
+function createLinks() {
+	linkDotfile .config/nvim/init.vim
+	linkDotfile .config/zsh/.zshrc
+	linkDotfile .zprofile
+	linkDotfile .config/tmux/.tmux.conf
+
+	if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+		linkDotfile .config/i3/config
+		linkDotfile .config/i3/i3-scrot.conf
+		linkDotfile .xprofile
+
+		# linkDotfile .inputrc
+		# linkDotfile .xinitrc
+	elif [[ "$OSTYPE" == "darwin"* ]]; then
+		date=$(date -v-1d '+%Y%m%d')
+	fi
+}
+
+createDir ${backupDir} \
+	& createLinks
+
 # linkDotfile .ackrc
-linkDotfile .bashrc ~
-linkDotfile i3/config ~/.config/i3/config
 # linkDotfile .gitconfig
-# linkDotfile .tmux.conf
 # linkDotfile .goomwwmrc
-# linkDotfile .inputrc
-# linkDotfile .xinitrc
 # linkDotfile .curlrc
 # linkDotfile .gf
 
-# mkdir -p $dotfilesDir/.vim/bundle
-# [ -d foo ] || mkdir foo
-# cd $dotfilesDir/.vim/bundle
-# git clone git://github.com/VundleVim/Vundle.vim.git
-# vim +PluginInstall +qall
+
+# setupNvimPlugins

@@ -32,8 +32,8 @@ set splitbelow
 set splitright
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-set rtp+=~/.vim/bundle/Vundle.vim
+"
+"set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
 
 " <============================================>
@@ -52,7 +52,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/gv.vim'
 
 "[styling]
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'jacoborus/tender.vim'
 Plug 'junegunn/goyo.vim'
@@ -65,8 +65,10 @@ Plug 'mboughaba/i3config.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'hashivim/vim-terraform'
 Plug 'godlygeek/tabular'
-Plug 'sainnhe/gruvbox-material'
+" Plug 'sainnhe/gruvbox-material'
+Plug 'gruvbox-community/gruvbox'
 Plug 'kovetskiy/sxhkd-vim'
+Plug 'jparise/vim-graphql'
 
 " [programming]
 Plug 'tpope/vim-commentary'
@@ -138,7 +140,7 @@ autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype json setlocal ts=2 sw=2 expandtab
 
 " for js/coffee/jade files, 4 spaces
-autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 "expandtab
+" autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 "expandtab
 autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 
@@ -146,14 +148,13 @@ autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype php setlocal ts=4 sw=4 sts=4
 autocmd Filetype twig setlocal ts=4 sw=4 sts=4
 
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype vue setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype yml setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
 
 " for cs files, 2 spaces
 autocmd Filetype cs setlocal ts=2 sw=2 expandtab!
-
-
 
 " keep 5 lines when top focusing
 set scrolloff=5
@@ -180,10 +181,19 @@ set bg=dark
 set cursorline
 
 " autocmd vimenter * colorscheme gruvbox
-colorscheme gruvbox-material
+"
+let g:gruvbox_contrast_dark = 'hard'
+if exists('+termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+let g:gruvbox_invert_selection='0'
+colorscheme gruvbox
+set background=dark
 
-let g:gruvbox_material_palette = 'mix' "mix | origninal | material
-let g:airline_theme = 'gruvbox_material'
+" let g:gruvbox_material_palette = 'mix' "mix | origninal | material
+" let g:airline_theme = 'gruvbox_material'
+let g:airline_theme = 'gruvbox'
 
 " colorscheme vim-monokai-tasty
 " let g:airline_theme='monokai_tasty'
@@ -389,7 +399,7 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " trim whitespace on save
-autocmd BufWritePre * :call TrimWhitespace()
+" autocmd BufWritePre * :call TrimWhitespace()
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -452,3 +462,12 @@ call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', Getbgcol())
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', Getbgcol())
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', Getbgcol())
 call NERDTreeHighlightFile('vue', 'green', 'none', '#1aab5d', Getbgcol())
+
+let g:vim_json_conceal=0
+
+
+nmap <leader>rr <Plug>(coc-rename)
+nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+
+let g:python3_host_prog = $HOME."/.virtualenvs/neovim-python3/bin/python"
+" let g:python_host_prog = $HOME."/.virtualenvs/neovim-python2/bin/python"

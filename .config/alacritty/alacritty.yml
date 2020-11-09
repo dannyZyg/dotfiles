@@ -78,14 +78,14 @@ window:
   # Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
 
-#scrolling:
+scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  #history: 10000
+  history: 10000
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
-  #multiplier: 3
+  multiplier: 3
 
   # Scroll to the bottom when new text is written to the terminal.
   #auto_scroll: false
@@ -106,13 +106,13 @@ font:
     # Font family
     #
     Default:
-    #   - (macOS) Menlo
+      - (macOS) Menlo
     # - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: monospace
+    # family: monospace
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    # style: Regular
 
   # Bold font face
   #bold:
@@ -148,7 +148,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.

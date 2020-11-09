@@ -36,7 +36,7 @@ alias calcures='calcurse -C "$XDG_CONFIG_HOME"/calcurse -D "$XDG_DATA_HOME"/calc
 alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc'
 
 # find somewhere to put this
-alias swapdb='python /home/danny/s1t2/dbs/swap_db.py'
+alias mysqlimportfile='python /home/danny/scripts/mysql/mysqlimport.py'
 
 
 
@@ -93,5 +93,20 @@ alias trl='trash-list'
 alias trr='trash-restore'
 alias trm='trash-rm'
 
-alias shellalias='vim ~/dotfiles/shell/aliases.sh'
-alias shellfuncs='vim ~/dotfiles/shell/functions.sh'
+alias shellalias="$EDITOR ~/dotfiles/shell/aliases.sh"
+alias shellfuncs="$EDITOR ~/dotfiles/shell/functions.sh"
+alias sshc="$EDITOR ~/.ssh/config"
+alias zrc="$EDITOR ~/dotfiles/config/zsh/.zshrc"
+
+####
+# tmux
+####
+alias tn="tmux -u -f $TMUX_CONFIG new"
+alias ta="tmux -u -f $TMUX_CONFIG attach"
+alias tat="tmux -u -f $TMUX_CONFIG attach -t"
+alias tl="tmux -u -f $TMUX_CONFIG ls"
+alias tt="$EDITOR $TMUX_CONFIG"
+
+alias cdcd='cd ~/Library/Mobile\ Documents/\com\~apple\~CloudDocs/'
+
+alias pyenv-init="mkvirtualenv $(basename $(pwd))"

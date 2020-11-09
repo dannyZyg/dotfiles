@@ -2,7 +2,8 @@
 
 function dockerDbIp {
 	CONTAINER=$(grep DB_CONTAINER_NAME .env | sed 's/.*[=]//g')
-	docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER | xclip -sel clip
+	IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER)
+	echo $IP #| xclip -sel clip
 }
 
 # # ex - archive extractor
@@ -81,4 +82,10 @@ function gph()
 	then
 		git push -u origin $(gcb)
 	fi
+}
+
+
+
+function ripyt() {
+	youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 $1
 }

@@ -38,13 +38,14 @@ bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+Shift+F3 exec gksu nautilus
 bindsym $mod+F5 exec terminal -e 'mocp'
 # bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id picom -b
+# bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+b exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+
 
 # focus_follows_mouse no
 
@@ -240,6 +241,12 @@ mode "resize" {
 # Lock screen
 bindsym $mod+Shiftx exec --no-startup-id betterlockscreen -l blur
 
+#record system audio
+bindsym $mod+Ctrl+y exec /home/danny/dev/immersion-tools/record-anki-audio
+
+#flameshot gui
+bindsym $mod+Ctrl+u exec flameshot gui
+
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
@@ -249,6 +256,8 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id blueman-applet
 exec --no-startup-id copyq
 exec --no-startup-id rslsync
+exec --no-startup-id flameshot
+
 
 # exec_always --no-startup-id xautolock -time 0.1 -locker /usr/bin/slock
 #exec_always --no-startup-id xautolock -time 0.1 -locker ~/scripts/autolock.sh
