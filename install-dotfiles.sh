@@ -3,20 +3,6 @@
 dotfilesDir="${HOME}/dotfiles"
 backupDir="${HOME}/dotfiles/backups"
 
-# function createBackupSubDir() {
-# 	if [ ! -d "${backupDir}/${1}" ]; then
-# 		echo "Creating backup sub directory for $1"
-# 		mkdir -p ${backupDir}/${1}
-# 	fi
-# }
-
-# function createConfigSubDir() {
-# 	if [ ! -d "${HOME}/${1}" ]; then
-# 		echo "Creating config sub directory for $1"
-# 		mkdir -p ${HOME}/${1}
-# 	fi
-# }
-
 function createDir() {
 	if [ ! -d "${1}" ]; then
 		echo "Creating directory for ${1}"
