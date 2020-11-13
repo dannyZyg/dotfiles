@@ -45,6 +45,7 @@ function createLinks() {
 	if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 		linkDotfile .config/i3/config
 		linkDotfile .config/i3/i3-scrot.conf
+		linkDotfile .config/sxhkd/sxhkdrc
 		linkDotfile .xprofile
 
 		# linkDotfile .inputrc
