@@ -470,4 +470,4 @@ nmap <leader>rr <Plug>(coc-rename)
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 let g:python3_host_prog = $HOME."/.virtualenvs/neovim-python3/bin/python"
-" let g:python_host_prog = $HOME."/.virtualenvs/neovim-python2/bin/python"
+let g:python_host_prog = $HOME."/.virtualenvs/neovim-python2/bin/python"

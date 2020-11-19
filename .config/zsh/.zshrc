@@ -117,7 +117,6 @@ if [ -f '/Users/danny/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/danny/goo
 if [ -f '/Users/danny/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/danny/google-cloud-sdk/completion.zsh.inc'; fi
 
 # python penv
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 export PYENV_ROOT=$HOME/.pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
 
