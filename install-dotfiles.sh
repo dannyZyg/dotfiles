@@ -46,6 +46,8 @@ function createLinks() {
 		linkDotfile .config/i3/config
 		linkDotfile .config/i3/i3-scrot.conf
 		linkDotfile .config/sxhkd/sxhkdrc
+		linkDotfile .config/bspwm/bspwmrc
+		linkDotfile .config/picom/picom.conf
 		linkDotfile .xprofile
 
 		# linkDotfile .inputrc

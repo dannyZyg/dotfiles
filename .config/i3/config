@@ -278,7 +278,6 @@ exec caffeine
 exec gufw
 exec nextcloud
 exec udiskie -at
-exec sxhkd
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:

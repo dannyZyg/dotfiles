@@ -90,8 +90,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 fi
 
-eval "$(pyenv init -)"
-
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
@@ -119,11 +117,16 @@ if [ -f '/Users/danny/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/danny/goo
 if [ -f '/Users/danny/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/danny/google-cloud-sdk/completion.zsh.inc'; fi
 
 # python penv
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-export WORKON_HOME=~/.virtualenvs
-mkdir -p $WORKON_HOME
-. ~/.pyenv/versions/3.8.6/bin/virtualenvwrapper.sh
-
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 export PYENV_ROOT=$HOME/.pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+fi
+
+# virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs
+if [ ! -d "$WORKON_HOME" ]; then mkdir -p $WORKON_HOME; fi
+. ~/.pyenv/versions/3.9.0/bin/virtualenvwrapper.sh
