@@ -1,19 +1,35 @@
 #!/bin/bash
 
+# Replace cat with bat
+alias cat='bat --paging=never'
+
 alias c="clear"
 alias today="date '+%y%m%d'"
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
+
+# human-readable sizes
+alias df='df -h'
+
+# show sizes in MB
+alias free='free -m'
+
 alias np='nano -w PKGBUILD'
 alias more=less
 
-alias cp="cp -i"                          # confirm before overwriting something
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# confirm before overwriting something
+alias cp="cp -i"
+
+# Replace ls with exa
+alias ls='exa -F'
+alias la='exa -aF'
+alias lt='exa -FT'
+alias lta='exa -aFT'
+alias ll='exa -alF --colour-scale'
+
+# always use neovim
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
+
 alias r='ranger'
 
 alias getPermissionsAsNum='stat -c "%a %n"'
@@ -110,3 +126,4 @@ alias tt="$EDITOR $TMUX_CONFIG"
 alias cdcd='cd ~/Library/Mobile\ Documents/\com\~apple\~CloudDocs/'
 
 alias pyenv-init="mkvirtualenv $(basename $(pwd))"
+alias pyenv-rm="mkvirtualenv $(basename $(pwd))"

@@ -27,7 +27,7 @@ export TEMP_DIR="/tmp"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="af-magic"
-plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting poetry)
 source $ZSH/oh-my-zsh.sh
 
 # Basic auto/tab complete:
@@ -82,12 +82,12 @@ bindkey -s '^o' 'lfcd\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-source ~/dotfiles/aliases.sh
-source ~/dotfiles/functions.sh
+source ~/.dotfiles/aliases.sh
+source ~/.dotfiles/functions.sh
 source ~/scripts/aws/aws.sh
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -119,8 +119,21 @@ if [ -f '/Users/danny/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dan
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+eval "$(pyenv virtualenv-init -)"
+
+export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+
 export WORKON_HOME=~/.virtualenvs
 mkdir -p $WORKON_HOME
 . ~/.pyenv/versions/3.8.6/bin/virtualenvwrapper.sh
 
 export PYENV_ROOT=$HOME/.pyenv
+
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+# export WORKON_HOME=$HOME/.virtualenvs
+# pyenv virtualenvwrapper_lazy
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"

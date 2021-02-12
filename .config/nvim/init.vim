@@ -1,45 +1,13 @@
 let mapleader =" "
-set nocompatible              " be iMproved, required
 filetype plugin on
 syntax enable
-set undodir=~/.vim/undodir
-set undofile
-set clipboard=unnamedplus
-set mouse=a
-set nowrap
-set number
-set number relativenumber
-set history=1000
-
-" show the cursor position
-set ruler
-
-" show incomplete Command
-set showcmd
-
-" show useful command suggestions
-set wildmenu
-set smarttab
-set smartindent
-set incsearch
-
-" by default, the indent is 2 spaces.
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-
-set splitbelow
-set splitright
-set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-"
-"set rtp+=~/.vim/bundle/Vundle.vim
+
 call plug#begin('~/.vim/plugged')
 
 " <============================================>
 " Specify the plugins you want to install here.
 " We'll come on that later
-"
 
 " [file browsing]
 Plug 'scrooloose/nerdtree'
@@ -69,6 +37,8 @@ Plug 'godlygeek/tabular'
 Plug 'gruvbox-community/gruvbox'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'jparise/vim-graphql'
+Plug 'cespare/vim-toml'
+Plug 'bfontaine/Brewfile.vim'
 
 " [programming]
 Plug 'tpope/vim-commentary'
@@ -83,6 +53,8 @@ Plug 'ap/vim-css-color'
 Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neovim/nvim-lspconfig'
+" Plug 'davidhalter/jedi-vim'
 
 " Syntax highlight
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -91,13 +63,19 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 " [workflow]
 Plug 'tpope/vim-unimpaired'
 Plug 'tmhedberg/SimpylFold'
-Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown', {'rtp': 'after'}
 Plug 'adelarsq/vim-matchit'
 Plug 'unblevable/quick-scope'
 
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
+
+
+" telescope requirements...
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 " <============================================>
 " All of your Plugins must be added before the following line
 " call vundle#end()            " required
@@ -131,33 +109,9 @@ let g:SimpylFold_docstring_preview=1
 
 
 
-"ts = 'number of spaces that <Tab> in file uses'
-"sts = 'number of spaces that <Tab> uses while editing'
-"sw = 'number of spaces to use for (auto)indent step'
 
-" for html/rb files, 2 spaces
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
-autocmd Filetype json setlocal ts=2 sw=2 expandtab
-
-" for js/coffee/jade files, 4 spaces
-" autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 "expandtab
-autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
-autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
-
-" php and twig
-autocmd Filetype php setlocal ts=4 sw=4 sts=4
-autocmd Filetype twig setlocal ts=4 sw=4 sts=4
-
-autocmd Filetype javascript setlocal ts=2 sw=2 sts=2 expandtab
-autocmd Filetype vue setlocal ts=2 sw=2 sts=2 expandtab
-autocmd Filetype yml setlocal ts=2 sw=2 sts=2 expandtab
-autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
-
-" for cs files, 2 spaces
-autocmd Filetype cs setlocal ts=2 sw=2 expandtab!
-
-" keep 5 lines when top focusing
-set scrolloff=5
+" keep 10 lines when top focusing
+set scrolloff=10
 
 " highlight search results
 set hlsearch
@@ -172,10 +126,7 @@ set smartcase
 set lbr
 
 " use auto indent, copy indent from prev line
-set ai
-
-" smart indent
-set si
+set autoindent
 
 set bg=dark
 set cursorline
@@ -262,9 +213,6 @@ function LambdaUpdateLayer()
 endfunction
 map <Leader>lu :call LambdaUpdateLayer()<CR>
 
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-
 " let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
 map <Leader>mp :InstantMarkdownPreview<CR>
@@ -282,9 +230,6 @@ vnoremap <C-V>     v
 
 exec "set listchars=nbsp:~"
 " set list
-
-nmap <Leader>nn <Plug>VimwikiIndex
-
 
 map <Leader>ds :pu=strftime('%Y-%m-%d')<CR>
 
@@ -415,29 +360,6 @@ endif
 "restart sxhkd if editing the rc
 autocmd BufWritePost *sxhkdrc !killall sxhkd; setsid sxhkd &
 
-
-" NERDTree
-
-" " sync open file with NERDTree
-" " Check if NERDTree is open or active
-" function! IsNERDTreeOpen()
-"   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-" endfunction
-
-" " " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" " file, and we're not in vimdiff
-" function! SyncTree()
-"   if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-"     NERDTreeFind
-"     wincmd p
-"   endif
-" endfunction
-
-" " Highlight currently open buffer in NERDTree
-" autocmd BufEnter * call SyncTree()
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -465,9 +387,15 @@ call NERDTreeHighlightFile('vue', 'green', 'none', '#1aab5d', Getbgcol())
 
 let g:vim_json_conceal=0
 
-
 nmap <leader>rr <Plug>(coc-rename)
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
-let g:python3_host_prog = $HOME."/.virtualenvs/neovim-python3/bin/python"
+let g:python3_host_prog = $HOME."/.virtualenvs/neovim-python3.6.0/bin/python"
 " let g:python_host_prog = $HOME."/.virtualenvs/neovim-python2/bin/python"
+"
+nmap <leader>hh :noh<CR>
+
+" nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+" nnoremap <leader>ff <cmd>Telescope find_files<cr>
+call coc#config('python', {'pythonPath': $HOME."/.virtualenvs/base/bin/python" })
+" call coc#config('python', {'pythonPath': $HOME."/.virtualenvs/neovim-python3.6.0/bin/python" })

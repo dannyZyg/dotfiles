@@ -1,0 +1,7 @@
+xorg-server
+xorg-xinit
+zsh
+
+##Mental outlaw
+
+libxft libxinerama
