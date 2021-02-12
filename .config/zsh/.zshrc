@@ -85,15 +85,15 @@ bindkey '^e' edit-command-line
 source ~/.dotfiles/aliases.sh
 source ~/.dotfiles/functions.sh
 source ~/scripts/aws/aws.sh
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-# eval "$(pyenv init -)"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+fi
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 alias mysqlimportfile='python ~/scripts/mysql/mysqlimport.py'
-
 
 # Added by serverless binary installer
 export PATH="$HOME/.serverless/bin:$PATH"
@@ -105,10 +105,6 @@ export PATH="$HOME/.serverless/bin:$PATH"
 export ANKI_DIR="~/Library/Application\ Support/Anki2"
 export ANKI_PROFILE="danny"
 
-# to compile nhocr
-# export CC=/usr/local/bin/gcc-10
-# export FC=gfortran
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/danny/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/danny/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -116,8 +112,12 @@ if [ -f '/Users/danny/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/danny/goo
 if [ -f '/Users/danny/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/danny/google-cloud-sdk/completion.zsh.inc'; fi
 
 # python penv
+export PYENV_ROOT=$HOME/.pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
 fi
 
 eval "$(pyenv virtualenv-init -)"
@@ -125,15 +125,13 @@ eval "$(pyenv virtualenv-init -)"
 export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
 export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
 
-export WORKON_HOME=~/.virtualenvs
-mkdir -p $WORKON_HOME
-. ~/.pyenv/versions/3.8.6/bin/virtualenvwrapper.sh
-
 export PYENV_ROOT=$HOME/.pyenv
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
-# export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-# export WORKON_HOME=$HOME/.virtualenvs
-# pyenv virtualenvwrapper_lazy
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs
+if [ ! -d "$WORKON_HOME" ]; then mkdir -p $WORKON_HOME; fi
+. ~/.pyenv/versions/3.9.0/bin/virtualenvwrapper.sh

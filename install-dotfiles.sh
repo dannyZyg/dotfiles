@@ -29,7 +29,7 @@ function linkDotfile {
 
   elif [ -f "${HOME}/${destFile}" ]; then
     echo "Backing up existing file: ${destFile}"
-	createDir ${HOME}/${destDir}
+    createDir ${backupDir}/${destDir}
     mv ${HOME}/${destFile} ${backupDir}/${destFile}_${dateStr}
   fi
 
@@ -62,6 +62,9 @@ function createLinks() {
 		print_banner 'Completing steps for LINUX'
 		linkDotfile .config/i3/config
 		linkDotfile .config/i3/i3-scrot.conf
+		linkDotfile .config/sxhkd/sxhkdrc
+		linkDotfile .config/bspwm/bspwmrc
+		linkDotfile .config/picom/picom.conf
 		linkDotfile .xprofile
 
 		# linkDotfile .inputrc

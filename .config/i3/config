@@ -34,6 +34,7 @@ bindsym $mod+Shift+u $pause
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+bindsym $mod+g exec alacritty
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu nautilus
 bindsym $mod+F5 exec terminal -e 'mocp'
@@ -277,7 +278,6 @@ exec caffeine
 exec gufw
 exec nextcloud
 exec udiskie -at
-exec sxhkd
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
