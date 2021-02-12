@@ -134,4 +134,4 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # virtualenvwrapper
 export WORKON_HOME=~/.virtualenvs
 if [ ! -d "$WORKON_HOME" ]; then mkdir -p $WORKON_HOME; fi
-. ~/.pyenv/versions/3.9.0/bin/virtualenvwrapper.sh
+. ~/.pyenv/versions/3.8.6/bin/virtualenvwrapper.sh
