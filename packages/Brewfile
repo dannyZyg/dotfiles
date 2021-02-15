@@ -1,5 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
@@ -85,6 +86,8 @@ brew "sox"
 brew "switchaudio-osx"
 # Terminal multiplexer
 brew "tmux"
+# Command-line interface to the freedesktop.org trashcan
+brew "trash-cli"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Internet file retriever
@@ -111,8 +114,6 @@ cask "aegisub"
 cask "alacritty"
 # Application launcher and productivity software
 cask "alfred"
-# Automatic tiling window manager similar to xmonad
-cask "amethyst"
 cask "arq-cloud-backup"
 # Records audio from any application
 cask "audio-hijack"
@@ -162,6 +163,8 @@ cask "joplin"
 cask "karabiner-elements"
 # Office suite
 cask "libreoffice"
+# Software for Logitech devices
+cask "logitech-options"
 # Cable-free audio router
 cask "loopback"
 # Adaptive brightness for external displays
