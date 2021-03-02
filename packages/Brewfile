@@ -52,6 +52,8 @@ brew "imagemagick"
 brew "iperf3"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Network authentication protocol
+brew "krb5"
 # Terminal file manager
 brew "lf"
 # Just-In-Time Compiler (JIT) for the Lua programming language
@@ -78,6 +80,8 @@ brew "pyenv-virtualenv"
 brew "pyenv-virtualenvwrapper"
 # File browser
 brew "ranger"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
 # SOund eXchange: universal sound sample translator
@@ -106,8 +110,12 @@ brew "zsh"
 brew "zsh-syntax-highlighting"
 # Fast, multipurpose tool for AWS CloudWatch Logs
 brew "tylerbrock/saw/saw"
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
 # Command-line helper for the 1Password password manager
 cask "1password-cli"
+# Sound and music editor
+cask "ableton-live-suite"
 # Create and modify subtitles
 cask "aegisub"
 # GPU-accelerated terminal emulator
@@ -129,8 +137,8 @@ cask "calibre"
 cask "carbon-copy-cloner"
 # Open links in any browser
 cask "choosy"
-# Free and open-source web browser
-cask "chromium"
+# Synchronization and backup tool
+cask "chronosync"
 # Screen capturing tool
 cask "cleanshot"
 # API documentation browser and code snippet manager
@@ -141,11 +149,16 @@ cask "dbeaver-community"
 cask "discord"
 # App to build and share containerized applications and microservices
 cask "docker"
+# Client for the Dropbox cloud storage service
+cask "dropbox"
+# Regular expressions manager app
+cask "expressions"
 # VPN client for secure internet access and private browsing
 cask "expressvpn"
 cask "figma"
 # Audio editor
 cask "fission"
+cask "font-fira-code"
 # Typeface made for developers
 cask "font-jetbrains-mono"
 cask "font-source-code-pro"
@@ -154,6 +167,8 @@ cask "google-chrome"
 # Automated organization
 cask "hazel"
 cask "inkdrop"
+# System monitoring app
+cask "istat-menus"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 cask "jdownloader"
@@ -181,6 +196,8 @@ cask "notion"
 cask "obs"
 # Finds large, unwanted files and deletes them
 cask "omnidisksweeper"
+# Scheduling application focusing on organization
+cask "omnifocus"
 # File system integration
 cask "osxfuse"
 cask "pgadmin4"
@@ -201,6 +218,8 @@ cask "slack"
 cask "soundflower"
 # Music streaming service
 cask "spotify"
+# Hybrid synthesizer
+cask "surge-synthesizer"
 # Unpacks archive files
 cask "the-unarchiver"
 # Web browser focusing on security
@@ -217,8 +236,6 @@ cask "wireshark"
 cask "xquartz"
 # Video communication and virtual meeting platform
 cask "zoom"
-# Temporary makeshift alias for the video communication tool Zoom
-cask "zoomus"
 mas "Compressor", id: 424390742
 mas "DaisyDisk", id: 411643860
 mas "LanScan", id: 472226235

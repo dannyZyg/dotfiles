@@ -9,8 +9,7 @@ link-dotfiles: ## Links or relinks the dotfiles
 	./install-dotfiles.sh
 
 brew-dump: ## Remove the current Brewfile and dump a new one
-	rm ~/.dotfiles/packages/Brewfile
-	brew bundle dump --describe --file='~/.dotfiles/packages/Brewfile'
+	brew bundle dump --describe --force --file='~/.dotfiles/packages/Brewfile'
 
 brew-install: ## Install all packages from Brewfile
-	brew bundle --file ~/.dotfiles/packages/Brewfile
+	brew bundle --verbose --file ~/.dotfiles/packages/Brewfile
