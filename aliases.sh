@@ -124,3 +124,4 @@ alias tl="tmux -u -f $TMUX_CONFIG ls"
 alias tt="$EDITOR $TMUX_CONFIG"
 
 alias cdcd='cd ~/Library/Mobile\ Documents/\com\~apple\~CloudDocs/'
+alias thisdir="basename $(pwd)"
