@@ -39,6 +39,8 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'jparise/vim-graphql'
 Plug 'cespare/vim-toml'
 Plug 'bfontaine/Brewfile.vim'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'mbbill/echofunc'
 
 " [programming]
 Plug 'tpope/vim-commentary'
@@ -48,6 +50,7 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'dense-analysis/ale'
 Plug 'lumiliet/vim-twig'
 Plug 'vim-scripts/indentpython.vim'
+Plug 'vim-python/python-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'ap/vim-css-color'
 Plug 'mxw/vim-jsx'
@@ -182,6 +185,9 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>! :q!<CR>
+nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
 
 nmap <leader>a :tab split<CR>:Ack ""<Left>
 nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
@@ -274,6 +280,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rr <Plug>(coc-rename)
+nmap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -399,3 +407,6 @@ nmap <leader>hh :noh<CR>
 " nnoremap <leader>ff <cmd>Telescope find_files<cr>
 call coc#config('python', {'pythonPath': $HOME."/.virtualenvs/base/bin/python" })
 " call coc#config('python', {'pythonPath': $HOME."/.virtualenvs/neovim-python3.6.0/bin/python" })
+"
+nmap <leader>rp :put =expand('%')<CR>
+nmap <leader>ap :put =expand('%:p')<CR>
