@@ -5,8 +5,7 @@ if [ "$(uname)" != "Darwin" ] ; then
   exit 1
 fi
 
-## Reveal IP address, hostname, OS version, etc. when clicking the clock
-# in the login window
+## Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
 # Disable Notification Center and remove the menu bar icon
