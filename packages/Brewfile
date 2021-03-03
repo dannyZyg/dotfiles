@@ -30,18 +30,14 @@ brew "freetype"
 brew "docker-completion"
 # Completion script for docker-compose
 brew "docker-compose-completion"
-# Command-line DNS client
-brew "dog"
 # Modern replacement for 'ls'
 brew "exa"
-# Read-only implementation of ext4 for FUSE
-brew "ext4fuse"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
-# GNU compiler collection
-brew "gcc"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU compiler collection
+brew "gcc"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Improved top (interactive process viewer)
@@ -94,6 +90,8 @@ brew "tmux"
 brew "trash-cli"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
 # Internet file retriever
 brew "wget"
 # Access X11 clipboards from the command-line
@@ -115,7 +113,7 @@ cask "1password"
 # Command-line helper for the 1Password password manager
 cask "1password-cli"
 # Sound and music editor
-cask "ableton-live-suite"
+cask "ableton-live-suite10"
 # Create and modify subtitles
 cask "aegisub"
 # GPU-accelerated terminal emulator
@@ -143,12 +141,8 @@ cask "chronosync"
 cask "cleanshot"
 # API documentation browser and code snippet manager
 cask "dash"
-# Free universal database tool and SQL client
-cask "dbeaver-community"
 # Voice and text chat software
 cask "discord"
-# App to build and share containerized applications and microservices
-cask "docker"
 # Client for the Dropbox cloud storage service
 cask "dropbox"
 # Regular expressions manager app
@@ -156,6 +150,8 @@ cask "expressions"
 # VPN client for secure internet access and private browsing
 cask "expressvpn"
 cask "figma"
+# Web browser
+cask "firefox"
 # Audio editor
 cask "fission"
 cask "font-fira-code"
@@ -171,11 +167,11 @@ cask "inkdrop"
 cask "istat-menus"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
-cask "jdownloader"
 # Note taking and to-do application with synchronization capabilities
 cask "joplin"
 # Keyboard customizer
 cask "karabiner-elements"
+cask "keyboard-maestro"
 # Office suite
 cask "libreoffice"
 # Software for Logitech devices
@@ -203,10 +199,6 @@ cask "osxfuse"
 cask "pgadmin4"
 # Collaboration platform for API development
 cask "postman"
-# Bridges ProtonMail to email clients supporting IMAP and SMTP protocols
-cask "protonmail-bridge"
-# Move and resize windows using keyboard shortcuts or snap areas
-cask "rectangle"
 # File sync and share software
 cask "resilio-sync"
 # MySQL/MariaDB database management platform
@@ -215,7 +207,6 @@ cask "sequel-pro"
 cask "skype"
 # Team communication and collaboration software
 cask "slack"
-cask "soundflower"
 # Music streaming service
 cask "spotify"
 # Hybrid synthesizer
@@ -228,8 +219,6 @@ cask "tor-browser"
 cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
-# Binary releases of VS Code without MS branding/telemetry/licensing
-cask "vscodium"
 # Network protocol analyzer
 cask "wireshark"
 # Open-source version of the X.Org X Window System
@@ -238,8 +227,13 @@ cask "xquartz"
 cask "zoom"
 mas "Compressor", id: 424390742
 mas "DaisyDisk", id: 411643860
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
 mas "LanScan", id: 472226235
 mas "Microsoft Remote Desktop", id: 1295203466
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "QuickShade", id: 931571202
 mas "Shazam", id: 897118787
