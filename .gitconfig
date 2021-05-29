@@ -3,3 +3,5 @@
 # Please adapt and uncomment the following lines:
 	name = Danny Keig
 	email = 39764493+dannyZyg@users.noreply.github.com
+[pull]
+	ff = only

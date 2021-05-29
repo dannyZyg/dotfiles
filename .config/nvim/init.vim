@@ -15,8 +15,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/gv.vim'
 
 "[styling]
@@ -41,6 +41,7 @@ Plug 'cespare/vim-toml'
 Plug 'bfontaine/Brewfile.vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'mbbill/echofunc'
+Plug 'kyazdani42/nvim-web-devicons'
 
 " [programming]
 Plug 'tpope/vim-commentary'
@@ -49,15 +50,17 @@ Plug 'shawncplus/phpcomplete.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'dense-analysis/ale'
 Plug 'lumiliet/vim-twig'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'vim-python/python-syntax'
+" Plug 'vim-scripts/indentpython.vim'
+" Plug 'vim-python/python-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'ap/vim-css-color'
 Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 " Plug 'davidhalter/jedi-vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 " Syntax highlight
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -78,6 +81,7 @@ Plug 'honza/vim-snippets'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 " <============================================>
 " All of your Plugins must be added before the following line
@@ -181,7 +185,6 @@ endfun
 
 nmap <leader>gr call CheckChanges()
 
-nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>! :q!<CR>
@@ -252,50 +255,50 @@ aug end
 set pyxversion=3
 
 " COC SETUP
-let g:coc_global_extensions = [
-	\ 'coc-marketplace',
-	\ 'coc-lists',
-	\ 'coc-syntax',
-	\ 'coc-json',
-	\ 'coc-html',
-	\ 'coc-css',
-	\ 'coc-pairs',
-	\ 'coc-snippets',
-	\ 'coc-markdownlint',
-	\ 'coc-vimlsp',
-	\ 'coc-yaml',
-	\ 'coc-highlight',
-	\ 'coc-phpls',
-	\ 'coc-tsserver',
-	\ 'coc-vetur' ,
-	\ 'coc-python',
-	\ 'coc-scssmodules',
-	\ 'coc-sh',
-	\ 'coc-gitignore',
-	\ 'coc-jest',
-	\ ]
+" let g:coc_global_extensions = [
+" 	\ 'coc-marketplace',
+" 	\ 'coc-lists',
+" 	\ 'coc-syntax',
+" 	\ 'coc-json',
+" 	\ 'coc-html',
+" 	\ 'coc-css',
+" 	\ 'coc-pairs',
+" 	\ 'coc-snippets',
+" 	\ 'coc-markdownlint',
+" 	\ 'coc-vimlsp',
+" 	\ 'coc-yaml',
+" 	\ 'coc-highlight',
+" 	\ 'coc-phpls',
+" 	\ 'coc-tsserver',
+" 	\ 'coc-vetur' ,
+" 	\ 'coc-python',
+" 	\ 'coc-scssmodules',
+" 	\ 'coc-sh',
+" 	\ 'coc-gitignore',
+" 	\ 'coc-jest',
+" 	\ ]
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rr <Plug>(coc-rename)
-nmap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" nmap <leader>rr <Plug>(coc-rename)
+" nmap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
 
 " Remap for rename current word
-nmap <F2> <Plug>(coc-rename)
+" nmap <F2> <Plug>(coc-rename)
 
 
 function! s:check_back_space() abort
@@ -304,31 +307,31 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-"
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"" Or use `complete_info` if your vim support it, like:
+"" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+""
+"" Use <C-l> for trigger snippet expand.
+"imap <C-l> <Plug>(coc-snippets-expand)
 
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+"" Use <C-j> for select text for visual placeholder of snippet.
+"vmap <C-j> <Plug>(coc-snippets-select)
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+" let g:coc_snippet_next = '<c-j>'
 
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+" " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+" let g:coc_snippet_prev = '<c-k>'
 
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
@@ -395,18 +398,106 @@ call NERDTreeHighlightFile('vue', 'green', 'none', '#1aab5d', Getbgcol())
 
 let g:vim_json_conceal=0
 
-nmap <leader>rr <Plug>(coc-rename)
-nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+" nmap <leader>rr <Plug>(coc-rename)
+" nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
-let g:python3_host_prog = $HOME."/.virtualenvs/neovim-python3.6.0/bin/python"
-" let g:python_host_prog = $HOME."/.virtualenvs/neovim-python2/bin/python"
+let g:python3_host_prog = $HOME."/.virtualenvs/nvim/bin/python"
+let g:python_host_prog = $HOME."/.virtualenvs/nvim-python2/bin/python"
 "
 nmap <leader>hh :noh<CR>
 
 " nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 " nnoremap <leader>ff <cmd>Telescope find_files<cr>
-call coc#config('python', {'pythonPath': $HOME."/.virtualenvs/base/bin/python" })
+" call coc#config('python', {'pythonPath': $HOME."/.virtualenvs/base/bin/python" })
+" call coc#config('python', {'pythonPath': $HOME."/.virtualenvs/base/bin/python" })
 " call coc#config('python', {'pythonPath': $HOME."/.virtualenvs/neovim-python3.6.0/bin/python" })
 "
 nmap <leader>rp :put =expand('%')<CR>
 nmap <leader>ap :put =expand('%:p')<CR>
+nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p>
+
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
+
+
+
+nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
+
+nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <Leader>pf :lua require('telescope.builtin').find_files()<CR>
+
+nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
+nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
+" nnoremap <leader>vrc :lua require('theprimeagen.telescope').search_dotfiles()<CR>
+" nnoremap <leader>va :lua require('theprimeagen.telescope').anime_selector()<CR>
+" nnoremap <leader>vc :lua require('theprimeagen.telescope').chat_selector()<CR>
+" nnoremap <leader>gc :lua require('theprimeagen.telescope').git_branches()<CR>
+
+
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fr <cmd>Telescope registers<cr>
+nnoremap <leader>fc <cmd>Telescope current_buffer_fuzzy_find<cr>
+
+
+
+set completeopt=menuone,noselect
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:true
+let g:compe.source.ultisnips = v:true
+
+
+
+" LSP config
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+lua << EOF
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.flow.setup{}
+EOF
+
+" auto-format
+autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
