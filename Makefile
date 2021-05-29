@@ -8,8 +8,17 @@ help: ## Show this help
 link-dotfiles: ## Links or relinks the dotfiles
 	./install-dotfiles.sh
 
-brew-dump: ## Remove the current Brewfile and dump a new one
+brew-dump: ## Remove the current Brewfile and dump a new one (arm)
 	brew bundle dump --describe --force --file='~/.dotfiles/packages/Brewfile'
 
-brew-install: ## Install all packages from Brewfile
+brew-x86-dump: ## Remove the current Brewfile and dump a new one (x86)
+	arch -x86_64 /usr/local/bin/brew bundle dump --describe --force --file='~/.dotfiles/packages/Brewfile-x86'
+
+brew-install: ## Install all packages from Brewfile (arm)
 	brew bundle --verbose --file ~/.dotfiles/packages/Brewfile
+
+brew-x86-install: ## Install all packages from Brewfile (x86)
+	arch -x86_64 /usr/local/bin/brew bundle --verbose --file ~/.dotfiles/packages/Brewfile-x86
+
+git-submodule-update: ## Updates git submodules
+	git submodule update --remote --merge
