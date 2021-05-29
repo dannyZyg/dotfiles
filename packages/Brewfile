@@ -1,3 +1,4 @@
+tap "dannyzyg/music-software"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-drivers"
@@ -30,6 +31,8 @@ brew "freetype"
 brew "docker-completion"
 # Completion script for docker-compose
 brew "docker-compose-completion"
+# Platform built on V8 to build network applications
+brew "node"
 # Modern replacement for 'ls'
 brew "exa"
 # Play, record, convert, and stream audio and video
@@ -38,6 +41,8 @@ brew "ffmpeg"
 brew "fzf"
 # GNU compiler collection
 brew "gcc"
+# Distributed revision control system
+brew "git"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Improved top (interactive process viewer)
@@ -60,10 +65,10 @@ brew "mas"
 brew "mkvtoolnix"
 # Fast, highly customisable system info script
 brew "neofetch"
+# Parser generator tool and incremental parsing library
+brew "tree-sitter", args: ["HEAD"]
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim", args: ["HEAD"]
-# Platform built on V8 to build network applications
-brew "node"
 # Manage multiple Node.js versions
 brew "nvm"
 # Object-relational database system
@@ -82,6 +87,8 @@ brew "ripgrep"
 brew "ruby"
 # SOund eXchange: universal sound sample translator
 brew "sox"
+# Version control system designed to be a better CVS
+brew "subversion"
 # Change macOS audio source from the command-line
 brew "switchaudio-osx"
 # Terminal multiplexer
@@ -92,6 +99,8 @@ brew "trash-cli"
 brew "tree"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
+# Watch files and take action when they change
+brew "watchman"
 # Internet file retriever
 brew "wget"
 # Access X11 clipboards from the command-line
@@ -104,8 +113,6 @@ brew "youtube-dl"
 brew "zlib"
 # UNIX shell (command interpreter)
 brew "zsh"
-# Fish shell like syntax highlighting for zsh
-brew "zsh-syntax-highlighting"
 # Fast, multipurpose tool for AWS CloudWatch Logs
 brew "tylerbrock/saw/saw"
 # Password manager that keeps all passwords secure behind one password
@@ -127,6 +134,8 @@ cask "audio-hijack"
 cask "balenaetcher"
 # Menu bar icon organizer
 cask "bartender"
+# Calendar software focusing on flexibility and reliability
+cask "busycal"
 # Utility that prevents the system from going to sleep
 cask "caffeine"
 # E-books management software
@@ -141,6 +150,8 @@ cask "chronosync"
 cask "cleanshot"
 # API documentation browser and code snippet manager
 cask "dash"
+# Free universal database tool and SQL client
+cask "dbeaver-community"
 # Voice and text chat software
 cask "discord"
 # Client for the Dropbox cloud storage service
@@ -149,15 +160,18 @@ cask "dropbox"
 cask "expressions"
 # VPN client for secure internet access and private browsing
 cask "expressvpn"
+# Collaborative team software
 cask "figma"
 # Web browser
 cask "firefox"
 # Audio editor
 cask "fission"
-cask "font-fira-code"
+cask "font-fira-code-nerd-font"
 # Typeface made for developers
 cask "font-jetbrains-mono"
 cask "font-source-code-pro"
+# App and website blocker
+cask "freedom"
 # Web browser
 cask "google-chrome"
 # Automated organization
@@ -171,6 +185,7 @@ cask "iterm2"
 cask "joplin"
 # Keyboard customizer
 cask "karabiner-elements"
+# Automation software
 cask "keyboard-maestro"
 # Office suite
 cask "libreoffice"
@@ -196,17 +211,24 @@ cask "omnidisksweeper"
 cask "omnifocus"
 # File system integration
 cask "osxfuse"
+# Administration and development platform for PostgreSQL
 cask "pgadmin4"
 # Collaboration platform for API development
 cask "postman"
 # File sync and share software
 cask "resilio-sync"
+# Screen recorder with audio
+cask "screenflick"
 # MySQL/MariaDB database management platform
 cask "sequel-pro"
+# Instant messaging application focusing on security
+cask "signal"
 # Video chat, voice call and instant messaging application
 cask "skype"
 # Team communication and collaboration software
 cask "slack"
+# Audio plugin fx bundle.
+cask "soundtoys"
 # Music streaming service
 cask "spotify"
 # Hybrid synthesizer
@@ -225,6 +247,8 @@ cask "wireshark"
 cask "xquartz"
 # Video communication and virtual meeting platform
 cask "zoom"
+# Flash tool for ZSA keyboards
+cask "zsa-wally"
 mas "Compressor", id: 424390742
 mas "DaisyDisk", id: 411643860
 mas "GarageBand", id: 682658836
