@@ -77,7 +77,10 @@ alias .....="cd ../../../.."
 ####
 # git
 ##
+alias ga="git add"
+alias gap="git add -p"
 alias gc="git commit"
+alias gca="git commit --amend"
 alias gb="git branch"
 alias gs='git status'
 alias gd="git diff"
@@ -125,3 +128,4 @@ alias tt="$EDITOR $TMUX_CONFIG"
 
 alias cdcd='cd ~/Library/Mobile\ Documents/\com\~apple\~CloudDocs/'
 alias thisdir="basename $(pwd)"
+alias oldbrew='arch -x86_64 /usr/local/bin/brew'
