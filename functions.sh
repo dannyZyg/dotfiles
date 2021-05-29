@@ -2,8 +2,7 @@
 
 function dockerDbIp {
 	CONTAINER=$(grep DB_CONTAINER_NAME .env | sed 's/.*[=]//g')
-	IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER)
-	echo $IP #| xclip -sel clip
+	echo $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER)
 }
 
 # # ex - archive extractor
@@ -32,8 +31,7 @@ ex ()
 
 function myip()
 {
-	IP=$(curl http://checkip.amazonaws.com/) >> /dev/null
-	echo $IP
+	echo $(curl http://checkip.amazonaws.com/)
 }
 
 function checkNet()
@@ -96,4 +94,8 @@ function pyenv-init() {
 function pyenv-rm() {
 	dir=$(basename $(pwd))
 	rmvirtualenv $dir
+}
+
+function exists() {
+	command -v $1 >/dev/null 2>&1
 }
