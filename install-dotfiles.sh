@@ -54,6 +54,7 @@ function linkNvimFiles() {
 function createLinks() {
 	linkDotfile .config/nvim/init.vim
 	linkDotfile .config/zsh/.zshrc
+	linkDotfile .config/zsh/.p10k.zsh
 	linkDotfile .zprofile
 	linkDotfile .config/tmux/.tmux.conf
 	linkDotfile .gitconfig
