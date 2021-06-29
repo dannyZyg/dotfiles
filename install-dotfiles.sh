@@ -54,6 +54,7 @@ function linkNvimFiles() {
 function createLinks() {
 	linkDotfile .config/nvim/init.vim
 	linkDotfile .config/zsh/.zshrc
+	linkDotfile .config/zsh/.zshenv
 	linkDotfile .zprofile
 	linkDotfile .config/tmux/.tmux.conf
 	linkDotfile .gitconfig
@@ -82,8 +83,8 @@ print_banner 'Linking dotfiles...'
 
 createDir ${backupDir} \
 	& createLinks \
-	& createNvimDirs \
-	& linkNvimFiles
+	# & createNvimDirs \
+	# & linkNvimFiles
 
 # linkDotfile .ackrc
 # linkDotfile .goomwwmrc

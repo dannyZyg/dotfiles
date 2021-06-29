@@ -4,6 +4,7 @@ export PATH=~/.local/bin:$PATH
 export PATH=/home/danny/.local/bin/aws_completer:$PATH
 export FILE='ranger'
 export TERMINAL='alacritty'
+export TERM='screen-256color'
 export EDITOR='nvim'
 export BROWSER='firefox'
 export READER='zathura'
