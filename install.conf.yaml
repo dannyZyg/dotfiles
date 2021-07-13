@@ -29,6 +29,12 @@
     ~/.config/alacritty/.alacritty.yml:
       path: alacritty/alacritty.yml
 
+    ~/.xprofile:
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
+    ~/.Xmodmap:
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
     ~/.config/i3/config:
       path: i3/config
       if: '[[ "$OSTYPE" = "linux"* ]]'
