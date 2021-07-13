@@ -58,7 +58,7 @@
 - shell:
   -
     description: 'Download Plug and install neovim plugins.'
-    command: ./setup-nvim-plugins.sh
+    command: ./scripts/setup-nvim-plugins.sh
     stdout: true
     stderr: true
 

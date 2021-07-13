@@ -26,7 +26,7 @@ function setup_nvim_env(){
 	if [ ! -d "$WORKON_HOME" ]; then mkdir -p $WORKON_HOME; fi
 	. ~/.pyenv/versions/$VER/bin/virtualenvwrapper.sh
 	mkvirtualenv neovim-python$1 \
-		&& pip install pynvim 
+		&& pip install pynvim
 }
 
 curl https://pyenv.run | bash
