@@ -5,8 +5,8 @@ SHELL := /bin/bash
 help: ## Show this help
 	@egrep -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-link-dotfiles: ## Links or relinks the dotfiles
-	./install-dotfiles.sh
+dotbot-run: ## Runs the dotbot install script
+	./install
 
 brew-dump: ## Remove the current Brewfile and dump a new one (arm)
 	brew bundle dump --describe --force --file='~/.dotfiles/packages/Brewfile'

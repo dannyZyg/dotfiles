@@ -1,0 +1,50 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean:
+    ~/:
+    ~/.config:
+      recursive: true
+
+- link:
+    ~/.gitconfig:
+    ~/.profile:
+    ~/.zprofile:
+    ~/.config/zsh/.zshrc:
+      path: zsh/zshrc
+    ~/.config/zsh/.p10k.zsh:
+      path: zsh/p10k.zsh
+
+    ~/.config/nvim/init.vim:
+      path: nvim/init.vim
+    ~/.config/nvim/plugin:
+      glob: true
+      path: nvim/plugin/*
+
+    ~/.config/tmux/.tmux.conf:
+      path: tmux/tmux.conf
+
+    ~/.config/alacritty/.alacritty.yml:
+      path: alacritty/alacritty.yml
+
+    ~/.config/i3/config:
+      path: i3/config
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
+    ~/.config/picom/picom.conf:
+      path: picom/picom.conf
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
+    ~/.config/sxhkd/sxhkdrc:
+      path: sxhkd/sxhkdrc
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
+    ~/.config/polybar:
+      glob: true
+      path: polybar/*
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
+- create:
+    - ~/.vim/undodir

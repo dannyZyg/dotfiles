@@ -1,3 +1,0 @@
-#!/bin/sh
-
-bscp monitor -d eDP1 

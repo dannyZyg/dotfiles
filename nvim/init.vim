@@ -42,6 +42,7 @@ Plug 'bfontaine/Brewfile.vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'mbbill/echofunc'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'sbdchd/neoformat'
 
 " [programming]
 Plug 'tpope/vim-commentary'
@@ -61,6 +62,7 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 " Plug 'davidhalter/jedi-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'vim-test/vim-test'
 
 " Syntax highlight
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -498,6 +500,20 @@ require'lspconfig'.flow.setup{}
 EOF
 
 " auto-format
-autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+" autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+" autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+" autocmd BufWritePre *.js Neoformat
+" autocmd BufWritePre *.jsx Neoformat
+
+" let g:neoformat_run_all_formatters = 1
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-v> :TestVisit<CR>
+
+let test#strategy = "neovim"
+let test#python#runner = 'pytest'
+" let testcommand = 'pytest src/modules/ --nomigrations'
+" let test#python#pytest#executable="docker-compose -f ./config/local/docker/docker-compose.yml exec docker_django_1 sh -c ".$testcommand
