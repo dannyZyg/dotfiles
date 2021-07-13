@@ -56,10 +56,7 @@
     - ~/.vim/undodir
 
 - shell:
-  -
-    description: 'Download Plug and install neovim plugins.'
+  - description: 'Download Plug and install neovim plugins.'
     command: ./scripts/setup-nvim-plugins.sh
     stdout: true
     stderr: true
-
-

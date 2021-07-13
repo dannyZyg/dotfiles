@@ -254,7 +254,6 @@ cask "xquartz"
 cask "zoom"
 # Flash tool for ZSA keyboards
 cask "zsa-wally"
-mas "Compressor", id: 424390742
 mas "DaisyDisk", id: 411643860
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
@@ -270,4 +269,3 @@ mas "QuickShade", id: 931571202
 mas "Shazam", id: 897118787
 mas "Time Out", id: 402592703
 mas "ToothFairy", id: 1191449274
-mas "Xcode", id: 497799835
