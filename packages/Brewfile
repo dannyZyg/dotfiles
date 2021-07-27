@@ -34,6 +34,8 @@ brew "docker-completion"
 brew "docker-compose-completion"
 # Platform built on V8 to build network applications
 brew "node"
+# Development kit for the Java programming language
+brew "openjdk"
 # Modern replacement for 'ls'
 brew "exa"
 # Play, record, convert, and stream audio and video
@@ -126,12 +128,16 @@ cask "1password"
 cask "1password-cli"
 # Sound and music editor
 cask "ableton-live-suite10"
+# Prebuilt OpenJDK binaries
+cask "adoptopenjdk8"
 # Create and modify subtitles
 cask "aegisub"
 # GPU-accelerated terminal emulator
 cask "alacritty"
 # Application launcher and productivity software
 cask "alfred"
+# Tools for building Android applications
+cask "android-studio"
 cask "arq-cloud-backup"
 # Records audio from any application
 cask "audio-hijack"

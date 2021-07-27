@@ -161,3 +161,15 @@ DOTFILES_DIR="$HOME/.dotfiles"
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+jdk() {
+	version=$1
+	export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+	java -version
+ }
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
