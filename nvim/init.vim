@@ -11,24 +11,21 @@ call plug#begin('~/.vim/plugged')
 
 " [file browsing]
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mileszs/ack.vim'
-" Plug 'junegunn/fzf.vim'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/gv.vim'
+" Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 
 "[styling]
+Plug 'lukas-reineke/indent-blankline.nvim'
 " Plug 'Yggdroot/indentLine'
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
 Plug 'jacoborus/tender.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'crusoexia/vim-javascript-lib'
 Plug 'patstockwell/vim-monokai-tasty'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 Plug 'mboughaba/i3config.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'hashivim/vim-terraform'
@@ -45,6 +42,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'sbdchd/neoformat'
 
 " [programming]
+Plug 'hoob3rt/lualine.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'shawncplus/phpcomplete.vim'
@@ -63,6 +61,11 @@ Plug 'neovim/nvim-lspconfig'
 " Plug 'davidhalter/jedi-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'vim-test/vim-test'
+" Plug 'cohama/lexima.vim'
+
+Plug 'tpope/vim-fugitive'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'junegunn/gv.vim'
 
 " Syntax highlight
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -153,7 +156,7 @@ set background=dark
 
 " let g:gruvbox_material_palette = 'mix' "mix | origninal | material
 " let g:airline_theme = 'gruvbox_material'
-let g:airline_theme = 'gruvbox'
+" let g:airline_theme = 'gruvbox'
 
 " colorscheme vim-monokai-tasty
 " let g:airline_theme='monokai_tasty'
@@ -234,8 +237,8 @@ map <Leader>mc :InstantMarkdownStop<CR>
 nnoremap v <C-V>
 nnoremap <C-V> v
 
-vnoremap    v   <C-V>
-vnoremap <C-V>     v
+vnoremap v <C-V>
+vnoremap <C-V> v
 
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
 
@@ -355,6 +358,23 @@ noremap <leader>ps :Rg<SPACE>
 " Move selection chunks up and down - follow indent
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
+inoremap <C-j> :m .+1<CR>==
+inoremap <C-k> :m .-2<CR>==
+
+" Undo Break Points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+" Keep this centered when using next/prev
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Make Y behave like D etc.
+nnoremap Y y$
 
 " trim whitespace on save
 " autocmd BufWritePre * :call TrimWhitespace()
@@ -497,6 +517,7 @@ require'lspconfig'.pyright.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.flow.setup{}
+require'lspconfig'.diagnosticls.setup {}
 EOF
 
 " auto-format
@@ -517,3 +538,44 @@ let test#strategy = "neovim"
 let test#python#runner = 'pytest'
 " let testcommand = 'pytest src/modules/ --nomigrations'
 " let test#python#pytest#executable="docker-compose -f ./config/local/docker/docker-compose.yml exec docker_django_1 sh -c ".$testcommand
+"
+"
+"
+lua << EOF
+require'lualine'.setup {
+  options = {
+    icons_enabled = true,
+    theme = 'gruvbox',
+    component_separators = {'', ''},
+    section_separators = {'', ''},
+    disabled_filetypes = {}
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+EOF
+
+nmap <leader>gs :G<CR>
+nmap <leader>gj :diffget //3<CR>
+nmap <leader>gf :diffget //2<CR>
+
+
+set updatetime=100
+nmap <leader>gn <plug>(signify-next-hunk)
+nmap <leader>gp <plug>(signify-prev-hunk)
