@@ -155,6 +155,8 @@ cask "calibre"
 cask "carbon-copy-cloner"
 # Open links in any browser
 cask "choosy"
+# Free and open-source web browser
+cask "chromium"
 # Synchronization and backup tool
 cask "chronosync"
 # Screen capturing tool
@@ -204,6 +206,8 @@ cask "logitech-options"
 cask "loopback"
 # Adaptive brightness for external displays
 cask "lunar"
+# Extensible two-pane file manager
+cask "marta"
 # Re-mounts write-protected NTFS volumes
 cask "mounty"
 # Media player based on MPlayer and mplayer2
@@ -214,6 +218,8 @@ cask "nordvpn-teams"
 cask "notion"
 # Open-source software for live streaming and screen recording
 cask "obs"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
 # Finds large, unwanted files and deletes them
 cask "omnidisksweeper"
 # Scheduling application focusing on organization
@@ -236,10 +242,14 @@ cask "signal"
 cask "skype"
 # Team communication and collaboration software
 cask "slack"
+# Control your Sonos system
+cask "sonos"
 # Audio plugin fx bundle.
 cask "soundtoys"
 # Music streaming service
 cask "spotify"
+# Spotify and iTunes in the menu bar
+cask "spotmenu"
 # Hybrid synthesizer
 cask "surge-synthesizer"
 # Unpacks archive files

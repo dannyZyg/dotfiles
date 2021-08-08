@@ -22,24 +22,24 @@ if [[ ${osvers_major} -ge 11 ]]; then
   # Check to see if the Mac needs Rosetta installed by testing the processor
 
   processor=$(/usr/sbin/sysctl -n machdep.cpu.brand_string | grep -o "Intel")
-  
+
   if [[ -n "$processor" ]]; then
     echo "$processor processor installed. No need to install Rosetta."
   else
 
     # Check Rosetta LaunchDaemon. If no LaunchDaemon is found,
     # perform a non-interactive install of Rosetta.
-    
+
     if [[ ! -f "/Library/Apple/System/Library/LaunchDaemons/com.apple.oahd.plist" ]]; then
         /usr/sbin/softwareupdate --install-rosetta --agree-to-license
-       
+
         if [[ $? -eq 0 ]]; then
         	echo "Rosetta has been successfully installed."
         else
         	echo "Rosetta installation failed!"
         	exitcode=1
         fi
-   
+
     else
     	echo "Rosetta is already installed. Nothing to do."
     fi
