@@ -28,19 +28,10 @@ export EDITOR=nvim
 export TMUX_CONFIG="$HOME/.config/tmux/.tmux.conf"
 export TEMP_DIR="/tmp"
 
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
-# if [[ "$OSTYPE" == "darwin"* ]]; then
-# 	[ -f $($BREWPATH --prefix)/etc/profile.d/autojump.sh ] \
-# 		&& . $(brew --prefix)/etc/profile.d/autojump.sh
-# fi
-
-# Enable colors and change prompt:
-autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # gdit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
@@ -105,12 +96,6 @@ lfcd () {
     fi
 }
 bindkey -s '^o' 'lfcd\n'
-
-# gdit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
-
-
 
 # export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
