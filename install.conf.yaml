@@ -16,6 +16,10 @@
       path: zsh/zshrc
     ~/.config/zsh/.p10k.zsh:
       path: zsh/p10k.zsh
+    ~/.config/zsh/zsh-vim-mode:
+      path: zsh/zsh-vim-mode
+    ~/.config/zsh/zsh-prompt:
+      path: zsh/zsh-prompt
 
     ~/.config/nvim/init.vim:
       path: nvim/init.vim
