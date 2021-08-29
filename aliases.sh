@@ -129,3 +129,11 @@ alias tt="$EDITOR $TMUX_CONFIG"
 alias cdcd='cd ~/Library/Mobile\ Documents/\com\~apple\~CloudDocs/'
 alias thisdir="basename $(pwd)"
 alias oldbrew='arch -x86_64 /usr/local/bin/brew'
+
+####
+# espanso
+####
+alias ee='espanso edit'
+
+# Update all zsh plugins
+alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
