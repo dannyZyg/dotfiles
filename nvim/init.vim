@@ -12,13 +12,11 @@ call plug#begin('~/.vim/plugged')
 " [file browsing]
 Plug 'scrooloose/nerdtree'
 Plug 'mileszs/ack.vim'
-" Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-signify'
 
 "[styling]
 Plug 'lukas-reineke/indent-blankline.nvim'
 " Plug 'Yggdroot/indentLine'
-" Plug 'vim-airline/vim-airline'
 Plug 'jacoborus/tender.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'ayu-theme/ayu-vim'
@@ -30,7 +28,6 @@ Plug 'mboughaba/i3config.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'hashivim/vim-terraform'
 Plug 'godlygeek/tabular'
-" Plug 'sainnhe/gruvbox-material'
 Plug 'gruvbox-community/gruvbox'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'jparise/vim-graphql'
@@ -49,19 +46,19 @@ Plug 'shawncplus/phpcomplete.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'dense-analysis/ale'
 Plug 'lumiliet/vim-twig'
-" Plug 'vim-scripts/indentpython.vim'
-" Plug 'vim-python/python-syntax'
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'pangloss/vim-javascript'
 Plug 'ap/vim-css-color'
 Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
-" Plug 'davidhalter/jedi-vim'
+Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'vim-test/vim-test'
 " Plug 'cohama/lexima.vim'
+Plug 'mbbill/undotree'
+Plug 'folke/trouble.nvim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -81,6 +78,8 @@ Plug 'unblevable/quick-scope'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
 
+" [music]
+Plug 'tidalcycles/vim-tidal'
 
 " telescope requirements...
 Plug 'nvim-lua/popup.nvim'
@@ -144,24 +143,11 @@ set bg=dark
 set cursorline
 
 " autocmd vimenter * colorscheme gruvbox
-"
 let g:gruvbox_contrast_dark = 'hard'
-if exists('+termguicolors')
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
 let g:gruvbox_invert_selection='0'
 colorscheme gruvbox
-set background=dark
 
-" let g:gruvbox_material_palette = 'mix' "mix | origninal | material
-" let g:airline_theme = 'gruvbox_material'
-" let g:airline_theme = 'gruvbox'
-
-" colorscheme vim-monokai-tasty
-" let g:airline_theme='monokai_tasty'
-" let g:airline_powerline_fonts = 1
-" let g:sublimemonokai_term_italic = 1
+highlight Comment cterm=italic gui=italic
 
 " nerdtree settings
 " autocmd StdinReadPre * let s:std_in=1
@@ -199,10 +185,6 @@ nnoremap <leader>bp :bp<CR>
 
 nmap <leader>a :tab split<CR>:Ack ""<Left>
 nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
-
-if (has("termguicolors"))
- set termguicolors
-endif
 
 " Enable folding
 set foldmethod=indent
@@ -250,46 +232,13 @@ map <Leader>ds :pu=strftime('%Y-%m-%d')<CR>
 set omnifunc=syntaxcomplete#Complete
 
 " au BufNewFile,BufRead *.ejs set filetype=html
-"
-"
+
 aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.i3/config set filetype=i3config
 aug end
 
 set pyxversion=3
-
-" COC SETUP
-" let g:coc_global_extensions = [
-" 	\ 'coc-marketplace',
-" 	\ 'coc-lists',
-" 	\ 'coc-syntax',
-" 	\ 'coc-json',
-" 	\ 'coc-html',
-" 	\ 'coc-css',
-" 	\ 'coc-pairs',
-" 	\ 'coc-snippets',
-" 	\ 'coc-markdownlint',
-" 	\ 'coc-vimlsp',
-" 	\ 'coc-yaml',
-" 	\ 'coc-highlight',
-" 	\ 'coc-phpls',
-" 	\ 'coc-tsserver',
-" 	\ 'coc-vetur' ,
-" 	\ 'coc-python',
-" 	\ 'coc-scssmodules',
-" 	\ 'coc-sh',
-" 	\ 'coc-gitignore',
-" 	\ 'coc-jest',
-" 	\ ]
-
-" Remap keys for gotos
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-" nmap <leader>rr <Plug>(coc-rename)
-" nmap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -311,48 +260,26 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"" Or use `complete_info` if your vim support it, like:
-"" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-""
-"" Use <C-l> for trigger snippet expand.
-"imap <C-l> <Plug>(coc-snippets-expand)
-
-"" Use <C-j> for select text for visual placeholder of snippet.
-"vmap <C-j> <Plug>(coc-snippets-select)
-
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-" let g:coc_snippet_next = '<c-j>'
-
-" " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-" let g:coc_snippet_prev = '<c-k>'
-
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-" imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 
-"python.jediEnabled": false
-
 "" Enable true color 启用终端24位色
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
+" if exists('+termguicolors')
+" endif
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
 
 
 inoremap jk <esc>
-noremap <leader>u :UndotreeShow<CR>
+noremap <leader>u :UndotreeToggle<CR>
+
+let g:undotree_SplitWidth = 50
+let g:undotree_WindowLayout = 2
+
 noremap <leader>ps :Rg<SPACE>
 
 " Move selection chunks up and down - follow indent
@@ -375,6 +302,9 @@ nnoremap N Nzzzv
 
 " Make Y behave like D etc.
 nnoremap Y y$
+
+
+nnoremap <leader>cs :noh<CR>
 
 " trim whitespace on save
 " autocmd BufWritePre * :call TrimWhitespace()
@@ -513,7 +443,7 @@ nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 lua << EOF
-require'lspconfig'.pyright.setup{}
+require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.flow.setup{}
@@ -540,6 +470,39 @@ let test#python#runner = 'pytest'
 " let test#python#pytest#executable="docker-compose -f ./config/local/docker/docker-compose.yml exec docker_django_1 sh -c ".$testcommand
 "
 "
+lua << EOF
+-- LSP this is needed for LSP completions in CSS along with the snippets plugin
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    "documentation",
+    "detail",
+    "additionalTextEdits",
+  },
+}
+EOF
+
+lua << EOF
+require("lspconfig").cssls.setup({
+  cmd = { "vscode-css-language-server", "--stdio" },
+  capabilities = capabilities,
+  settings = {
+    scss = {
+      lint = {
+        idSelector = "warning",
+        zeroUnits = "warning",
+        duplicateProperties = "warning",
+      },
+      completion = {
+        completePropertyWithSemicolon = true,
+        triggerPropertyValueCompletion = true,
+      },
+    },
+  },
+})
+EOF
+
 "
 lua << EOF
 require'lualine'.setup {
@@ -579,3 +542,43 @@ nmap <leader>gf :diffget //2<CR>
 set updatetime=100
 nmap <leader>gn <plug>(signify-next-hunk)
 nmap <leader>gp <plug>(signify-prev-hunk)
+
+" Tidalcycles hacky autocompletion
+" https://tidalcycles.org/docs/getting-started/editor/Vim
+" autocmd FileType tidal call s:tidal_abbr()
+" function! s:tidal_abbr()
+"     inoreabbr billybd "[t ~ ~ ~] [~ ~ ~ ~] [t ~ ~ ~] [~ ~ ~ ~]"
+"     inoreabbr billysn "[~ ~ ~ ~] [t ~ ~ ~] [~ ~ ~ ~] [t ~ ~ ~]"
+"     inoreabbr billych "[t ~ t ~] [t ~ t ~] [t ~ t ~] [t ~ t ~]"
+"     inoreabbr bluemondaybd "[t ~ ~ ~] [~ ~ ~ ~] [t ~ ~ ~] [~ ~ ~ ~]"
+"     inoreabbr bluemondaysn "[~ ~ ~ ~] [t ~ ~ ~] [~ ~ ~ ~] [t ~ ~ ~]"
+"     inoreabbr bluemondaycp "[~ ~ ~ ~] [t ~ ~ ~] [~ ~ ~ ~] [t ~ ~ ~]"
+"     inoreabbr bluemondayoh "[~ ~ t ~] [~ ~ t ~] [~ ~ t ~] [~ ~ t ~]"
+"     ... etc ...
+" endfunction
+
+let g:tidal_target = "terminal"
+
+lua << EOF
+  require("trouble").setup {
+    -- your configuration comes here
+  }
+EOF
+
+" nvim-completion
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
+
+if &term =~# '^screen' || &term =~# '^tmux' || &term =~# '^alacritty'
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+set termguicolors
