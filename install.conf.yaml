@@ -33,6 +33,9 @@
     ~/.config/alacritty/.alacritty.yml:
       path: alacritty/alacritty.yml
 
+    ~/.xinitrc:
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
     ~/.xprofile:
       if: '[[ "$OSTYPE" = "linux"* ]]'
 

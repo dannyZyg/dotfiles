@@ -8,7 +8,7 @@ super + Return
 super + i
 		$BROWSER
 super + c
-		chromium	
+		chromium
 super + p
 		$TERMINAL -e ranger
 super + control + m
@@ -16,24 +16,28 @@ super + control + m
 super + control + p
 		$HOME/.config/polybar/reloadpolybar.sh
 super + space
-		dmenu_recency -fn 'Roboto:regular:pixelsize=22'
+		rofi -show run
+super + control + space
+		rofi -show window
+super + backslash
+	1password --quick-access
 
 ############################################################
-# Media keys 
+# Media keys
 ############################################################
 
 # Screen brightness controls
 {_,super + }XF86MonBrightness{Down,Up}
 		xbacklight {-10,-3,+10,+3}
-XF86AudioMicMute 
+XF86AudiokicMute
 		pactl set-source-mute 1 toggle; notify-send 'Mic Input Toggled'
 
 # vol control
-XF86Audio{Raise,Lower}Volume 
-		$HOME/scripts/sound-control {up 10, down 10} 
-XF86AudioMute 
+XF86Audio{Raise,Lower}Volume
+		$HOME/scripts/sound-control {up 10, down 10}
+XF86AudioMute
 		$HOME/scripts/sound-control toggle
-   
+
 ############################################################
 # BSPWM
 ############################################################
