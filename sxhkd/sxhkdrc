@@ -29,7 +29,7 @@ super + backslash
 # Screen brightness controls
 {_,super + }XF86MonBrightness{Down,Up}
 		xbacklight {-10,-3,+10,+3}
-XF86AudiokicMute
+XF86AudioMicMute
 		pactl set-source-mute 1 toggle; notify-send 'Mic Input Toggled'
 
 # vol control
