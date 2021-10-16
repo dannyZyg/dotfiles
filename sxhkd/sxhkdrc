@@ -20,7 +20,12 @@ super + space
 super + control + space
 		rofi -show window
 super + backslash
-	1password --quick-access
+		1password --quick-access
+
+super + alt + 1
+		$HOME/.screenlayout/thinkpad-only.sh
+super + alt + 2
+		$HOME/.screenlayout/lg-widescreen.sh
 
 ############################################################
 # Media keys

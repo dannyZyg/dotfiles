@@ -21,6 +21,11 @@
     ~/.config/zsh/zsh-prompt:
       path: zsh/zsh-prompt
 
+    ~/.screenlayout:
+      glob: true
+      path: screenlayout/*
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
     ~/.config/nvim/init.vim:
       path: nvim/init.vim
     ~/.config/nvim/plugin:
@@ -34,12 +39,15 @@
       path: alacritty/alacritty.yml
 
     ~/.xinitrc:
+      path: .xinitrc
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
     ~/.xprofile:
+      path: .xprofile
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
     ~/.Xmodmap:
+      path: .Xmodmap
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
     ~/.config/i3/config:
