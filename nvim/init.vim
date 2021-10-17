@@ -67,6 +67,7 @@ Plug 'junegunn/gv.vim'
 " Syntax highlight
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'rajasegar/vim-astro', {'branch': 'main'}
 
 " [workflow]
 Plug 'tpope/vim-unimpaired'

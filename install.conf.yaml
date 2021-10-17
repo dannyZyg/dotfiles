@@ -70,8 +70,8 @@
 - create:
     - ~/.vim/undodir
 
-- shell:
-  - description: 'Download Plug and install neovim plugins.'
-    command: ./scripts/setup-nvim-plugins.sh
-    stdout: true
-    stderr: true
+# - shell:
+#   - description: 'Download Plug and install neovim plugins.'
+#     command: ./scripts/setup-nvim-plugins.sh
+#     stdout: true
+#     stderr: true
