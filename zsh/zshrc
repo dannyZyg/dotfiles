@@ -54,6 +54,7 @@ export TERM=xterm-256color
 export EDITOR=nvim
 export TMUX_CONFIG="$HOME/.config/tmux/.tmux.conf"
 export TEMP_DIR="/tmp"
+export N_PREFIX="$HOME/.config/n"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 # [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
