@@ -23,7 +23,6 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'crusoexia/vim-javascript-lib'
 Plug 'patstockwell/vim-monokai-tasty'
-" Plug 'ryanoasis/vim-devicons'
 Plug 'mboughaba/i3config.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'hashivim/vim-terraform'
@@ -51,9 +50,14 @@ Plug 'pangloss/vim-javascript'
 Plug 'ap/vim-css-color'
 Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'glepnir/lspsaga.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'vim-test/vim-test'
 " Plug 'cohama/lexima.vim'
@@ -63,6 +67,7 @@ Plug 'folke/trouble.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/gv.vim'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 " Syntax highlight
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -72,7 +77,7 @@ Plug 'rajasegar/vim-astro', {'branch': 'main'}
 " [workflow]
 Plug 'tpope/vim-unimpaired'
 Plug 'tmhedberg/SimpylFold'
-Plug 'suan/vim-instant-markdown', {'rtp': 'after'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'adelarsq/vim-matchit'
 Plug 'unblevable/quick-scope'
 
@@ -117,10 +122,6 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " Put the rest of your .vimrc file here
 let g:SimpylFold_docstring_preview=1
-
-
-
-
 
 " keep 10 lines when top focusing
 set scrolloff=10
@@ -210,10 +211,11 @@ function LambdaUpdateLayer()
 endfunction
 map <Leader>lu :call LambdaUpdateLayer()<CR>
 
-" let g:instant_markdown_slow = 1
-let g:instant_markdown_autostart = 0
-map <Leader>mp :InstantMarkdownPreview<CR>
-map <Leader>mc :InstantMarkdownStop<CR>
+" set to 1, nvim will open the preview window after entering the markdown buffer
+let g:mkdp_auto_start = 1
+
+" set to 1, the nvim will auto close current preview window when change from markdown buffer to another buffer
+let g:mkdp_auto_close = 1
 
 
 "====[ Swap v and CTRL-V, because Block mode is more useful that Visual mode "]======
@@ -241,21 +243,6 @@ aug end
 
 set pyxversion=3
 
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
-
-" Remap for rename current word
-" nmap <F2> <Plug>(coc-rename)
-
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -273,7 +260,6 @@ let g:terraform_fmt_on_save=1
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
-
 
 inoremap jk <esc>
 noremap <leader>u :UndotreeToggle<CR>
@@ -351,35 +337,14 @@ call NERDTreeHighlightFile('vue', 'green', 'none', '#1aab5d', Getbgcol())
 
 let g:vim_json_conceal=0
 
-" nmap <leader>rr <Plug>(coc-rename)
-" nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
-
 let g:python3_host_prog = $HOME."/.virtualenvs/nvim/bin/python"
 let g:python_host_prog = $HOME."/.virtualenvs/nvim-python2/bin/python"
 "
 nmap <leader>hh :noh<CR>
-
-" nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
-" nnoremap <leader>ff <cmd>Telescope find_files<cr>
-" call coc#config('python', {'pythonPath': $HOME."/.virtualenvs/base/bin/python" })
-" call coc#config('python', {'pythonPath': $HOME."/.virtualenvs/base/bin/python" })
-" call coc#config('python', {'pythonPath': $HOME."/.virtualenvs/neovim-python3.6.0/bin/python" })
 "
 nmap <leader>rp :put =expand('%')<CR>
 nmap <leader>ap :put =expand('%:p')<CR>
 nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p>
-
-
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-  },
-}
-EOF
-
-
 
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 
@@ -390,12 +355,6 @@ nnoremap <Leader>pf :lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
 nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
-" nnoremap <leader>vrc :lua require('theprimeagen.telescope').search_dotfiles()<CR>
-" nnoremap <leader>va :lua require('theprimeagen.telescope').anime_selector()<CR>
-" nnoremap <leader>vc :lua require('theprimeagen.telescope').chat_selector()<CR>
-" nnoremap <leader>gc :lua require('theprimeagen.telescope').git_branches()<CR>
-
-
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -404,34 +363,6 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fr <cmd>Telescope registers<cr>
 nnoremap <leader>fc <cmd>Telescope current_buffer_fuzzy_find<cr>
-
-
-
-set completeopt=menuone,noselect
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
-
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:true
-let g:compe.source.ultisnips = v:true
-
-
 
 " LSP config
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -442,14 +373,6 @@ nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-
-lua << EOF
-require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.flow.setup{}
-require'lspconfig'.diagnosticls.setup {}
-EOF
 
 " auto-format
 " autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
@@ -467,44 +390,16 @@ nmap <silent> t<C-v> :TestVisit<CR>
 
 let test#strategy = "neovim"
 let test#python#runner = 'pytest'
-" let testcommand = 'pytest src/modules/ --nomigrations'
-" let test#python#pytest#executable="docker-compose -f ./config/local/docker/docker-compose.yml exec docker_django_1 sh -c ".$testcommand
-"
-"
-lua << EOF
--- LSP this is needed for LSP completions in CSS along with the snippets plugin
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    "documentation",
-    "detail",
-    "additionalTextEdits",
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
   },
 }
 EOF
 
-lua << EOF
-require("lspconfig").cssls.setup({
-  cmd = { "vscode-css-language-server", "--stdio" },
-  capabilities = capabilities,
-  settings = {
-    scss = {
-      lint = {
-        idSelector = "warning",
-        zeroUnits = "warning",
-        duplicateProperties = "warning",
-      },
-      completion = {
-        completePropertyWithSemicolon = true,
-        triggerPropertyValueCompletion = true,
-      },
-    },
-  },
-})
-EOF
-
-"
 lua << EOF
 require'lualine'.setup {
   options = {
@@ -577,9 +472,138 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
+nnoremap <C-q> :copen<CR>
+nnoremap <C-l> :cnext<CR>
+nnoremap <C-h> :cprev<CR>
 
-if &term =~# '^screen' || &term =~# '^tmux' || &term =~# '^alacritty'
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-set termguicolors
+set completeopt=menu,menuone,noselect
+
+
+lua <<EOF
+  local has_lsp, lspconfig = pcall(require, "lspconfig")
+  if not has_lsp then
+    return
+  end
+
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    -- snippet = {
+      -- expand = function(args)
+        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+    -- end,
+	-- },
+    mapping = {
+      ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      -- { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/`.
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':'.
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- Setup lspconfig.
+  local updated_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+  local setup_server = function(server, config)
+    if not config then
+    return
+    end
+
+    if type(config) ~= "table" then
+    config = {}
+    end
+
+    config = vim.tbl_deep_extend("force", {
+      on_init = custom_init,
+      on_attach = custom_attach,
+      capabilities = updated_capabilities,
+      flags = {
+        debounce_text_changes = 50,
+      },
+    }, config)
+
+    lspconfig[server].setup(config)
+  end
+
+  local servers = {
+    graphql = true,
+    html = true,
+    pyright = true,
+    vimls = true,
+    yamlls = true,
+
+    -- rust_analyzer = true,
+    --   settings = {
+    --     ["rust-analyzer"] = {
+    --     },
+    -- },
+
+    cssls = {
+      cmd = { "vscode-css-language-server", "--stdio" },
+      settings = {
+      scss = {
+          lint = {
+            idSelector = "warning",
+            zeroUnits = "warning",
+            duplicateProperties = "warning",
+          },
+          completion = {
+            completePropertyWithSemicolon = true,
+            triggerPropertyValueCompletion = true,
+          },
+        },
+      },
+    },
+
+    tsserver = {
+      cmd = { "typescript-language-server", "--stdio" },
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+    },
+  }
+
+  for server, config in pairs(servers) do
+    setup_server(server, config)
+  end
+
+EOF
