@@ -4,6 +4,11 @@ stty stop undef # Stops Ctrl-s from freezing the terminal
 
 unsetopt BEEP
 
+export COLORTERM=truecolor
+export EDITOR=nvim
+export TMUX_CONFIG="$HOME/.config/tmux/.tmux.conf"
+export TEMP_DIR="/tmp"
+
 # removes auto highlight on paste
 zle_highlight=('paste:none')
 

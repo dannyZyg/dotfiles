@@ -110,3 +110,15 @@ function zsh_add_plugin() {
         git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
     fi
 }
+
+function fcd() {
+	cd $(find . -type d | fzf)
+}
+
+function fgco() {
+	git checkout $(git branch | fzf)
+}
+
+function ftmux() {
+	$(find ~/scripts/tmux/*.sh | fzf)
+}

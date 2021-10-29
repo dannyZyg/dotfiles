@@ -69,6 +69,7 @@ alias vpnjp="expressvpn connect 'Japan'"
 alias vpnoff="expressvpn disconnect"
 
 # directory navigation
+alias -- -='cd -'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -92,6 +93,7 @@ alias gcb="g rev-parse --abbrev-ref HEAD"
 alias gt="git tag"
 alias gm="git merge"
 alias gg="git log --graph --pretty=format:'%C(bold red)%h%Creset -%C(bold yellow)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias cgb="git rev-parse --abbrev-ref HEAD"
 # alias gcp="git cherry-pick"
 # alias gbg="git bisect good"
 # alias gbb="git bisect bad"

@@ -24,5 +24,8 @@ brew-dump-no-cask:
 	brew bundle dump --force --file='~/.dotfiles/packages/Brewfile-no-cask'
 	cat ~/.dotfiles/packages/Brewfile-no-cask | sed -E '/^cask|mas/d' >> ~/.dotfiles/packages/Brewfile-no-cask
 
+brew-x86-install-no-cask: ## Install all packages from Brewfile (x86)
+	arch -x86_64 /usr/local/bin/brew bundle --verbose --file ~/.dotfiles/packages/Brewfile-no-cask
+
 git-submodule-update: ## Updates git submodules
 	git submodule update --remote --merge

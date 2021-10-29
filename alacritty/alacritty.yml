@@ -1,17 +1,5 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
-# Any items in the `env` entry below will be added as
-# environment variables. Some entries may override variables
-# set by alacritty itself.
-env:
-  # TERM variable
-  #
-  # This value is used to set the `$TERM` environment variable for
-  # each instance of Alacritty. If it is not present, alacritty will
-  # check the local terminfo database and use `alacritty` if it is
-  # available, otherwise `xterm-256color` is used.
-  TERM: xterm-256color
-
 window:
   # Window dimensions (changes require restart)
   #
@@ -34,8 +22,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 6 
-    y: 6 
+    x: 6
+    y: 6
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -58,8 +46,8 @@ window:
   #   - Maximized
   #   - Fullscreen
   #
-  # Values for `startup_mode` (macOS only):
-  #   - SimpleFullscreen
+  Values for `startup_mode` (macOS only):
+    - SimpleFullscreen
   #startup_mode: Windowed
 
   # Window title
@@ -99,125 +87,21 @@ scrolling:
 # change the `it` value in terminfo when altering this setting.
 #tabspaces: 8
 
-# Font configuration
 font:
-  # Normal (roman) font face
+  size: 16.0
   normal:
-    # Font family
-    #
-    Default:
-      - (macOS) Menlo
-    # - (Linux/BSD) monospace
-    #   - (Windows) Consolas
-    # family: monospace
-
-    # The `style` can be specified to pick a specific face.
-    # style: Regular
-
-  # Bold font face
-  #bold:
-    # Font family
-    #
-    # If the bold family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
-
-    # The `style` can be specified to pick a specific face.
-    #style: Bold
-
-  # Italic font face
-  #italic:
-    # Font family
-    #
-    # If the italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
-
-    # The `style` can be specified to pick a specific face.
-    #style: Italic
-
-  # Bold italic font face
-  #bold_italic:
-    # Font family
-    #
-    # If the bold italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
-
-    # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
-
-  # Point size
-  size: 12.0
-
-  # Offset is the extra space around each character. `offset.y` can be thought of
-  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+    family: FiraCode Nerd Font Mono
+    style: Medium
+  bold:
+    family: FiraCode Nerd Font Mono
+  italic:
+    family: FiraCode Nerd Font Mono
   offset:
-    x: 0
-    y: 0
-
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the right,
-  # increasing `y` moves the glyph upwards.
-  #glyph_offset:
-  #  x: 0
-  #  y: 0
-
-  # Thin stroke font rendering (macOS only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`
-  #
-  # macOS >= 10.14.x:
-  #
-  # If the font quality on non-retina display looks bad then set
-  # `use_thin_strokes` to `true` and enable font smoothing by running the
-  # following command:
-  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
-  #
-  # This is a global setting and will require a log out or restart to take
-  # effect.
-  #use_thin_strokes: true
+    x: 3
+    y: 3
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
-
-# Colors (Pencil Dark)
-colors:
-  # Default Colors
-  primary:
-    background: '0x212121'
-    foreground: '0xf1f1f1'
-  # Normal colors
-  normal:
-    black:   '0x212121'
-    red:     '0xc30771'
-    green:   '0x10a778'
-    yellow:  '0xa89c14'
-    blue:    '0x008ec4'
-    magenta: '0x523c79'
-    cyan:    '0x20a5ba'
-    white:   '0xe0e0e0'
-  # Bright colors
-  bright:
-    black:   '0x212121'
-    red:     '0xfb007a'
-    green:   '0x5fd7af'
-    yellow:  '0xf3e430'
-    blue:    '0x20bbfc'
-    magenta: '0x6855de'
-    cyan:    '0x4fb8cc'
-    white:   '0xf1f1f1'
-
-  # Indexed Colors
-  #
-  # The indexed colors include all colors from 16 to 256.
-  # When these are not set, they're filled with sensible defaults.
-  #
-  # Example:
-  #   `- { index: 16, color: '0xff00ff' }`
-  #
-  #indexed_colors: []
 
 # Visual Bell
 #
