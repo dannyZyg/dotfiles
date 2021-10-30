@@ -8,15 +8,14 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
-new_float pixel 1
+new_window pixel 5
+new_float pixel 5
 
 # Hide borders
 hide_edge_borders both
 
 # change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
+bindsym $mod+y border pixel 5
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -26,16 +25,11 @@ font xft:Roboto 11
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-# launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
-
 set $pause --no-startup-id mpd toggle
 bindsym $mod+Shift+u $pause
 
 # Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+g exec alacritty
-# bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu nautilus
 bindsym $mod+F5 exec terminal -e 'mocp'
 # bindsym $mod+t exec --no-startup-id pkill compton
@@ -44,11 +38,7 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+b exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-
-
-# focus_follows_mouse no
 
 # change focus
 bindsym $mod+h focus left
@@ -111,15 +101,15 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 1:ターミナル
-set $ws2 2:インターネット
+set $ws1 1
+set $ws2 2
 set $ws3 3
-set $ws4 4:グーグル
-set $ws5 5:チャット
+set $ws4 4
+set $ws5 5
 set $ws6 6
 set $ws7 7
 set $ws8 8
-set $ws9 9:日本語
+set $ws9 9
 set $ws10 10
 
 # switch to workspace
@@ -165,6 +155,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 assign [class="Discord"] $ws5
 # assign [class="Anki"] $ws9
 # assign [class="Skype"] $ws5
+assign [class="DBeaver"] $ws7
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -410,5 +401,3 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-exec_always xset r rate 200 60
