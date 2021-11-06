@@ -155,3 +155,4 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 [ -f "/Users/dannykeig/.ghcup/env" ] && source "/Users/dannykeig/.ghcup/env" # ghcup-env
 
+eval "$(starship init zsh)"
