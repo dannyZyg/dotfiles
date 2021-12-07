@@ -91,7 +91,7 @@ Plug 'tidalcycles/vim-tidal'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " <============================================>
 " All of your Plugins must be added before the following line
@@ -347,6 +347,8 @@ nmap <leader>ap :put =expand('%:p')<CR>
 nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p>
 
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
+
+lua require('telescope').load_extension('fzf')
 
 nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
