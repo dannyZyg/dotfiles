@@ -26,6 +26,9 @@
     ~/.config/nvim/plugin:
       glob: true
       path: nvim/plugin/*
+    ~/.config/nvim/lua:
+      glob: true
+      path: nvim/lua/**
 
     ~/.config/tmux/.tmux.conf:
       path: tmux/tmux.conf
