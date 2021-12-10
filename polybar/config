@@ -45,9 +45,9 @@ border-size = 7
 border-color = #00000000
 
 padding-left = 0
-padding-right = 0 
+padding-right = 0
 
-module-margin-left = 1 
+module-margin-left = 1
 module-margin-right = 1
 
 font-0 = SourceCodeProMedium:pixelsize=13;1
@@ -57,7 +57,7 @@ font-3 = adobe-source-han-sans-jp-fonts:pixelsize=10;1
 
 modules-left = bspwm i3
 modules-center = mpd
-modules-right = pacman-updates filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu 
+modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
 tray-padding = 1
@@ -82,7 +82,7 @@ initial = 1
 [module/internet]
 type = custom/script
 exec = $HOME/.config/polybar/polyinternet.sh
-interval = 10 
+interval = 10
 format-prefix = "📶 : "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
@@ -111,7 +111,10 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-label-mounted = 💾: %free%
+mount-1 = /home
+; format-mounted = <bar-free>
+label-mounted = 💾%mountpoint% : %free%
+format-mounted-prefix = 
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -191,7 +194,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "🧪" 
+format-prefix = "🧪"
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %percentage:2%%
