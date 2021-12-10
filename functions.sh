@@ -120,5 +120,5 @@ function fgco() {
 }
 
 function ftmux() {
-	$(find ~/scripts/tmux/*.sh | fzf)
+	$(find ~/sync/scripts/tmux/*.sh | fzf)
 }
