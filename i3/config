@@ -230,9 +230,6 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# Lock screen
-bindsym $mod+Shiftx exec --no-startup-id betterlockscreen -l blur
-
 #record system audio
 bindsym $mod+Ctrl+y exec /home/danny/dev/immersion-tools/record-anki-audio
 
@@ -249,10 +246,6 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id copyq
 exec --no-startup-id rslsync
 exec --no-startup-id flameshot
-
-
-# exec_always --no-startup-id xautolock -time 0.1 -locker /usr/bin/slock
-#exec_always --no-startup-id xautolock -time 0.1 -locker ~/scripts/autolock.sh
 
 exec --no-startup-id ff-theme-util
 exec --no-startup-id fix_xcursor
