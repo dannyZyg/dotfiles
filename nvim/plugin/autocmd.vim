@@ -9,6 +9,8 @@ autocmd Filetype javascript setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype typescript setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype javascriptreact setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype typescriptreact setlocal ts=2 sw=2 sts=2 expandtab
+autocmd Filetype astro setlocal ts=2 sw=2 sts=2 expandtab
+autocmd Filetype svelte setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype vue setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype yml setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab

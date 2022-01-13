@@ -80,16 +80,34 @@ end
 local servers = {
   graphql = true,
   html = true,
-  pyright = true,
+  -- pyright = true,
   vimls = true,
   yamlls = true,
   jsonls = true,
+  pylsp = true,
+  svelte = true,
 
   -- rust_analyzer = true,
   --   settings = {
   --     ["rust-analyzer"] = {
   --     },
   -- },
+  --
+  pylsp = {
+	cmd = { "pylsp" },
+    filetypes = { "python" },
+    single_file_support = true,
+	plugins = {
+		configurationSources = {"flake8"},
+		pycodestyle = {enabled = false},
+		flake8 = {enabled = true},
+		mypy = {
+			enabled = true,
+			live_mode =true,
+			strict = true
+		},
+	},
+  },
 
   cssls = {
     cmd = { "vscode-css-language-server", "--stdio" },
