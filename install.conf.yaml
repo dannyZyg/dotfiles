@@ -47,11 +47,15 @@
     ~/.xprofile:
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
-    ~/.Xmodmap:
-      if: '[[ "$OSTYPE" = "linux"* ]]'
+    # ~/.Xmodmap:
+    #   if: '[[ "$OSTYPE" = "linux"* ]]'
 
     ~/.config/i3/config:
       path: i3/config
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
+    ~/.config/copyq/themes/custom-theme.ini:
+      path: copyq/themes/custom-theme.ini
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
     ~/.config/picom/picom.conf:
@@ -67,11 +71,32 @@
       path: polybar/*
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
+    ~/.config/rofi:
+      glob: true
+      path: rofi/*
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
+    # ANKI Linux
+    ~/.local/share/Anki2/addons21/1666520655/config.json:
+      path: anki/migaku_dictionary/config.json
+      force: true
+      if: '[[ "$OSTYPE" = "linux"* && -d ~/.local/share/Anki2/addons21/1666520655 ]]'
+
+    ~/.local/share/Anki2/addons21/278530045/config.json:
+      path: anki/migaku_japanese/config.json
+      force: true
+      if: '[[ "$OSTYPE" = "linux"* && -d ~/.local/share/Anki2/addons21/278530045 ]]'
+
+    # ANKI MAC
+    ~/Library/Application\ Support/Anki2/addons21/1666520655/config.json:
+      path: anki/migaku_dictionary/config.json
+      force: true
+      if: '[[ "$OSTYPE" = "darwin"* && -d ~/Library/Application\ Support/Anki2/addons21/1666520655 ]]'
+
+    ~/Library/Application\ Support/Anki2/addons21/278530045/config.json:
+      path: anki/migaku_japanese/config.json
+      force: true
+      if: '[[ "$OSTYPE" = "darwin"* && -d ~/Library/Application\ Support/Anki2/addons21/278530045 ]]'
+
 - create:
     - ~/.vim/undodir
-
-# - shell:
-#   - description: 'Download Plug and install neovim plugins.'
-#     command: ./scripts/setup-nvim-plugins.sh
-#     stdout: true
-#     stderr: true
