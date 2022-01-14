@@ -77,10 +77,10 @@
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
     # ANKI Linux
-    ~/.local/share/Anki2/addons21/1666520655/config.json:
+    ~/.local/share/Anki2/addons21/1655992655/config.json:
       path: anki/migaku_dictionary/config.json
       force: true
-      if: '[[ "$OSTYPE" = "linux"* && -d ~/.local/share/Anki2/addons21/1666520655 ]]'
+      if: '[[ "$OSTYPE" = "linux"* && -d ~/.local/share/Anki2/addons21/1655992655 ]]'
 
     ~/.local/share/Anki2/addons21/278530045/config.json:
       path: anki/migaku_japanese/config.json
@@ -88,12 +88,12 @@
       if: '[[ "$OSTYPE" = "linux"* && -d ~/.local/share/Anki2/addons21/278530045 ]]'
 
     # ANKI MAC
-    ~/Library/Application\ Support/Anki2/addons21/1666520655/config.json:
+    '~/Library/Application Support/Anki2/addons21/1655992655/config.json':
       path: anki/migaku_dictionary/config.json
       force: true
-      if: '[[ "$OSTYPE" = "darwin"* && -d ~/Library/Application\ Support/Anki2/addons21/1666520655 ]]'
+      if: '[[ "$OSTYPE" = "darwin"* && -d ~/Library/Application\ Support/Anki2/addons21/1655992655 ]]'
 
-    ~/Library/Application\ Support/Anki2/addons21/278530045/config.json:
+    '~/Library/Application Support/Anki2/addons21/278530045/config.json':
       path: anki/migaku_japanese/config.json
       force: true
       if: '[[ "$OSTYPE" = "darwin"* && -d ~/Library/Application\ Support/Anki2/addons21/278530045 ]]'
