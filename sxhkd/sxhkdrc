@@ -19,6 +19,10 @@ super + space
 		rofi -show run
 super + control + space
 		rofi -show window
+super + alt + c
+		rofi -show calc -modi calc -no-show-match -no-sort
+super + alt + v
+		$HOME/.dotfiles/rofi/vpn-menu.sh
 super + backslash
 		1password --quick-access
 
