@@ -95,12 +95,10 @@
     # ANKI MAC
     '~/Library/Application Support/Anki2/addons21/1655992655/config.json':
       path: anki/migaku_dictionary/config.json
-      force: true
       if: '[[ "$OSTYPE" = "darwin"* && -d ~/Library/Application\ Support/Anki2/addons21/1655992655 ]]'
 
     '~/Library/Application Support/Anki2/addons21/278530045/config.json':
       path: anki/migaku_japanese/config.json
-      force: true
       if: '[[ "$OSTYPE" = "darwin"* && -d ~/Library/Application\ Support/Anki2/addons21/278530045 ]]'
 
 - create:
