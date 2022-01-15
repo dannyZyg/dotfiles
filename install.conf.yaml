@@ -16,16 +16,10 @@
 
     ~/.zprofile:
       path: zsh/zprofile
-    ~/.config/zsh/.zshenv:
-      path: zsh/zshenv
     ~/.config/zsh/.zshrc:
       path: zsh/zshrc
-    ~/.config/zsh/.p10k.zsh:
-      path: zsh/p10k.zsh
     ~/.config/zsh/zsh-vim-mode:
       path: zsh/zsh-vim-mode
-    ~/.config/zsh/zsh-prompt:
-      path: zsh/zsh-prompt
 
     ~/.config/nvim/init.vim:
       path: nvim/init.vim
@@ -77,7 +71,12 @@
       path: polybar/*
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
+    ~/.local/bin/key-remaps:
+      path: bin/key-remaps
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
     ~/.config/rofi:
+      create: true
       glob: true
       path: rofi/*
       if: '[[ "$OSTYPE" = "linux"* ]]'
