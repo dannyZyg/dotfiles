@@ -256,13 +256,10 @@ exec "~/.screenlayout/default-thinkpad.sh"
 exec --no-startup-id fcitx
 exec GTK_IM_MODULE=fcitx XMODIFIERS=@im=fcitx QT_IM_MODULE=fcitx
 
-exec protonmail-bridge --no-window
 exec --no-startup-id redshift-gtk
 exec caffeine
 # firewall
 exec gufw
-exec nextcloud
-exec udiskie -at
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
