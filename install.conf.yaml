@@ -10,8 +10,14 @@
 
 - link:
     ~/.gitconfig:
+
     ~/.profile:
+      path: shell/.profile
+
     ~/.zprofile:
+      path: zsh/zprofile
+    ~/.config/zsh/.zshenv:
+      path: zsh/zshenv
     ~/.config/zsh/.zshrc:
       path: zsh/zshrc
     ~/.config/zsh/.p10k.zsh:
