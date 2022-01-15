@@ -5,19 +5,11 @@ stty stop undef # Stops Ctrl-s from freezing the terminal
 unsetopt BEEP
 
 export COLORTERM=truecolor
-export EDITOR=nvim
 export TMUX_CONFIG="$HOME/.config/tmux/.tmux.conf"
 export TEMP_DIR="/tmp"
 
 # removes auto highlight on paste
 zle_highlight=('paste:none')
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 DOTFILES_DIR="$HOME/.dotfiles"
 [ -f "$DOTFILES_DIR/aliases.sh" ] && source "$DOTFILES_DIR/aliases.sh"
@@ -34,7 +26,7 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 
-source $ZDOTDIR/zsh-prompt
+# source $ZDOTDIR/zsh-prompt
 source $ZDOTDIR/zsh-vim-mode
 
 # TODO: Keep an eye out for a different `--no-quarantine` solution.
@@ -127,19 +119,18 @@ export ANKI_PROFILE="danny"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
-if command -v pyenv 1>/dev/null 2>&1; then
-	eval "$(pyenv init --path)"
-	eval "$(pyenv virtualenv-init -)"
-	. ~/.pyenv/versions/3.9.1/bin/virtualenvwrapper.sh
-fi
-
-export PATH="$HOME/.poetry/bin:$PATH"
+# if command -v pyenv 1>/dev/null 2>&1; then
+# 	eval "$(pyenv init --path)"
+# 	eval "$(pyenv virtualenv-init -)"
+# 	. ~/.local/bin/virtualenvwrapper.sh
+# fi
 
 # virtualenvwrapper
-export WORKON_HOME=~/.virtualenvs
+export WORKON_HOME=~/.config/virtualenvs
 if [ ! -d "$WORKON_HOME" ]; then mkdir -p $WORKON_HOME; fi
+[ -f $(which virtualenvwrapper.sh) ] && source $(which virtualenvwrapper.sh)
 
-[ -f "$HOME/scripts/aws/aws.sh" ] && source "$HOME/scripts/aws/aws.sh"
+[ -f "$HOME/sync/scripts/aws/aws.sh" ] && source "$HOME/sync/scripts/aws/aws.sh"
 
 jdk() {
 	version=$1
@@ -155,4 +146,10 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 [ -f "/Users/dannykeig/.ghcup/env" ] && source "/Users/dannykeig/.ghcup/env" # ghcup-env
 
+if [[ "$OSTYPE" == "linux"* ]]; then
+	ANKI_PATH="$HOME/packages/anki-2.1.35-linux-amd64/bin"
+	export PATH="$ANKI_PATH:$PATH"
+fi
+
 eval "$(starship init zsh)"
+
