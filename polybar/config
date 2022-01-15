@@ -57,7 +57,7 @@ font-3 = adobe-source-han-sans-jp-fonts:pixelsize=10;1
 
 modules-left = bspwm i3
 modules-center = mpd
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature date vpn-nordvpn-status powermenu
+modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature date updates-pacman-aurhelper vpn-nordvpn-status powermenu
 
 tray-position = right
 tray-padding = 1
@@ -328,6 +328,11 @@ menu-2-1-exec = menu-open-0
 type = custom/script
 exec = $HOME/.config/polybar/polynordvpn.sh
 interval = 5
+
+[module/updates-pacman-aurhelper]
+type = custom/script
+exec = $HOME/.config/polybar/polypacman.sh
+interval = 600
 
 [settings]
 screenchange-reload = true
