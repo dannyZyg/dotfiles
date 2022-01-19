@@ -1,4 +1,4 @@
 backups/*
 packages/Brewfile.lock.json
 **/.DS_Store
-./packages/homebrew/*.lock.json
+packages/homebrew/*.lock.json
