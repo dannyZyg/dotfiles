@@ -1,0 +1,54 @@
+{
+  "entries": {
+    "tap": {
+      "dannyzyg/music-software": {
+        "revision": "b22b2eb77605dc491c626ce0e4b996dd8b7853a6"
+      },
+      "federico-terzi/espanso": {
+        "revision": "c62a394a884630fc91929d437e596ec7625c2b4b"
+      },
+      "homebrew/bundle": {
+        "revision": "d40b20f64e29453a77290f7c329cf336a59e8b66"
+      },
+      "homebrew/cask": {
+        "revision": "c39890605dc958c5809b9103ca13b2d41ae55d15"
+      },
+      "homebrew/cask-drivers": {
+        "revision": "d8773a341a2c3b5c11051b56ab0a3dc13520ceb4"
+      },
+      "homebrew/cask-fonts": {
+        "revision": "5af8b108b1eaa635bc830268510b403593b8719a"
+      },
+      "homebrew/cask-versions": {
+        "revision": "3700356fc161717d08e2fee6d4f2f7fd94b92c9c"
+      },
+      "homebrew/core": {
+        "revision": "a4f229035e70f87950534279102158063d7d1f15"
+      },
+      "homebrew/services": {
+        "revision": "f8d1669245d4c4a70fb1e6fe26519e7c97651203"
+      },
+      "koekeishiya/formulae": {
+        "revision": "f56bd0140ab595cd3bded5f9b97ce06a3864bdee"
+      },
+      "romkatv/powerlevel10k": {
+        "revision": "5bb0e50f477916e6b659fad5b9b52a34e3660cc5"
+      },
+      "tylerbrock/saw": {
+        "revision": "0538bc88f797f09fa3cdba51b7c64bd5e4c91c5a"
+      }
+    }
+  },
+  "system": {
+    "macos": {
+      "monterey": {
+        "HOMEBREW_VERSION": "3.3.11",
+        "HOMEBREW_PREFIX": "/usr/local",
+        "Homebrew/homebrew-core": "a4f229035e70f87950534279102158063d7d1f15",
+        "CLT": "",
+        "Xcode": "13.2.1",
+        "macOS": "12.1"
+      }
+    }
+  }
+}

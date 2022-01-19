@@ -8,24 +8,23 @@ help: ## Show this help
 dotbot-run: ## Runs the dotbot install script
 	./install
 
-brew-dump: ## Remove the current Brewfile and dump a new one (arm)
-	brew bundle dump --describe --force --file='~/.dotfiles/packages/Brewfile'
+brew-dump: ## Remove the current Brewfiles (brew, tap, cask, mas) and dump new ones
+	./scripts/brew-dump.sh
 
 brew-x86-dump: ## Remove the current Brewfile and dump a new one (x86)
 	arch -x86_64 /usr/local/bin/brew bundle dump --describe --force --file='~/.dotfiles/packages/Brewfile-x86'
 
-brew-install: ## Install all packages from Brewfile (arm)
-	brew bundle --verbose --file ~/.dotfiles/packages/Brewfile
+brew-install-brews: ## Install all brews from Brewfile
+	brew bundle --file ./packages/homebrew/brew_packages
 
-brew-x86-install: ## Install all packages from Brewfile (x86)
-	arch -x86_64 /usr/local/bin/brew bundle --verbose --file ~/.dotfiles/packages/Brewfile-x86
+brew-install-taps: ## Install all taps from Brewfile
+	brew bundle --file ./packages/homebrew/taps
 
-brew-dump-no-cask:
-	brew bundle dump --force --file='~/.dotfiles/packages/Brewfile-no-cask'
-	cat ~/.dotfiles/packages/Brewfile-no-cask | sed -E '/^cask|mas/d' >> ~/.dotfiles/packages/Brewfile-no-cask
+brew-install-casks: ## Install all casks from Brewfile
+	brew bundle --file ./packages/homebrew/casks
 
-brew-x86-install-no-cask: ## Install all packages from Brewfile (x86)
-	arch -x86_64 /usr/local/bin/brew bundle --verbose --file ~/.dotfiles/packages/Brewfile-no-cask
+brew-install-mas: ## Install all Mac App Store apps from Brewfile
+	brew bundle --file ./packages/homebrew/mas
 
 git-submodule-update: ## Updates git submodules
 	git submodule update --remote --merge

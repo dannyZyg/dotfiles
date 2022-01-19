@@ -1,0 +1,90 @@
+{
+  "entries": {
+    "mas": {
+      "DaisyDisk": {
+        "id": "411643860",
+        "version": "4.21.4"
+      },
+      "DevCleaner": {
+        "id": "1388020431",
+        "version": "2.3.0"
+      },
+      "GarageBand": {
+        "id": "682658836",
+        "version": "10.4.5"
+      },
+      "iMovie": {
+        "id": "408981434",
+        "version": "10.3.1"
+      },
+      "Keynote": {
+        "id": "409183694",
+        "version": "11.2"
+      },
+      "LanScan": {
+        "id": "472226235",
+        "version": "6.5.13"
+      },
+      "Microsoft Remote Desktop": {
+        "id": "1295203466",
+        "version": "10.7.4"
+      },
+      "miRack Legacy": {
+        "id": "1500860857",
+        "version": "3.66"
+      },
+      "Model 15": {
+        "id": "1041465860",
+        "version": "2.2.12"
+      },
+      "Numbers": {
+        "id": "409203825",
+        "version": "11.2"
+      },
+      "Pages": {
+        "id": "409201541",
+        "version": "11.2"
+      },
+      "Paprika Recipe Manager 3": {
+        "id": "1303222628",
+        "version": "3.7.0"
+      },
+      "QuickShade": {
+        "id": "931571202",
+        "version": "2.0.3"
+      },
+      "Shazam": {
+        "id": "897118787",
+        "version": "2.10.0"
+      },
+      "Time Out": {
+        "id": "402592703",
+        "version": "2.8.1"
+      },
+      "Todoist": {
+        "id": "585829637",
+        "version": "8.0.4"
+      },
+      "ToothFairy": {
+        "id": "1191449274",
+        "version": "2.7.8"
+      },
+      "Xcode": {
+        "id": "497799835",
+        "version": "13.2.1"
+      }
+    }
+  },
+  "system": {
+    "macos": {
+      "monterey": {
+        "HOMEBREW_VERSION": "3.3.11-58-g40c895c",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "a4f229035e70f87950534279102158063d7d1f15",
+        "CLT": "",
+        "Xcode": "13.2.1",
+        "macOS": "12.1"
+      }
+    }
+  }
+}
