@@ -3,8 +3,10 @@
 
 temp=$(acpi -t | sed 's/.*, //;s/ degrees //;s/C//')
 if [ 1 -eq "$(echo "$temp > 80" | bc)" ]; then
-    printf "%%{F#ed0b0b}"
+    printf "%%{F#ed0b0b} "
 elif [ 1 -eq "$(echo "$temp > 60" | bc)" ]; then
-    printf "%%{F#f2e421}";
+    printf "%%{F#f2e421} ";
+else
+    printf "%%{F#dfdfdf} ";
 fi
 echo "$temp"°C
