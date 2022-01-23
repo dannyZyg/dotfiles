@@ -52,7 +52,6 @@ elif [[ "$OSTYPE" == "linux"* ]]; then
 	export CONDA_PATH="/opt/anaconda"
 fi
 
-export TERM=xterm-256color
 export EDITOR=nvim
 export TMUX_CONFIG="$HOME/.config/tmux/.tmux.conf"
 export TEMP_DIR="/tmp"
