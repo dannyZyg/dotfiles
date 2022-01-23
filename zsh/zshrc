@@ -35,6 +35,7 @@ export HOMEBREW_CASK_OPTS="--no-quarantine --no-binaries"
 
 # Handle Mac architectures and brew paths
 if [[ "$OSTYPE" == "darwin"* ]]; then
+
 	CPU=$(uname -p)
 	if [[ "$CPU" == "arm" ]]; then
 		export BREWPATH="/opt/homebrew/bin"
@@ -46,6 +47,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 		export CONDA_PATH="/usr/local/anaconda3"
 	fi
 	export PATH=$(brew --prefix)/opt/llvm/bin/:$PATH
+
+elif [[ "$OSTYPE" == "linux"* ]]; then
+	export CONDA_PATH="/opt/anaconda"
 fi
 
 export TERM=xterm-256color
