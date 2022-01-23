@@ -337,9 +337,9 @@ call NERDTreeHighlightFile('vue', 'green', 'none', '#1aab5d', Getbgcol())
 
 let g:vim_json_conceal=0
 
-let g:python3_host_prog = $HOME."/.config/virtualenvs/neovim-python-3-9-0/bin/python"
-let g:python_host_prog = $HOME."/.config/virtualenvs/neovim-python-2-7-18/bin/python"
-"
+let g:python3_host_prog = '/usr/local/anaconda3/envs/neovim-python-3/bin/python'
+let g:python_host_prog = '/usr/local/anaconda3/envs/neovim-python-2/bin/python'
+
 nmap <leader>hh :noh<CR>
 "
 nmap <leader>rp :put =expand('%')<CR>
