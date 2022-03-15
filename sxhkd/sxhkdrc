@@ -42,8 +42,8 @@ XF86AudioMicMute
 		pactl set-source-mute 1 toggle; notify-send 'Mic Input Toggled'
 
 # vol control
-XF86Audio{Raise,Lower}Volume
-		$HOME/scripts/sound-control.sh {up 10, down 10}
+{_,super + }XF86Audio{Raise,Lower}Volume
+		$HOME/scripts/sound-control.sh {up 10, up 5, down 10, down 5}
 XF86AudioMute
 		$HOME/scripts/sound-control.sh toggle
 
