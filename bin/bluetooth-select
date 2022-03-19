@@ -1,0 +1,33 @@
+#! /bin/sh
+
+WH1000XM2_MAC="70:26:05:29:99:8C"
+WH1000XM2_SINK="bluez_sink.70_26_05_29_99_8C.a2dp_sink"
+
+TREKZ_MAC="20:74:CF:10:94:D6"
+TREKZ_SINK="bluez_sink.20_74_CF_10_94_D6.a2dp_sink"
+
+PURIN_MAC="2C:41:A1:25:75:2C"
+PURIN_SINK="bluez_sink.2C_41_A1_25_75_2C.a2dp_sink"
+
+sony="Sony WH1000-XM2"
+trekz="Trekz"
+purin="プリン"
+disconnect="Disconnect device"
+power_off="Power off bluetooth"
+
+chosen=$(printf "$sony\n$trekz\n$purin\n$disconnect\n$power_off" | rofi -dmenu -i)
+
+function connect_to_bt_device() {
+	bluetoothctl power on
+	bluetoothctl connect $1
+	pactl set-default-sink $2
+}
+
+case "$chosen" in
+	"$sony") connect_to_bt_device $WH1000XM2_MAC $WH1000XM2_SINK ;;
+	"$trekz") connect_to_bt_device $TREKZ_MAC $TREKZ_SINK ;;
+	"$purin") connect_to_bt_device $PURIN_MAC $PURIN_SINK ;;
+	"$disconnect") bluetoothctl disconnect ;;
+	"$power_off") bluetoothctl power off ;;
+	*) exit 1 ;;
+esac

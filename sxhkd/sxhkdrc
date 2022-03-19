@@ -15,6 +15,8 @@ super + control + m
 		$TERMINAL -e pulsemixer
 super + control + p
 		$HOME/.config/polybar/reloadpolybar.sh
+super + control + b
+		bluetooth-select
 super + space
 		rofi -show run
 super + control + space
