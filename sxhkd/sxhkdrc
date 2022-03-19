@@ -26,6 +26,9 @@ super + alt + v
 super + backslash
 		1password --quick-access
 
+super + control + u
+		flameshot gui
+
 super + alt + 1
 		$HOME/.screenlayout/thinkpad-only.sh
 super + alt + 2
