@@ -137,7 +137,7 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-[ -f "/Users/dannykeig/.ghcup/env" ] && source "/Users/dannykeig/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
 if [[ "$OSTYPE" == "linux"* ]]; then
 	ANKI_PATH="$HOME/packages/anki-2.1.35-linux-amd64/bin"
