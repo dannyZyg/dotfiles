@@ -1,0 +1,7 @@
+set hidden true
+set ignorecase true
+set icons true
+set drawbox true
+
+
+map br $vimv $fx

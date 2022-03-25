@@ -36,6 +36,9 @@
     ~/.config/alacritty/alacritty.yml:
       path: alacritty/alacritty.yml
 
+    ~/.config/lf/lfrc:
+      path: lf/lfrc
+
     ~/.screenlayout:
       glob: true
       path: screenlayout/*
@@ -71,14 +74,20 @@
       path: polybar/*
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
-    ~/.local/bin/key-remaps:
-      path: bin/key-remaps
+    ~/.local/bin:
+      glob: true
+      path: bin/*
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
     ~/.config/rofi:
       create: true
       glob: true
       path: rofi/*
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
+    ~/.config/dunst/dunstrc:
+      create: true
+      path: dunst/dunstrc
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
     # ANKI Linux
