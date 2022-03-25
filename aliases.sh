@@ -88,6 +88,7 @@ alias gd="git diff"
 alias gp='git push'
 alias gl="git pull"
 alias gco='git checkout'
+alias gfo='git fetch origin'
 alias gitStashClear="git stash; git stash clear; git clean -f; git clean -fd"
 alias gcb="g rev-parse --abbrev-ref HEAD"
 alias gt="git tag"
