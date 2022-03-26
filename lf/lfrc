@@ -3,5 +3,7 @@ set ignorecase true
 set icons true
 set drawbox true
 
+set cleaner '~/.config/lf/cleaner'
+set previewer '~/.config/lf/scope'
 
 map br $vimv $fx

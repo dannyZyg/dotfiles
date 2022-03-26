@@ -36,8 +36,9 @@
     ~/.config/alacritty/alacritty.yml:
       path: alacritty/alacritty.yml
 
-    ~/.config/lf/lfrc:
-      path: lf/lfrc
+    ~/.config/lf:
+      glob: true
+      path: lf/*
 
     ~/.screenlayout:
       glob: true

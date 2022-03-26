@@ -162,15 +162,15 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export LF_ICONS="\
-tw=:\
-st=:\
-ow=:\
-dt=:\
-di=:\
-fi=:\
+tw=📁:\
+st=📁:\
+ow=📁:\
+dt=📁:\
+di=📁:\
+fi=📄:\
 ln=:\
 or=:\
-ex=:\
+ex=🚀:\
 *.c=:\
 *.cc=:\
 *.clj=:\
