@@ -1,9 +1,13 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 window:
+  padding:
+    x: 6
+    y: 6
+
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 1.0
+  opacity: 0.9
 
   # Window dimensions (changes require restart)
   #
@@ -22,12 +26,6 @@ window:
   #  y: 0
 
   # Window padding (changes require restart)
-  #
-  # Blank space added around the window in pixels. This padding is scaled
-  # by DPI and the specified value is always added at both opposing sides.
-  padding:
-    x: 6
-    y: 6
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -98,8 +96,10 @@ font:
     style: Medium
   bold:
     family: FiraCode Nerd Font Mono
+    style: Bold
   italic:
     family: FiraCode Nerd Font Mono
+    style: Italic
   offset:
     x: 3
     y: 3
@@ -215,7 +215,8 @@ font:
   # Record all characters and escape sequences as test data.
   #ref_test: false
 
-#mouse:
+mouse:
+  hide_when_typing: true
   # Click settings
   #
   # The `double_click` and `triple_click` settings control the time
@@ -224,8 +225,6 @@ font:
   #double_click: { threshold: 300 }
   #triple_click: { threshold: 300 }
 
-  # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
 
   #url:
     # URL launcher
