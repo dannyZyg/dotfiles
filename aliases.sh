@@ -31,6 +31,7 @@ alias vi='nvim'
 alias vim='nvim'
 
 alias r='ranger'
+alias lf='lfub'
 
 alias getPermissionsAsNum='stat -c "%a %n"'
 alias myinternalip='internal-ip --ipv4'
@@ -54,19 +55,12 @@ alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc'
 # find somewhere to put this
 alias mysqlimportfile='python /home/danny/scripts/mysql/mysqlimport.py'
 
-
-
 alias scandevices='sudo nmap -sn 192.168.1.1/24'
-
-alias calibreUpdate='sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin'
 
 alias vrc="$EDITOR $HOME/.vimrc"
 alias media='sudo mount 192.168.0.230:/volume1/Media /mnt/media'
 
 alias awsc="$EDITOR ~/.aws/credentials"
-
-alias vpnjp="expressvpn connect 'Japan'"
-alias vpnoff="expressvpn disconnect"
 
 # directory navigation
 alias -- -='cd -'
