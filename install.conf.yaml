@@ -21,14 +21,9 @@
     ~/.config/zsh/zsh-vim-mode:
       path: zsh/zsh-vim-mode
 
-    ~/.config/nvim/init.vim:
-      path: nvim/init.vim
-    ~/.config/nvim/plugin:
+    ~/.config/nvim:
       glob: true
-      path: nvim/plugin/*
-    ~/.config/nvim/lua:
-      glob: true
-      path: nvim/lua/**
+      path: nvim/*
 
     ~/.config/tmux/.tmux.conf:
       path: tmux/tmux.conf
