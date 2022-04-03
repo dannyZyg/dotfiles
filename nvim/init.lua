@@ -6,5 +6,4 @@ require "dzk.cmp"
 require "dzk.telescope"
 require "dzk.treesitter"
 require "dzk.nvim-tree"
-
-
+require "dzk.gitsigns"
