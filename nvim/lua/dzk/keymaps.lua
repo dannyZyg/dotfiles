@@ -27,6 +27,11 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 
 keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 
+-- Easy quit, easy save
+keymap("n", "<leader>w", ":w<CR>", opts)
+keymap("n", "<leader>q", ":q<CR>", opts)
+keymap("n", "<leader>!", ":q!<CR>", opts)
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
@@ -67,3 +72,6 @@ keymap("n", "<leader>fg", "<cmd>lua require'telescope.builtin'.live_grep()<cr>",
 keymap("n", "<leader>fb", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
 keymap("n", "<leader>fh", "<cmd>lua require'telescope.builtin'.help_tags()<cr>", opts)
 keymap("n", "<leader>fs", "<cmd>lua require'telescope.builtin'.grep_string()<cr>", opts)
+
+-- Nvim-Tree --
+keymap("n", "<leader>t", ":NvimTreeToggle<cr>", opts)

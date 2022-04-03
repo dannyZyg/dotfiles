@@ -73,7 +73,7 @@ nvim_tree.setup {
     height = 30,
     hide_root_folder = false,
     side = "left",
-    auto_resize = true,
+    auto_resize = false,
     mappings = {
       custom_only = false,
       list = {
@@ -85,7 +85,7 @@ nvim_tree.setup {
     number = false,
     relativenumber = false,
   },
-  quit_on_open = 0,
+  quit_on_open = 1,
   git_hl = 1,
   disable_window_picker = 0,
   root_folder_modifier = ":t",
