@@ -11,7 +11,7 @@ local options = {
   ignorecase = true,                       -- ignore case in search patterns
   mouse = "a",                             -- allow the mouse to be used in neovim
   pumheight = 10,                          -- pop up menu height
-  showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
+  showmode = true,                        -- we don't need to see things like -- INSERT -- anymore
   showtabline = 2,                         -- always show tabs
   smartcase = true,                        -- smart case
   smartindent = true,                      -- make indenting smarter again
@@ -43,6 +43,7 @@ for key, value in pairs(options) do
   vim.opt[key] = value
 end
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
+vim.cmd("let g:tidal_target = 'terminal'")
+
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work

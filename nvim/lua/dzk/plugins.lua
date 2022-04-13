@@ -95,13 +95,16 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   }
   use "p00f/nvim-ts-rainbow"
-  -- use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
 
   -- Colour Schemes
   use "morhetz/gruvbox"
+
+  -- Music
+  use "tidalcycles/vim-tidal"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
