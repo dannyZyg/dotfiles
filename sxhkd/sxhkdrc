@@ -51,9 +51,9 @@ XF86AudioMicMute
 
 # vol control
 {_,super + }XF86Audio{Raise,Lower}Volume
-		$HOME/scripts/sound-control.sh {up 10, up 5, down 10, down 5}
+		change-volume {up 10, up 5, down 10, down 5}
 XF86AudioMute
-		$HOME/scripts/sound-control.sh toggle
+		change-volume mute
 
 ############################################################
 # BSPWM
