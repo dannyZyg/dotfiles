@@ -3,15 +3,16 @@
 local options = {
   backup = false,                          -- creates a backup file
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
-  cmdheight = 2,                           -- more space in the neovim command line for displaying messages
+  cmdheight = 1,                           -- more space in the neovim command line for displaying messages
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
   fileencoding = "utf-8",                  -- the encoding written to a file
   hlsearch = true,                         -- highlight all matches on previous search pattern
+  incsearch = true,                        -- While typing a search command, show where the pattern, as it was typed so far, matches.
   ignorecase = true,                       -- ignore case in search patterns
   mouse = "a",                             -- allow the mouse to be used in neovim
   pumheight = 10,                          -- pop up menu height
-  showmode = true,                        -- we don't need to see things like -- INSERT -- anymore
+  showmode = false,                        -- hide things like -- INSERT -- since it is shown in lualine
   showtabline = 2,                         -- always show tabs
   smartcase = true,                        -- smart case
   smartindent = true,                      -- make indenting smarter again
@@ -35,6 +36,12 @@ local options = {
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
+  history = 1000,
+  ruler = true,                            -- show the line and cursor position in the toolbar
+  showcmd = true,
+  wildmenu = true,
+  colorcolumn = "110",
+  laststatus = 3,                          -- show only the global status line (not one per buffer)
 }
 
 vim.opt.shortmess:append "c"
