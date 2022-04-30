@@ -47,6 +47,6 @@ fi
 
 udiskie -at &
 dunst &
-xautolock -time 20 -locker '/usr/bin/betterlockscreen -l blur' &
+xss-lock --transfer-sleep-lock -- i3lock --nofork -c 4d5b66ff &
 sxhkd &
 exec i3
