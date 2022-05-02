@@ -50,7 +50,5 @@ for key, value in pairs(options) do
   vim.opt[key] = value
 end
 
-vim.cmd("let g:tidal_target = 'terminal'")
-
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
