@@ -11,6 +11,9 @@ all: ## Run the full ansible playbook
 zsh: ## Install zsh
 	ansible-playbook local.yml -t zsh --ask-become-pass
 
+dotfiles: ## Install dotfiles with dotbot
+	ansible-playbook local.yml -t dotfiles
+
 node: ## Install Node, N and a version of node with N
 	ansible-playbook local.yml -t node --ask-become-pass
 

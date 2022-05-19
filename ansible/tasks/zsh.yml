@@ -4,14 +4,12 @@
   when: ansible_facts['distribution'] == "Archlinux"
   tags:
     - install
-    - dotfiles
     - zsh
 - name: Change shell to zsh
   become: true
   shell: chsh -s $(which zsh)
   tags:
     - install
-    - dotfiles
     - zsh
 
 - name: Creates packages directory
@@ -20,9 +18,9 @@
     path: "{{ lookup('env', 'HOME') }}/packages"
     state: directory
   tags:
+    - dotfiles
     - install
     - zsh
-    - dotfiles
 
 - name: Cloning fzf
   become_user: "{{ lookup('vars', 'username') }}"
@@ -35,6 +33,6 @@
     version: master
     depth: 1
   tags:
+    - dotfiles
     - install
     - zsh
-    - dotfiles
