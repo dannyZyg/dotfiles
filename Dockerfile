@@ -10,4 +10,4 @@ RUN useradd -mG wheel danny && echo danny:test | chpasswd
 RUN echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers
 
 WORKDIR /home/danny/.dotfiles/
-COPY . .
+COPY --chown=danny . .
