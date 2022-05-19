@@ -1,0 +1,91 @@
+- hosts: localhost
+
+  gather_facts: True
+
+  vars:
+    source_key: "./.ssh/id_ed25519"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+
+  pre_tasks:
+    - name: Set espanso directory on Arch
+      set_fact:
+        espanso_dir: "{{ lookup('env', 'HOME') }}/.config/espanso"
+      when: ansible_facts['distribution'] == "Archlinux"
+      tags:
+        - always
+
+    - name: Set espanso directory on MacOSX
+      set_fact:
+        espanso_dir: "{{ lookup('env', 'HOME') }}/Library/Preferences/espanso"
+      when: ansible_distribution == 'MacOSX'
+      tags:
+        - always
+
+    - name: Set conda path on Arch
+      set_fact:
+        conda_path: "/opt/anaconda"
+      when: ansible_facts['distribution'] == "Archlinux"
+      tags:
+        - always
+
+    - name: Set conda path on MacOSX silicon
+      set_fact:
+        conda_path: "/opt/homebrew/anaconda3"
+      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'arm64'
+      tags:
+        - always
+
+    - name: Set conda path on MacOSX intel
+      set_fact:
+        conda_path: "/usr/local/anaconda3"
+      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'x86_64'
+      tags:
+        - always
+
+    - name: Set brew path on MacOSX silicon
+      set_fact:
+        brew_path: "/opt/homebrew/bin"
+      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'arm64'
+      tags:
+        - always
+
+    - name: Set brew path on MacOSX intel
+      set_fact:
+        brew_path: "/usr/local/bin"
+      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'x86_64'
+      tags:
+        - always
+
+    - name: Get the username running the deploy
+      become: false
+      local_action: command whoami
+      register: result
+      tags:
+        - debug
+        - always
+
+    - name: Set the username env var
+      set_fact:
+        username: "{{ result.stdout }}"
+      tags:
+        - debug
+        - always
+
+    - name: Update repositories
+      become: true
+      pacman:
+        update_cache: yes
+
+  tasks:
+    - import_tasks: tasks/debug.yml
+    - import_tasks: tasks/ssh.yml
+    - import_tasks: tasks/espanso.yml
+    - import_tasks: tasks/zsh.yml
+    - import_tasks: tasks/pacman-packages.yml
+    - import_tasks: tasks/node.yml
+    - import_tasks: tasks/npm-packages.yml
+    - import_tasks: tasks/nvim.yml
+    - import_tasks: tasks/python.yml
+    - import_tasks: tasks/pipx.yml
+    - import_tasks: tasks/system.yml
+    - import_tasks: tasks/repos.yml

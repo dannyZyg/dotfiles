@@ -1,0 +1,64 @@
+## Python 3
+- name: Install mac pyenv dependencies
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: ansible_distribution == "MacOSX"
+  homebrew:
+    name: "{{item}}"
+    state: present
+    path: "{{ lookup('vars', 'brew_path') }}/brew"
+  with_items:
+    - readline
+    - xz
+    - openssl
+  tags:
+    - install
+    - python
+
+- name: Check anaconda installed
+  command:
+    cmd: command -v conda
+  ignore_errors: true
+  register: conda_exists
+  tags:
+    - install
+    - python
+
+- name: Install python version 3.9.9 with pyenv
+  become_user: "{{ lookup('vars', 'username') }}"
+  command: pyenv install -f 3.9.9
+  ignore_errors: true
+  tags:
+    - install
+    - python
+
+- name: Set Python 3.9.9 as global version
+  become_user: "{{ lookup('vars', 'username') }}"
+  command: pyenv global 3.9.9
+  ignore_errors: true
+  tags:
+    - install
+    - python
+
+- name: Create conda neovim environments
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: conda_exists
+  command: "{{item}}"
+  with_items:
+    - conda create -p ~/.conda/envs/neovim-python-2 python=2.7.18
+    - conda create -p ~/.conda/envs/neovim-python-3 python=3.8
+  tags:
+    - install
+    - python
+
+- name: Pip install pynvim
+  become_user: "{{ lookup('vars', 'username') }}"
+  pip:
+    name: pynvim
+    executable: "{{item}}"
+    state: latest
+  with_items:
+    - "{{ lookup('env', 'HOME') }}/.conda/envs/neovim-python-2/bin/pip"
+    - "{{ lookup('env', 'HOME') }}/.conda/envs/neovim-python-3/bin/pip"
+  tags:
+    - install
+    - python
