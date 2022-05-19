@@ -6,7 +6,7 @@
 super + Return
 		$TERMINAL
 super + i
-		$BROWSER
+		firefox
 super + c
 		chromium
 super + p
