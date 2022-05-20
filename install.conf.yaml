@@ -75,11 +75,11 @@
       path: bin/*
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
-    ~/.config/rofi:
-      create: true
-      glob: true
-      path: rofi/*
-      if: '[[ "$OSTYPE" = "linux"* ]]'
+    # ~/.config/rofi:
+    #   create: true
+    #   glob: true
+    #   path: rofi/*
+    #   if: '[[ "$OSTYPE" = "linux"* ]]'
 
     ~/.config/dunst/dunstrc:
       create: true
