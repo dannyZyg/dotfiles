@@ -3,8 +3,8 @@
   pacman: name=zsh
   when: ansible_facts['distribution'] == "Archlinux"
   tags:
-    - install
     - zsh
+
 - name: Change shell to zsh
   become: true
   shell: chsh -s $(which zsh)
