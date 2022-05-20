@@ -23,7 +23,7 @@
 
     ~/.config/nvim:
       glob: true
-      path: nvim/*
+      path: nvim/**
 
     ~/.config/tmux/.tmux.conf:
       path: tmux/tmux.conf
