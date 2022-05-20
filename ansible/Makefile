@@ -49,3 +49,6 @@ python: ## Installs Python with conda
 
 pipx: ## Installs pipx pachages
 	ansible-playbook local.yml -t pipx
+
+zsh: ## Installs zsh and sets the default shell
+	ansible-playbook local.yml -t zsh --ask-become-pass
