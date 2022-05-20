@@ -8,9 +8,6 @@ help: ## Show this help
 all: ## Run the full ansible playbook
 	ansible-playbook local.yml --ask-vault-pass --ask-become-pass
 
-zsh: ## Install zsh
-	ansible-playbook local.yml -t zsh --ask-become-pass
-
 dotfiles: ## Install dotfiles with dotbot
 	ansible-playbook local.yml -t dotfiles
 
@@ -22,9 +19,6 @@ npm: ## Install npm packages
 
 node-npm: ## Install Node, N and npm packages
 	ansible-playbook local.yml -t node,npm --ask-become-pass
-
-vim: ## Install vim and plugins
-	ansible-playbook local.yml -t nvim --ask-become-pass
 
 ssh: ## Install ssh key
 	ansible-playbook local.yml -t ssh --ask-vault-pass --ask-become-pass
@@ -38,6 +32,9 @@ espanso-pack: ## Encrypt the system espanso files - overwrites repo files
 debug: ## Print out env vars
 	ansible-playbook local.yml -t debug
 
+pacman-install: ## Install pacman packages
+	ansible-playbook local.yml -t pacman --ask-become-pass
+
 pacman-dump: ## Saves installed pacman packages to txt
 	pacman -Qen | cut -d ' ' -f1 > packages/pacman.txt
 
@@ -46,3 +43,9 @@ pacman-aur-dump: ## Saves installed aur packages to txt
 
 pull-repos: ## Pulls my github repos
 	ansible-playbook local.yml -t repos
+
+python: ## Installs Python with conda
+	ansible-playbook local.yml -t python
+
+pipx: ## Installs pipx pachages
+	ansible-playbook local.yml -t pipx
