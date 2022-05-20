@@ -26,6 +26,7 @@
 - name: Install N with npm
   become_user: "{{ lookup('vars', 'username') }}"
   environment:
+    PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
     N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
   npm:
     name: n
@@ -37,6 +38,7 @@
   become_user: "{{ lookup('vars', 'username') }}"
   command: "n 16"
   environment:
+    PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
     N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
   tags:
     - node
