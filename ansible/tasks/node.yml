@@ -4,7 +4,6 @@
     path: "{{ lookup('env', 'HOME') }}/.config/n"
     state: directory
   tags:
-    - install
     - node
 
 - name: Install nodejs and npm on Arch
@@ -13,7 +12,6 @@
   pacman:
     name: ["nodejs", "npm"]
   tags:
-    - install
     - node
 
 - name: Install node on Mac
@@ -23,7 +21,6 @@
     name: node
     state: present
   tags:
-    - install
     - node
 
 - name: Install N with npm
@@ -34,7 +31,6 @@
     name: n
     global: yes
   tags:
-    - install
     - node
 
 - name: Install desired version of Node using N
@@ -43,5 +39,4 @@
   environment:
     N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
   tags:
-    - install
     - node

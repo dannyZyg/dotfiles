@@ -5,8 +5,8 @@
     mode: 0700
     state: directory
   tags:
-    - install
     - ssh
+
 - name: Install ssh key
   become_user: "{{ lookup('vars', 'username') }}"
   copy:
@@ -15,5 +15,4 @@
     decrypt: yes
     mode: 0600
   tags:
-    - install
     - ssh

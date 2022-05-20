@@ -6,7 +6,6 @@
     state: directory
   tags:
     - espanso
-    - install
 
 - name: Ensure espanso user config directory exists.
   become_user: "{{ lookup('vars', 'username') }}"
@@ -16,7 +15,6 @@
     state: directory
   tags:
     - espanso
-    - install
 
 - name: Install espanso conf
   become_user: "{{ lookup('vars', 'username') }}"
@@ -26,7 +24,6 @@
     decrypt: yes
   tags:
     - espanso
-    - install
 
 - name: Install espanso user conf files
   become_user: "{{ lookup('vars', 'username') }}"
@@ -38,4 +35,3 @@
      - "./espanso/user/*"
   tags:
     - espanso
-    - install

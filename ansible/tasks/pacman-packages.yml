@@ -4,9 +4,7 @@
     cmd: cat ./packages/pacman.txt
   register: pacman_packages
   tags:
-    - install
     - pacman
-    - linux
 
 - name: Install System Packages
   become: true
@@ -14,6 +12,4 @@
   pacman: name={{item}}
   with_items: "{{ pacman_packages.stdout_lines }}"
   tags:
-    - install
     - pacman
-    - linux

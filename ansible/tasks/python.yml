@@ -11,7 +11,6 @@
     - xz
     - openssl
   tags:
-    - install
     - python
 
 - name: Check anaconda installed
@@ -20,7 +19,6 @@
   ignore_errors: true
   register: conda_exists
   tags:
-    - install
     - python
 
 - name: Install python version 3.9.9 with pyenv
@@ -28,7 +26,6 @@
   command: pyenv install -f 3.9.9
   ignore_errors: true
   tags:
-    - install
     - python
 
 - name: Set Python 3.9.9 as global version
@@ -36,7 +33,6 @@
   command: pyenv global 3.9.9
   ignore_errors: true
   tags:
-    - install
     - python
 
 - name: Create conda neovim environments
@@ -47,7 +43,6 @@
     - conda create -p ~/.conda/envs/neovim-python-2 python=2.7.18
     - conda create -p ~/.conda/envs/neovim-python-3 python=3.8
   tags:
-    - install
     - python
 
 - name: Pip install pynvim
@@ -60,5 +55,4 @@
     - "{{ lookup('env', 'HOME') }}/.conda/envs/neovim-python-2/bin/pip"
     - "{{ lookup('env', 'HOME') }}/.conda/envs/neovim-python-3/bin/pip"
   tags:
-    - install
     - python

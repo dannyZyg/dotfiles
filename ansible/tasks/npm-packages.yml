@@ -19,5 +19,5 @@
     - 'svelte-language-server'
     - 'apollo'
   tags:
-    - install
+    - node
     - npm

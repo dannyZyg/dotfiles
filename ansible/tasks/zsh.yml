@@ -9,7 +9,6 @@
   become: true
   shell: chsh -s $(which zsh)
   tags:
-    - install
     - zsh
 
 - name: Creates packages directory
@@ -19,7 +18,6 @@
     state: directory
   tags:
     - dotfiles
-    - install
     - zsh
 
 - name: Cloning fzf
@@ -34,5 +32,4 @@
     depth: 1
   tags:
     - dotfiles
-    - install
     - zsh

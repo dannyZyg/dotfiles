@@ -4,5 +4,4 @@
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
     target: dotbot-run
   tags:
-    - install
     - dotfiles
