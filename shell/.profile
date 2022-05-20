@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-. "/Users/dannykeig/.local/share/cargo/env"
-
 # Loaded in interactive and non-interactive shells
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
