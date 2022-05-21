@@ -45,15 +45,18 @@ super + alt + 2
 
 # Screen brightness controls
 {_,super + }XF86MonBrightness{Down,Up}
-		xbacklight {-10,-3,+10,+3}
-XF86AudioMicMute
-		pactl set-source-mute 1 toggle; notify-send 'Mic Input Toggled'
+    change-brightness {down 4, down 2, up 4, up 2}
 
 # vol control
 {_,super + }XF86Audio{Raise,Lower}Volume
 		change-volume {up 10, up 5, down 10, down 5}
+
 XF86AudioMute
 		change-volume mute
+
+XF86AudioMicMute
+		pactl set-source-mute 1 toggle; notify-send 'Mic Input Toggled'
+
 
 ############################################################
 # BSPWM
