@@ -1,6 +1,5 @@
 1password
 anaconda
-anki-bin
 betterlockscreen-git
 bitwig-studio
 braus-git
@@ -12,13 +11,16 @@ etcher-bin
 figma-linux
 google-chrome
 i3exit
+junction-git
 lf
+miniconda3
 nerd-fonts-fira-code
 nordvpnteams-bin
 obsidian-appimage
-polybar
 slack-desktop
 srandrd
 tor-browser
+ttf-twemoji-color
 yay
+zoom
 zsa-wally-cli-bin

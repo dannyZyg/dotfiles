@@ -38,6 +38,9 @@ pacman-install: ## Install pacman packages
 pacman-dump: ## Saves installed pacman packages to txt
 	pacman -Qen | cut -d ' ' -f1 > packages/pacman.txt
 
+pacman-aur-install: ## Install aur packages
+	ansible-playbook local.yml -t aur --ask-become-pass
+
 pacman-aur-dump: ## Saves installed aur packages to txt
 	pacman -Qetm | cut -d ' ' -f1 > packages/aur.txt
 
