@@ -64,6 +64,9 @@ export PATH="$N_PREFIX/bin:$PATH"
 [ -f ~/packages/fzf/shell/completion.zsh ] && source ~/packages/fzf/shell/completion.zsh
 [ -f ~/packages/fzf/shell/key-bindings.zsh ] && source ~/packages/fzf/shell/key-bindings.zsh
 
+setopt inc_append_history
+setopt hist_ignore_dups
+
 HISTSIZE=99999
 HISTFILESIZE=999999
 SAVEHIST=$HISTSIZE
