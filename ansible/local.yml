@@ -89,3 +89,4 @@
     - import_tasks: tasks/ssh.yml
     - import_tasks: tasks/system.yml
     - import_tasks: tasks/zsh.yml
+    - import_tasks: tasks/aur.yml
