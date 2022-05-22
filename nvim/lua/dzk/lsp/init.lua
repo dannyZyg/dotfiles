@@ -3,62 +3,14 @@ if not has_lsp then
   return
 end
 
--- -- Setup nvim-cmp.
--- local cmp = require'cmp'
---
--- cmp.setup({
---   -- snippet = {
---     -- expand = function(args)
---       -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
---       -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
---       -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
---       -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
---   -- end,
---   -- },
---   mapping = {
---     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
---     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
---     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
---     ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
---     ['<C-e>'] = cmp.mapping({
---       i = cmp.mapping.abort(),
---       c = cmp.mapping.close(),
---     }),
---     ['<CR>'] = cmp.mapping.confirm({ select = true }),
---   },
---   sources = cmp.config.sources({
---     { name = 'nvim_lsp' },
---     -- { name = 'vsnip' }, -- For vsnip users.
---     -- { name = 'luasnip' }, -- For luasnip users.
---     -- { name = 'ultisnips' }, -- For ultisnips users.
---     -- { name = 'snippy' }, -- For snippy users.
---   }, {
---     { name = 'buffer' },
---   })
--- })
---
--- -- Use buffer source for `/`.
--- cmp.setup.cmdline('/', {
---   sources = {
---     { name = 'buffer' }
---   }
--- })
---
--- -- Use cmdline & path source for ':'.
--- cmp.setup.cmdline(':', {
---   sources = cmp.config.sources({
---     { name = 'path' }
---   }, {
---     { name = 'cmdline' }
---   })
--- })
---
+local status_ok, handlers = pcall(require, "dzk.lsp.handlers")
+if not status_ok then
+  return
+end
+
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-
--- Setup lspconfig.
-local updated_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local setup_server = function(server, config)
   if not config then
@@ -70,9 +22,9 @@ local setup_server = function(server, config)
   end
 
   config = vim.tbl_deep_extend("force", {
-    on_init = on_init,
-    on_attach = on_attach,
-    capabilities = updated_capabilities,
+    on_init = handlers.setup,
+    on_attach = handlers.on_attach,
+    capabilities = handlers.capabilities,
     flags = {
       debounce_text_changes = 50,
     },
@@ -82,140 +34,16 @@ local setup_server = function(server, config)
 end
 
 local servers = {
-  graphql = true,
-  html = true,
-  vimls = true,
-  yamlls = true,
-  svelte = true,
-
-
-  -- rust_analyzer = true,
-  --   settings = {
-  --     ["rust-analyzer"] = {
-  --     },
-  -- },
-  sumneko_lua = {
-    settings = {
-      Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT',
-          -- Setup your lua path
-          path = runtime_path,
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true),
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-          enable = false,
-        },
-      },
-    },
-  },
-  -- pyright = true,
-
-  pylsp = {
-    cmd = { "pylsp" },
-    filetypes = { "python" },
-    single_file_support = true,
-    plugins = {
-      configurationSources = {"flake8"},
-      pycodestyle = {enabled = false},
-      flake8 = {enabled = true},
-      mypy = {
-        enabled = true,
-        live_mode =true,
-        strict = true
-      },
-    },
-  },
-
-  cssls = {
-    cmd = { "vscode-css-language-server", "--stdio" },
-    settings = {
-      scss = {
-        lint = {
-          idSelector = "warning",
-          zeroUnits = "warning",
-          duplicateProperties = "warning",
-        },
-        completion = {
-          completePropertyWithSemicolon = true,
-          triggerPropertyValueCompletion = true,
-        },
-      },
-    },
-  },
-
-  tsserver = {
-    cmd = { "typescript-language-server", "--stdio" },
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx",
-    },
-  },
-
-  jsonls = {
-    cmd = {"vscode-json-language-server", "--stdio"},
-    filetypes = {"json", "jsonc"},
-    settings = {
-      json = {
-        -- Schemas https://www.schemastore.org
-        schemas = {
-          {
-            fileMatch = {"package.json"},
-            url = "https://json.schemastore.org/package.json"
-          },
-          {
-            fileMatch = {"tsconfig*.json"},
-            url = "https://json.schemastore.org/tsconfig.json"
-          },
-          {
-            fileMatch = {
-            ".prettierrc",
-            ".prettierrc.json",
-            "prettier.config.json"
-            },
-            url = "https://json.schemastore.org/prettierrc.json"
-          },
-          {
-            fileMatch = {".eslintrc", ".eslintrc.json"},
-            url = "https://json.schemastore.org/eslintrc.json"
-          },
-          {
-            fileMatch = {".babelrc", ".babelrc.json", "babel.config.json"},
-            url = "https://json.schemastore.org/babelrc.json"
-          },
-          {
-            fileMatch = {"lerna.json"},
-            url = "https://json.schemastore.org/lerna.json"
-          },
-          {
-            fileMatch = {"now.json", "vercel.json"},
-            url = "https://json.schemastore.org/now.json"
-          },
-          {
-            fileMatch = {
-            ".stylelintrc",
-            ".stylelintrc.json",
-            "stylelint.config.json"
-            },
-            url = "http://json.schemastore.org/stylelintrc.json"
-          }
-        }
-      }
-    }
-  }
+  graphql = require("dzk.lsp.servers.graphql").config,
+  svelte = require("dzk.lsp.servers.svelte").config,
+  yamlls = require("dzk.lsp.servers.yamlls").config,
+  html = require("dzk.lsp.servers.html").config,
+  vimls = require("dzk.lsp.servers.vimls").config,
+  cssls = require("dzk.lsp.servers.cssls").config,
+  pylsp = require("dzk.lsp.servers.pylsp").config,
+  sumneko_lua = require("dzk.lsp.servers.sumneko_lua").config,
+  tsserver = require("dzk.lsp.servers.tsserver").config,
+  jsonls = require("dzk.lsp.servers.jsonls").config,
 }
 
 for server, config in pairs(servers) do
