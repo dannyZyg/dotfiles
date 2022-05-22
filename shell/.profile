@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-. "/Users/dannykeig/.local/share/cargo/env"
-
 # Loaded in interactive and non-interactive shells
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -11,7 +9,7 @@ export PATH=/home/danny/.local/bin/aws_completer:$PATH
 export FILE='ranger'
 export TERMINAL='alacritty'
 export EDITOR='nvim'
-export BROWSER='firefox'
+export BROWSER='re.sonny.Junction.desktop'
 export READER='zathura'
 export PAGER='less'
 export WM='i3'

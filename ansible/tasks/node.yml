@@ -1,0 +1,44 @@
+- name: Creates n directory
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/n"
+    state: directory
+  tags:
+    - node
+
+- name: Install nodejs and npm on Arch
+  become: true
+  when: ansible_distribution == "Archlinux"
+  pacman:
+    name: ["nodejs", "npm"]
+  tags:
+    - node
+
+- name: Install node on Mac
+  when: ansible_distribution == "MacOSX"
+  become_user: "{{ lookup('vars', 'username') }}"
+  homebrew:
+    name: node
+    state: present
+  tags:
+    - node
+
+- name: Install N with npm
+  become_user: "{{ lookup('vars', 'username') }}"
+  environment:
+    PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
+    N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
+  npm:
+    name: n
+    global: yes
+  tags:
+    - node
+
+- name: Install desired version of Node using N
+  become_user: "{{ lookup('vars', 'username') }}"
+  command: "n 16"
+  environment:
+    PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
+    N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
+  tags:
+    - node

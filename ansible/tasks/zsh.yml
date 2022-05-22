@@ -1,0 +1,35 @@
+- name: Install ZSH
+  become: true
+  pacman: name=zsh
+  when: ansible_facts['distribution'] == "Archlinux"
+  tags:
+    - zsh
+
+- name: Change shell to zsh
+  become: true
+  shell: chsh -s $(which zsh)
+  tags:
+    - zsh
+
+- name: Creates packages directory
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/packages"
+    state: directory
+  tags:
+    - dotfiles
+    - zsh
+
+- name: Cloning fzf
+  become_user: "{{ lookup('vars', 'username') }}"
+  ansible.builtin.git:
+    repo: 'https://github.com/junegunn/fzf.git'
+    dest: "{{ lookup('env', 'HOME') }}/packages/fzf"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
+    depth: 1
+  tags:
+    - dotfiles
+    - zsh

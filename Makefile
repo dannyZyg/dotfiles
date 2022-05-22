@@ -28,3 +28,17 @@ brew-install-mas: ## Install all Mac App Store apps from Brewfile
 
 git-submodule-update: ## Updates git submodules
 	git submodule update --remote --merge
+
+## Docker commands to test out ansible playbook in a sandbox environment. ##
+
+docker-build: ## Build the arch docker container
+	docker build -t arch .
+
+docker-run: ## Enter the arch docker container
+	docker run -it --rm -u danny arch bash
+
+docker-reload:
+	make docker-build && make docker-run
+
+docker-refresh:
+	docker build --no-cache -t arch . && make docker-run

@@ -1,6 +1,10 @@
 #!/bin/sh
 
-STATUS=$(nordvpnteams status | grep VPN | tr -d ' ' | cut -d ':' -f2)
+STATUS=$(
+  command -v nordvpnteams \
+  && nordvpnteams status | grep VPN | tr -d ' ' | cut -d ':' -f2 \
+  || echo ""
+)
 
 if [ "$STATUS" = "Connected" ]; then
     echo "%{F#82E0AA}%{A1:nordvpn d:}旅%{A}%{F-}"

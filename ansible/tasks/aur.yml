@@ -1,0 +1,72 @@
+- name: Check if yay is installed
+  shell: command -v yay
+  register: yay_exists
+  ignore_errors: yes
+  tags:
+    - aur
+
+- name: Ensure packages directory exists.
+  when: ansible_facts['distribution'] == "Archlinux"
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/packages"
+    state: directory
+  tags:
+    - aur
+
+- name: Clone yay github repo
+  when:
+    - ansible_facts['distribution'] == "Archlinux"
+    - yay_exists is failed
+  become_user: "{{ lookup('vars', 'username') }}"
+  ansible.builtin.git:
+    repo: "https://aur.archlinux.org/yay.git"
+    dest: "{{ lookup('env', 'HOME') }}/packages/yay"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
+  tags:
+    - aur
+
+- name: Install yay dependencies
+  become: true
+  when:
+    - ansible_facts['distribution'] == "Archlinux"
+    - yay_exists is failed
+  pacman: name={{item}}
+  with_items:
+    - git
+    - go
+    - base-devel
+  tags:
+    - aur
+
+- name: Install yay
+  when:
+    - ansible_facts['distribution'] == "Archlinux"
+    - yay_exists is failed
+  shell: |
+    cd {{ lookup('env', 'HOME') }}/packages/yay/
+    echo 'y' | makepkg -si
+  tags:
+    - aur
+
+- name: Get AUR package list
+  when:
+    - ansible_facts['distribution'] == "Archlinux"
+    - yay_exists
+  command:
+    cmd: cat ./packages/aur.txt
+  register: aur_packages
+  tags:
+    - aur
+
+- name: Install AUR packages
+  when:
+    - ansible_facts['distribution'] == "Archlinux"
+    - yay_exists
+  shell: yay -S --noconfirm {{item}}
+  with_items: "{{ aur_packages.stdout_lines }}"
+  tags:
+    - aur

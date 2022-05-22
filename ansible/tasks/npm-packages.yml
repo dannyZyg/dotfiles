@@ -1,0 +1,23 @@
+- name: Install global npm packages
+  become_user: "{{ lookup('vars', 'username') }}"
+  npm:
+    name: "{{item}}"
+    global: yes
+  with_items:
+    - 'yarn'
+    - 'typescript-language-server'
+    - 'typescript'
+    - 'ts-node'
+    - 'neovim'
+    - '@gridsome/cli'
+    - 'yaml-language-server'
+    - 'vim-language-server'
+    - 'bash-language-server'
+    - 'vscode-langservers-extracted'
+    - 'graphql-language-service-cli'
+    - 'pyright'
+    - 'svelte-language-server'
+    - 'apollo'
+  tags:
+    - node
+    - npm
