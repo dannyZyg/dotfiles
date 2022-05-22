@@ -35,12 +35,21 @@
   tags:
     - python
 
-- name: Create conda neovim environments
+- name: Ensure conda directory exists.
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    dest: "{{ lookup('env', 'HOME') }}/.conda/envs"
+    mode: 0700
+    state: directory
+    recurse: true
+  tags:
+    - python
+
+- name: Create conda neovim environment
   become_user: "{{ lookup('vars', 'username') }}"
   when: conda_exists
   command: "{{item}}"
   with_items:
-    - conda create -p ~/.conda/envs/neovim-python-2 python=2.7.18
     - conda create -p ~/.conda/envs/neovim-python-3 python=3.8
   tags:
     - python
@@ -52,7 +61,6 @@
     executable: "{{item}}"
     state: latest
   with_items:
-    - "{{ lookup('env', 'HOME') }}/.conda/envs/neovim-python-2/bin/pip"
     - "{{ lookup('env', 'HOME') }}/.conda/envs/neovim-python-3/bin/pip"
   tags:
     - python

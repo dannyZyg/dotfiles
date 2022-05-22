@@ -1,7 +1,7 @@
 - name: Check if yay is installed
   shell: command -v yay
   register: yay_exists
-  ignore_errors: yes
+  ignore_errors: true
   tags:
     - aur
 
