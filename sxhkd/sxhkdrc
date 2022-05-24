@@ -35,9 +35,9 @@ super + control + u
 		flameshot gui
 
 super + alt + 1
-		$HOME/.screenlayout/thinkpad-only.sh
+		thinkpad-screen
 super + alt + 2
-		$HOME/.screenlayout/lg-widescreen.sh
+		lg-widescreen
 
 ############################################################
 # Media keys
