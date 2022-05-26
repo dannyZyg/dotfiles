@@ -122,3 +122,11 @@ function fgco() {
 function ftmux() {
 	$(find ~/sync/scripts/tmux/*.sh | fzf)
 }
+
+function awsp()
+{
+	AWS="${1:-${AWS_PROFILE}}"
+	export AWS_PROFILE=$AWS
+	echo $AWS
+	alias aws="aws --profile $AWS_PROFILE"
+}
