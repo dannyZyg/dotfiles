@@ -134,3 +134,6 @@ alias ee='espanso edit'
 
 # Update all zsh plugins
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
+
+# Grok stuff
+alias grokaws='~/.conda/envs/grok-aws/bin/python ~/grok/grok-aws/grok-aws.py'
