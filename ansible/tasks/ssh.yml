@@ -7,12 +7,21 @@
   tags:
     - ssh
 
-- name: Install ssh key
+- name: Install ssh private key
   become_user: "{{ lookup('vars', 'username') }}"
   copy:
     src: "{{ source_key }}"
     dest: "{{ dest_key }}"
     decrypt: yes
     mode: 0600
+  tags:
+    - ssh
+
+- name: Install ssh public key
+  become_user: "{{ lookup('vars', 'username') }}"
+  copy:
+    src: "{{ source_key }}.pub"
+    dest: "{{ dest_key }}.pub"
+    decrypt: yes
   tags:
     - ssh
