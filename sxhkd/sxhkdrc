@@ -28,6 +28,9 @@ super + alt + v
 super + control + e
 		rofi -show emoji -modi emoji -dpi 1
 
+super + control + c
+    copyq show
+
 super + backslash
 		1password --quick-access
 
@@ -38,6 +41,10 @@ super + alt + 1
 		thinkpad-screen
 super + alt + 2
 		lg-widescreen
+super + alt + 3
+		$HOME/.screenlayout/grokpad.sh
+super + alt + 4
+		$HOME/.screenlayout/grokoffice.sh
 
 ############################################################
 # Media keys
