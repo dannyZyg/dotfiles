@@ -34,3 +34,49 @@ vim.cmd [[ autocmd Filetype yml setlocal ts=2 sw=2 sts=2 expandtab ]]
 vim.cmd [[ autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab ]]
 vim.cmd [[ autocmd Filetype cs setlocal ts=2 sw=2 expandtab! ]]
 vim.cmd [[ autocmd Filetype python setlocal ts=4 sw=4 sts=4 expandtab autoindent fileformat=unix ]]
+
+vim.cmd [[
+  "restart sxhkd if editing the rc
+  autocmd BufWritePost *sxhkdrc !killall sxhkd; setsid sxhkd &
+]]
+
+local grok_group = vim.api.nvim_create_augroup("grok", { clear = true})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+
+  pattern = {
+    "*/web/code/*",
+    "*/marker/code/*",
+    "*/plagiarism-detection/code/*",
+    "*/realtime/code/*",
+  },
+  group = grok_group,
+  callback = function()
+
+    -- Syntax highlight HTML files as Django.
+    vim.cmd [[ au BufRead,BufNewFile *.html set filetype=htmldjango ]]
+
+    -- Syntax highlight .conf files as cfg.
+    vim.cmd [[ au BufRead,BufNewFile *.conf set filetype=cfg ]]
+
+    -- File encoding to be UTF-8.
+    vim.opt.encoding = 'utf-8'
+
+    -- 2 space indentation.
+    vim.opt.tabstop = 2
+    vim.opt.softtabstop = 2
+    vim.opt.shiftwidth = 2
+
+    -- Soft tabs.
+    vim.opt.expandtab = true
+    vim.opt.autoindent = true
+    vim.opt.smartindent = false
+    vim.opt.smarttab = true
+
+    -- Trailing newline at end of file.
+    vim.opt.fixendofline = true
+
+    -- No hard wrapping.
+    vim.opt.textwidth = 0
+  end
+})
