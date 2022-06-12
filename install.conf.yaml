@@ -46,19 +46,12 @@
     ~/.xprofile:
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
-    # ~/.Xmodmap:
-    #   if: '[[ "$OSTYPE" = "linux"* ]]'
-
     ~/.config/i3/config:
       path: i3/config
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
     ~/.config/copyq/themes/custom-theme.ini:
       path: copyq/themes/custom-theme.ini
-      if: '[[ "$OSTYPE" = "linux"* ]]'
-
-    ~/.config/picom/picom.conf:
-      path: picom/picom.conf
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
     ~/.config/sxhkd/sxhkdrc:
@@ -74,12 +67,6 @@
       glob: true
       path: bin/*
       if: '[[ "$OSTYPE" = "linux"* ]]'
-
-    # ~/.config/rofi:
-    #   create: true
-    #   glob: true
-    #   path: rofi/*
-    #   if: '[[ "$OSTYPE" = "linux"* ]]'
 
     ~/.config/dunst/dunstrc:
       create: true
