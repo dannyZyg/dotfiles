@@ -1,0 +1,91 @@
+- name: Check if zsh installed
+  shell: command -v zsh
+  register: zsh_exists
+  ignore_errors: yes
+  tags:
+    - shell
+
+- name: Install ZSH on Arch
+  become: true
+  pacman: name=zsh
+  when: ansible_facts['distribution'] == "Archlinux" and zsh_exists is failed
+  tags:
+    - shell
+
+- name: Install ZSH on Pop OS
+  become: true
+  apt:
+    pkg:
+      - zsh
+  when: ansible_facts['distribution'] == "Pop!_OS" and zsh_exists is failed
+  tags:
+    - shell
+
+- name: Change shell to zsh
+  become_user: root
+  shell: chsh -s $(which zsh)
+  tags:
+    - shell
+
+- name: check if starship installed
+  shell: command -v starship
+  register: starship_exists
+  ignore_errors: yes
+  tags:
+    - shell
+    - starship
+
+# - name: Install Starship
+#   when: starship_exists is failed
+#   expect:
+#     command: curl -sS https://starship.rs/install.sh | sh
+#     responses:
+#       Question:
+#         - yes
+#         - no
+#   tags:
+#     - shell
+#     - starship
+
+- name: Install shell related packages on Arch
+  become: true
+  pacman:
+    name:
+      - bat
+      - exa
+  when: ansible_facts['distribution'] == "Archlinux"
+  tags:
+    - shell
+
+- name: Install shell related packages on Pop OS
+  become: true
+  apt:
+    pkg:
+      - exa
+      - bat
+  when: ansible_facts['distribution'] == "Pop!_OS"
+  tags:
+    - shell
+
+- name: Creates packages directory
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/packages"
+    state: directory
+  tags:
+    - dotfiles
+    - shell
+
+- name: Cloning fzf
+  become_user: "{{ lookup('vars', 'username') }}"
+  ansible.builtin.git:
+    repo: 'https://github.com/junegunn/fzf.git'
+    dest: "{{ lookup('env', 'HOME') }}/packages/fzf"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
+    depth: 1
+  tags:
+    - dotfiles
+    - shell

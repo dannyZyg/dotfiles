@@ -68,13 +68,23 @@
         - always
 
     - name: Update repositories
+      when: ansible_facts['distribution'] == "Archlinux"
       become: true
       pacman:
         update_cache: yes
 
+    - name: update repositories
+      when: ansible_facts['distribution'] == "Pop!_OS"
+      apt: update_cache=yes
+      become_user: root
+      changed_when: False
+
   tasks:
     - import_tasks: tasks/debug.yml
+    - import_tasks: tasks/fonts.yml
     - import_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/shell.yml
+
     - import_tasks: tasks/espanso.yml
     - import_tasks: tasks/node.yml
     - import_tasks: tasks/npm-packages.yml
@@ -83,5 +93,5 @@
     - import_tasks: tasks/python.yml
     - import_tasks: tasks/repos.yml
     - import_tasks: tasks/system.yml
-    - import_tasks: tasks/zsh.yml
     - import_tasks: tasks/aur.yml
+    - import_tasks: tasks/nvim.yml
