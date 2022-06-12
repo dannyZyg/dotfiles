@@ -24,7 +24,6 @@ pacman-install       Install pacman packages
 pipx                 Installs pipx pachages
 pull-repos           Pulls my github repos
 python               Installs Python with conda
-ssh                  Install ssh key
 ```
 
 Run a specific option using `make all` for example.

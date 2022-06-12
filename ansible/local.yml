@@ -2,10 +2,6 @@
 
   gather_facts: True
 
-  vars:
-    source_key: "./.ssh/id_ed25519"
-    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
-
   pre_tasks:
     - name: Set espanso directory on Arch
       set_fact:
@@ -86,7 +82,6 @@
     - import_tasks: tasks/pipx.yml
     - import_tasks: tasks/python.yml
     - import_tasks: tasks/repos.yml
-    - import_tasks: tasks/ssh.yml
     - import_tasks: tasks/system.yml
     - import_tasks: tasks/zsh.yml
     - import_tasks: tasks/aur.yml

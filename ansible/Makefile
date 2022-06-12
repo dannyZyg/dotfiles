@@ -20,9 +20,6 @@ npm: ## Install npm packages
 node-npm: ## Install Node, N and npm packages
 	ansible-playbook local.yml -t node,npm --ask-become-pass
 
-ssh: ## Install ssh key
-	ansible-playbook local.yml -t ssh --ask-vault-pass --ask-become-pass
-
 espanso-unpack: ## Decrypt espanso repo files into the config path
 	ansible-playbook local.yml -t espanso --ask-vault-pass
 
