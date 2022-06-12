@@ -5,6 +5,7 @@
   register: pacman_packages
   tags:
     - pacman
+    - packages
 
 - name: Install System Packages
   become: true
@@ -13,3 +14,4 @@
   with_items: "{{ pacman_packages.stdout_lines }}"
   tags:
     - pacman
+    - packages

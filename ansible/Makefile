@@ -32,6 +32,9 @@ debug: ## Print out env vars
 pacman-install: ## Install pacman packages
 	ansible-playbook local.yml -t pacman --ask-become-pass
 
+apt-install: ## Install pacman packages
+	ansible-playbook local.yml -t packages --ask-become-pass
+
 pacman-dump: ## Saves installed pacman packages to txt
 	pacman -Qen | cut -d ' ' -f1 > packages/pacman.txt
 
