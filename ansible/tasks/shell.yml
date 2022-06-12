@@ -103,3 +103,13 @@
   tags:
     - dotfiles
     - shell
+
+- name: Decrypt ssh config file
+  become_user: "{{ lookup('vars', 'username') }}"
+  copy:
+    src: "{{ lookup('env', 'HOME') }}/.dotfiles/ansible/ssh/config"
+    dest: "{{ lookup('env', 'HOME') }}/.ssh/config"
+    decrypt: yes
+  tags:
+    - shell
+    - ssh
