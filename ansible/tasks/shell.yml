@@ -30,22 +30,36 @@
 - name: check if starship installed
   shell: command -v starship
   register: starship_exists
-  ignore_errors: yes
+  ignore_errors: true
   tags:
     - shell
     - starship
 
-# - name: Install Starship
-#   when: starship_exists is failed
-#   expect:
-#     command: curl -sS https://starship.rs/install.sh | sh
-#     responses:
-#       Question:
-#         - yes
-#         - no
-#   tags:
-#     - shell
-#     - starship
+- name: Download starship installer
+  when: starship_exists is failed
+  get_url:
+    url: https://starship.rs/install.sh
+    dest: "{{ lookup('env', 'HOME') }}/install-starship.sh"
+    mode: '0755'
+  tags:
+    - shell
+    - starship
+
+- name: Install Starship
+  when: starship_exists is failed
+  command: "{{ lookup('env', 'HOME') }}/install-starship.sh -y"
+  tags:
+    - shell
+    - starship
+
+- name: Remove starship installer
+  when: starship_exists
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/install-starship.sh"
+    state: absent
+  tags:
+    - shell
+    - starship
 
 - name: Install shell related packages on Arch
   become: true
