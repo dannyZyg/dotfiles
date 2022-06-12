@@ -35,6 +35,7 @@ end
 
 local servers = {
   graphql = require("dzk.lsp.servers.graphql").config,
+  eslint = require("dzk.lsp.servers.eslint").config,
   svelte = require("dzk.lsp.servers.svelte").config,
   yamlls = require("dzk.lsp.servers.yamlls").config,
   html = require("dzk.lsp.servers.html").config,
