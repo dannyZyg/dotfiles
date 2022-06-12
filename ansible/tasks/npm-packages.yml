@@ -18,6 +18,7 @@
     - 'pyright'
     - 'svelte-language-server'
     - 'apollo'
+    - 'vscode-langservers-extracted'
   tags:
     - node
     - npm
