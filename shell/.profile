@@ -194,10 +194,3 @@ ex=🚀:\
 *.pdf=:\
 *.nix=:\
 "
-
-# eval `keychain --eval --agents ssh id_rsa` >> /dev/null 2>&1
-#
-
-if [[ "$(tty)" = "/dev/tty1" ]]; then
-	pgrep i3 || startx
-fi
