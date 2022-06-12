@@ -80,3 +80,15 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt.textwidth = 0
   end
 })
+
+vim.cmd [[
+  augroup c
+      autocmd!
+      autocmd FileType c,cpp,h,hpp,glsl call MakeRun()
+  augroup end
+
+  function! MakeRun()
+      nnoremap <C-e> :terminal make -j8 && make run<cr>
+      inoremap <C-e> <esc>:terminal make -j8 && make run<cr>
+  endfunction
+]]

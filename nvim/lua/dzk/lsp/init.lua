@@ -45,6 +45,7 @@ local servers = {
   sumneko_lua = require("dzk.lsp.servers.sumneko_lua").config,
   tsserver = require("dzk.lsp.servers.tsserver").config,
   jsonls = require("dzk.lsp.servers.jsonls").config,
+  ccls = require("dzk.lsp.servers.ccls").config,
 }
 
 for server, config in pairs(servers) do
