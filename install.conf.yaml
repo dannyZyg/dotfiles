@@ -35,11 +35,6 @@
       glob: true
       path: lf/*
 
-    ~/.screenlayout:
-      glob: true
-      path: screenlayout/*
-      if: '[[ "$OSTYPE" = "linux"* ]]'
-
     ~/.xinitrc:
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
