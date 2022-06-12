@@ -12,12 +12,12 @@
   tags:
     - shell
 
-- name: Install ZSH on Pop OS
+- name: Install ZSH on Debian systems
   become: true
   apt:
     pkg:
       - zsh
-  when: ansible_facts['distribution'] == "Pop!_OS" and zsh_exists is failed
+  when: ansible_facts['os_family'] == "Debian" and zsh_exists is failed
   tags:
     - shell
 
@@ -71,13 +71,13 @@
   tags:
     - shell
 
-- name: Install shell related packages on Pop OS
+- name: Install shell related packages on Debian systems
   become: true
   apt:
     pkg:
       - exa
       - bat
-  when: ansible_facts['distribution'] == "Pop!_OS"
+  when: ansible_facts['os_family'] == "Debian"
   tags:
     - shell
 

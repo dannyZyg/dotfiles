@@ -1,7 +1,7 @@
 - name: Check if node installed
   shell: command -v node
   register: node_exists
-  ignore_errors: yes
+  ignore_errors: true
   tags:
     - node
 
@@ -29,9 +29,9 @@
   tags:
     - node
 
-- name: Install nodejs and npm on Pop! OS
+- name: Install nodejs and npm on Debian sytems
   become: true
-  when: ansible_distribution == "Pop!_OS" and node_exists is failed
+  when: ansible_facts['os_family'] == "Debian" and node_exists is failed
   apt:
     pkg: ["nodejs", "npm"]
   tags:

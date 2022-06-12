@@ -72,18 +72,27 @@
       become: true
       pacman:
         update_cache: yes
+      tags:
+        - pacman
+        - aur
+        - packages
 
     - name: update repositories
-      when: ansible_facts['distribution'] == "Pop!_OS"
+      when: ansible_facts['os_family'] == "Debian"
       apt: update_cache=yes
-      become_user: root
+      become: true
       changed_when: False
+      tags:
+        - packages
+        - apt
 
   tasks:
     - import_tasks: tasks/debug.yml
     - import_tasks: tasks/fonts.yml
     - import_tasks: tasks/dotfiles.yml
     - import_tasks: tasks/shell.yml
+
+    - import_tasks: tasks/nvim.yml
 
     - import_tasks: tasks/apt-packages.yml
     - import_tasks: tasks/flatpak-packages.yml
@@ -96,6 +105,6 @@
 
     - import_tasks: tasks/pipx.yml
     - import_tasks: tasks/python.yml
+
     - import_tasks: tasks/repos.yml
     - import_tasks: tasks/system.yml
-    - import_tasks: tasks/nvim.yml

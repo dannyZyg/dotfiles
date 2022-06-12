@@ -1,5 +1,5 @@
 - name: Get APT package list
-  when: ansible_facts['distribution'] == "Pop!_OS"
+  when: ansible_facts['os_family'] == "Debian"
   command:
     cmd: cat ./packages/apt.txt
   register: apt_packages
@@ -9,7 +9,7 @@
 
 - name: Install System Packages
   become: true
-  when: ansible_facts['distribution'] == "Pop!_OS"
+  when: ansible_facts['os_family'] == "Debian"
   apt:
     name: "{{ apt_packages.stdout_lines }}"
   tags:
