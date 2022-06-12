@@ -1,7 +1,12 @@
 #!/bin/bash
 
 # Replace cat with bat
-alias cat='bat --paging=never'
+if command -v bat &> /dev/null ; then
+  alias cat="bat --paging=never"
+elif command -v batcat &> /dev/null ; then
+  # APT package uses a binary called batcat
+  alias cat="batcat --paging=never"
+fi
 
 alias c="clear"
 alias today="date '+%y%m%d'"
