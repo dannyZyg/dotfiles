@@ -19,6 +19,7 @@
     - 'svelte-language-server'
     - 'apollo'
     - 'vscode-langservers-extracted'
+    - 'diff-so-fancy'
   tags:
     - node
     - npm

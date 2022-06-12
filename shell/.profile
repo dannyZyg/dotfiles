@@ -6,6 +6,7 @@
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=~/.local/bin:$PATH
 export PATH=/home/danny/.local/bin/aws_completer:$PATH
+export PATH=~/.config/npm-global/bin:$PATH
 export FILE="ranger"
 export TERMINAL="alacritty"
 export EDITOR="nvim"
@@ -31,6 +32,7 @@ export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export AWS_PROFILE="dk"
 export AWS_DEFAULT_REGION="ap-southeast-2"
+export NPM_CONFIG_PREFIX=~/.config/npm-global
 
 export LF_ICONS="\
 tw=📁:\
