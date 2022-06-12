@@ -34,6 +34,12 @@ export AWS_PROFILE="dk"
 export AWS_DEFAULT_REGION="ap-southeast-2"
 export NPM_CONFIG_PREFIX=~/.config/npm-global
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+elif [[ "$OSTYPE" == "linux"* ]]; then
+  export SSH_AUTH_SOCK=~/.1password/agent.sock
+fi
+
 export LF_ICONS="\
 tw=📁:\
 st=📁:\

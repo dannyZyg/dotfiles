@@ -34,20 +34,23 @@ export HOMEBREW_CASK_OPTS="--no-quarantine --no-binaries"
 # Handle Mac architectures and brew paths
 if [[ "$OSTYPE" == "darwin"* ]]; then
 
-	CPU=$(uname -p)
-	if [[ "$CPU" == "arm" ]]; then
-		export BREWPATH="/opt/homebrew/bin"
-		export PATH="$BREWPATH:$PATH"
-		export CONDA_PATH="/opt/homebrew/anaconda3"
-	else
-		export BREWPATH="/usr/local/bin"
-		export PATH="$BREWPATH:$PATH"
-		export CONDA_PATH="/usr/local/anaconda3"
-	fi
-	export PATH=$(brew --prefix)/opt/llvm/bin/:$PATH
+  CPU=$(uname -p)
+  if [[ "$CPU" == "arm" ]]; then
+    export BREWPATH="/opt/homebrew/bin"
+    export PATH="$BREWPATH:$PATH"
+    export CONDA_PATH="/opt/homebrew/anaconda3"
+  else
+    export BREWPATH="/usr/local/bin"
+    export PATH="$BREWPATH:$PATH"
+    export CONDA_PATH="/usr/local/anaconda3"
+  fi
+
+  export PATH=$(brew --prefix)/opt/llvm/bin/:$PATH
+  export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
-	export CONDA_PATH="/opt/anaconda"
+  export CONDA_PATH="/opt/anaconda"
+  export SSH_AUTH_SOCK=~/.1password/agent.sock
 fi
 
 export EDITOR=nvim
