@@ -86,6 +86,7 @@
     - import_tasks: tasks/shell.yml
 
     - import_tasks: tasks/apt-packages.yml
+    - import_tasks: tasks/flatpak-packages.yml
     - import_tasks: tasks/pacman-packages.yml
     - import_tasks: tasks/aur.yml
 
