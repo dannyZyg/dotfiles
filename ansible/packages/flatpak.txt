@@ -6,3 +6,4 @@ org.filezillaproject.Filezilla
 org.signal.Signal
 re.sonny.Junction
 md.obsidian.Obsidian
+us.zoom.Zoom
