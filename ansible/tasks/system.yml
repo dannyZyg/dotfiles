@@ -14,3 +14,25 @@
   shell: "{{ lookup('env', 'HOME') }}/.dotfiles/ansible/scripts/pop_os_workspace_keybindings.sh"
   tags:
     - system
+
+- name: Ensure autostart dir exists
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: ansible_facts['distribution'] == "Pop!_OS"
+  file:
+    dest: "{{ lookup('env', 'HOME') }}/.config/autostart"
+    mode: 0700
+    state: directory
+    recurse: true
+  tags:
+    - system
+
+- name: Copy autostart items
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: ansible_facts['distribution'] == "Pop!_OS"
+  copy:
+    src: "{{ item }}"
+    dest: "{{ lookup('env', 'HOME') }}/.config/autostart/"
+  with_fileglob:
+    - "{{ lookup('env', 'HOME') }}/.dotfiles/ansible/system/gnome/autostart/*"
+  tags:
+    - system
