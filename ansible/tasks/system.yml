@@ -8,3 +8,9 @@
     mode: 0644
   tags:
     - system
+
+- name: Set Pop!_OS workspace keybindings
+  when: ansible_facts['distribution'] == "Pop!_OS"
+  shell: "{{ lookup('env', 'HOME') }}/.dotfiles/ansible/scripts/pop_os_workspace_keybindings.sh"
+  tags:
+    - system

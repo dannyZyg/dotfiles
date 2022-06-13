@@ -8,7 +8,7 @@
 - name: Fira Code exists
   register: firacode_exists
   shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Fira*Code*Nerd*Font*Complete*"
-  ignore_errors: yes
+  ignore_errors: true
   tags:
     - fonts
 
