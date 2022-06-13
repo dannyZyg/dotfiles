@@ -17,6 +17,13 @@
       tags:
         - always
 
+    - name: Set miniconda path on Debian
+      set_fact:
+        conda_path: "{{ lookup('env', 'HOME') }}/.config/miniconda"
+      when: ansible_facts['os_family'] == "Debian"
+      tags:
+        - always
+
     - name: Set conda path on Arch
       set_fact:
         conda_path: "/opt/anaconda"
@@ -49,6 +56,14 @@
       set_fact:
         brew_path: "/usr/local/bin"
       when: ansible_distribution == 'MacOSX' and ansible_architecture == 'x86_64'
+      tags:
+        - always
+
+    - name: Set miniconda url on Debian
+      set_fact:
+        miniconda_url: >
+          http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+      when: ansible_facts['os_family'] == "Debian"
       tags:
         - always
 
@@ -103,8 +118,9 @@
     - import_tasks: tasks/node.yml
     - import_tasks: tasks/npm-packages.yml
 
-    - import_tasks: tasks/pipx.yml
+    - import_tasks: tasks/miniconda.yml
     - import_tasks: tasks/python.yml
+    - import_tasks: tasks/pipx.yml
 
     - import_tasks: tasks/repos.yml
     - import_tasks: tasks/system.yml

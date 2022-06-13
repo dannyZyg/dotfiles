@@ -1,5 +1,6 @@
 - name: Install Dotfiles
   become_user: "{{ lookup('vars', 'username') }}"
+  ignore_errors: true
   community.general.make:
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
     target: dotbot-run

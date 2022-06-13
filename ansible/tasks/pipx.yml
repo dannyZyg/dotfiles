@@ -1,9 +1,11 @@
 - name: Check is pipx installed
   shell: command -v pipx
   register: pipx_exists
-  ignore_errors: yes
+  ignore_errors: true
   tags:
     - pipx
+
+########## PIPX INSTALL ##########
 
 - name: Install pipx mac
   homebrew:
@@ -28,6 +30,24 @@
     name: pipx
   tags:
     - pipx
+
+- name: Install pipx on Debian
+  when: pipx_exists is failed and ansible_facts['os_family'] == "Debian"
+  pip:
+    name: pipx
+    extra_args: --user
+    executable: pip3
+  tags:
+    - pipx
+
+- name: Post install pipx on Debian
+  command:
+    cmd: pipx ensurepath
+  when: pipx_exists and ansible_facts['os_family'] == "Debian"
+  tags:
+    - pipx
+
+########## PIPX PACKAGES ##########
 
 - name: Install pipx packages
   command:

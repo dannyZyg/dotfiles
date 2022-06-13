@@ -1,7 +1,7 @@
 - name: Check if zsh installed
   shell: command -v zsh
   register: zsh_exists
-  ignore_errors: yes
+  ignore_errors: true
   tags:
     - shell
 

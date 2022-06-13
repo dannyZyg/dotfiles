@@ -1,7 +1,37 @@
-## Python 3
+- name: check python is in update-alternatives
+  when: ansible_facts['os_family'] == "Debian"
+  shell: update-alternatives --query python
+  register: python_alternative_exists
+  ignore_errors: true
+  tags:
+    - python
+
+- name: set python3 as default python
+  when: ansible_facts['os_family'] == "Debian" and python_alternative_exists is failed
+  become: true
+  shell: update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+  tags:
+    - python
+
+- name: Check conda installed
+  command:
+    cmd: command -v conda
+  ignore_errors: true
+  register: conda_exists
+  tags:
+    - python
+
+- name: Check Pyenv installed
+  command:
+    cmd: command -v pyenv
+  ignore_errors: true
+  register: pyenv_exists
+  tags:
+    - python
+
 - name: Install mac pyenv dependencies
   become_user: "{{ lookup('vars', 'username') }}"
-  when: ansible_distribution == "MacOSX"
+  when: ansible_distribution == "MacOSX" and pyenv_exists is failed
   homebrew:
     name: "{{item}}"
     state: present
@@ -13,16 +43,9 @@
   tags:
     - python
 
-- name: Check anaconda installed
-  command:
-    cmd: command -v conda
-  ignore_errors: true
-  register: conda_exists
-  tags:
-    - python
-
 - name: Install python version 3.9.9 with pyenv
   become_user: "{{ lookup('vars', 'username') }}"
+  when: pyenv_exists
   command: pyenv install -f 3.9.9
   ignore_errors: true
   tags:
@@ -30,18 +53,26 @@
 
 - name: Set Python 3.9.9 as global version
   become_user: "{{ lookup('vars', 'username') }}"
+  when: pyenv_exists
   command: pyenv global 3.9.9
   ignore_errors: true
   tags:
     - python
 
-- name: Ensure conda directory exists.
+- name: Ensure conda envs directory exists.
   become_user: "{{ lookup('vars', 'username') }}"
   file:
-    dest: "{{ lookup('env', 'HOME') }}/.conda/envs"
+    dest: "{{ lookup('vars', 'conda_path') }}/envs"
     mode: 0700
     state: directory
     recurse: true
+  tags:
+    - python
+
+- name: Update conda
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: conda_exists
+  command: conda update conda -y
   tags:
     - python
 
@@ -50,7 +81,7 @@
   when: conda_exists
   command: "{{item}}"
   with_items:
-    - conda create -p ~/.conda/envs/neovim-python-3 python=3.8
+    - "conda create -p {{ lookup('vars', 'conda_path') }}/envs/neovim-python-3 python=3.8"
   tags:
     - python
 
@@ -61,6 +92,6 @@
     executable: "{{item}}"
     state: latest
   with_items:
-    - "{{ lookup('env', 'HOME') }}/.conda/envs/neovim-python-3/bin/pip"
+    - "{{ lookup('vars', 'conda_path') }}/envs/neovim-python-3/bin/pip"
   tags:
     - python
