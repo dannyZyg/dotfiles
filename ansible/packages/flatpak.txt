@@ -7,3 +7,4 @@ org.signal.Signal
 re.sonny.Junction
 md.obsidian.Obsidian
 us.zoom.Zoom
+com.getpostman.Postman
