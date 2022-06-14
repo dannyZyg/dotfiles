@@ -17,31 +17,9 @@
       tags:
         - always
 
-    - name: Set miniconda path on Debian
+    - name: Set miniconda path
       set_fact:
         conda_path: "{{ lookup('env', 'HOME') }}/.config/miniconda"
-      when: ansible_facts['os_family'] == "Debian"
-      tags:
-        - always
-
-    - name: Set conda path on Arch
-      set_fact:
-        conda_path: "/opt/anaconda"
-      when: ansible_facts['distribution'] == "Archlinux"
-      tags:
-        - always
-
-    - name: Set conda path on MacOSX silicon
-      set_fact:
-        conda_path: "/opt/homebrew/anaconda3"
-      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'arm64'
-      tags:
-        - always
-
-    - name: Set conda path on MacOSX intel
-      set_fact:
-        conda_path: "/usr/local/anaconda3"
-      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'x86_64'
       tags:
         - always
 
@@ -64,6 +42,14 @@
         miniconda_url: >
           http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
       when: ansible_facts['os_family'] == "Debian"
+      tags:
+        - always
+
+    - name: Set miniconda url on Mac
+      set_fact:
+        miniconda_url: >
+          https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-MacOSX-x86_64.sh
+      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'x86_64'
       tags:
         - always
 

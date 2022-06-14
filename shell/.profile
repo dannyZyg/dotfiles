@@ -33,6 +33,7 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export AWS_PROFILE="dk"
 export AWS_DEFAULT_REGION="ap-southeast-2"
 export NPM_CONFIG_PREFIX=~/.config/npm-global
+export CONDA_PATH="$HOME/.config/miniconda"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
