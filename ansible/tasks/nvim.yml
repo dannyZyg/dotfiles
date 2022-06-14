@@ -18,6 +18,20 @@
   tags:
     - nvim
 
+- name: Install nvim dependencies on Mac
+  when: ansible_distribution == 'MacOSX'
+  homebrew:
+    name:
+      - ninja
+      - libtool
+      - automake
+      - cmake
+      - pkg-config
+      - gettext
+      - curl
+  tags:
+    - nvim
+
 - name: Remove neovim
   ansible.builtin.file:
     path: "{{ lookup('env', 'HOME') }}/packages/neovim"
