@@ -33,6 +33,9 @@ pacman-install: ## Install pacman packages
 	ansible-playbook local.yml -t pacman --ask-become-pass
 
 apt-install: ## Install pacman packages
+	ansible-playbook local.yml -t apt --ask-become-pass
+
+install-packages: ## Install all packages
 	ansible-playbook local.yml -t packages --ask-become-pass
 
 pacman-dump: ## Saves installed pacman packages to txt
