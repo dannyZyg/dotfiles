@@ -22,7 +22,7 @@
     - shell
 
 - name: Change shell to zsh
-  become_user: root
+  become: true
   shell: chsh -s $(which zsh)
   tags:
     - shell

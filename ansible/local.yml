@@ -3,10 +3,10 @@
   gather_facts: True
 
   pre_tasks:
-    - name: Set espanso directory on Arch
+    - name: Set espanso directory on Linux
       set_fact:
         espanso_dir: "{{ lookup('env', 'HOME') }}/.config/espanso"
-      when: ansible_facts['distribution'] == "Archlinux"
+      when: ansible_facts['distribution'] == "Archlinux" or ansible_facts['os_family'] == "Debian"
       tags:
         - always
 

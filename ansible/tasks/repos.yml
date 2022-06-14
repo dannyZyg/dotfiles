@@ -15,7 +15,6 @@
     update: yes
     accept_hostkey: yes
     version: main
-    key_file: "{{ dest_key }}"
   with_items:
     - { url: "git@github.com:dannyZyg/slice-of-life.git", dir: "slice-of-life" }
     - { url: "git@github.com:dannyZyg/devdoist.git", dir: "devdoist" }
