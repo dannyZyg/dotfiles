@@ -1,4 +1,6 @@
+alacritty
 xcape
 fzf
 ripgrep
 tmux
+pip
