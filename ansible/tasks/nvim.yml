@@ -43,6 +43,7 @@
   ansible.builtin.git:
     repo: 'https://github.com/neovim/neovim.git'
     dest: "{{ lookup('env', 'HOME') }}/packages/neovim"
+    version: v0.7.0
   tags:
     - nvim
 
