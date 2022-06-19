@@ -2,13 +2,13 @@
 
 VAULT_ID=espanso
 
-if [[ "$OSTYPE" = "linux"* ]] ; then
-	ESPANSO_DIR=$XDG_CONFIG_HOME/espanso
-elif [[ "$OSTYPE" = "darwin"* ]] ; then
-	ESPANSO_DIR=$HOME/Library/Preferences/espanso
-else
-	printf "%s\n" "This system is not supported yet..." && exit
+if ! command -v espanso &> /dev/null
+then
+  echo "Espanso is either not installed or not in the PATH"
+  exit
 fi
+
+ESPANSO_DIR=$(espanso path | awk '{print $2}' | head -n 1)
 
 cp -r $ESPANSO_DIR .
 

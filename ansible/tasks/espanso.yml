@@ -1,37 +1,38 @@
+- name: Get the espanso path
+  become: false
+  shell: espanso path | awk '{print $2}' | head -n 1
+  register: get_espanso_path
+  tags:
+    - debug
+    - espanso
+
+- name: Set the espanso_path var
+  set_fact:
+    espanso_path: "{{ get_espanso_path.stdout }}"
+  tags:
+    - debug
+    - espanso
+
+- name: Debug print out the espanso_path var
+  debug: msg="{{ lookup('vars', 'espanso_path') }}"
+  tags:
+    - debug
+    - espanso
+
 - name: Ensure espanso directory exists.
   become_user: "{{ lookup('vars', 'username') }}"
   file:
-    dest: "{{ lookup('vars', 'espanso_dir') }}"
+    dest: "{{ lookup('vars', 'espanso_path') }}"
     mode: 0700
     state: directory
   tags:
     - espanso
 
-- name: Ensure espanso user config directory exists.
-  become_user: "{{ lookup('vars', 'username') }}"
-  file:
-    dest: "{{ lookup('vars', 'espanso_dir') }}/user"
-    mode: 0700
-    state: directory
-  tags:
-    - espanso
-
-- name: Install espanso conf
+- name: Install espanso conf files
   become_user: "{{ lookup('vars', 'username') }}"
   copy:
-    src: "./espanso/default.yml"
-    dest: "{{ lookup('vars', 'espanso_dir') }}/default.yml"
+    src: "./espanso/"
+    dest: "{{ lookup('vars', 'espanso_path') }}"
     decrypt: yes
-  tags:
-    - espanso
-
-- name: Install espanso user conf files
-  become_user: "{{ lookup('vars', 'username') }}"
-  copy:
-    src: "{{ item }}"
-    dest: "{{ lookup('vars', 'espanso_dir') }}/user"
-    decrypt: yes
-  with_fileglob:
-     - "./espanso/user/*"
   tags:
     - espanso
