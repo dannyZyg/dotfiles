@@ -10,3 +10,4 @@ us.zoom.Zoom
 com.slack.Slack
 com.getpostman.Postman
 com.todoist.Todoist
+com.discordapp.Discord

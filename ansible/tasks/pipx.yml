@@ -52,6 +52,7 @@
   with_items:
     - python-lsp-server[all]
     - aws-sso-util
+    - poetry
   when: pipx_exists
   tags:
     - pipx
