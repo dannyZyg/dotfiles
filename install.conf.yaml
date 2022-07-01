@@ -41,6 +41,10 @@
     ~/.xprofile:
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
+    ~/.config/awesome/rc.lua:
+      path: awesome/rc.lua
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
     ~/.config/i3/config:
       path: i3/config
       if: '[[ "$OSTYPE" = "linux"* ]]'
