@@ -4,7 +4,6 @@ betterlockscreen-git
 bitwig-studio
 braus-git
 brave-bin
-brillo
 caffeine-ng
 espanso
 etcher-bin
