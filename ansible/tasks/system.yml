@@ -1,6 +1,17 @@
 - name: Install trackpad conf
   become: true
-  when: ansible_facts['distribution'] == "Archlinux"
+  when: ansible_system == "Linux"
+  copy:
+    src: "./system/xorg/30-touchpad.conf"
+    dest: "/etc/X11/xorg.conf.d/30-touchpad.conf"
+    decrypt: yes
+    mode: 0644
+  tags:
+    - system
+
+- name: Install intel graphics no tear conf
+  become: true
+  when: ansible_system == "Linux"
   copy:
     src: "./system/xorg/30-touchpad.conf"
     dest: "/etc/X11/xorg.conf.d/30-touchpad.conf"
