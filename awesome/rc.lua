@@ -25,10 +25,10 @@ require("main.error-handling")
 
 -- {{{ Variable definitions -- }}}
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme/theme.lua")
 beautiful.wallpaper = RC.vars.wallpaper
-beautiful.useless_gap = 4
-beautiful.border_width = 2
+-- beautiful.useless_gap = 4
+-- beautiful.border_width = 2
 beautiful.font = "Ubuntu 20"
 
 modkey = RC.vars.modkey

@@ -17,8 +17,7 @@ local _M = {
   modkey = "Mod4",
 
   -- user defined wallpaper
-  wallpaper = nil,
-  --wallpaper = home .. "/Pictures/your-wallpaper-here.jpg",
+  wallpaper = home .. "/Pictures/wallpapers/hokusai_1.jpeg",
 }
 
 return _M
