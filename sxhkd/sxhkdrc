@@ -19,8 +19,8 @@ super + control + b
 		bluetooth-select
 super + space
 		rofi -modi drun -show drun -show-icons -dpi 1
-super + control + space
-		rofi -show window -dpi 1
+# super + control + space
+# 		rofi -show window -dpi 1
 super + alt + c
 		rofi -show calc -modi calc -no-show-match -no-sort -dpi 1
 super + alt + v
