@@ -29,7 +29,7 @@ beautiful.init(gears.filesystem.get_configuration_dir() .. "theme/theme.lua")
 beautiful.wallpaper = RC.vars.wallpaper
 -- beautiful.useless_gap = 4
 -- beautiful.border_width = 2
-beautiful.font = "Ubuntu 20"
+beautiful.font = "Ubuntu 16"
 
 modkey = RC.vars.modkey
 
