@@ -18,6 +18,20 @@
   tags:
     - nvim
 
+- name: Install nvim dependencies on Arch
+  when: ansible_facts['distribution'] == "Archlinux"
+  become: true
+  pacman:
+    name:
+      - base-devel
+      - cmake
+      - unzip
+      - ninja
+      - tree-sitter
+      - curl
+  tags:
+    - nvim
+
 - name: Install nvim dependencies on Mac
   when: ansible_distribution == 'MacOSX'
   homebrew:
