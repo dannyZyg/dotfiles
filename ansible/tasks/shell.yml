@@ -104,6 +104,15 @@
     - dotfiles
     - shell
 
+- name: Creates ssh directory
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.ssh"
+    state: directory
+  tags:
+    - dotfiles
+    - shell
+
 - name: Decrypt ssh config file
   become_user: "{{ lookup('vars', 'username') }}"
   copy:
