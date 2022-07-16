@@ -18,6 +18,16 @@
     - build-packages
     - brillo
 
+- name: Install brillo dependencies on Arch
+  when: ansible_facts['distribution'] == "Archlinux"
+  become: true
+  pacman:
+    name:
+      - go-md2man
+  tags:
+    - build-packages
+    - brillo
+
 - name: Build and install brillo
   when: ansible_system == "Linux" and brillo_exists is failed
   become: true
