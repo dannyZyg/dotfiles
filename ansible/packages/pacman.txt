@@ -17,6 +17,7 @@ blueman
 bluez
 bluez-utils
 brightnessctl
+btop
 calibre
 chromium
 code
