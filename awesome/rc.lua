@@ -103,7 +103,6 @@ awful.rules.rules = main.rules(
 -- {{{ Signals }}} --
 require("main.signals")
 
-awful.spawn.with_shell("udiskie -at")
 awful.spawn.with_shell("copyq")
 awful.spawn.with_shell("flameshot")
 awful.spawn.with_shell("nm-applet")

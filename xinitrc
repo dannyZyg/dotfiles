@@ -45,8 +45,8 @@ fi
 # Start the Geoclue agent manually (for redshift)
 /usr/lib/geoclue-2.0/demos/agent &
 
-# udiskie -at &
 # dunst &
+udiskie -at &
 xss-lock --transfer-sleep-lock -- i3lock --nofork -c 2f626e &
 sxhkd &
 lxsession &
