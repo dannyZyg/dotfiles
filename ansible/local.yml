@@ -23,11 +23,11 @@
       tags:
         - always
 
-    - name: Set miniconda url on Debian
+    - name: Set miniconda url on Linux
       set_fact:
         miniconda_url: >
           https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-      when: ansible_facts['os_family'] == "Debian"
+      when: ansible_system == "Linux"
       tags:
         - always
 

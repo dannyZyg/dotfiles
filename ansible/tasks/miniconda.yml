@@ -21,9 +21,6 @@
   shell: "/tmp/miniconda.sh -b -p {{ conda_path }} creates={{ conda_path }} executable=/bin/bash"
   register: miniconda_installed
   when: miniconda_downloaded
-  # notify:
-  #   - remove miniconda setup script
-  #   - update conda to latest version
   tags:
     - python
     - miniconda

@@ -6,7 +6,6 @@ etcher-bin
 i3exit
 junction-git
 lf
-miniconda3
 nerd-fonts-fira-code
 srandrd
 tor-browser

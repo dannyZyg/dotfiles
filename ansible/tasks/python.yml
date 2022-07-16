@@ -14,16 +14,14 @@
     - python
 
 - name: Check conda installed
-  command:
-    cmd: command -v conda
+  shell: command -v conda
   ignore_errors: true
   register: conda_exists
   tags:
     - python
 
 - name: Check Pyenv installed
-  command:
-    cmd: command -v pyenv
+  shell: command -v pyenv
   ignore_errors: true
   register: pyenv_exists
   tags:
@@ -53,7 +51,7 @@
 
 - name: Set Python 3.9.9 as global version
   become_user: "{{ lookup('vars', 'username') }}"
-  when: pyenv_exists
+  when: ansible_distribution == "MacOSX" and pyenv_exists
   command: pyenv global 3.9.9
   ignore_errors: true
   tags:
