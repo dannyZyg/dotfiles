@@ -73,6 +73,11 @@
       path: dunst/dunstrc
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
+    ~/.config/picom/picom.conf:
+      create: true
+      path: picom/picom.conf
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
     # ANKI Linux
     ~/.local/share/Anki2/addons21/1655992655/config.json:
       path: anki/migaku_dictionary/config.json
