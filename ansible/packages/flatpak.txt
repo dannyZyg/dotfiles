@@ -2,6 +2,7 @@ com.bitwig.BitwigStudio
 com.google.Chrome
 com.spotify.Client
 io.dbeaver.DBeaverCommunity
+io.github.Figma_Linux.figma_linux
 org.filezillaproject.Filezilla
 org.signal.Signal
 re.sonny.Junction
