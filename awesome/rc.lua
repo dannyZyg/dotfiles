@@ -6,6 +6,9 @@ pcall(require, "luarocks.loader")
 local gears = require("gears")
 local awful = require("awful")
 
+-- Focus snaps to next client if current client is killed
+require("awful.autofocus")
+
 -- Theme handling library
 local beautiful = require("beautiful")
 
