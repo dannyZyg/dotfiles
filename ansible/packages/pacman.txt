@@ -25,7 +25,6 @@ cups
 cython
 d-feet
 dialog
-discord
 docker
 docker-compose
 dosfstools

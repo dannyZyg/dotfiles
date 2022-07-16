@@ -1,5 +1,4 @@
 com.bitwig.BitwigStudio
-com.google.Chrome
 com.spotify.Client
 io.dbeaver.DBeaverCommunity
 io.github.Figma_Linux.figma_linux

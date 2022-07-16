@@ -3,6 +3,7 @@ betterlockscreen-git
 caffeine-ng
 espanso
 etcher-bin
+google-chrome
 i3exit
 junction-git
 lf
