@@ -30,8 +30,6 @@ require("main.error-handling")
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme/theme.lua")
 beautiful.wallpaper = RC.vars.wallpaper
--- beautiful.useless_gap = 4
--- beautiful.border_width = 2
 beautiful.font = "Ubuntu 16"
 
 modkey = RC.vars.modkey
@@ -105,7 +103,7 @@ awful.rules.rules = main.rules(
 -- {{{ Signals }}} --
 require("main.signals")
 
-awful.spawn.with_shell("sxhkd")
+awful.spawn.with_shell("udiskie -at")
 awful.spawn.with_shell("copyq")
 awful.spawn.with_shell("flameshot")
 awful.spawn.with_shell("nm-applet")

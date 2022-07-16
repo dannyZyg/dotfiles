@@ -48,6 +48,7 @@ fi
 # udiskie -at &
 # dunst &
 xss-lock --transfer-sleep-lock -- i3lock --nofork -c 2f626e &
-# sxhkd &
+sxhkd &
+lxsession &
 redshift &
 exec awesome
