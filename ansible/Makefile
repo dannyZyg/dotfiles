@@ -8,6 +8,9 @@ help: ## Show this help
 all: ## Run the full ansible playbook
 	ansible-playbook local.yml --ask-vault-pass --ask-become-pass
 
+build-packages: ## Build packages from src
+	ansible-playbook local.yml -t build-packages --ask-become-pass
+
 dotfiles: ## Install dotfiles with dotbot
 	ansible-playbook local.yml -t dotfiles
 
