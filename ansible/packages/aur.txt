@@ -5,7 +5,6 @@ espanso
 etcher-bin
 google-chrome
 i3exit
-junction-git
 lf
 nerd-fonts-fira-code
 srandrd

@@ -117,6 +117,7 @@ rclone
 redshift
 reflector
 remmina
+ripgrep
 rofi
 rofi-calc
 rofi-emoji
