@@ -1,5 +1,7 @@
 - name: Install global npm packages
   become_user: "{{ lookup('vars', 'username') }}"
+  environment:
+    NPM_CONFIG_PREFIX: "{{ lookup('env', 'HOME') }}/.config/npm-global"
   npm:
     name: "{{item}}"
     global: yes

@@ -60,8 +60,9 @@
 
 - name: Install desired version of Node using N
   become_user: "{{ lookup('vars', 'username') }}"
-  command: "n 16"
+  command: "{{ lookup('env', 'HOME') }}/.config/npm-global/bin/n 16"
   environment:
+    NPM_CONFIG_PREFIX: "{{ lookup('env', 'HOME') }}/.config/npm-global"
     PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
     N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
   tags:
