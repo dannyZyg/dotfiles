@@ -53,6 +53,9 @@ pacman-aur-install: ## Install aur packages
 pacman-aur-dump: ## Saves installed aur packages to txt
 	pacman -Qetm | cut -d ' ' -f1 > packages/aur.txt
 
+flatpak-install: ## Installs flatpak packages
+	ansible-playbook local.yml -t flatpak --ask-become-pass
+
 pull-repos: ## Pulls my github repos
 	ansible-playbook local.yml -t repos
 
