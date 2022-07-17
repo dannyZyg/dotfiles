@@ -70,7 +70,7 @@
 - name: Update conda
   become_user: "{{ lookup('vars', 'username') }}"
   when: conda_exists
-  command: conda update conda -y
+  command: "{{ lookup('vars', 'conda_path') }}/bin/conda update conda -y"
   tags:
     - python
 
@@ -79,7 +79,7 @@
   when: conda_exists
   command: "{{item}}"
   with_items:
-    - "conda create -p {{ lookup('vars', 'conda_path') }}/envs/neovim-python-3 python=3.8"
+    - "{{ lookup('vars', 'conda_path') }}/bin/conda create -p {{ lookup('vars', 'conda_path') }}/envs/neovim-python-3 python=3.8"
   tags:
     - python
 

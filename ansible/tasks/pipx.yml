@@ -28,6 +28,8 @@
   when: pipx_exists is failed and ansible_distribution == "Archlinux"
   pip:
     name: pipx
+    extra_args: --user
+    executable: /usr/bin/pip3
   tags:
     - pipx
 
@@ -48,7 +50,7 @@
 
 - name: Install pipx packages
   command:
-    cmd: pipx install {{ item }}
+    cmd: python -m pipx install {{ item }}
   with_items:
     - python-lsp-server[all]
     - aws-sso-util
