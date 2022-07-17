@@ -21,12 +21,6 @@
   tags:
     - shell
 
-- name: Change shell to zsh
-  become: true
-  shell: chsh -s $(which zsh)
-  tags:
-    - shell
-
 - name: check if starship installed
   shell: command -v starship
   register: starship_exists
@@ -122,3 +116,14 @@
   tags:
     - shell
     - ssh
+
+- name: Adding my user to groups
+  when: ansible_system == "Linux"
+  become: true
+  user:
+    name: "{{ lookup('vars', 'username') }}"
+    groups: wheel,video,network
+    shell: /usr/bin/zsh
+    append: yes
+  tags:
+    - shell
