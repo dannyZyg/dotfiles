@@ -1,18 +1,3 @@
-- name: Get the espanso path
-  become: false
-  shell: espanso path | awk '{print $2}' | head -n 1
-  register: get_espanso_path
-  tags:
-    - debug
-    - espanso
-
-- name: Set the espanso_path var
-  set_fact:
-    espanso_path: "{{ get_espanso_path.stdout }}"
-  tags:
-    - debug
-    - espanso
-
 - name: Debug print out the espanso_path var
   debug: msg="{{ lookup('vars', 'espanso_path') }}"
   tags:
