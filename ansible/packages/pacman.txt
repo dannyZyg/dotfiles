@@ -49,6 +49,7 @@ fzf
 gcc
 gimp
 git
+go
 gparted
 groff
 grub
@@ -139,6 +140,7 @@ ttf-nerd-fonts-symbols
 udiskie
 ueberzug
 unarchiver
+unzip
 vagrant
 vim
 wget
