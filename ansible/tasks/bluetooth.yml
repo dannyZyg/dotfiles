@@ -1,0 +1,10 @@
+- name: Start syncthing service
+  become: true
+  when: ansible_distribution == "Archlinux"
+  ansible.builtin.systemd:
+    name: bluetooth
+    state: started
+    enabled: true
+  tags:
+    - packages
+    - bluetooth

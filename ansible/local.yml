@@ -102,6 +102,9 @@
     - import_tasks: tasks/build-packages.yml
 
     - import_tasks: tasks/espanso.yml
+    - import_tasks: tasks/syncthing.yml
+    - import_tasks: tasks/docker.yml
+    - import_tasks: tasks/bluetooth.yml
 
     - import_tasks: tasks/node.yml
     - import_tasks: tasks/npm-packages.yml
