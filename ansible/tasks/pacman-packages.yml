@@ -15,3 +15,12 @@
   tags:
     - pacman
     - packages
+
+- name: Install sound firmeware for Thinkpad T14
+  become: true
+  when: ansible_facts['product_version'] == "ThinkPad T14 Gen 2i"
+  pacman:
+    name: sof-firmware
+  tags:
+    - pacman
+    - packages
