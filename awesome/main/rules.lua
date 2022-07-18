@@ -77,7 +77,7 @@ function _M.get(clientkeys, clientbuttons)
       properties = { screen = 1, tag = "2" } },
     { rule = { class = "discord" },
       properties = { screen = 1, tag = "5" } },
-    { rule = { class = "slack" },
+    { rule = { class = "Slack" },
       properties = { screen = 1, tag = "5" } },
     { rule = { class = "Google-chrome" },
       properties = { screen = 1, tag = "4" } },
