@@ -85,6 +85,8 @@ function _M.get(clientkeys, clientbuttons)
       properties = { screen = 1, tag = "7" } },
     { rule = { class = "zoom.real" },
       properties = { screen = 1, tag = "6" } },
+    { rule = { class = "Todoist" },
+      properties = { screen = 1, tag = "9" } },
 
   }
 
