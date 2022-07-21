@@ -79,7 +79,7 @@ function _M.get()
         ),
         awful.key(
             {modkey},
-            "m",
+            "z",
             function(c)
                 c.maximized = not c.maximized
                 c:raise()
