@@ -2,8 +2,6 @@
 
 # Loaded in interactive and non-interactive shells
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=~/.local/bin:$PATH
 export PATH=/home/danny/.local/bin/aws_completer:$PATH
 export PATH=~/.config/npm-global/bin:$PATH
@@ -21,10 +19,11 @@ export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_CACHE_HOME="$HOME"/.cache
 
-# # Cleanup
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-export GEM_HOME="$XDG_DATA_HOME"/gem
-export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
+
 export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
 export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
 export CARGO_HOME="$XDG_DATA_HOME"/cargo

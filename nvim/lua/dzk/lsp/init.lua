@@ -46,6 +46,7 @@ local servers = {
   tsserver = require("dzk.lsp.servers.tsserver").config,
   jsonls = require("dzk.lsp.servers.jsonls").config,
   ccls = require("dzk.lsp.servers.ccls").config,
+  theme_check = require("dzk.lsp.servers.shopify").config,
 }
 
 for server, config in pairs(servers) do
