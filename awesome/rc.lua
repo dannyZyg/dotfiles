@@ -19,7 +19,6 @@ local menubar = require("menubar")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
-
 RC = {} -- global namespace, on top before require any modules
 RC.vars = require("main.user-variables")
 
@@ -36,19 +35,19 @@ modkey = RC.vars.modkey
 
 -- Custom Local Library
 local main = {
-  layouts = require("main.layouts"),
-  tags    = require("main.tags"),
-  menu    = require("main.menu"),
-  rules   = require("main.rules"),
+	layouts = require("main.layouts"),
+	tags = require("main.tags"),
+	menu = require("main.menu"),
+	rules = require("main.rules"),
 }
 
 -- Custom Local Library: Keys and Mouse Binding
 local binding = {
-  globalbuttons = require("binding.global-buttons"),
-  clientbuttons = require("binding.client-buttons"),
-  globalkeys    = require("binding.global-keys"),
-  bindtotags    = require("binding.bind-to-tags"),
-  clientkeys    = require("binding.client-keys")
+	globalbuttons = require("binding.global-buttons"),
+	clientbuttons = require("binding.client-buttons"),
+	globalkeys = require("binding.global-keys"),
+	bindtotags = require("binding.bind-to-tags"),
+	clientkeys = require("binding.client-keys"),
 }
 
 -- {{{ Layouts
@@ -69,9 +68,7 @@ RC.tags = main.tags()
 RC.mainmenu = awful.menu({ items = main.menu() }) -- in globalkeys
 
 -- a variable needed in statusbar (helper)
-RC.launcher = awful.widget.launcher(
-  { image = beautiful.awesome_icon, menu = RC.mainmenu }
-)
+RC.launcher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = RC.mainmenu })
 
 -- Menubar configuration
 -- Set the terminal for applications that require it
@@ -95,10 +92,7 @@ require("deco.status-bar")
 
 -- {{{ Rules }}} --
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = main.rules(
-  binding.clientkeys(),
-  binding.clientbuttons()
-)
+awful.rules.rules = main.rules(binding.clientkeys(), binding.clientbuttons())
 
 -- {{{ Signals }}} --
 require("main.signals")
