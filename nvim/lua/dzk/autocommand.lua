@@ -81,6 +81,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end
 })
 
+-- Format code on save (see null-ls)
+vim.api.nvim_create_autocmd("BufWrite", { callback = function() vim.lsp.buf.formatting() end })
+
 vim.cmd [[
   augroup c
       autocmd!

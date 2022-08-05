@@ -52,3 +52,5 @@ local servers = {
 for server, config in pairs(servers) do
   setup_server(server, config)
 end
+
+require "dzk.lsp.null-ls"
