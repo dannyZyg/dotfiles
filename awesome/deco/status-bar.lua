@@ -1,6 +1,7 @@
 -- Standard awesome library
 local gears = require("gears")
-local awful     = require("awful")
+local awful = require("awful")
+local lain = require("lain")
 
 -- Wibox handling library
 local wibox = require("wibox")
@@ -18,10 +19,69 @@ local tasklist_buttons = deco.tasklist()
 local _M = {}
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+--
+local markup     = lain.util.markup
+
+local battery_cols = {
+  red = "#ba0202",
+  green = "#5eab05",
+  orange = "#e08f14",
+}
+
+local statuses = {
+  none = "N/A",
+  discharge = "Discharging",
+  charge = "Charging",
+  full = "Full",
+  not_charging = "Not charging",
+}
+
+local icons = {
+  bat_00 = "",
+  bat_25 = "",
+  bat_50 = "",
+  bat_75 = "",
+  bat_100 = "",
+}
+
+local theme = {}
+local baticon = wibox.widget.imagebox(theme.bat100)
+local bat = lain.widget.bat({
+    battery = 'BAT0',
+    settings = function()
+        local bat_p = bat_now.perc
+        local status = bat_now.status
+        local col = battery_cols.green
+        local icon = icons.bat_100
+
+        if bat_p <= 20 and status == statuses.discharge then
+            col = battery_cols.red
+        elseif status == statuses.charge then
+            col = battery_cols.orange
+        elseif status == statuses.not_charging then
+            col = battery_cols.green
+        end
+
+        if bat_p <= 5 then
+            icon = icons.bat_00
+        elseif bat_p > 5 and bat_p <= 25 then
+            icon = icons.bat_25
+        elseif bat_p > 25 and bat_p <= 50 then
+            icon = icons.bat_50
+        elseif bat_p > 50 and bat_p <= 75 then
+            icon = icons.bat_75
+        elseif bat_p > 75 then
+            icon = icons.bat_100
+        end
+
+        widget:set_markup(markup.font(theme.font, markup(col, icon .. " " .. bat_p .. "%")))
+        baticon:set_image(bat100)
+    end
+})
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+local mytextclock = wibox.widget.textclock()
 
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
@@ -68,9 +128,10 @@ awful.screen.connect_for_each_screen(function(s)
     },
     s.mytasklist, -- Middle widget
     { -- Right widgets
+      wibox.widget.systray(),
       layout = wibox.layout.fixed.horizontal,
       mykeyboardlayout,
-      wibox.widget.systray(),
+      bat.widget,
       mytextclock,
       s.mylayoutbox,
     },
