@@ -154,7 +154,10 @@ function _M.get()
 			awful.spawn(terminal)
 		end, { description = "open a terminal", group = "launcher" }),
 
-		awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
+		awful.key({ modkey, "Control" }, "r", function()
+			awful.util.spawn("sh /home/danny/.local/bin/detect-monitors")
+		end, { description = "reload awesome", group = "awesome" }),
+
 		awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" })
 	)
 
