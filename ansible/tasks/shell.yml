@@ -81,7 +81,6 @@
     path: "{{ lookup('env', 'HOME') }}/packages"
     state: directory
   tags:
-    - dotfiles
     - shell
 
 - name: Cloning fzf
@@ -95,7 +94,6 @@
     version: master
     depth: 1
   tags:
-    - dotfiles
     - shell
 
 - name: Creates ssh directory
@@ -104,7 +102,6 @@
     path: "{{ lookup('env', 'HOME') }}/.ssh"
     state: directory
   tags:
-    - dotfiles
     - shell
 
 - name: Decrypt ssh config file

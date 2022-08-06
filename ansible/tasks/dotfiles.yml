@@ -3,6 +3,23 @@
   tags:
     - dotfiles
 
+- name: Ensure awesome config directory exists.
+  when: ansible_system == "Linux"
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/awesome"
+    state: directory
+  tags:
+    - dotfiles
+
+- name: Clone lain
+  ansible.builtin.git:
+    repo: "https://github.com/lcpz/lain"
+    dest: "{{ lookup('env', 'HOME') }}/.config/awesome/lain"
+    update: true
+  tags:
+    - dotfiles
+
 - name: Install Dotfiles
   become_user: "{{ lookup('vars', 'username') }}"
   ignore_errors: true
