@@ -11,6 +11,9 @@ all: ## Run the full ansible playbook
 build-packages: ## Build packages from src
 	ansible-playbook local.yml -t build-packages --ask-become-pass
 
+cargo: ## Install cargo packages
+	ansible-playbook local.yml -t cargo --ask-become-pass
+
 dotfiles: ## Install dotfiles with dotbot
 	ansible-playbook local.yml -t dotfiles
 

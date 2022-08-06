@@ -112,3 +112,4 @@
     - import_tasks: tasks/lang/miniconda.yml
     - import_tasks: tasks/lang/python.yml
     - import_tasks: tasks/lang/pipx.yml
+    - import_tasks: tasks/lang/rust.yml

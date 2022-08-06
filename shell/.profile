@@ -27,6 +27,7 @@ export PATH="$PATH:$GEM_HOME/bin"
 export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
 export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export PATH=$CARGO_HOME/bin:$PATH
 export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export AWS_PROFILE="dk"
