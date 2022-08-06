@@ -17,6 +17,9 @@ cargo: ## Install cargo packages
 dotfiles: ## Install dotfiles with dotbot
 	ansible-playbook local.yml -t dotfiles
 
+facts: ## Gather ansible facts
+	ansible all -m gather_facts
+
 node: ## Install Node, N and a version of node with N
 	ansible-playbook local.yml -t node --ask-become-pass
 
