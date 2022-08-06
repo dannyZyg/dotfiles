@@ -89,26 +89,26 @@
 
   tasks:
     - import_tasks: tasks/debug.yml
-    - import_tasks: tasks/fonts.yml
-    - import_tasks: tasks/dotfiles.yml
-    - import_tasks: tasks/shell.yml
 
-    - import_tasks: tasks/nvim.yml
+    - import_tasks: tasks/env/fonts.yml
+    - import_tasks: tasks/env/dotfiles.yml
+    - import_tasks: tasks/env/shell.yml
 
-    - import_tasks: tasks/apt-packages.yml
-    - import_tasks: tasks/pacman-packages.yml
-    - import_tasks: tasks/flatpak-packages.yml
-    - import_tasks: tasks/aur.yml
-    - import_tasks: tasks/build-packages.yml
+    - import_tasks: tasks/package/nvim.yml
+    - import_tasks: tasks/package/apt-packages.yml
+    - import_tasks: tasks/package/pacman-packages.yml
+    - import_tasks: tasks/package/flatpak-packages.yml
+    - import_tasks: tasks/package/aur.yml
+    - import_tasks: tasks/package/build-packages.yml
 
-    - import_tasks: tasks/espanso.yml
-    - import_tasks: tasks/syncthing.yml
-    - import_tasks: tasks/docker.yml
-    - import_tasks: tasks/bluetooth.yml
+    - import_tasks: tasks/service/espanso.yml
+    - import_tasks: tasks/service/syncthing.yml
+    - import_tasks: tasks/service/docker.yml
+    - import_tasks: tasks/service/bluetooth.yml
 
-    - import_tasks: tasks/node.yml
-    - import_tasks: tasks/npm-packages.yml
+    - import_tasks: tasks/lang/node.yml
+    - import_tasks: tasks/lang/npm-packages.yml
 
-    - import_tasks: tasks/miniconda.yml
-    - import_tasks: tasks/python.yml
-    - import_tasks: tasks/pipx.yml
+    - import_tasks: tasks/lang/miniconda.yml
+    - import_tasks: tasks/lang/python.yml
+    - import_tasks: tasks/lang/pipx.yml
