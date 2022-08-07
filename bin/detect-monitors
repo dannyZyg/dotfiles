@@ -3,6 +3,7 @@
 MONITORS=$(xrandr --query | grep ' connected' | awk '{print $1}')
 
 DP2="DP2"
+DP3="DP3"
 EDP1="eDP1"
 
 # Check if list $1 contains line $2
@@ -12,6 +13,8 @@ function monitor_connected() {
 
 if monitor_connected "$MONITORS" "$EDP1" && monitor_connected "$MONITORS" "$DP2"; then
   . "$HOME/.screenlayout/t490s-home-office.sh"
+elif monitor_connected "$MONITORS" "$EDP1" && monitor_connected "$MONITORS" "$DP3"; then
+  . "$HOME/.screenlayout/t14-home-office.sh"
 elif monitor_connected "$MONITORS" "$EDP1"; then
   . "$HOME/.screenlayout/t490s.sh"
 fi
