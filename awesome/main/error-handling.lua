@@ -1,16 +1,7 @@
--- Notification library
-local naughty = require("naughty")
-
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-	naughty.notify({
-		preset = naughty.config.presets.critical,
-		title = "Oops, there were errors during startup!",
-		text = awesome.startup_errors,
-	})
+	os.execute("/usr/bin/dunstify -a 'awesome' -u 'critical' " .. awesome.startup_errors)
 end
 
 -- Handle runtime errors after startup
@@ -23,11 +14,7 @@ do
 		end
 		in_error = true
 
-		naughty.notify({
-			preset = naughty.config.presets.critical,
-			title = "Oops, an error happened!",
-			text = tostring(err),
-		})
+		os.execute("/usr/bin/dunstify -a 'awesome' -u 'critical' " .. tostring(err))
 		in_error = false
 	end)
 end
