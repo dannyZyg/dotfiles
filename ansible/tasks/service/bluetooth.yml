@@ -1,10 +1,23 @@
-- name: Start syncthing service
+- name: Start bluetooth service
   become: true
   when: ansible_distribution == "Archlinux"
   ansible.builtin.systemd:
     name: bluetooth
     state: started
     enabled: true
+  tags:
+    - packages
+    - bluetooth
+
+- name: Turn off bluetooth auto enable after resume
+  become: true
+  when: ansible_system == "Linux"
+  lineinfile:
+    path: "/etc/bluetooth/main.conf"
+    search_string: 'AutoEnable='
+    line: 'AutoEnable=false'
+    owner: root
+    group: root
   tags:
     - packages
     - bluetooth
