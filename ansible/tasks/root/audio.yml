@@ -1,0 +1,40 @@
+- name: Install realtime-privileges package
+  when: ansible_system == "Linux"
+  become: true
+  pacman:
+    name: realtime-privileges
+  tags:
+    - system
+    - audio
+
+- name: Ensure group "realtime" exists
+  when: ansible_distribution == "Archlinux"
+  become: true
+  group:
+    name: realtime
+    state: present
+  tags:
+    - system
+    - audio
+
+- name: Add my user to audio and realtime groups
+  when: ansible_distribution == "Archlinux"
+  become: true
+  user:
+    name: "{{ lookup('vars', 'username') }}"
+    groups: audio, realtime
+    append: yes
+  tags:
+    - system
+    - audio
+
+- name: Reduce swappiness
+  when: ansible_distribution == "Archlinux"
+  become: true
+  lineinfile:
+    path: /etc/sysctl.d/99-swappiness.conf
+    line: "vm.swappiness=10"
+    create: true
+  tags:
+    - system
+    - audio
