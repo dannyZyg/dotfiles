@@ -41,6 +41,9 @@
     ~/.xprofile:
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
+    ~/.Xresources:
+      if: '[[ "$OSTYPE" = "linux"* ]]'
+
     ~/.config/awesome:
       if: '[[ "$OSTYPE" = "linux"* ]]'
       glob: true
