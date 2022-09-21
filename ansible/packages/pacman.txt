@@ -130,6 +130,7 @@ s-tui
 sc3-plugins
 signal-desktop
 sox
+stack
 starship
 sxhkd
 sxiv

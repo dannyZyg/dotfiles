@@ -11,4 +11,5 @@ srandrd
 tor-browser
 ttf-twemoji-color
 yay
+zeal
 zsa-wally-cli-bin
