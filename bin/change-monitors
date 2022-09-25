@@ -1,0 +1,12 @@
+#!/bin/bash
+
+LAYOUT_DIR=~/.screenlayout
+
+chosen=$(find $LAYOUT_DIR/* | xargs basename -a | rofi -dmenu -i)
+
+if [ ! -z $chosen ];
+then
+  . $LAYOUT_DIR/$chosen
+  echo 'awesome.restart()' | awesome-client
+fi
+

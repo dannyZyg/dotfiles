@@ -17,6 +17,8 @@ super + control + p
 		$HOME/.config/polybar/reloadpolybar.sh
 super + control + b
 		bluetooth-select
+super + shift + d
+    change-monitors
 super + space
 		rofi -modi drun -show drun -show-icons -dpi 1
 super + shift + space
