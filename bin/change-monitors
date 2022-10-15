@@ -8,5 +8,6 @@ if [ ! -z $chosen ];
 then
   . $LAYOUT_DIR/$chosen
   echo 'awesome.restart()' | awesome-client
+  key-remaps
 fi
 
