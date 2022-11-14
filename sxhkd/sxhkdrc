@@ -33,6 +33,9 @@ super + control + e
 super + control + c
     copyq show
 
+super + shift + c
+    toggle-program picom
+
 super + backslash
 		1password --quick-access
 

@@ -1,0 +1,10 @@
+#!/bin/bash
+# Toggles a problem on and off
+
+ID=$(pgrep "$1")
+
+if [ -z "$ID" ]; then
+  "$1"
+else
+  killall $1 && notify-send "$1" "$1 killed"
+fi
