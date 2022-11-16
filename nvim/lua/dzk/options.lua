@@ -41,6 +41,7 @@ local options = {
   showcmd = true,
   wildmenu = true,
   colorcolumn = "110",
+  cursorcolumn = true,
   laststatus = 3,                          -- show only the global status line (not one per buffer)
 }
 
