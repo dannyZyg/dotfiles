@@ -1,0 +1,72 @@
+- name: Check Bitwitg installed
+  shell: command -v com.bitwig.BitwigStudio
+  ignore_errors: true
+  register: bitwig_exists
+  tags:
+    - bitwig
+    - packages
+
+- name: Check calibredb installed
+  shell: command -v calibredb
+  ignore_errors: true
+  register: calibredb_exists
+  tags:
+    - bitwig
+    - packages
+
+- name: Ensure driven_by_moss dir exists
+  file:
+    dest: "/tmp/driven_by_moss"
+    mode: 0700
+    state: directory
+  tags:
+    - bitwig
+    - packages
+
+- name: Download and unzip driven by moss
+  when: bitwig_exists
+  unarchive:
+    src: https://www.mossgrabers.de/Software/Bitwig/DrivenByMoss-18.2.0-Bitwig.zip
+    dest: "/tmp/driven_by_moss"
+    remote_src: yes
+  tags:
+    - bitwig
+    - packages
+
+- name: Copy file with owner and permission, using symbolic representation
+  copy:
+    src: /tmp/driven_by_moss/DrivenByMoss.bwextension
+    dest: "{{ lookup('vars', 'bitwig_extensions_dir') }}/"
+    owner: "{{ lookup('vars', 'username') }}"
+    group: "{{ lookup('vars', 'username') }}"
+    mode: 0644
+  tags:
+    - bitwig
+    - packages
+
+- name: Copy manual to calibre library
+  when: calibredb_exists
+  shell: calibredb add /tmp/driven_by_moss/DrivenByMoss-Manual.pdf
+  tags:
+    - bitwig
+    - packages
+
+- name: Copy file with owner and permission, using symbolic representation
+  become: true
+  copy:
+    src: /tmp/driven_by_moss/resources/99-userusbdevices.rules
+    dest: /etc/udev/rules.d/
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - bitwig
+    - packages
+
+- name: Remove driven_by_moss dir
+  file:
+    dest: "/tmp/driven_by_moss"
+    state: absent
+  tags:
+    - bitwig
+    - packages

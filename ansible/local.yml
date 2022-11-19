@@ -45,6 +45,13 @@
       tags:
         - always
 
+    - name: Set Bitwig extensions dir on Linux
+      set_fact:
+        bitwig_extensions_dir: "{{ lookup('env', 'HOME') }}/Bitwig Studio/Extensions"
+      when: ansible_system == "Linux"
+      tags:
+        - always
+
     - name: Set miniconda url on Mac
       set_fact:
         miniconda_url: >
@@ -101,6 +108,7 @@
     - import_tasks: tasks/package/aur.yml
     - import_tasks: tasks/package/build-packages.yml
     - import_tasks: tasks/package/anki.yml
+    - import_tasks: tasks/package/driven_by_moss.yml
 
     - import_tasks: tasks/service/espanso.yml
     - import_tasks: tasks/service/syncthing.yml
