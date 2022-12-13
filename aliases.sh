@@ -142,3 +142,8 @@ alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git
 
 # Grok stuff
 alias grok-aws="$CONDA_PATH/envs/grok-aws/bin/python ~/grok/grok-aws/grok-aws.py"
+
+# tuned (realtime audio)
+alias cpu-max='tuned-adm profile latency-performance'
+alias cpu-balanced='tuned-adm profile balanced'
+alias cpu-min='tuned-adm profile laptop-battery-powersave'

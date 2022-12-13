@@ -15,6 +15,14 @@
     - services
     - docker
 
+- name: Check if docker installed
+  shell: command -v node
+  register: docker_exists
+  ignore_errors: true
+  tags:
+    - services
+    - docker
+
 - name: Start docker service
   become: true
   when: ansible_distribution == "Archlinux" and docker_exists

@@ -38,3 +38,48 @@
   tags:
     - system
     - audio
+
+- name: Check if yay is installed
+  shell: command -v yay
+  register: yay_exists
+  ignore_errors: true
+  tags:
+    - system
+    - audio
+
+- name: Check if tuned is installed
+  shell: command -v tuned
+  register: tuned_exists
+  ignore_errors: true
+  tags:
+    - system
+    - audio
+
+- name: Install tuned
+  when:
+    - ansible_facts['distribution'] == "Archlinux"
+    - yay_exists
+    - tuned_exists is failed
+  shell: yay -S --noconfirm tuned
+  tags:
+    - system
+    - audio
+
+- name: Check if tuned is installed (again, after install)
+  shell: command -v tuned
+  register: tuned_exists
+  ignore_errors: true
+  tags:
+    - system
+    - audio
+
+- name: Start tuned service
+  become: true
+  when: ansible_distribution == "Archlinux" and tuned_exists
+  ansible.builtin.systemd:
+    name: tuned
+    state: started
+    enabled: true
+  tags:
+    - services
+    - audio
