@@ -35,6 +35,8 @@ vim.cmd [[ autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab ]]
 vim.cmd [[ autocmd Filetype cs setlocal ts=2 sw=2 expandtab! ]]
 vim.cmd [[ autocmd Filetype python setlocal ts=4 sw=4 sts=4 expandtab autoindent fileformat=unix ]]
 
+vim.cmd [[ autocmd BufRead,BufEnter *.astro set filetype=astro ]]
+
 vim.cmd [[
   "restart sxhkd if editing the rc
   autocmd BufWritePost *sxhkdrc !killall sxhkd; setsid sxhkd &
