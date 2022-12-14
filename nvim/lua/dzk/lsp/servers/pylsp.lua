@@ -7,14 +7,16 @@ M.config = {
       filetypes = { "python" },
       single_file_support = true,
       plugins = {
-        configurationSources = {"flake8"},
-        pycodestyle = {enabled = false},
+        configurationSources = {"flake8", "mypy"},
         flake8 = {enabled = true},
         mypy = {
           enabled = true,
           live_mode =true,
-          strict = true
+          strict = true,
+          overrides = {"--check-untyped-defs"},
         },
+        pycodestyle = {enabled = false},
+        pyflakes = {enabled = false},
       },
     }
   }
