@@ -80,3 +80,7 @@ vim.keymap.set("n", "<leader>fs", function() require'telescope.builtin'.grep_str
 
 -- Nvim-Tree
 vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<cr>")
+
+-- Format JSON
+vim.keymap.set("n", "<leader>jp", ":%!jq<CR>")
+vim.keymap.set("n", "<leader>jm", ":%!jq -c<CR>")
