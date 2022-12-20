@@ -1,0 +1,79 @@
+- name: Check homebrew installed
+  when: ansible_facts['distribution'] == "MacOSX"
+  shell: command -v brew
+  ignore_errors: true
+  register: brew_exists
+  tags:
+    - homebrew
+    - packages
+
+- name: Upgrade all homebrew
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+  community.general.homebrew:
+    update_homebrew: true
+    upgrade_all: true
+    upgrade_options: ignore-pinned
+  tags:
+    - homebrew
+    - packages
+
+- name: Get homebrew taps list
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+  command:
+    cmd: cat ./packages/homebrew-taps.txt
+  register: homebrew_taps
+  tags:
+    - homebrew
+    - packages
+
+- name: Get homebrew forulae list
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+  command:
+    cmd: cat ./packages/homebrew-formulae.txt
+  register: homebrew_formulae
+  tags:
+    - homebrew
+    - packages
+
+- name: Get homebrew casks list
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+  command:
+    cmd: cat ./packages/homebrew-casks.txt
+  register: homebrew_casks
+  tags:
+    - homebrew
+    - packages
+
+- name: Install homebrew
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists is failed
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  tags:
+    - homebrew
+    - packages
+
+- name: Tap a Homebrew repositories
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+  community.general.homebrew_tap:
+    name: "{{ item }}"
+  with_items: "{{ homebrew_taps.stdout_lines }}"
+  tags:
+    - homebrew
+    - packages
+
+- name: Install Homebrew formulae
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+  community.general.homebrew:
+    name: "{{ item }}"
+  with_items: "{{ homebrew_formulae.stdout_lines }}"
+  tags:
+    - homebrew
+    - packages
+
+- name: Install Homebrew casks
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+  with_items: "{{ homebrew_casks.stdout_lines }}"
+  tags:
+    - homebrew
+    - packages
