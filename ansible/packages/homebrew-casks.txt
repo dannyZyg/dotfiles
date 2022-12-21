@@ -15,6 +15,7 @@ carbon-copy-cloner
 choosy
 chronosync
 cleanshot
+cycling74-max
 dash
 dbeaver-community
 discord
