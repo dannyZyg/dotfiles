@@ -113,7 +113,9 @@
       import_tasks: tasks/env/dotfiles.yml
 
     - name: Setup shell
-      import_tasks: tasks/env/shell.yml
+      import_tasks:
+        tasks/env/shell.yml
+        tasks/package/starship.yml
 
     - name: Build neovim
       import_tasks: tasks/package/nvim.yml
