@@ -52,6 +52,7 @@
     - packages
 
 - name: Copy file with owner and permission, using symbolic representation
+  when: ansible_system == "Linux"
   become: true
   copy:
     src: /tmp/driven_by_moss/resources/99-userusbdevices.rules

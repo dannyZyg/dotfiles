@@ -52,6 +52,13 @@
       tags:
         - always
 
+    - name: Set Bitwig extensions dir on Linux
+      set_fact:
+        bitwig_extensions_dir: "{{ lookup('env', 'HOME') }}/Documents/Bitwig Studio/Extensions"
+      when: ansible_distribution == 'MacOSX'
+      tags:
+        - always
+
     - name: Set miniconda url on Mac
       set_fact:
         miniconda_url: >
@@ -95,33 +102,66 @@
         - apt
 
   tasks:
-    - import_tasks: tasks/debug.yml
+    - name: Load debug tasks
+      import_tasks: tasks/debug.yml
 
-    - import_tasks: tasks/env/fonts.yml
-    - import_tasks: tasks/env/dotfiles.yml
-    - import_tasks: tasks/env/shell.yml
+    - name: Download fonts for Linux
+      import_tasks: tasks/env/fonts.yml
+      when: ansible_system == "Linux"
 
-    - import_tasks: tasks/package/nvim.yml
-    - import_tasks: tasks/package/apt-packages.yml
-    - import_tasks: tasks/package/pacman-packages.yml
-    - import_tasks: tasks/package/flatpak-packages.yml
-    - import_tasks: tasks/package/aur.yml
-    - import_tasks: tasks/package/homebrew-packages.yml
-    - import_tasks: tasks/package/build-packages.yml
-    - import_tasks: tasks/package/anki.yml
-    - import_tasks: tasks/package/driven-by-moss.yml
+    - name: Setup dotfiles
+      import_tasks: tasks/env/dotfiles.yml
 
-    - import_tasks: tasks/service/espanso.yml
-    - import_tasks: tasks/service/syncthing.yml
-    - import_tasks: tasks/service/docker.yml
-    - import_tasks: tasks/service/bluetooth.yml
+    - name: Setup shell
+      import_tasks: tasks/env/shell.yml
 
-    - import_tasks: tasks/lang/node.yml
-    - import_tasks: tasks/lang/npm-packages.yml
+    - name: Build neovim
+      import_tasks: tasks/package/nvim.yml
 
-    - import_tasks: tasks/lang/miniconda.yml
-    - import_tasks: tasks/lang/python.yml
-    - import_tasks: tasks/lang/pipx.yml
-    - import_tasks: tasks/lang/rust.yml
+    - name: Install apt packages
+      import_tasks: tasks/package/apt-packages.yml
+      when: ansible_facts['os_family'] == "Debian"
 
-    - import_tasks: tasks/root/audio.yml
+    - name: Install pacman and AUR packages
+      import_tasks:
+        tasks/package/pacman-packages.yml
+        tasks/package/aur.yml
+      when: ansible_facts['distribution'] == "Archlinux"
+
+    - name: Install flatpak packages
+      import_tasks: tasks/package/flatpak-packages.yml
+      when: ansible_system == "Linux"
+
+    - name: Install homebrew packages
+      import_tasks: tasks/package/homebrew-packages.yml
+      when: ansible_distribution == 'MacOSX'
+
+    - name: Install additional packages from repos
+      import_tasks:
+        tasks/package/brillo.yml
+        tasks/package/anki.yml
+        tasks/package/driven-by-moss.yml
+
+    - name: Configure cross-platform services
+      import_tasks:
+        tasks/service/espanso.yml
+        tasks/service/syncthing.yml
+
+    - name: Start Linux services
+      import_tasks:
+        tasks/service/docker.yml
+        tasks/service/bluetooth.yml
+      when: ansible_system == "Linux"
+
+    - name: Install languages and tools
+      import_tasks:
+        tasks/lang/node.yml
+        tasks/lang/npm-packages.yml
+        tasks/lang/miniconda.yml
+        tasks/lang/python.yml
+        tasks/lang/pipx.yml
+        tasks/lang/rust.yml
+
+    - name: Setup audio on Arch Linux
+      import_tasks: tasks/root/audio.yml
+      when: ansible_facts['distribution'] == "Archlinux"

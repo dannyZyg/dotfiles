@@ -13,6 +13,7 @@
     - dotfiles
 
 - name: Clone lain
+  when: ansible_system == "Linux"
   ansible.builtin.git:
     repo: "https://github.com/lcpz/lain"
     dest: "{{ lookup('env', 'HOME') }}/.config/awesome/lain"
