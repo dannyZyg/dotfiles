@@ -10,6 +10,7 @@ glib
 cmatrix
 diff-so-fancy
 dog
+espanso
 exa
 folly
 fd
