@@ -36,7 +36,7 @@
 
 ## Install starship on mac
 
-- name: Install Homebrew formulae
+- name: Install starship on Mac
   when: ansible_facts['distribution'] == "MacOSX" and starship_exists is failed
   community.general.homebrew:
     name: starship

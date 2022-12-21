@@ -44,7 +44,6 @@ lunar
 macfuse
 marta
 mpv
-native-access
 notion
 obs
 obsidian
@@ -56,7 +55,6 @@ postman
 resilio-sync
 screenflick
 slack
-soundflower
 soundtoys
 spotify
 spotmenu

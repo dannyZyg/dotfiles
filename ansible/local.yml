@@ -52,7 +52,7 @@
       tags:
         - always
 
-    - name: Set Bitwig extensions dir on Linux
+    - name: Set Bitwig extensions dir on Mac
       set_fact:
         bitwig_extensions_dir: "{{ lookup('env', 'HOME') }}/Documents/Bitwig Studio/Extensions"
       when: ansible_distribution == 'MacOSX'

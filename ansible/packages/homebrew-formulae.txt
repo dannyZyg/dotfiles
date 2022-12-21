@@ -11,7 +11,6 @@ cmatrix
 diff-so-fancy
 dog
 exa
-ext4fuse
 folly
 fd
 guile
@@ -22,7 +21,6 @@ leptonica
 libass
 srt
 ffmpeg
-gcc
 fzf
 git
 go
@@ -62,7 +60,6 @@ starship
 stow
 subversion
 switchaudio-osx
-sxiv
 syncthing
 tmux
 trash-cli

@@ -71,7 +71,7 @@
 
 - name: Install Homebrew casks
   when: ansible_facts['distribution'] == "MacOSX" and brew_exists
-  community.general.homebrew_cask:
+  community.general.homebrew:
     name: "{{ item }}"
   with_items: "{{ homebrew_casks.stdout_lines }}"
   tags:
