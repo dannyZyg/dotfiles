@@ -109,60 +109,75 @@
       import_tasks: tasks/env/fonts.yml
       when: ansible_system == "Linux"
 
+    # Setup environmnet
     - name: Setup dotfiles
       import_tasks: tasks/env/dotfiles.yml
-
     - name: Setup shell
-      import_tasks:
-        tasks/env/shell.yml
-        tasks/package/starship.yml
+      import_tasks: tasks/env/shell.yml
+    - name: Install starship
+      import_tasks: tasks/package/starship.yml
 
     - name: Build neovim
       import_tasks: tasks/package/nvim.yml
 
+    # Install from package managers
+    # Debian
     - name: Install apt packages
       import_tasks: tasks/package/apt-packages.yml
       when: ansible_facts['os_family'] == "Debian"
 
-    - name: Install pacman and AUR packages
-      import_tasks:
-        tasks/package/pacman-packages.yml
-        tasks/package/aur.yml
+    # Arch
+    - name: Install pacman packages
+      import_tasks: tasks/package/pacman-packages.yml
+      when: ansible_facts['distribution'] == "Archlinux"
+    - name: Install AUR packages
+      import_tasks: tasks/package/aur.yml
       when: ansible_facts['distribution'] == "Archlinux"
 
+    # All Linux
     - name: Install flatpak packages
       import_tasks: tasks/package/flatpak-packages.yml
       when: ansible_system == "Linux"
 
+    # MacOS
     - name: Install homebrew packages
       import_tasks: tasks/package/homebrew-packages.yml
       when: ansible_distribution == 'MacOSX'
 
-    - name: Install additional packages from repos
-      import_tasks:
-        tasks/package/brillo.yml
-        tasks/package/anki.yml
-        tasks/package/driven-by-moss.yml
+    # Install/build packages manually
+    - name: Install brillo
+      import_tasks: tasks/package/brillo.yml
+    - name: Install anki
+      import_tasks: tasks/package/anki.yml
+    - name: Install driven by moss
+      import_tasks: tasks/package/driven-by-moss.yml
 
-    - name: Configure cross-platform services
-      import_tasks:
-        tasks/service/espanso.yml
-        tasks/service/syncthing.yml
+    - name: Decrypt espanso config
+      import_tasks: tasks/service/espanso.yml
 
-    - name: Start Linux services
-      import_tasks:
-        tasks/service/docker.yml
-        tasks/service/bluetooth.yml
+    # Start services
+    - name: Start Syncthing
+      import_tasks: tasks/service/syncthing.yml
+    - name: Start Docker on Linux
+      import_tasks: tasks/service/docker.yml
+      when: ansible_system == "Linux"
+    - name: Start bluetooth on Linux
+      import_tasks: tasks/service/bluetooth.yml
       when: ansible_system == "Linux"
 
-    - name: Install languages and tools
-      import_tasks:
-        tasks/lang/node.yml
-        tasks/lang/npm-packages.yml
-        tasks/lang/miniconda.yml
-        tasks/lang/python.yml
-        tasks/lang/pipx.yml
-        tasks/lang/rust.yml
+    # Install languages and tools
+    - name: Install node
+      import_tasks: tasks/lang/node.yml
+    - name: Install npm packages
+      import_tasks: tasks/lang/npm-packages.yml
+    - name: Install miniconda
+      import_tasks: tasks/lang/miniconda.yml
+    - name: Install python extras
+      import_tasks: tasks/lang/python.yml
+    - name: Install pipx
+      import_tasks: tasks/lang/pipx.yml
+    - name: Install rust
+      import_tasks: tasks/lang/rust.yml
 
     - name: Setup audio on Arch Linux
       import_tasks: tasks/root/audio.yml
