@@ -71,6 +71,9 @@ python: ## Installs Python with conda
 pipx: ## Installs pipx pachages
 	ansible-playbook local.yml -t pipx
 
+rust: ## Installs rust and global cargo packages
+	ansible-playbook local.yml -t rust
+
 shell: ## Installs zsh and related tools, sets the default shell
 	ansible-playbook local.yml -t shell --ask-become-pass --ask-vault-pass
 
