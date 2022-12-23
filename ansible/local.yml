@@ -45,6 +45,22 @@
       tags:
         - always
 
+    - name: Set miniconda url on Mac (intel)
+      set_fact:
+        miniconda_url: >
+          https://repo.anaconda.com/miniconda/Miniconda3-latest-MaxOSX-x86_64.sh
+      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'x86_64'
+      tags:
+        - always
+
+    - name: Set miniconda url on Mac (silicon)
+      set_fact:
+        miniconda_url: >
+          https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
+      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'arm64'
+      tags:
+        - always
+
     - name: Set Bitwig extensions dir on Linux
       set_fact:
         bitwig_extensions_dir: "{{ lookup('env', 'HOME') }}/Bitwig Studio/Extensions"
@@ -56,14 +72,6 @@
       set_fact:
         bitwig_extensions_dir: "{{ lookup('env', 'HOME') }}/Documents/Bitwig Studio/Extensions"
       when: ansible_distribution == 'MacOSX'
-      tags:
-        - always
-
-    - name: Set miniconda url on Mac
-      set_fact:
-        miniconda_url: >
-          https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-MacOSX-x86_64.sh
-      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'x86_64'
       tags:
         - always
 
