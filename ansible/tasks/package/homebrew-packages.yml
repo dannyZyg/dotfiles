@@ -29,7 +29,7 @@
 - name: Get homebrew forulae list
   when: ansible_facts['distribution'] == "MacOSX" and brew_exists
   command:
-    cmd: cat ./packages/homebrew-formulae.txt
+    cmd: cat ./packages/homebrew-formulae-arm64.txt
   register: homebrew_formulae
   tags:
     - homebrew
@@ -65,6 +65,7 @@
   community.general.homebrew:
     name: "{{ item }}"
   with_items: "{{ homebrew_formulae.stdout_lines }}"
+  ignore_errors: true
   tags:
     - homebrew
     - packages
@@ -74,6 +75,7 @@
   community.general.homebrew:
     name: "{{ item }}"
   with_items: "{{ homebrew_casks.stdout_lines }}"
+  ignore_errors: true
   tags:
     - homebrew
     - packages
