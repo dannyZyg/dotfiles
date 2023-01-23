@@ -90,6 +90,21 @@
         - debug
         - always
 
+    - name: Get the primary group name of the user running the deploy
+      become: false
+      shell: id -g -n $(whoami)
+      register: result
+      tags:
+        - debug
+        - always
+
+    - name: Set the primary_group env var
+      set_fact:
+        primary_group: "{{ result.stdout }}"
+      tags:
+        - debug
+        - always
+
     - name: Update repositories
       when: ansible_facts['distribution'] == "Archlinux"
       become: true

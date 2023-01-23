@@ -33,12 +33,12 @@
     - bitwig
     - packages
 
-- name: Copy file with owner and permission, using symbolic representation
+- name: Copy driven by moss extension file
   copy:
     src: /tmp/driven_by_moss/DrivenByMoss.bwextension
     dest: "{{ lookup('vars', 'bitwig_extensions_dir') }}/"
     owner: "{{ lookup('vars', 'username') }}"
-    group: "{{ lookup('vars', 'username') }}"
+    group: "{{ lookup('vars', 'primary_group') }}"
     mode: 0644
   tags:
     - bitwig
@@ -51,7 +51,7 @@
     - bitwig
     - packages
 
-- name: Copy file with owner and permission, using symbolic representation
+- name: Copy usb rules
   when: ansible_system == "Linux"
   become: true
   copy:

@@ -26,6 +26,11 @@
   tags:
     - debug
 
+- name: Debug print out the primary_group var
+  debug: msg="{{ lookup('vars', 'primary_group') }}"
+  tags:
+    - debug
+
 - name: Basic usage
   debug:
     msg: "'{{ lookup('env', 'HOME') }}' is the HOME environment variable."
