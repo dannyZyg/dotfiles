@@ -3,12 +3,26 @@
 Configuration featuring `zsh`, `neovim`, `tmux`, `alacritty` and various
 linux/unix configs all handled by `dotbot`.
 
-Linux config uses i3 and polybar. Definitely a WIP.
+Full system bootstrap handled by `ansible` in `./ansible`
 
-# Installation
-- Run `make help` to see all options.
-- Run `make dotbot-run` to execute the dotbot installation script.
+Supports MacOS and Linux
 
-### TODO
-- Make fully compatible between x86 and apple silicon.
-- Make fully compatible between darwin and linux.
+## Installation
+
+### Dotfiles
+
+You can install the dotfiles on their own from this directory
+
+- Run `make` to see all options.
+
+```
+dotbot-run           Runs the dotbot install script
+git-submodule-update Updates git submodules
+help                 Show this help
+```
+
+### Bootstrap
+
+Otherwise, you can bootstrap an entire system (which can also handle the dotfiles).
+
+See `./ansible/README.md`

@@ -8,6 +8,9 @@ help: ## Show this help
 all: ## Run the full ansible playbook
 	ansible-playbook local.yml --ask-vault-pass --ask-become-pass
 
+apple: ## Setup Apple system settings
+	ansible-playbook local.yml -t apple
+
 build-packages: ## Build packages from src
 	ansible-playbook local.yml -t build-packages --ask-become-pass
 
@@ -50,14 +53,8 @@ apt-install: ## Install pacman packages
 install-packages: ## Install all packages
 	ansible-playbook local.yml -t packages --ask-become-pass
 
-pacman-dump: ## Saves installed pacman packages to txt
-	pacman -Qen | cut -d ' ' -f1 > packages/pacman.txt
-
 pacman-aur-install: ## Install aur packages
 	ansible-playbook local.yml -t aur --ask-become-pass
-
-pacman-aur-dump: ## Saves installed aur packages to txt
-	pacman -Qetm | cut -d ' ' -f1 > packages/aur.txt
 
 flatpak-install: ## Installs flatpak packages
 	ansible-playbook local.yml -t flatpak --ask-become-pass
