@@ -1,6 +1,5 @@
 local M = {
-  config = true,
+	config = true,
 }
 
 return M
-
