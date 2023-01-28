@@ -1,3 +1,8 @@
+local has_mason_lspconfig, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not has_mason_lspconfig then
+  return
+end
+
 local has_lsp, lspconfig = pcall(require, "lspconfig")
 if not has_lsp then
   return
@@ -8,7 +13,26 @@ if not status_ok then
   return
 end
 
-local runtime_path = vim.split(package.path, ';')
+-- Server names from https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+mason_lspconfig.setup({
+  ensure_installed = {
+    "ansiblels",
+    "astro",
+    "awk_ls",
+    "cssls",
+    "bashls",
+    "hls",
+    "jsonls",
+    "marksman",
+    "pyright",
+    "rust_analyzer",
+    "sumneko_lua",
+    "svelte",
+    "tsserver"
+  },
+})
+
+local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
@@ -41,7 +65,8 @@ local servers = {
   html = require("dzk.lsp.servers.html").config,
   vimls = require("dzk.lsp.servers.vimls").config,
   cssls = require("dzk.lsp.servers.cssls").config,
-  pylsp = require("dzk.lsp.servers.pylsp").config,
+  -- pylsp = require("dzk.lsp.servers.pylsp").config,
+  pyright = require("dzk.lsp.servers.pyright").config,
   sumneko_lua = require("dzk.lsp.servers.sumneko_lua").config,
   tsserver = require("dzk.lsp.servers.tsserver").config,
   jsonls = require("dzk.lsp.servers.jsonls").config,
@@ -53,4 +78,4 @@ for server, config in pairs(servers) do
   setup_server(server, config)
 end
 
-require "dzk.lsp.null-ls"
+require("dzk.lsp.null-ls")
