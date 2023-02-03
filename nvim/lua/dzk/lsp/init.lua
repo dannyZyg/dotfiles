@@ -58,6 +58,7 @@ local setup_server = function(server, config)
 end
 
 local servers = {
+	ansiblels = require("dzk.lsp.servers.ansible").config,
 	graphql = require("dzk.lsp.servers.graphql").config,
 	eslint = require("dzk.lsp.servers.eslint").config,
 	svelte = require("dzk.lsp.servers.svelte").config,
