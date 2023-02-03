@@ -18,7 +18,7 @@
     - packages
 
 - name: Get homebrew taps list
-  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists and ansible_architecture == "arm64"
   command:
     cmd: cat ./packages/homebrew-taps.txt
   register: homebrew_taps
@@ -26,17 +26,26 @@
     - homebrew
     - packages
 
-- name: Get homebrew forulae list
-  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+- name: Get homebrew arm64 forulae list
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists and ansible_architecture == "arm64"
   command:
     cmd: cat ./packages/homebrew-formulae-arm64.txt
-  register: homebrew_formulae
+  register: homebrew_formulae_arm64
+  tags:
+    - homebrew
+    - packages
+
+- name: Get homebrew x86 forulae list
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists and ansible_architecture == "x86_64"
+  command:
+    cmd: cat ./packages/homebrew-formulae-x86.txt
+  register: homebrew_formulae_x86
   tags:
     - homebrew
     - packages
 
 - name: Get homebrew casks list
-  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists and ansible_architecture == "arm64"
   command:
     cmd: cat ./packages/homebrew-casks.txt
   register: homebrew_casks
@@ -52,7 +61,7 @@
     - packages
 
 - name: Tap a Homebrew repositories
-  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists and ansible_architecture == "arm64"
   community.general.homebrew_tap:
     name: "{{ item }}"
   with_items: "{{ homebrew_taps.stdout_lines }}"
@@ -60,18 +69,28 @@
     - homebrew
     - packages
 
-- name: Install Homebrew formulae
-  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+- name: Install Homebrew formulae arm64
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists and ansible_architecture == "arm64"
   community.general.homebrew:
     name: "{{ item }}"
-  with_items: "{{ homebrew_formulae.stdout_lines }}"
+  with_items: "{{ homebrew_formulae_arm64.stdout_lines }}"
+  ignore_errors: true
+  tags:
+    - homebrew
+    - packages
+
+- name: Install Homebrew formulae x86
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists and ansible_architecture == "x86_64"
+  community.general.homebrew:
+    name: "{{ item }}"
+  with_items: "{{ homebrew_formulae_x86.stdout_lines }}"
   ignore_errors: true
   tags:
     - homebrew
     - packages
 
 - name: Install Homebrew casks
-  when: ansible_facts['distribution'] == "MacOSX" and brew_exists
+  when: ansible_facts['distribution'] == "MacOSX" and brew_exists and ansible_architecture == "arm64"
   community.general.homebrew:
     name: "{{ item }}"
   with_items: "{{ homebrew_casks.stdout_lines }}"

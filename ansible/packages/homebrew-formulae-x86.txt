@@ -11,6 +11,7 @@ lf
 luajit
 ranger
 ripgrep
+starship
 tmux
 trash-cli
 tree
