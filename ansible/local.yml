@@ -143,6 +143,9 @@
     - name: Build neovim
       import_tasks: tasks/package/nvim.yml
 
+    - name: Pull user repos
+      import_tasks: tasks/package/repos.yml
+
     # Install from package managers
     # Debian
     - name: Install apt packages
