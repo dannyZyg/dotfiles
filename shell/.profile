@@ -21,7 +21,6 @@ export XDG_CACHE_HOME="$HOME"/.cache
 
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
 
 export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
