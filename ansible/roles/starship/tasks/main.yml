@@ -1,0 +1,21 @@
+- name: check if starship installed
+  shell: command -v starship
+  register: starship_exists
+  ignore_errors: true
+
+- name: Download starship installer
+  when: starship_exists is failed
+  get_url:
+    url: https://starship.rs/install.sh
+    dest: "tmp/install-starship.sh"
+    mode: 0755
+
+- name: Install Starship
+  when: starship_exists is failed
+  command: "tmp/install-starship.sh -y"
+
+- name: Remove starship installer
+  when: starship_exists
+  ansible.builtin.file:
+    path: "tmp/install-starship.sh"
+    state: absent

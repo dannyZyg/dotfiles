@@ -1,0 +1,8 @@
+- name: Install fonts with homebrew
+  community.general.homebrew:
+    name: "{{ item }}"
+  with_items:
+    - bat
+    - exa
+    - fd
+    - jq

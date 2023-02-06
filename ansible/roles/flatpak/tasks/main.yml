@@ -1,0 +1,2 @@
+- include_tasks: flatpak.yml
+  when: ansible_system == "Linux"

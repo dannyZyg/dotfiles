@@ -1,4 +1,3 @@
-1password
 betterlockscreen-git
 caffeine-ng
 espanso

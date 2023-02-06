@@ -1,0 +1,9 @@
+- name: Install fonts with homebrew
+  community.general.homebrew:
+    name: "{{ item }}"
+  with_items:
+    - font-fira-code
+    - font-fira-code-nerd-font
+    - font-jetbrains-mono
+    - font-meslo-lg-nerd-font
+    - font-source-code-pro

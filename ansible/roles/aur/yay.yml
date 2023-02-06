@@ -1,0 +1,73 @@
+- name: Check if yay is installed
+  shell: command -v yay
+  register: yay_exists
+  ignore_errors: true
+  tags:
+    - initial
+
+- name: Ensure packages directory exists.
+  when: ansible_facts['distribution'] == "Archlinux"
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/packages"
+    state: directory
+  tags:
+    - initial
+
+- name: Clone yay github repo
+  when:
+    - ansible_facts['distribution'] == "Archlinux"
+    - yay_exists is failed
+  become_user: "{{ lookup('vars', 'username') }}"
+  ansible.builtin.git:
+    repo: "https://aur.archlinux.org/yay.git"
+    dest: "{{ lookup('env', 'HOME') }}/packages/yay"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
+  tags:
+    - initial
+
+- name: Install yay dependencies
+  become: true
+  when:
+    - ansible_facts['distribution'] == "Archlinux"
+    - yay_exists is failed
+  pacman: name={{item}}
+  with_items:
+    - git
+    - go
+    - base-devel
+  tags:
+    - initial
+
+- name: Install yay
+  when:
+    - ansible_facts['distribution'] == "Archlinux"
+    - yay_exists is failed
+  shell: |
+    cd {{ lookup('env', 'HOME') }}/packages/yay/
+    echo 'y' | makepkg -si
+  tags:
+    - initial
+
+- name: Install AUR packages
+  when:
+    - ansible_facts['distribution'] == "Archlinux"
+    - yay_exists
+  shell: yay -S --noconfirm {{item}}
+  with_items:
+    - betterlockscreen-git
+    - caffeine-ng
+    - espanso
+    - etcher-bin
+    - google-chrome
+    - i3exit
+    - lf
+    - nerd-fonts-fira-code
+    - srandrd
+    - tor-browser
+    - ttf-twemoji-color
+    - zeal
+    - zsa-wally-cli-bin

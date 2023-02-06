@@ -1,0 +1,8 @@
+- include_tasks: shell_debian.yml
+  when: ansible_facts['os_family'] == "Debian"
+
+- include_tasks: shell_arch.yml
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- include_tasks: shell_mac.yml
+  when: ansible_distribution == "MacOSX"

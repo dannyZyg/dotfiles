@@ -15,8 +15,6 @@
       - autoconf
       - automake
       - cmake
-  tags:
-    - nvim
 
 - name: Install nvim dependencies on Arch
   when: ansible_facts['distribution'] == "Archlinux"
@@ -29,8 +27,6 @@
       - ninja
       - tree-sitter
       - curl
-  tags:
-    - nvim
 
 - name: Install nvim dependencies on Mac
   when: ansible_distribution == 'MacOSX'
@@ -43,35 +39,25 @@
       - pkg-config
       - gettext
       - curl
-  tags:
-    - nvim
 
 - name: Remove neovim
   ansible.builtin.file:
     path: "{{ lookup('env', 'HOME') }}/packages/neovim"
     state: absent
-  tags:
-    - nvim
 
 - name: Clone Neovim
   ansible.builtin.git:
     repo: 'https://github.com/neovim/neovim.git'
     dest: "{{ lookup('env', 'HOME') }}/packages/neovim"
     version: v0.8.0
-  tags:
-    - nvim
 
 - name: Build neovim
   args:
     chdir: "{{ lookup('env', 'HOME') }}/packages/neovim"
   shell: "make -j 8 CMAKE_BUILD_TYPE=RelWithDebInfo"
-  tags:
-    - nvim
 
 - name: Install neovim
   become: true
   args:
     chdir: "{{ lookup('env', 'HOME') }}/packages/neovim"
   shell: "make install"
-  tags:
-    - nvim

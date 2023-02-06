@@ -1,0 +1,12 @@
+- name: Check if zsh installed
+  shell: command -v zsh
+  register: zsh_exists
+  ignore_errors: true
+
+- name: Install zsh and shell related packages on Debian systems
+  become: true
+  apt:
+    pkg:
+      - zsh
+      - exa
+      - bat

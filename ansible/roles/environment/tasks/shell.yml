@@ -2,15 +2,11 @@
   shell: command -v zsh
   register: zsh_exists
   ignore_errors: true
-  tags:
-    - shell
 
 - name: Install ZSH on Arch
   become: true
   pacman: name=zsh
   when: ansible_facts['distribution'] == "Archlinux" and zsh_exists is failed
-  tags:
-    - shell
 
 - name: Install ZSH on Debian systems
   become: true
@@ -18,8 +14,6 @@
     pkg:
       - zsh
   when: ansible_facts['os_family'] == "Debian" and zsh_exists is failed
-  tags:
-    - shell
 
 - name: Install shell related packages on Arch
   become: true
@@ -28,8 +22,6 @@
       - bat
       - exa
   when: ansible_facts['distribution'] == "Archlinux"
-  tags:
-    - shell
 
 - name: Install shell related packages on Debian systems
   become: true
@@ -38,37 +30,12 @@
       - exa
       - bat
   when: ansible_facts['os_family'] == "Debian"
-  tags:
-    - shell
-
-- name: Creates packages directory
-  become_user: "{{ lookup('vars', 'username') }}"
-  file:
-    path: "{{ lookup('env', 'HOME') }}/packages"
-    state: directory
-  tags:
-    - shell
-
-- name: Cloning fzf
-  become_user: "{{ lookup('vars', 'username') }}"
-  ansible.builtin.git:
-    repo: 'https://github.com/junegunn/fzf.git'
-    dest: "{{ lookup('env', 'HOME') }}/packages/fzf"
-    recursive: yes
-    update: yes
-    accept_hostkey: yes
-    version: master
-    depth: 1
-  tags:
-    - shell
 
 - name: Creates ssh directory
   become_user: "{{ lookup('vars', 'username') }}"
   file:
     path: "{{ lookup('env', 'HOME') }}/.ssh"
     state: directory
-  tags:
-    - shell
 
 - name: Decrypt ssh config file
   become_user: "{{ lookup('vars', 'username') }}"
@@ -76,17 +43,14 @@
     src: "{{ lookup('env', 'HOME') }}/.dotfiles/ansible/ssh/config"
     dest: "{{ lookup('env', 'HOME') }}/.ssh/config"
     decrypt: yes
-  tags:
-    - shell
-    - ssh
 
-- name: Adding my user to groups
-  when: ansible_system == "Linux"
-  become: true
-  user:
-    name: "{{ lookup('vars', 'username') }}"
-    groups: wheel,video,network
-    shell: /usr/bin/zsh
-    append: yes
-  tags:
-    - shell
+#- name: Adding my user to groups
+#  when: ansible_system == "Linux"
+#  become: true
+#  user:
+#    name: "{{ lookup('vars', 'username') }}"
+#    groups: wheel,video,network
+#    shell: /usr/bin/zsh
+#    append: yes
+#  tags:
+#    - shell

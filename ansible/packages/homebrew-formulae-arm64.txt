@@ -1,19 +1,14 @@
 ack
 ansible
-bat
 btop
 cmatrix
 diff-so-fancy
 dog
-exa
-fd
 ffmpeg
-fzf
 git
 go
 haskell-stack
 imagemagick
-jq
 lf
 luajit
 mas
@@ -30,7 +25,6 @@ ranger
 ripgrep
 ruby
 sox
-starship
 syncthing
 tmux
 trash-cli

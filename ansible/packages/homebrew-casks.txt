@@ -1,5 +1,3 @@
-1password
-1password-cli
 ableton-live-suite10
 aegisub
 alacritty
@@ -26,11 +24,6 @@ expressions
 figma
 firefox
 fission
-font-fira-code
-font-fira-code-nerd-font
-font-jetbrains-mono
-font-meslo-lg-nerd-font
-font-source-code-pro
 freedom
 google-chrome
 hazel

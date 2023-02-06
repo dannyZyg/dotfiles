@@ -1,0 +1,2 @@
+- include_tasks: yay.yml
+  when: ansible_facts['distribution'] == "Archlinux"

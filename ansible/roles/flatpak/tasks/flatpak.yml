@@ -1,0 +1,47 @@
+- name: Check flatpak installed
+  shell: command -v flatpak
+  ignore_errors: true
+  register: flatpak_exists
+
+- name: Install flatpak
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux" and flatpak_exists is failed
+  pacman:
+    name: flatpak
+
+- name: Add flathub flatpak repo
+  when: flatpak_exists
+  become_user: "{{ lookup('vars', 'username') }}"
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+
+- name: Get flatpak package list
+  when: flatpak_exists
+  command:
+    cmd: cat ./packages/flatpak.txt
+  register: flatpak_packages
+
+- name: Install flatpak packages
+  when: flatpak_exists
+  become_user: "{{ lookup('vars', 'username') }}"
+  community.general.flatpak:
+    name: "{{item}}"
+    state: present
+    method: user
+  with_items:
+    - com.bitwig.BitwigStudio
+    - com.spotify.Client
+    - io.dbeaver.DBeaverCommunity
+    - io.github.Figma_Linux.figma_linux
+    - org.filezillaproject.Filezilla
+    - org.signal.Signal
+    - re.sonny.Junction
+    - md.obsidian.Obsidian
+    - us.zoom.Zoom
+    - com.slack.Slack
+    - com.getpostman.Postman
+    - com.todoist.Todoist
+    - com.discordapp.Discord

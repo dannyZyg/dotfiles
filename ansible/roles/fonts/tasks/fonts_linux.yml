@@ -2,30 +2,22 @@
   file:
     path: "{{ lookup('env', 'HOME') }}/.fonts"
     state: directory
-  tags:
-    - fonts
 
 - name: Check unzip installed
   shell: command -v unzip
   ignore_errors: true
   register: unzip_exists
-  tags:
-    - fonts
 
 - name: Install unzip
   become: true
   when: ansible_facts['distribution'] == "Archlinux" and unzip_exists is failed
   pacman:
     name: unzip
-  tags:
-    - fonts
 
 - name: Fira Code exists
   register: firacode_exists
   shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Fira*Code*Nerd*Font*Complete*"
   ignore_errors: true
-  tags:
-    - fonts
 
 - name: Download Fira Code font
   when: unzip_exists and firacode_exists is failed
@@ -33,5 +25,3 @@
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
     dest: "{{ lookup('env', 'HOME') }}/.fonts/"
     remote_src: yes
-  tags:
-    - fonts

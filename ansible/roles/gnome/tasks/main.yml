@@ -1,0 +1,17 @@
+- name: Ensure autostart dir exists
+  when: ansible_facts['distribution'] == "Pop!_OS"
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    dest: "{{ lookup('env', 'HOME') }}/.config/autostart"
+    mode: 0700
+    state: directory
+    recurse: true
+
+- name: Copy autostart items
+  when: ansible_facts['distribution'] == "Pop!_OS"
+  become_user: "{{ lookup('vars', 'username') }}"
+  copy:
+    src: "{{ item }}"
+    dest: "{{ lookup('env', 'HOME') }}/.config/autostart/"
+  with_fileglob:
+    - "autostart/*"
