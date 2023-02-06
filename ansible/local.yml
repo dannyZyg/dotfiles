@@ -9,20 +9,6 @@
       tags:
         - always
 
-    - name: Set espanso path on Linux
-      set_fact:
-        espanso_path: "{{ lookup('env', 'HOME') }}/.config/espanso"
-      when: ansible_system == "Linux"
-      tags:
-        - always
-
-    - name: Set espanso path on MacOSX
-      set_fact:
-        espanso_path: "{{ lookup('env', 'HOME') }}/Library/Application Support/espanso"
-      when: ansible_distribution == 'MacOSX'
-      tags:
-        - always
-
     - name: Set brew path on MacOSX silicon
       set_fact:
         brew_path: "/opt/homebrew/bin"
@@ -134,6 +120,9 @@
 
     - role: aur
       tags: [aur, initial]
+
+    - role: espanso
+      tags: [espanso]
 
     - role: starship
       tags: [starship, shell]
