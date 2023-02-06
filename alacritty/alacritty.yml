@@ -101,8 +101,8 @@ font:
     family: FiraCode Nerd Font Mono
     style: Italic
   offset:
-    x: 3
-    y: 3
+    x: 1
+    y: 1
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
