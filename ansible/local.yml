@@ -160,6 +160,9 @@
     - role: python
       tags: [python]
 
+    - role: repos
+      tags: [repos]
+
     - role: rust
       tags: [rust]
 

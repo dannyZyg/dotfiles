@@ -3,8 +3,6 @@
   file:
     path: "{{ lookup('env', 'HOME') }}/dev"
     state: directory
-  tags:
-    - repos
 
 - name: Cloning github repos
   become_user: "{{ lookup('vars', 'username') }}"
@@ -20,5 +18,3 @@
     - { url: "git@github.com:dannyZyg/devdoist.git", dir: "devdoist" }
     - { url: "git@github.com:dannyZyg/dk-personal-site.git", dir: "dk-personal-site" }
     - { url: "git@github.com:dannyZyg/tup.git", dir: "tup" }
-  tags:
-    - repos
