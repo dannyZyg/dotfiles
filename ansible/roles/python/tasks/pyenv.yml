@@ -1,0 +1,18 @@
+- name: Check Pyenv installed
+  shell: command -v pyenv
+  ignore_errors: true
+  register: pyenv_exists
+
+- name: Install mac pyenv dependencies
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: ansible_distribution == "MacOSX" and pyenv_exists is failed
+  homebrew:
+    name: "{{item}}"
+    state: present
+    path: "{{ lookup('vars', 'brew_path') }}/brew"
+  with_items:
+    - readline
+    - xz
+    - openssl
+  tags:
+    - python

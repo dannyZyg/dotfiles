@@ -153,3 +153,6 @@
 
     - role: gnome
       tags: [gnome]
+
+    - role: python
+      tags: [python]
