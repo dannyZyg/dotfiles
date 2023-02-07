@@ -156,3 +156,6 @@
 
     - role: python
       tags: [python]
+
+    - role: rust
+      tags: [rust]
