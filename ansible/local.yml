@@ -162,3 +162,6 @@
 
     - role: ssh
       tags: [ssh]
+
+    - role: syncthing
+      tags: [syncthing]
