@@ -23,7 +23,7 @@ dotfiles: ## Install dotfiles with dotbot
 facts: ## Gather ansible facts
 	ansible all -m gather_facts
 
-node: ## Install Node, N and a version of node with N
+node: ## Install Node, N and npm packages
 	ansible-playbook local.yml -t node --ask-become-pass
 
 npm: ## Install npm packages

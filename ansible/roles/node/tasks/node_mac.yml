@@ -1,0 +1,6 @@
+- name: Install node on Mac
+  when: node_exists is failed
+  become_user: "{{ lookup('vars', 'username') }}"
+  homebrew:
+    name: node
+    state: present

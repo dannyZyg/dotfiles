@@ -1,0 +1,6 @@
+- name: Install nodejs and npm on Debian sytems
+  become: true
+  when: ansible_facts['os_family'] == "Debian" and node_exists is failed
+  apt:
+    pkg: ["nodejs", "npm"]
+

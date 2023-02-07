@@ -142,6 +142,9 @@
     - role: dotfiles
       tags: [dotfiles]
 
+    - role: node
+      tags: [node, npm]
+
     - role: nvim
       tags: [nvim]
 
