@@ -159,3 +159,6 @@
 
     - role: rust
       tags: [rust]
+
+    - role: ssh
+      tags: [ssh]

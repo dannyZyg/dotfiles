@@ -71,5 +71,8 @@ rust: ## Installs rust and any global cargo packages
 shell: ## Installs zsh and related tools, sets the default shell
 	ansible-playbook local.yml -t shell --ask-become-pass --ask-vault-pass
 
+ssh: ## Decrypts the ssh config file
+	ansible-playbook local.yml -t ssh --ask-vault-pass
+
 system-files: ## Installs any system files
 	ansible-playbook local.yml -t system --ask-become-pass

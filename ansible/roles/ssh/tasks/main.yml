@@ -7,6 +7,6 @@
 - name: Decrypt ssh config file
   become_user: "{{ lookup('vars', 'username') }}"
   copy:
-    src: "{{ lookup('env', 'HOME') }}/.dotfiles/ansible/ssh/config"
+    src: "./config"
     dest: "{{ lookup('env', 'HOME') }}/.ssh/config"
     decrypt: yes
