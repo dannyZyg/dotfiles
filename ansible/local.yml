@@ -124,6 +124,9 @@
     - role: aur
       tags: [aur, initial]
 
+    - role: docker
+      tags: [docker]
+
     - role: espanso
       tags: [espanso]
 
