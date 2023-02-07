@@ -60,7 +60,7 @@ pull-repos: ## Pulls my github repos
 	ansible-playbook local.yml -t repos
 
 python: ## Installs Python with conda
-	ansible-playbook local.yml -t python
+	ansible-playbook local.yml -t python --ask-become-pass
 
 pipx: ## Installs pipx pachages
 	ansible-playbook local.yml -t pipx

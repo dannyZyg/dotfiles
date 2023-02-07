@@ -14,5 +14,55 @@
     - readline
     - xz
     - openssl
-  tags:
-    - python
+
+- name: Install pyenv mac
+  when: ansible_distribution == "MacOSX" and pyenv_exists is failed
+  homebrew:
+    name: pyenv
+
+- name: Install pyenv debian dependencies
+  become: true
+  when:
+    - pyenv_exists is failed
+    - ansible_facts['os_family'] == "Debian"
+  apt:
+    name:
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libxml2-dev
+      - libxmlsec1-dev
+      - libffi-dev
+      - liblzma-dev
+
+- name: Install pyenv linux
+  when:
+    - pyenv_exists is failed
+    - ansible_system == "Linux"
+  get_url:
+    url: https://pyenv.run
+    dest: /tmp/pyenv.run
+    mode: "u+rwx"
+  register: pyenv_download
+
+- name: Run the install script
+  when:
+    - pyenv_download.changed
+    - ansible_system == "Linux"
+  shell: /tmp/pyenv.run
+
+- name: Remove the pyenv installer
+  when: ansible_system == "Linux"
+  file:
+    path: /tmp/pyenv.run
+    state: absent
