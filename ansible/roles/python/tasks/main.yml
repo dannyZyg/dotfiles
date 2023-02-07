@@ -1,3 +1,11 @@
+- name: Symlink python3 to python
+  become: true
+  when: ansible_facts['os_family'] == "Debian"
+  file:
+    src: /usr/bin/python3
+    dest: /usr/bin/python
+    state: link
+
 - name: Install miniconda and create nvim environment
   include_tasks: miniconda.yml
   tags:
