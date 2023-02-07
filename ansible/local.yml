@@ -118,6 +118,9 @@
     - role: 1password
       tags: [1password, initial]
 
+    - role: audio
+      tags: [audio]
+
     - role: aur
       tags: [aur, initial]
 
