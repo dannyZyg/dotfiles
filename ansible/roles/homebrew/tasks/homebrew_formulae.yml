@@ -1,0 +1,31 @@
+- name: Install Homebrew packages
+  when: brew_exists
+  ignore_errors: true
+  community.general.homebrew:
+    path: "{{ lookup('vars', 'brew_path') }}/brew"
+    state: present
+    name:
+      - ack
+      - btop
+      - cmatrix
+      - dog
+      - fd
+      - ffmpeg
+      - git
+      - jq
+      - lf
+      - luajit
+      - mas
+      - mpv
+      - mkvtoolnix
+      - postgresql
+      - ranger
+      - ripgrep
+      - trash-cli
+      - tree
+      - unar
+      - watch
+      - wget
+      - xclip
+      - yarn
+      - youtube-dl

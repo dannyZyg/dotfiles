@@ -1,31 +1,9 @@
 - name: Install shell related packages with homebrew
   community.general.homebrew:
     name: "{{ item }}"
+    path: "{{ lookup('vars', 'brew_path') }}/brew"
   with_items:
-    - ack
     - bat
-    - btop
-    - cmatrix
     - diff-so-fancy
-    - dog
     - exa
-    - fd
-    - ffmpeg
-    - git
-    - jq
-    - lf
-    - luajit
-    - mas
-    - mkvtoolnix
-    - postgresql
-    - ranger
-    - ripgrep
     - tmux
-    - trash-cli
-    - tree
-    - unar
-    - watch
-    - wget
-    - xclip
-    - yarn
-    - youtube-dl

@@ -145,6 +145,9 @@
     - role: fzf
       tags: [fzf]
 
+    - role: homebrew
+      tags: [homebrew]
+
     - role: dotfiles
       tags: [dotfiles]
 

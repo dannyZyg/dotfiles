@@ -1,3 +1,0 @@
-espanso/espanso
-homebrew/cask-drivers
-tylerbrock/saw

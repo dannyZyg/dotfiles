@@ -10,18 +10,27 @@
     - ansible_facts['distribution'] == "MacOSX"
     - brew_exists
   community.general.homebrew:
+    path: "{{ lookup('vars', 'brew_path') }}/brew"
     update_homebrew: true
     upgrade_all: true
     upgrade_options: ignore-pinned
 
-- name: Tap Homebrew repositories
+- name: Tap Homebrew repositories arm64
+  include_tasks: homebrew_taps.yml
   when:
     - ansible_facts['distribution'] == "MacOSX"
     - ansible_architecture == "arm64"
     - brew_exists
-  include_items: homebrew_taps.yml
 
-- name: Install Homebrew formulae arm64
+- name: Install Homebrew casks arm64
+  include_tasks: homebrew_casks.yml
+  when:
+    - ansible_facts['distribution'] == "MacOSX"
+    - ansible_architecture == "arm64"
+    - brew_exists
+
+- name: Install Homebrew forumlae arm64
+  include_tasks: homebrew_formulae.yml
   when:
     - ansible_facts['distribution'] == "MacOSX"
     - ansible_architecture == "arm64"
