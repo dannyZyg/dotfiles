@@ -1,0 +1,9 @@
+- name: Tap a espanso Homebrew repository
+  when: brew_exists
+  community.general.homebrew_tap:
+    name: espanso/espanso
+
+- name: Install espanso with homebrew
+  when: brew_exists
+  community.general.homebrew:
+    name: espanso

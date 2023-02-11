@@ -24,3 +24,7 @@
     src: "./"
     dest: "{{ lookup('vars', 'espanso_path') }}"
     decrypt: yes
+
+- name: Install espanso for Mac
+  when: ansible_distribution == 'MacOSX'
+  include_tasks: espanso_mac.yml

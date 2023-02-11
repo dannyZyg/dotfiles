@@ -1,0 +1,7 @@
+- name: Tap a Homebrew repositories
+  when: brew_exists
+  community.general.homebrew_tap:
+    name: "{{ item }}"
+  with_items:
+    - espanso/espanso
+    - homebrew/cask-drivers
