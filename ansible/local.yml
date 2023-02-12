@@ -127,6 +127,9 @@
     - role: docker
       tags: [docker]
 
+    - role: chrome
+      tags: [chrome]
+
     - role: espanso
       tags: [espanso]
 
