@@ -18,12 +18,6 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: user
 
-- name: Get flatpak package list
-  when: flatpak_exists
-  command:
-    cmd: cat ./packages/flatpak.txt
-  register: flatpak_packages
-
 - name: Install flatpak packages
   when: flatpak_exists
   become_user: "{{ lookup('vars', 'username') }}"
@@ -40,6 +34,7 @@
     - org.signal.Signal
     - re.sonny.Junction
     - md.obsidian.Obsidian
+    - com.obsproject.Studio
     - us.zoom.Zoom
     - com.slack.Slack
     - com.getpostman.Postman
