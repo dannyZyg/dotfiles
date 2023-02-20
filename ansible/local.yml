@@ -169,6 +169,9 @@
     - role: repos
       tags: [repos]
 
+    - role: rofi
+      tags: [rofi]
+
     - role: rust
       tags: [rust]
 

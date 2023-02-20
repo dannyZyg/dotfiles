@@ -1,0 +1,42 @@
+- name: Clone rofi-emoji
+  git:
+    repo: "https://github.com/Mange/rofi-emoji"
+    dest: "{{ lookup('env', 'HOME') }}/packages/rofi-emoji"
+
+- name: Install rofi-emoji build dependencies
+  become: true
+  apt:
+    update_cache: true
+    name:
+      - rofi-dev
+      - autoconf
+      - automake
+      - libtool-bin
+      - libtool
+
+- name: Run autoreconf
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/packages/rofi-emoji"
+  shell: "autoreconf -i"
+
+- name: Ensure build dir exists
+  file:
+    dest: "{{ lookup('env', 'HOME') }}/packages/rofi-emoji/build"
+    mode: 0700
+    state: directory
+
+- name: Run configure
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/packages/rofi-emoji/build"
+  shell: "../configure"
+
+- name: Run make
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/packages/rofi-emoji/build"
+  shell: "make"
+
+- name: Run make install
+  become: true
+  args:
+    chdir: "{{ lookup('env', 'HOME') }}/packages/rofi-emoji/build"
+  shell: "sudo make install"
