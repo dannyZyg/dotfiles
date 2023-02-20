@@ -178,5 +178,8 @@
     - role: ssh
       tags: [ssh]
 
+    - role: sxhkd
+      tags: [sxhkd]
+
     - role: syncthing
       tags: [syncthing]
