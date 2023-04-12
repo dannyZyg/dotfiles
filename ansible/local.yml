@@ -121,6 +121,9 @@
     - role: audio
       tags: [audio]
 
+    - role: anki
+      tags: [anki]
+
     - role: aur
       tags: [aur, initial]
 

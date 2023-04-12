@@ -2,118 +2,66 @@
 # app binds
 ############################################################
 
+super + control + shift + alt + t
+      jumpapp $TERMINAL
 
-super + Return
-		$TERMINAL
-super + i
-		firefox
-super + c
-		chromium
-super + p
-		$TERMINAL -e ranger
-super + control + m
-		$TERMINAL -e pulsemixer
-super + control + p
-		$HOME/.config/polybar/reloadpolybar.sh
-super + control + b
-		bluetooth-select
-super + shift + d
-    change-monitors
-super + space
-		rofi -modi drun -show drun -show-icons -dpi 1
-super + shift + space
-		rofi -show window -show-icons -dpi 1
-super + alt + c
-		rofi -show calc -modi calc -no-show-match -no-sort -dpi 1
-super + alt + v
-		$HOME/.dotfiles/rofi/vpn-menu.sh -dpi 1
+super + control + shift + alt + f
+      jumpapp firefox
+
+super + control + shift + alt + c
+      jumpapp google-chrome
+
+super + control + shift + alt + b
+      jumpapp nautilus
+
+super + control + shift + alt + s
+      jumpapp slack
+
+super + control + shift + alt + d
+      jumpapp dbeaver
+
+super + control + shift + alt + a
+      jumpapp anki
+
+super + control + shift + alt + x
+      jumpapp spotify
+
+# super + space
+# 		rofi -modi drun -show drun -show-icons -dpi 1
+
+# super + alt + c
+# 		rofi -show calc -modi calc -no-show-match -no-sort -dpi 1
+
 super + control + e
 		rofi -show emoji -modi emoji -dpi 1
-
-super + control + c
-    copyq show
-
-super + shift + c
-    toggle-program picom
-
-super + backslash
-		1password --quick-access
-
-super + control + u
-		flameshot gui
-
-super + alt + 1
-		thinkpad-screen
-super + alt + 2
-		lg-widescreen
-super + alt + 3
-		$HOME/.screenlayout/grokpad.sh
-super + alt + 4
-		$HOME/.screenlayout/grokoffice.sh
-
-############################################################
-# Media keys
-############################################################
-
-# Screen brightness controls
-{_,super + }XF86MonBrightness{Down,Up}
-    change-brightness {down 4, down 2, up 4, up 2}
-
-# vol control
-{_,super + }XF86Audio{Raise,Lower}Volume
-		change-volume {up 10, up 5, down 10, down 5}
-
-XF86AudioMute
-		change-volume mute
-
-XF86AudioMicMute
-		pactl set-source-mute 1 toggle; notify-send 'Mic Input Toggled'
+#
+# super + control + c
+#     copyq show
+#
+# super + shift + c
+#     toggle-program picom
+#
+# super + backslash
+# 		1password --quick-access
+#
+# super + control + u
+# 		flameshot gui
 
 
-############################################################
-# BSPWM
-############################################################
-
-# Restart bspwm
-#super + shift + r
-#bspc wm -r
-
-# Kill window
-super + shift + q
-		xdo close
-
-# Change focus window
-#super + {h,j,k,l}
-#bscp node -f {west,south,north,east}
-
-# swap window with direction
-#super + shift + {h,j,k,l}
-#bscp node -s {west,south,north,east}
-
-# Send window to desktop
-#super + shift + {0-9}
-	#bscp node -d {0-9}
-
-# fullscreen
-#super + f
-		# bspfullscreen
-
-# Toggle floating on/off
-#super + shift + space
-	#bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
-
-# Focus on Desktop #
-#super + {0-9}
-#bscp desktop -f {0-9}
-
-# expand a window by moving one of its side outward
-#super + alt + {h,j,k,l}
-	#bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# contract a window by moving one of its side inward
-#super + alt + shift + {h,j,k,l}
-	#bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-# move a floating window
-#super + {Left,Down,Up,Right}
-#bspc node -v {-21 0,0 20,0 -20,20 0}
+# ############################################################
+# # Media keys
+# ############################################################
+#
+# # Screen brightness controls
+# {_,super + }XF86MonBrightness{Down,Up}
+#     change-brightness {down 4, down 2, up 4, up 2}
+#
+# # vol control
+# {_,super + }XF86Audio{Raise,Lower}Volume
+# 		change-volume {up 10, up 5, down 10, down 5}
+#
+# XF86AudioMute
+# 		change-volume mute
+#
+# XF86AudioMicMute
+# 		pactl set-source-mute 1 toggle; notify-send 'Mic Input Toggled'

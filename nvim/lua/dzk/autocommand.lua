@@ -45,7 +45,6 @@ vim.cmd([[
 local grok_group = vim.api.nvim_create_augroup("grok", { clear = true })
 
 vim.api.nvim_create_autocmd("BufEnter", {
-
 	pattern = {
 		"*/web/code/*",
 		"*/marker/code/*",
@@ -79,13 +78,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 		-- No hard wrapping.
 		vim.opt.textwidth = 0
-	end,
-})
-
--- Format code on save (see null-ls)
-vim.api.nvim_create_autocmd("BufWrite", {
-	callback = function()
-		vim.lsp.buf.format()
 	end,
 })
 
