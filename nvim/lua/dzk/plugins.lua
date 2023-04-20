@@ -103,6 +103,7 @@ return packer.startup(function(use)
 
 	-- Music
 	use("tidalcycles/vim-tidal")
+	use("davidgranstrom/scnvim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
