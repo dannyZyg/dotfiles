@@ -1,6 +1,0 @@
-- name: Install syncthing on debian
-  become: true
-  apt:
-    pkg:
-      - syncthing
-  notify: Start syncthing systemd service on Linux

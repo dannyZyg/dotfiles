@@ -1,5 +1,0 @@
-- name: Install syncthing on Arch
-  become: true
-  pacman:
-    name: syncthing
-  notify: Start syncthing systemd service on Linux

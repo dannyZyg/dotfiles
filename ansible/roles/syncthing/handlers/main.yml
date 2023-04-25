@@ -1,7 +1,0 @@
-- name: Start syncthing systemd service on Linux
-  become: true
-  when: ansible_system == "Linux"
-  ansible.builtin.systemd:
-    name: "syncthing@{{ lookup('vars', 'username') }}.service"
-    state: started
-    enabled: true
