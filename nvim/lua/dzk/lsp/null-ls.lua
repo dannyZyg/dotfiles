@@ -11,10 +11,10 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup({
 	debug = false,
 	sources = {
-		diagnostics.mypy,
-		diagnostics.flake8,
+		diagnostics.mypy.with({ prefer_local = "./venv" }),
+		diagnostics.flake8.with({ prefer_local = "./venv" }),
+		formatting.black.with({ prefer_local = "./venv" }),
 		-- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-		formatting.black,
 		formatting.stylua,
 	},
 })
