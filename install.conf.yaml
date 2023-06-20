@@ -86,6 +86,11 @@
       path: pypoetry/config.toml
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
+    ~/Library/Preferences/pypoetry/config.toml:
+      create: true
+      path: pypoetry/config.toml
+      if: '[[ "$OSTYPE" = "darwin"* ]]'
+
     ~/.config/karabiner/karabiner.json:
       force: true
       create: true
