@@ -31,6 +31,9 @@
     ~/.config/alacritty/alacritty.yml:
       path: alacritty/alacritty.yml
 
+    ~/.config/starship.toml:
+      path: starship/starship.toml
+
     ~/.config/lf:
       glob: true
       path: lf/*

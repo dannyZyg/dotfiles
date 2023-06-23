@@ -1,0 +1,8 @@
+command_timeout = 750
+
+# Show python version starting with venv
+[python]
+pyenv_version_name = true
+
+[package]
+disabled = true
