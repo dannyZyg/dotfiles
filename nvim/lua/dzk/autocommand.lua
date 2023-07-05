@@ -43,6 +43,7 @@ vim.cmd([[
 ]])
 
 local grok_group = vim.api.nvim_create_augroup("grok", { clear = true })
+local microbit_v2 = vim.api.nvim_create_augroup("grok_microbit_v2", { clear = true })
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = {
@@ -78,6 +79,18 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 		-- No hard wrapping.
 		vim.opt.textwidth = 0
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = {
+		"*/problem-types/microbit-v2/frontend/bottom-panel/*.ts",
+		"*/problem-types/microbit-v2/frontend/bottom-panel/*.tsx",
+		"*/problem-types/microbit-v2/frontend/bottom-panel/*.js",
+	},
+	group = microbit_v2,
+	callback = function()
+		vim.api.nvim_command(":! cd problem-types/microbit-v2/frontend/bottom-panel && npm run build")
 	end,
 })
 
