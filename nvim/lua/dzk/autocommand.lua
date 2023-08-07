@@ -43,7 +43,7 @@ vim.cmd([[
 ]])
 
 local grok_group = vim.api.nvim_create_augroup("grok", { clear = true })
-local microbit_v2 = vim.api.nvim_create_augroup("grok_microbit_v2", { clear = true })
+local grok_problem_types = vim.api.nvim_create_augroup("grok_problem_types", { clear = true })
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = {
@@ -88,9 +88,21 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		"*/problem-types/microbit-v2/frontend/bottom-panel/*.tsx",
 		"*/problem-types/microbit-v2/frontend/bottom-panel/*.js",
 	},
-	group = microbit_v2,
+	group = grok_problem_types,
 	callback = function()
 		vim.api.nvim_command(":! cd problem-types/microbit-v2/frontend/bottom-panel && npm run build")
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = {
+		"*/problem-types/spreadsheet/frontend/*.ts",
+		"*/problem-types/spreadsheet/frontend/*.tsx",
+		"*/problem-types/spreadsheet/frontend/*.js",
+	},
+	group = grok_problem_types,
+	callback = function()
+		vim.api.nvim_command(":! cd problem-types/spreadsheet/frontend/ && npm run build")
 	end,
 })
 
