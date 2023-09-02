@@ -19,11 +19,12 @@ mason_lspconfig.setup({
 		"ansiblels",
 		"astro",
 		"awk_ls",
+		"clangd",
 		"cssls",
 		"bashls",
 		"hls",
 		"jsonls",
-    "lua_ls",
+		"lua_ls",
 		"marksman",
 		"pyright",
 		"rust_analyzer",
@@ -70,7 +71,7 @@ local servers = {
 	lua_ls = require("dzk.lsp.servers.lua_ls").config,
 	tsserver = require("dzk.lsp.servers.tsserver").config,
 	jsonls = require("dzk.lsp.servers.jsonls").config,
-	ccls = require("dzk.lsp.servers.ccls").config,
+	clangd = require("dzk.lsp.servers.clangd").config,
 	theme_check = require("dzk.lsp.servers.shopify").config,
 }
 

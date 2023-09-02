@@ -1,7 +1,7 @@
 local M = {}
 
 M.config = {
-	cmd = { "ccls" },
+	cmd = { "clangd" },
 	filetypes = { "c", "cpp", "objc", "objcpp" },
 }
 
