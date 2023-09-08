@@ -3,6 +3,16 @@ if not status_ok then
 	return
 end
 
+local function scstatus()
+	if vim.bo.filetype == "supercollider" then
+		local stat = vim.fn["scnvim#statusline#server_status"]()
+		stat = stat:gsub("%%", "♪")
+		return stat
+	else
+		return ""
+	end
+end
+
 lualine.setup({
 	options = {
 		icons_enabled = true,
@@ -20,6 +30,7 @@ lualine.setup({
 			{
 				"filename",
 				path = 1,
+				scstatus,
 			},
 		},
 		lualine_x = { "encoding", "fileformat", "filetype" },

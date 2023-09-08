@@ -15,6 +15,7 @@ null_ls.setup({
 	sources = {
 		diagnostics.mypy.with({ prefer_local = "./venv" }),
 		diagnostics.flake8.with({ prefer_local = "./venv" }),
+		formatting.isort.with({ prefer_local = "./venv" }),
 		formatting.black.with({ prefer_local = "./venv" }),
 		-- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
 		formatting.stylua,

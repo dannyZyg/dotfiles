@@ -73,6 +73,9 @@ return packer.startup(function(use)
 	-- Mason (Installs LSPs, DAPs, Linters and Formatters)
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
+	use("mfussenegger/nvim-dap")
+	use("mfussenegger/nvim-dap-python")
+	use("rcarriga/nvim-dap-ui")
 
 	-- LSP
 	use("neovim/nvim-lspconfig") -- enable LSP
