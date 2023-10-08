@@ -65,6 +65,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("hrsh7th/cmp-nvim-lsp")
+	use("quangnguyen30192/cmp-nvim-tags")
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
@@ -87,6 +88,7 @@ return packer.startup(function(use)
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "make",
 	})
+	use({ "davidgranstrom/telescope-scdoc.nvim" })
 
 	-- Treesitter
 	use({
