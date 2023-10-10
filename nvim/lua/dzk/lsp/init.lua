@@ -73,6 +73,7 @@ local servers = {
 	jsonls = require("dzk.lsp.servers.jsonls").config,
 	clangd = require("dzk.lsp.servers.clangd").config,
 	theme_check = require("dzk.lsp.servers.shopify").config,
+	rust_analyzer = require("dzk.lsp.servers.rust").config,
 }
 
 for server, config in pairs(servers) do
