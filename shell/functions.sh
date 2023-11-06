@@ -123,8 +123,7 @@ function ftmux() {
 	$(find ~/sync/scripts/tmux/*.sh | fzf)
 }
 
-function awsp()
-{
+function awsp() {
 	AWS="${1:-${AWS_PROFILE}}"
 	export AWS_PROFILE=$AWS
 	echo $AWS

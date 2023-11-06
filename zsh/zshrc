@@ -10,8 +10,9 @@ export TEMP_DIR="/tmp"
 zle_highlight=('paste:none')
 
 DOTFILES_DIR="$HOME/.dotfiles"
-[ -f "$DOTFILES_DIR/aliases.sh" ] && source "$DOTFILES_DIR/aliases.sh"
-[ -f "$DOTFILES_DIR/functions.sh" ] && source "$DOTFILES_DIR/functions.sh"
+[ -f "$DOTFILES_DIR/shell/aliases.sh" ] && source "$DOTFILES_DIR/shell/aliases.sh"
+[ -f "$DOTFILES_DIR/shell/functions.sh" ] && source "$DOTFILES_DIR/shell/functions.sh"
+[ -f "$DOTFILES_DIR/shell/grok.sh" ] && source "$DOTFILES_DIR/shell/grok.sh"
 
 # Basic auto/tab complete:
 autoload -U compinit
