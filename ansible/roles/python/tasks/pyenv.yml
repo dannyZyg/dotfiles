@@ -9,7 +9,6 @@
   homebrew:
     name: "{{item}}"
     state: present
-    path: "{{ lookup('vars', 'brew_path') }}/brew"
   with_items:
     - readline
     - xz
