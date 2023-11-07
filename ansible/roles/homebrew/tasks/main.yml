@@ -10,7 +10,7 @@
     - ansible_facts['distribution'] == "MacOSX"
     - brew_exists
   community.general.homebrew:
-    path: "{{ lookup('vars', 'brew_path') }}/brew"
+    path: "{{ lookup('vars', 'brew_path') }}"
     update_homebrew: true
     upgrade_all: true
     upgrade_options: ignore-pinned
