@@ -47,11 +47,6 @@
     ~/.Xresources:
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
-    ~/.config/awesome:
-      if: '[[ "$OSTYPE" = "linux"* ]]'
-      glob: true
-      path: awesome/**
-
     ~/.config/i3/config:
       path: i3/config
       if: '[[ "$OSTYPE" = "linux"* ]]'

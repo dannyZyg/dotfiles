@@ -118,6 +118,27 @@
     - role: 1password
       tags: [1password, initial]
 
+    - role: dotfiles
+      tags: [dotfiles]
+
+    - role: node
+      tags: [node, npm]
+
+    - role: python
+      tags: [python]
+
+    - role: homebrew
+      tags: [homebrew]
+
+    - role: espanso
+      tags: [espanso]
+
+    - role: starship
+      tags: [starship, shell]
+
+    - role: ssh
+      tags: [ssh]
+
     - role: audio
       tags: [audio]
 
@@ -133,12 +154,6 @@
     - role: chrome
       tags: [chrome]
 
-    - role: espanso
-      tags: [espanso]
-
-    - role: starship
-      tags: [starship, shell]
-
     - role: shell
       tags: [shell]
 
@@ -151,23 +166,11 @@
     - role: fzf
       tags: [fzf]
 
-    - role: homebrew
-      tags: [homebrew]
-
-    - role: dotfiles
-      tags: [dotfiles]
-
-    - role: node
-      tags: [node, npm]
-
     - role: nvim
       tags: [nvim]
 
     - role: gnome
       tags: [gnome]
-
-    - role: python
-      tags: [python]
 
     - role: repos
       tags: [repos]
@@ -177,9 +180,6 @@
 
     - role: rust
       tags: [rust]
-
-    - role: ssh
-      tags: [ssh]
 
     - role: sxhkd
       tags: [sxhkd]

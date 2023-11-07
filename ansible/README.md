@@ -10,10 +10,12 @@ There is (in progress) support for MacOS and Linux (arch and debian based system
 You will need to have `ansible` installed before running any of the playbooks.
 
 ### MacOS
-- brew
+- Install brew
     - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-- ansible
-    - `brew install ansible`
+- Install 1Password
+    - `/opt/homebrew/bin/brew install 1password`
+- Install ansible
+    - `/opt/homebrew/bin/brew install ansible`
 
 ### Linux
 - ansible
