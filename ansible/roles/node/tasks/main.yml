@@ -9,7 +9,7 @@
   include_tasks: node_arch.yml
   when: ansible_facts['distribution'] == "Archlinux"
 
-- name: Install node on mac
+- name: Install n on mac
   include_tasks: node_mac.yml
   when: ansible_distribution == "MacOSX"
 

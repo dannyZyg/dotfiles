@@ -3,6 +3,11 @@
   register: node_exists
   ignore_errors: true
 
+- name: Check if n installed
+  shell: command -v n
+  register: n_exists
+  ignore_errors: true
+
 - name: Creates npm-global directory
   become_user: "{{ lookup('vars', 'username') }}"
   file:

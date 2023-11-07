@@ -1,44 +1,31 @@
-- name: Install N with npm
-  become_user: "{{ lookup('vars', 'username') }}"
-  when: ansible_distribution == 'MacOSX' and ansible_architecture == 'arm64'
-  environment:
-    NPM_CONFIG_PREFIX: "{{ lookup('env', 'HOME') }}/.config/npm-global"
-    PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
-    N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
-  npm:
-    executable: "{{ lookup('vars', 'brew_path') }}/npm"
-    name: n
-    global: yes
-
 - name: Install desired version of Node using N
   when: ansible_distribution == 'MacOSX' and ansible_architecture == 'arm64'
   become_user: "{{ lookup('vars', 'username') }}"
-  command: "{{ lookup('env', 'HOME') }}/.config/npm-global/bin/n 16"
+  command: "{{ lookup('vars', 'brew_path') }}/n 16"
   environment:
-    NPM_CONFIG_PREFIX: "{{ lookup('env', 'HOME') }}/.config/npm-global"
     PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
     N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
 
-- name: Install global npm packages
-  become_user: "{{ lookup('vars', 'username') }}"
-  environment:
-    NPM_CONFIG_PREFIX: "{{ lookup('env', 'HOME') }}/.config/npm-global"
-  npm:
-    executable: "{{ lookup('vars', 'brew_path') }}/npm"
-    name: "{{item}}"
-    global: yes
-  with_items:
-    - "yarn"
-    - "typescript"
-    - "ts-node"
-    - "neovim"
-    - "@gridsome/cli"
-    - "yaml-language-server"
-    - "vim-language-server"
-    - "vscode-langservers-extracted"
-    - "graphql-language-service-cli"
-    - "apollo"
-    - "vscode-langservers-extracted"
-    - "diff-so-fancy"
-  tags:
-    - npm
+# - name: Install global npm packages
+#   become_user: "{{ lookup('vars', 'username') }}"
+#   environment:
+#     NPM_CONFIG_PREFIX: "{{ lookup('env', 'HOME') }}/.config/npm-global"
+#   npm:
+#     executable: "{{ lookup('vars', 'brew_path') }}/npm"
+#     name: "{{item}}"
+#     global: yes
+#   with_items:
+#     - "yarn"
+#     - "typescript"
+#     - "ts-node"
+#     - "neovim"
+#     - "@gridsome/cli"
+#     - "yaml-language-server"
+#     - "vim-language-server"
+#     - "vscode-langservers-extracted"
+#     - "graphql-language-service-cli"
+#     - "apollo"
+#     - "vscode-langservers-extracted"
+#     - "diff-so-fancy"
+#   tags:
+#     - npm

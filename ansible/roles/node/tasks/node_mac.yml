@@ -1,6 +1,6 @@
-- name: Install node on Mac
-  when: node_exists is failed
+- name: Install n on Mac
+  when: n_exists is failed
   become_user: "{{ lookup('vars', 'username') }}"
   homebrew:
-    name: node
+    name: n
     state: present
