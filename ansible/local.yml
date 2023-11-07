@@ -125,7 +125,7 @@
       tags: [node, npm]
 
     - role: python
-      tags: [python]
+      tags: [python, poetry]
 
     - role: homebrew
       tags: [homebrew]
