@@ -3,26 +3,31 @@
 My personal ansible playbook to get a system up and running from nothing. This
 is a work in progress...
 
-There is (in progress) support for MacOS and Linux (arch and debian based systems)
+There is support for MacOS and waning support for Linux
 
-## Dependencies
+## MacOS Setup
 
-You will need to have `ansible` installed before running any of the playbooks.
+### Install Dependencies
 
-### MacOS
-- Install brew
-    - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-- Install 1Password
-    - `/opt/homebrew/bin/brew install 1password`
-- Install ansible
-    - `/opt/homebrew/bin/brew install ansible`
+Install brew
 
-### Linux
-- ansible
-    - `sudo pacman -S ansible` on arch
-    - `sudo apt install ansible` on debian family systems
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Tasks
+Install 1Password
+
+    /opt/homebrew/bin/brew install 1password
+
+Install ansible
+
+    /opt/homebrew/bin/brew install ansible
+
+### Run the installer
+
+*You won't yet have ansible in your PATH (via brew), so run it with the full path initially*
+
+    /opt/homebrew/bin/ansible
+
+## Tasks
 
 Run `make` to list all install options.
 
@@ -57,4 +62,3 @@ system-files         Installs any system files
 ```
 
 Run a specific option using `make all` for example.
-
