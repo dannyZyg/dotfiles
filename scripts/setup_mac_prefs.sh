@@ -5,23 +5,6 @@ if [ "$(uname)" != "Darwin" ] ; then
   exit 1
 fi
 
-function autocorrect() {
-	# Disable automatic capitalization as it’s annoying when typing code
-	defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-
-	# Disable smart dashes as they’re annoying when typing code
-	defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-
-	# Disable automatic period substitution as it’s annoying when typing code
-	defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
-
-	# Disable smart quotes as they’re annoying when typing code
-	defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-
-	# Disable auto-correct
-	defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-}
-
 dock() {
 	# Automatically hide or show the Dock （Dock を自動的に隠す）
 	defaults write com.apple.dock autohide -bool true
@@ -51,24 +34,7 @@ dock() {
 	defaults write com.apple.dock autohide-time-modifier -float 0.2
 }
 
-function energySaver() {
-	# Enable lid wakeup
-	sudo pmset -a lidwake 1
-
-	# Restart automatically on power loss
-	sudo pmset -a autorestart 1
-
-	# Restart automatically if the computer freezes
-	sudo systemsetup -setrestartfreeze on
-
-	# Sleep the display after 15 minutes
-	sudo pmset -a displaysleep 15
-}
-
 function finder() {
-	# Finder: disable window animations and Get Info animations
-	defaults write com.apple.finder DisableAllAnimations -bool true
-
 	# Show the ~/Library directory （ライブラリディレクトリを表示、デフォルトは非表示）
 	chflags nohidden ~/Library
 	sudo chflags nohidden /Volumes    # /Volumes ディレクトリを見えるようにする
@@ -79,7 +45,7 @@ function finder() {
 	# When performing a search, search the current folder by default
 	defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
-	## Show Status bar in Finder （ステータスバーを表示）
+	# Show Status bar in Finder （ステータスバーを表示）
 	defaults write com.apple.finder ShowStatusBar -bool true
 
 	# Show Path bar in Finder （パスバーを表示）
@@ -90,8 +56,6 @@ function finder() {
 
 	# Allow you to select and copy string in QuickLook （QuickLook で文字の選択、コピーを出来るようにする）
 	defaults write com.apple.finder QLEnableTextSelection -bool true
-
-	defaults write com.apple.finder WarnOnEmptyTrash -bool true    # ゴミ箱を空にする前の警告を無効化する
 
 	# TODO fix
 	# Set `${HOME}` as the default location for new Finder windows
@@ -139,31 +103,14 @@ function keyboard() {
 }
 
 function login() {
-	## Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
-	sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-
 	# Require password immediately after sleep or screen saver begins
 	defaults write com.apple.screensaver askForPassword -int 1
 	defaults write com.apple.screensaver askForPasswordDelay -int 0
 }
 
 mail() {
-	# Disable send and reply animations in Mail.app
-	defaults write com.apple.mail DisableReplyAnimations -bool true
-	defaults write com.apple.mail DisableSendAnimations -bool true
-
-	# Display emails in threaded mode, sorted by date (oldest at the top)
-	defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreadedMode" -string "yes"
-	defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortedDescending" -string "yes"
-	defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortOrder" -string "received-date"
-
 	# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 	defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-}
-
-function notificationCenter() {
-	# Disable Notification Center and remove the menu bar icon
-	launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 }
 
 safari() {
@@ -188,16 +135,6 @@ safari() {
 	defaults write com.apple.Safari AutoFillPasswords -bool false
 }
 
-screen() {
-	# Enable HiDPI display modes (requires restart)
-	sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
-}
-
-function sound() {
-	# Increase sound quality for Bluetooth headphones/headsets
-	defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
-}
-
 function trackpad() {
 	# Disable “natural” (Lion-style) scrolling
 	defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
@@ -208,17 +145,12 @@ function trackpad() {
 	defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 }
 
-# autocorrect
-# notificationCenter
 keyboard
 login
-sound
 trackpad
 finder
 safari
 dock
-energySaver
-screen
 mail
 
 killall Finder
