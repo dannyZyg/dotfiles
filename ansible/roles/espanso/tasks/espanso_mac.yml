@@ -1,11 +1,11 @@
-- name: Tap a espanso Homebrew repository
-  when: brew_exists is failed
+- name: Tap espanso Homebrew repository
+  when: espanso_exists is failed
   community.general.homebrew_tap:
     path: "{{ lookup('vars', 'brew_path') }}"
     name: espanso/espanso
 
 - name: Install espanso with homebrew
-  when: brew_exists is failed
+  when: espanso_exists is failed
   community.general.homebrew:
     path: "{{ lookup('vars', 'brew_path') }}"
     name: espanso
