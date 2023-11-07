@@ -7,15 +7,16 @@
   when: starship_exists is failed
   get_url:
     url: https://starship.rs/install.sh
-    dest: "tmp/install-starship.sh"
+    dest: "/tmp/install-starship.sh"
     mode: 0755
 
 - name: Install Starship
+  become: true
   when: starship_exists is failed
-  command: "tmp/install-starship.sh -y"
+  command: "/tmp/install-starship.sh -y"
 
 - name: Remove starship installer
   when: starship_exists
   ansible.builtin.file:
-    path: "tmp/install-starship.sh"
+    path: "/tmp/install-starship.sh"
     state: absent
