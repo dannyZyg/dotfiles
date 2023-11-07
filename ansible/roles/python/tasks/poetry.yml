@@ -7,4 +7,4 @@
   become_user: "{{ lookup('vars', 'username') }}"
   when: poetry_exists is failed
   command: >
-    sh -c "curl -sSL https://install.python-poetry.org | python3 -"
+    sh -c "curl -sSL https://install.python-poetry.org | ~/.pyenv/shims/python -"

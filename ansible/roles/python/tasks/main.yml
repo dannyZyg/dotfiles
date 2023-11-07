@@ -16,8 +16,8 @@
   include_tasks: pyenv.yml
   tags:
     - pyenv
-#
-# - name: Install poetry
-#   include_tasks: poetry.yml
-#   tags:
-#     - poetry
+
+- name: Install poetry
+  include_tasks: poetry.yml
+  tags:
+    - poetry

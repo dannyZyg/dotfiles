@@ -67,8 +67,11 @@
     path: /tmp/pyenv.run
     state: absent
 
-- name: Install python version 3.8 with pyenv
+- name: Install python versions with pyenv
   become_user: "{{ lookup('vars', 'username') }}"
   when: pyenv_exists
-  command: pyenv install 3.8
+  command: pyenv install "{{item}}"
   ignore_errors: true
+  with_items:
+    - 3.8.18
+    - 3.11.6
