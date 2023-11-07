@@ -55,6 +55,8 @@
 - name: Build neovim
   args:
     chdir: "{{ lookup('env', 'HOME') }}/packages/neovim"
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ lookup('vars', 'brew_path') }}"
   shell: "make -j 8 CMAKE_BUILD_TYPE=RelWithDebInfo"
 
 - name: Install neovim
