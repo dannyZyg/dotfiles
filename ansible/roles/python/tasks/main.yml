@@ -6,16 +6,16 @@
     dest: /usr/bin/python
     state: link
 
+- name: Install poetry
+  include_tasks: poetry.yml
+  tags:
+    - poetry
+
 - name: Install miniconda and create nvim environment
   include_tasks: miniconda.yml
   tags:
     - conda
     - nvim
-
-- name: Install pipx and pipx packages
-  include_tasks: pipx.yml
-  tags:
-    - pipx
 
 - name: Install pyenv
   include_tasks: pyenv.yml

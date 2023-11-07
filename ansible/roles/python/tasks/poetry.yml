@@ -1,0 +1,9 @@
+- name: Check Poetry installed
+  shell: command -v poetry
+  ignore_errors: true
+  register: poetry_exists
+
+- name: Install Poetry
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: poetry_exists is failed
+  command: curl -sSL https://install.python-poetry.org | python3 -
