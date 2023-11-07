@@ -1,5 +1,6 @@
 - name: Install fonts with homebrew
   community.general.homebrew:
+    path: "{{ lookup('vars', 'brew_path') }}"
     name: "{{ item }}"
   with_items:
     - font-fira-code

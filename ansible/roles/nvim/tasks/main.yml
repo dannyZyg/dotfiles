@@ -31,7 +31,7 @@
 - name: Install nvim dependencies on Mac
   when: ansible_distribution == 'MacOSX'
   homebrew:
-    path: "{{ lookup('vars', 'brew_path') }}/brew"
+    path: "{{ lookup('vars', 'brew_path') }}"
     name:
       - ninja
       - libtool

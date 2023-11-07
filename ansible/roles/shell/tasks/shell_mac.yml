@@ -1,7 +1,7 @@
 - name: Install shell related packages with homebrew
   community.general.homebrew:
     name: "{{ item }}"
-    path: "{{ lookup('vars', 'brew_path') }}/brew"
+    path: "{{ lookup('vars', 'brew_path') }}"
   with_items:
     - bat
     - diff-so-fancy

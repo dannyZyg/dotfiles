@@ -2,7 +2,7 @@
   when: brew_exists
   ignore_errors: true
   community.general.homebrew:
-    path: "{{ lookup('vars', 'brew_path') }}/brew"
+    path: "{{ lookup('vars', 'brew_path') }}"
     state: present
     name:
       - ack

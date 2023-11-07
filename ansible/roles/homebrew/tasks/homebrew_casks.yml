@@ -2,7 +2,7 @@
   when: brew_exists
   ignore_errors: true
   community.general.homebrew_cask:
-    path: "{{ lookup('vars', 'brew_path') }}/brew"
+    path: "{{ lookup('vars', 'brew_path') }}"
     state: present
     name:
       - aegisub

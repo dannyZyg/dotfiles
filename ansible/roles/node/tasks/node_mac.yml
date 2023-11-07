@@ -2,5 +2,6 @@
   when: n_exists is failed
   become_user: "{{ lookup('vars', 'username') }}"
   homebrew:
+    path: "{{ lookup('vars', 'brew_path') }}"
     name: n
     state: present
