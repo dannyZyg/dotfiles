@@ -6,7 +6,7 @@
     PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
     N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
   npm:
-    executable: "{{ lookup('vars', 'brew_path') }}/bin/npm"
+    executable: "{{ lookup('vars', 'brew_path') }}/npm"
     name: n
     global: yes
 
@@ -24,7 +24,7 @@
   environment:
     NPM_CONFIG_PREFIX: "{{ lookup('env', 'HOME') }}/.config/npm-global"
   npm:
-    executable: "{{ lookup('vars', 'brew_path') }}/bin/npm"
+    executable: "{{ lookup('vars', 'brew_path') }}/npm"
     name: "{{item}}"
     global: yes
   with_items:
