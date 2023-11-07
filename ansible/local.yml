@@ -163,9 +163,6 @@
     - role: fonts
       tags: [fonts]
 
-    - role: fzf
-      tags: [fzf]
-
     - role: nvim
       tags: [nvim]
 
