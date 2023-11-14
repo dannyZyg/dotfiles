@@ -53,3 +53,5 @@ end
 
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+
+vim.g.tidal_boot = os.getenv("HOME") .. "/.config/tidal/BootTidal.hs"

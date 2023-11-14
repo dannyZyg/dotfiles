@@ -1,0 +1,16 @@
+includePaths:
+    -   /Users/danny/Library/Application Support/SuperCollider/Extensions/SC3plugins
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Singleton
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Collapse
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/WindowViewRecall
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Log
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/UnitTest2
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Deferred
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/quarks
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Vowel
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/SuperDirt
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Dirt-Samples
+excludePaths:
+    []
+postInlineWarnings: false
+excludeDefaultPaths: false

@@ -95,5 +95,14 @@
       path: karabiner/karabiner.json
       if: '[[ "$OSTYPE" = "darwin"* ]]'
 
+    ~/.config/tidal/BootTidal.hs:
+      create: true
+      path: tidal/BootTidal.hs
+
+    ~/.config/SuperCollider/:
+      create: true
+      glob: true
+      path: supercollider/*
+
 - create:
     - ~/.vim/undodir
