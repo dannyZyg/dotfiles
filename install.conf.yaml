@@ -84,7 +84,7 @@
       path: pypoetry/config.toml
       if: '[[ "$OSTYPE" = "linux"* ]]'
 
-    ~/Library/Preferences/pypoetry/config.toml:
+    ~/Library/Application Support/pypoetry/config.toml:
       create: true
       path: pypoetry/config.toml
       if: '[[ "$OSTYPE" = "darwin"* ]]'
