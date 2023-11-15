@@ -141,7 +141,7 @@ alias ee='espanso edit'
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 
 # Grok stuff
-alias grok-aws="$CONDA_PATH/envs/grok-aws/bin/python ~/grok/grok-aws/grok-aws.py"
+alias grok-aws="cd ~/grok/grok-aws && poetry run python grok-aws.py"
 
 # tuned (realtime audio)
 alias cpu-max='tuned-adm profile latency-performance'
