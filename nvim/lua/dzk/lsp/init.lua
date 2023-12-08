@@ -64,6 +64,7 @@ local servers = {
 	eslint = require("dzk.lsp.servers.eslint").config,
 	svelte = require("dzk.lsp.servers.svelte").config,
 	yamlls = require("dzk.lsp.servers.yamlls").config,
+	hls = require("dzk.lsp.servers.haskell").config,
 	html = require("dzk.lsp.servers.html").config,
 	vimls = require("dzk.lsp.servers.vimls").config,
 	cssls = require("dzk.lsp.servers.cssls").config,
@@ -73,6 +74,7 @@ local servers = {
 	jsonls = require("dzk.lsp.servers.jsonls").config,
 	clangd = require("dzk.lsp.servers.clangd").config,
 	theme_check = require("dzk.lsp.servers.shopify").config,
+	ruff_lsp = require("dzk.lsp.servers.ruff").config,
 	rust_analyzer = require("dzk.lsp.servers.rust").config,
 }
 
