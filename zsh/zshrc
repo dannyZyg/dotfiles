@@ -6,6 +6,9 @@ export COLORTERM=truecolor
 export TMUX_CONFIG="$HOME/.config/tmux/.tmux.conf"
 export TEMP_DIR="/tmp"
 
+export HOST_OS="$(uname -s)"
+export HOST_ARCH="$(uname -m)"
+
 # removes auto highlight on paste
 zle_highlight=('paste:none')
 
