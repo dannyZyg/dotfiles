@@ -8,8 +8,11 @@ then
   exit
 fi
 
-ESPANSO_DIR=$(espanso path | awk '{print $2}' | head -n 1)
+ESPANSO_DIR=$(espanso path | head -n 1 | sed -n 's/Config: \(.*\)/\1/p')
 
-cp -r $ESPANSO_DIR .
+cp -rf "$ESPANSO_DIR/"* roles/espanso/files/
 
-ansible-vault encrypt --vault-id $VAULT_ID@prompt roles/espanso/files/match/*.yml roles/espanso/tasks/config/*.yml
+ansible-vault encrypt \
+  --vault-id $VAULT_ID@prompt \
+  roles/espanso/files/match/*.yml \
+  roles/espanso/files/config/*.yml
