@@ -68,9 +68,19 @@ s.reboot { // server options are only updated on reboot
 				~prophetMidi = MIDIOut.newByName("Prophet 6", "Prophet 6");
 				~prophetMidi.latency = 0;
 				~dirt.soundLibrary.addMIDI(\prophet6, ~prophetMidi);
-				"Prophet 6 connected, adding dirt device...".postln;
+				"✅ Prophet 6 connected, adding dirt device".postln;
 			},
-			{ "Prophet 6 not connected, not adding dirt device".postln }
+			{ "🚫 Prophet 6 not connected, not adding dirt device".postln }
+		);
+
+		if (MIDIClient.sources.detect({arg item, i; item.name == "Elektron Syntakt"}) != nil,
+			{
+				~syntaktMidi = MIDIOut.newByName("Elektron Syntakt", "Elektron Syntakt");
+				~syntaktMidi.latency = 0;
+				~dirt.soundLibrary.addMIDI(\syntakt, ~syntaktMidi);
+				"✅ Elektron Syntakt connected, adding dirt device".postln;
+			},
+			{ "🚫 Syntakt not connected, not adding dirt device".postln }
 		);
 
 		if (MIDIClient.sources.detect({arg item, i; item.name == "Operator"}) != nil,
@@ -78,10 +88,10 @@ s.reboot { // server options are only updated on reboot
 				~operatorMidi = MIDIOut.newByName("IAC Driver", "Operator");
 				~operatorMidi.latency = 0;
 				~dirt.soundLibrary.addMIDI(\operator, ~operatorMIDI);
-				"Adding operator dirt device...".postln;
+				"✅ Adding operator dirt device".postln;
 
 			},
-			{ "Ignoring operator dirt device".postln }
+			{ "🚫 Ignoring operator dirt device".postln }
 		);
 	};
 	s.latency = 0.6; // increase this if you get "late" messages

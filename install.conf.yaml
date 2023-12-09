@@ -104,5 +104,11 @@
       glob: true
       path: supercollider/*
 
+    ~/Library/Application Support/SuperCollider/startup.scd:
+      path: supercollider/startup.scd
+
+    ~/Library/Application Support/SuperCollider/sclang_conf.yaml:
+      path: supercollider/sclang_conf.yaml
+
 - create:
     - ~/.vim/undodir
