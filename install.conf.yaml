@@ -95,9 +95,10 @@
       path: karabiner/karabiner.json
       if: '[[ "$OSTYPE" = "darwin"* ]]'
 
-    ~/.config/tidal/BootTidal.hs:
+    ~/.config/tidal/:
       create: true
-      path: tidal/BootTidal.hs
+      glob: true
+      path: tidal/*
 
     ~/.config/SuperCollider/:
       create: true

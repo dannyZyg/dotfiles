@@ -79,4 +79,6 @@ let getState = streamGet tidal
 :set prompt "tidal> "
 :set prompt-cont ""
 
+:script ~/.config/tidal/hardware/Syntakt.hs
+
 default (Pattern String, Integer, Double)
