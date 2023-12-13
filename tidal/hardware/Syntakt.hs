@@ -14,7 +14,7 @@ let syntakt1 = s "syntakt" # midichan 0
 :}
 
 :{
-let synP pat value = ccn (inhabit [
+let synP paramName paramValue = ccn (inhabit [
                                 -- track parameters
                                 ("mute", 94), ("trLev", 95),
                                 -- trig parameters
@@ -24,7 +24,7 @@ let synP pat value = ccn (inhabit [
                                 ("portoTime", 9),
                                 -- amp parameters
                                 ("attack", 79), ("hold", 80), ("decay", 81), ("sustain", 82), ("release", 83),
-                                ("delS", 84), ("revS", 85),
+                                ("delSend", 84), ("revSend", 85),
                                 ("pan", 10), ("vol", 7),
                                 -- syn parameters
                                 ("A", 17), ("B", 18), ("C", 19), ("D", 20),
@@ -45,5 +45,5 @@ let synP pat value = ccn (inhabit [
                                 ("rHpf", 90), ("rLpf", 91),
                                 ("rMix", 92),
                                 -- fx track parameters (g for Global)
-                                ("gDrive", 15) ] pat) # ccv value
+                                ("gDrive", 15) ] paramName) # ccv paramValue
 :}

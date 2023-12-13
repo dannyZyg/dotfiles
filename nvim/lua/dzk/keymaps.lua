@@ -99,3 +99,7 @@ vim.keymap.set("n", "<leader>jm", ":%!jq -c<CR>")
 vim.keymap.set("n", "<leader>sd", function()
 	require("dzk.scnvim-doc")()
 end)
+
+-- Tidal
+vim.keymap.set("n", "<leader>thh", ":TidalHush<cr>")
+vim.keymap.set("n", "<C-e>", "<Esc><Plug>TidalParagraphSend<Esc>")
