@@ -9,11 +9,6 @@ vim.cmd([[
       autocmd!
       autocmd BufWritePre * :call TrimWhitespace()
   augroup END
-
-  augroup highlight_yank
-      autocmd!
-      au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=300}
-  augroup END
 ]])
 
 -- ts = 'number of spaces that <Tab> in file uses'
