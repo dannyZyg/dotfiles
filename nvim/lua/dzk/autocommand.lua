@@ -94,18 +94,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = {
-		"*/problem-types/spreadsheet/frontend/*.ts",
-		"*/problem-types/spreadsheet/frontend/*.tsx",
-		"*/problem-types/spreadsheet/frontend/*.js",
-	},
-	group = grok_problem_types,
-	callback = function()
-		vim.api.nvim_command(":! cd problem-types/spreadsheet/frontend/ && npm run build")
-	end,
-})
-
 vim.cmd([[
   augroup c
       autocmd!
