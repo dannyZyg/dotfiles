@@ -77,18 +77,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = {
-		"*/problem-types/microbit-v2/frontend/bottom-panel/*.ts",
-		"*/problem-types/microbit-v2/frontend/bottom-panel/*.tsx",
-		"*/problem-types/microbit-v2/frontend/bottom-panel/*.js",
-	},
-	group = grok_problem_types,
-	callback = function()
-		vim.api.nvim_command(":! cd problem-types/microbit-v2/frontend/bottom-panel && npm run build")
-	end,
-})
-
 vim.cmd([[
   augroup c
       autocmd!
