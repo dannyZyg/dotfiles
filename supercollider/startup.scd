@@ -11,16 +11,28 @@ if (\SCNvim.asClass.notNil) {
 
 (
 ~getOutput = {
-	var outputPreferences = [
-		'dzk AirPods Pro',
-		'WH-1000XM2',
-		'SPL Crimson',
-		'External Headphones',
-		'MacBook Pro Speakers',
-	];
+  var outputPreferences = [
+    "dzk AirPods Pro",
+    "WH-1000XM2",
+    "MHLink [48646]",
+    "SPL Crimson",
+    "External Headphones",
+    "MacBook Pro Speakers",
+  ];
 
-	// Select the first output device connected, in order of preference=
-	ServerOptions.outDevices.detect({ arg item, i; outputPreferences.includes(item.asSymbol)});
+  // Select the first output device connected, in order of preference above
+  Routine({
+    outputPreferences.do({ |output|
+      ServerOptions.outDevices.do({  |device|
+        if( output == device ) {
+          var msg = "Found preferred device:" + device;
+          msg.postln;
+          device.yield;
+        };
+      });
+    });
+    0.yield;  // yield is required here
+  }).next
 }
 );
 
