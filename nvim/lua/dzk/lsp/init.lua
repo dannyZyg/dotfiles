@@ -76,6 +76,7 @@ local servers = {
 	theme_check = require("dzk.lsp.servers.shopify").config,
 	ruff_lsp = require("dzk.lsp.servers.ruff").config,
 	rust_analyzer = require("dzk.lsp.servers.rust").config,
+	supercollider = require("dzk.lsp.servers.supercollider").config,
 }
 
 for server, config in pairs(servers) do
