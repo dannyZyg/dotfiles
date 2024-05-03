@@ -56,7 +56,7 @@ return packer.startup(function(use)
 	use("tpope/vim-surround")
 
 	-- Colorschemes
-	use("lunarvim/darkplus.nvim")
+	use("folke/tokyonight.nvim")
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -102,9 +102,6 @@ return packer.startup(function(use)
 	-- Git
 	use("lewis6991/gitsigns.nvim")
 	use("tpope/vim-fugitive")
-
-	-- Colour Schemes
-	use("morhetz/gruvbox")
 
 	-- Music
 	use("tidalcycles/vim-tidal")
