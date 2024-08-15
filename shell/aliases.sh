@@ -24,11 +24,11 @@ alias more=less
 alias cp="cp -i"
 
 # Replace ls with exa
-alias ls='exa -F'
-alias la='exa -aF'
-alias lt='exa -FT'
-alias lta='exa -aFT'
-alias ll='exa -alF --colour-scale'
+alias ls='eza -F'
+alias la='eza -aF'
+alias lt='eza -FT'
+alias lta='eza -aFT'
+alias ll='eza -alF --colour-scale'
 
 # always use neovim
 alias v='nvim'

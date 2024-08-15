@@ -8,6 +8,6 @@
   apt:
     pkg:
       - bat
-      - exa
+      - eza
       - tmux
       - zsh

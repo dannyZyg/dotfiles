@@ -8,6 +8,6 @@
   pacman:
     name:
       - bat
-      - exa
+      - eza
       - tmux
       - zsh

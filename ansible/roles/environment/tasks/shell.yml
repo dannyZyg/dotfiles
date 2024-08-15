@@ -20,14 +20,14 @@
   pacman:
     name:
       - bat
-      - exa
+      - eza
   when: ansible_facts['distribution'] == "Archlinux"
 
 - name: Install shell related packages on Debian systems
   become: true
   apt:
     pkg:
-      - exa
+      - eza
       - bat
   when: ansible_facts['os_family'] == "Debian"
 

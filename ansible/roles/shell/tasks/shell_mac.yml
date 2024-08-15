@@ -5,6 +5,6 @@
   with_items:
     - bat
     - diff-so-fancy
-    - exa
+    - eza
     - tmux
     - fzf
