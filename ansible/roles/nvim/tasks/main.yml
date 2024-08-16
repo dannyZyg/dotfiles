@@ -50,7 +50,7 @@
   ansible.builtin.git:
     repo: 'https://github.com/neovim/neovim.git'
     dest: "{{ lookup('env', 'HOME') }}/packages/neovim"
-    version: v0.9.5
+    version: v0.10.1
 
 - name: Build neovim
   args:
