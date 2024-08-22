@@ -76,7 +76,7 @@ return packer.startup(function(use)
 	use("williamboman/mason-lspconfig.nvim")
 	use("mfussenegger/nvim-dap")
 	use("mfussenegger/nvim-dap-python")
-	use("rcarriga/nvim-dap-ui")
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
 
 	-- LSP
 	use("neovim/nvim-lspconfig") -- enable LSP
