@@ -11,6 +11,7 @@ if (\SCNvim.asClass.notNil) {
   var outputPreferences = [
     "dzk AirPods Pro",
     "WH-1000XM2",
+    "ULN-8mkIV",
     "MHLink [48646]",
     "SPL Crimson",
     "External Headphones",

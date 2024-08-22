@@ -14,7 +14,6 @@ scnvim.setup({
 			map("editor.send_selection", "x"),
 		},
 		["<CR>"] = map("postwin.toggle"),
-		["<leader>i"] = map("postwin.toggle", "i"),
 		["<leader>ll"] = map("postwin.clear", { "n", "i" }),
 		["<C-k>"] = map("signature.show", { "n", "i" }),
 		["<C-h>"] = map("sclang.hard_stop", { "n", "x", "i" }),
@@ -22,6 +21,7 @@ scnvim.setup({
 		["<leader>sk"] = map("sclang.recompile"),
 		["<leader>sb"] = map_expr("s.boot"),
 		["<leader>sm"] = map_expr("s.meter"),
+		["<leader>pt"] = map_expr("s.plotTree"),
 	},
 	editor = {
 		highlight = {
