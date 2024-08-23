@@ -1,31 +1,4 @@
-- name: Install Homebrew packages
-  when: brew_exists
-  ignore_errors: true
-  community.general.homebrew:
-    path: "{{ lookup('vars', 'brew_path') }}"
-    state: present
-    name:
-      - ack
-      - btop
-      - cmatrix
-      - dog
-      - fd
-      - ffmpeg
-      - git
-      - jq
-      - lf
-      - luajit
-      - mas
-      - mpv
-      - mkvtoolnix
-      - postgresql
-      - ranger
-      - ripgrep
-      - trash-cli
-      - tree
-      - unar
-      - watch
-      - wget
-      - xclip
-      - yarn
-      - youtube-dl
+- name: Install formulae from formulae.txt
+  ansible.builtin.shell: xargs brew install < "{{ role_path }}/files/formulae.txt"
+  register: formulae_installation
+  changed_when: "'already installed' not in formulae_installation.stderr"

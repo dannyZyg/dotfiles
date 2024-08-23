@@ -13,7 +13,6 @@
     path: "{{ lookup('vars', 'brew_path') }}"
     update_homebrew: true
     upgrade_all: true
-    upgrade_options: ignore-pinned
 
 - name: Tap Homebrew repositories arm64
   include_tasks: homebrew_taps.yml
