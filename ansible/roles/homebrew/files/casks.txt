@@ -18,7 +18,6 @@ dbeaver-community
 discord
 docker
 dropbox
-easy-move-plus-resize
 expressions
 figma
 firefox
