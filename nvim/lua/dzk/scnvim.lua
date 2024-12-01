@@ -16,7 +16,7 @@ scnvim.setup({
 		["<CR>"] = map("postwin.toggle"),
 		["<leader>ll"] = map("postwin.clear", { "n", "i" }),
 		["<C-k>"] = map("signature.show", { "n", "i" }),
-		["<C-h>"] = map("sclang.hard_stop", { "n", "x", "i" }),
+		["<C-c>"] = map("sclang.hard_stop", { "n", "x", "i" }),
 		["<leader>st"] = map("sclang.start"),
 		["<leader>sk"] = map("sclang.recompile"),
 		["<leader>sb"] = map_expr("s.boot"),

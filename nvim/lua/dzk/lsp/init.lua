@@ -29,7 +29,7 @@ mason_lspconfig.setup({
 		"pyright",
 		"rust_analyzer",
 		"svelte",
-		"tsserver",
+		"ts_ls",
 	},
 })
 
@@ -70,13 +70,13 @@ local servers = {
 	cssls = require("dzk.lsp.servers.cssls").config,
 	pyright = require("dzk.lsp.servers.pyright").config,
 	lua_ls = require("dzk.lsp.servers.lua_ls").config,
-	tsserver = require("dzk.lsp.servers.tsserver").config,
+	ts_ls = require("dzk.lsp.servers.ts_ls").config,
 	jsonls = require("dzk.lsp.servers.jsonls").config,
 	clangd = require("dzk.lsp.servers.clangd").config,
 	theme_check = require("dzk.lsp.servers.shopify").config,
-	ruff_lsp = require("dzk.lsp.servers.ruff").config,
+	ruff = require("dzk.lsp.servers.ruff").config,
 	rust_analyzer = require("dzk.lsp.servers.rust").config,
-	supercollider = require("dzk.lsp.servers.supercollider").config,
+	--[[ supercollider = require("dzk.lsp.servers.supercollider").config, ]]
 }
 
 for server, config in pairs(servers) do
