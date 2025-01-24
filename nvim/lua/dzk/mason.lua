@@ -1,6 +1,10 @@
-local status_ok, mason = pcall(require, "mason")
-if not status_ok then
-	return
-end
+require("mason").setup()
 
-mason.setup()
+require('mason-nvim-dap').setup({
+  ensure_installed = { 'codelldb' },
+  handlers = {
+    function(config)
+      require('mason-nvim-dap').default_setup(config)
+    end
+  }
+})
