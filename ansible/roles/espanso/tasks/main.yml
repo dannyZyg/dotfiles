@@ -1,6 +1,6 @@
 - name: Check espanso installed
   when: ansible_facts['distribution'] == "MacOSX"
-  shell: command -v "{{ lookup('vars', 'brew_path') }}/espanso"
+  shell: command -v "/usr/local/bin/espanso"
   ignore_errors: true
   register: espanso_exists
 
