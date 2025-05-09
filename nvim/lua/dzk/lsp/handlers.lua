@@ -9,10 +9,6 @@ M.setup = function()
 		{ name = "DiagnosticSignInfo", text = "" },
 	}
 
-	for _, sign in ipairs(signs) do
-		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-	end
-
 	local config = {
 		-- disable virtual text
 		virtual_text = false,
@@ -81,6 +77,7 @@ local function lsp_keymaps(bufnr)
 	)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>hs", "<cmd>ClangdSwitchSourceHeader<CR>", opts)
 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 end
 

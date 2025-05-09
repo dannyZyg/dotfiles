@@ -22,7 +22,6 @@ mason_lspconfig.setup({
     "clangd",
     "cssls",
     "bashls",
-    "hls",
     "jsonls",
     "lua_ls",
     "marksman",
@@ -92,7 +91,7 @@ local servers = {
   jsonls = require("dzk.lsp.servers.jsonls").config,
   clangd = require("dzk.lsp.servers.clangd").config,
   theme_check = require("dzk.lsp.servers.shopify").config,
-  ruff = require("dzk.lsp.servers.ruff").config,
+  -- ruff = require("dzk.lsp.servers.ruff").config,
   rust_analyzer = require("dzk.lsp.servers.rust").config,
   supercollider = require("dzk.lsp.servers.supercollider").config,
 }
