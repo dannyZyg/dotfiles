@@ -1,0 +1,10 @@
+- name: Check uv installed
+  shell: command -v uv
+  ignore_errors: true
+  register: uv_exists
+
+- name: Install uv
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: uv_exists is failed
+  command: >
+    curl -LsSf https://astral.sh/uv/install.sh | sh

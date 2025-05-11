@@ -6,12 +6,6 @@
     dest: /usr/bin/python
     state: link
 
-- name: Install miniconda and create nvim environment
-  include_tasks: miniconda.yml
-  tags:
-    - conda
-    - nvim
-
 - name: Install pyenv
   include_tasks: pyenv.yml
   tags:
@@ -21,3 +15,8 @@
   include_tasks: poetry.yml
   tags:
     - poetry
+
+- name: Install uv
+  include_tasks: uv.yml
+  tags:
+    - uv
