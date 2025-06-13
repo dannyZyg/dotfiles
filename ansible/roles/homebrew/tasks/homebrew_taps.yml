@@ -4,4 +4,3 @@
     path: "{{ lookup('vars', 'brew_path') }}"
     name:
       - espanso/espanso
-      - homebrew/cask-fonts
