@@ -13,10 +13,10 @@ choosy
 chronosync
 cleanshot
 cycling74-max
-dash
+dash-shell
 dbeaver-community
 discord
-docker
+docker-desktop
 dropbox
 expressions
 figma
