@@ -1,14 +1,12 @@
-s.freeAll;
-
 ~cleanup = {
+  s.freeAll;
   ServerBoot.removeAll;
-  ServerQuit.removeAll;
   ServerTree.removeAll;
-  CmdPeriod.removeAll;
+  ServerQuit.removeAll;
 };
 
-ServerQuit.add(~cleanup);
-~cleanup.();
+ ~cleanup.();
+ ServerQuit.add(~cleanup);
 
 // Mac volume safety!
 Server.default.options.safetyClipThreshold = 1;
@@ -27,7 +25,7 @@ if (\SCNvim.asClass.notNil) {
     "ULN-8mkIV",
     "MHLink [48646]",
     "External Headphones",
-    "外部"
+    "外部",
     "MacBook Airのス",
   ];
 
@@ -36,7 +34,7 @@ if (\SCNvim.asClass.notNil) {
     outputPreferences.do({ |output|
       ServerOptions.outDevices.do({  |device|
         if( output == device ) {
-          var msg = "Found preferred device:" + device;
+          var msg = "✅ Found preferred device:" + device;
           msg.postln;
           device.yield;
         };
@@ -50,16 +48,24 @@ s.reboot { // server options are only updated on reboot
 	// configure the sound server: here you could add hardware specific options
 	// see http://doc.sccode.org/Classes/ServerOptions.html
   var device = ~getAudioDevice.();
+  var numOutputs = 16;
+  var numInputs = 16;
 
 	s.options.outDevice = device;
-	// s.options.inDevice = device;
-	s.options.sampleRate = nil;
+
+
+
+  ("🔉 Setting out device as: " ++ device ++ " with " ++ numOutputs ++ " outputs").postln;
+  ("🎙️ Setting in device as: " ++ device ++ " with " ++ numInputs ++ " inputs").postln;
+
+	s.options.inDevice = device;
+	s.options.sampleRate = 48000;
 	s.options.numBuffers = 1024 * 256; // increase this if you need to load more samples
 	s.options.memSize = 8192 * 32; // increase this if you get "alloc failed" messages
 	s.options.numWireBufs = 128; // increase this if you get "exceeded number of interconnect buffers" messages
 	s.options.maxNodes = 1024 * 32; // increase this if you are getting drop outs and the message "too many nodes"
-	s.options.numOutputBusChannels = 2; // set this to your hardware output channel size, if necessary
-	s.options.numInputBusChannels = 0; // set this to your hardware output channel size, if necessary
+	s.options.numOutputBusChannels = 16; // set this to your hardware output channel size, if necessary
+	s.options.numInputBusChannels = 16; // set this to your hardware output channel size, if necessary
 	s.latency = 0.6; // increase this if you get "late" messages
 
   s.newBusAllocators;
