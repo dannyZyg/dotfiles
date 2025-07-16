@@ -1,6 +1,7 @@
 return {
   "davidgranstrom/scnvim",
   enabled = true,
+  ft = 'supercollider',
   config = function()
     local scnvim = require("scnvim")
 

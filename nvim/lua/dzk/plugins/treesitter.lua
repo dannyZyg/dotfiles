@@ -4,6 +4,20 @@ return {
     enabled = true,
     build = ":TSUpdate",
     config = function()
+
+      local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+      parser_config.genexpr = {
+        install_info = {
+          url = 'https://github.com/sadguitarius/tree-sitter-genexpr',
+          url_to_path = function(url)
+              return "tree-sitter-genexpr-main" -- This tells nvim-treesitter the exact directory name
+          end,
+          files = { 'src/parser.c', 'src/scanner.c' },
+          maintainer = '@sadguitarius',
+        },
+        filetype = 'genexpr'
+      }
+
       require'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all" (the listed parsers MUST always be installed)
         ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },

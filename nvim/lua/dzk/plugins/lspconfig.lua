@@ -5,12 +5,6 @@ return  {
   config = function()
 
     vim.lsp.config['supercollider'] = {
-      -- cmd = {
-      --   "sc-language-server",
-      --   "--log-file",
-      --   "/tmp/sc_lsp_output.log",
-      -- },
-
       cmd = {
         "/Users/danny/dev/LanguageServer.quark/sc_language_server/.venv/bin/python",
         "-Xfrozen_modules=off",
@@ -18,12 +12,15 @@ return  {
         "--log-file",
         "/tmp/sc_lsp_output.log",
         "--verbose",
+        "--", -- indicates the args that follow are to be passed to sclang
+        "-u", "57300",  -- e.g. custom UDP listening port for sclang
+        "-l", "/Users/danny/.dotfiles/supercollider/sclang_conf_lsp.yaml",  -- e.g. full path to config file
       },
 
       filetypes = { "supercollider" },
-      root_dir = function(fname)
-        return "/"
-      end,
+      -- root_dir = function(fname)
+      --     return "/"
+      -- end,
       settings = {},
     }
 
@@ -33,10 +30,12 @@ return  {
       "cmake",
       "clangd",
       "cssls",
-      "docker-compose-language-service",
+      -- "docker-compose-language-service",
       "dockerls",
-      "jinja_lsp",
-      "basedpyright",
+      -- "jinja_lsp",
+      "pyright",
+      --"basedpyright",
+      "ruff",
       "html",
       "ts_ls",
       "supercollider",

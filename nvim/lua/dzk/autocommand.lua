@@ -77,18 +77,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
-vim.cmd([[
-  augroup c
-      autocmd!
-      autocmd FileType c,cpp,h,hpp,glsl call MakeRun()
-  augroup end
-
-  function! MakeRun()
-      nnoremap <C-e> :terminal make -j8 && make run<cr>
-      inoremap <C-e> <esc>:terminal make -j8 && make run<cr>
-  endfunction
-]])
-
 local function augroup(name)
 	return vim.api.nvim_create_augroup("dzk_" .. name, { clear = true })
 end
