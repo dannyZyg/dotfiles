@@ -1,0 +1,13 @@
+includePaths:
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Singleton
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Collapse
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/WindowViewRecall
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Log
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/UnitTest2
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Deferred
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/quarks
+    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/LanguageServer
+excludePaths:
+    []
+postInlineWarnings: false
+excludeDefaultPaths: false

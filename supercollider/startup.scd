@@ -90,6 +90,5 @@ s.reboot { // server options are only updated on reboot
     ServerTree.add(createLimiter);
     ServerTree.run;
 
-    thisProcess.nowExecutingPath.dirname +/+ "super_dirt.scd".loadRelative;
 	});
 };
