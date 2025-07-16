@@ -3,8 +3,6 @@ stty stop undef # Stops Ctrl-s from freezing the terminal
 unsetopt BEEP
 
 export COLORTERM=truecolor
-export TMUX_CONFIG="$HOME/.config/tmux/.tmux.conf"
-export TEMP_DIR="/tmp"
 
 export HOST_OS="$(uname -s)"
 export HOST_ARCH="$(uname -m)"
@@ -15,7 +13,6 @@ zle_highlight=('paste:none')
 DOTFILES_DIR="$HOME/.dotfiles"
 [ -f "$DOTFILES_DIR/shell/aliases.sh" ] && source "$DOTFILES_DIR/shell/aliases.sh"
 [ -f "$DOTFILES_DIR/shell/functions.sh" ] && source "$DOTFILES_DIR/shell/functions.sh"
-[ -f "$DOTFILES_DIR/shell/grok.sh" ] && source "$DOTFILES_DIR/shell/grok.sh"
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -56,7 +53,6 @@ fi
 
 export EDITOR=nvim
 export TMUX_CONFIG="$HOME/.config/tmux/.tmux.conf"
-export TEMP_DIR="/tmp"
 export N_PREFIX="$HOME/.config/n"
 
 export PATH="$N_PREFIX/bin:$PATH"
@@ -98,27 +94,12 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Use lf to switch directories and bind it to ctrl-o
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-    fi
-}
-bindkey -s '^o' 'lfcd\n'
-
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
 # Added by serverless binary installer
 export PATH="$HOME/.serverless/bin:$PATH"
-
-export ANKI_DIR="~/Library/Application\ Support/Anki2"
-export ANKI_PROFILE="danny"
 
 # # python penv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -134,7 +115,7 @@ jdk() {
 	version=$1
 	export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
 	java -version
- }
+}
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator

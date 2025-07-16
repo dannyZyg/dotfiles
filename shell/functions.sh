@@ -1,10 +1,5 @@
 #!/bin/bash
 
-function dockerDbIp {
-	CONTAINER=$(grep DB_CONTAINER_NAME .env | sed 's/.*[=]//g')
-	echo $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER)
-}
-
 # # ex - archive extractor
 # # usage: ex <file>
 ex ()
@@ -34,68 +29,6 @@ function myip()
 	echo $(curl http://checkip.amazonaws.com/)
 }
 
-function checkNet()
-{
-	if ping -c 1 google.com &>/dev/null; then
-	  echo "It appears you have a working internet connection"
-	else
-		echo "NBN FUCKED!!!"
-	fi
-}
-
-function showKeys()
-{
-	xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
-}
-
-function src()
-{
-	if [ "$SHELL" = '/usr/bin/bash' ] ; then
-		source ~/.bashrc
-	elif [ "$SHELL" = '/usr/bin/zsh' ] ; then
-		source ~/.config/zsh/.zshrc
-	fi
-}
-
-function rc()
-{
-	if [ "$SHELL" = '/usr/bin/bash' ] ; then
-		$EDITOR ~/.bashrc
-	elif [ "$SHELL" = '/usr/bin/zsh' ] ; then
-		$EDITOR ~/.config/zsh/.zshrc
-	fi
-}
-
-function rcloneRestore()
-{
-	rclone copy 'Backblaze encryption':$1 $HOME/restore/
-}
-
-# check file size
-function fs() { du -sh ${1} | awk '{print $1}'; }
-
-function gph()
-{
-	if ! git push
-	then
-		git push -u origin $(gcb)
-	fi
-}
-
-function ripyt() {
-	youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 $1
-}
-
-function pyenv-init() {
-	dir=$(basename $(pwd))
-	mkvirtualenv $dir
-}
-
-function pyenv-rm() {
-	dir=$(basename $(pwd))
-	rmvirtualenv $dir
-}
-
 function exists() {
 	command -v $1 >/dev/null 2>&1
 }
@@ -111,21 +44,17 @@ function zsh_add_plugin() {
     fi
 }
 
-function fcd() {
-	cd $(find . -type d | fzf)
-}
-
-function fgco() {
-	git checkout $(git branch | fzf)
-}
-
-function ftmux() {
-	$(find ~/sync/scripts/tmux/*.sh | fzf)
-}
-
 function awsp() {
 	AWS="${1:-${AWS_PROFILE}}"
 	export AWS_PROFILE=$AWS
 	echo $AWS
 	alias aws="aws --profile $AWS_PROFILE"
+}
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
 }
