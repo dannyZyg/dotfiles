@@ -1,31 +1,7 @@
 - name: Install desired version of Node using N
   when: ansible_distribution == 'MacOSX' and ansible_architecture == 'arm64'
   become_user: "{{ lookup('vars', 'username') }}"
-  command: "{{ lookup('vars', 'brew_path') }}/n 16"
+  command: "{{ lookup('vars', 'brew_path') }}/n 24"
   environment:
     PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
     N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
-
-# - name: Install global npm packages
-#   become_user: "{{ lookup('vars', 'username') }}"
-#   environment:
-#     NPM_CONFIG_PREFIX: "{{ lookup('env', 'HOME') }}/.config/npm-global"
-#   npm:
-#     executable: "{{ lookup('vars', 'brew_path') }}/npm"
-#     name: "{{item}}"
-#     global: yes
-#   with_items:
-#     - "yarn"
-#     - "typescript"
-#     - "ts-node"
-#     - "neovim"
-#     - "@gridsome/cli"
-#     - "yaml-language-server"
-#     - "vim-language-server"
-#     - "vscode-langservers-extracted"
-#     - "graphql-language-service-cli"
-#     - "apollo"
-#     - "vscode-langservers-extracted"
-#     - "diff-so-fancy"
-#   tags:
-#     - npm

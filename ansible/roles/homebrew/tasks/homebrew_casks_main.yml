@@ -1,0 +1,31 @@
+- name: Install Homebrew casks (main)
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: present
+    update_homebrew: true
+    accept_external_apps: true
+  tags:
+    - brew_main
+  loop:
+    - alfred
+    - arc
+    - balenaetcher
+    - bartender
+    - caffeine
+    - choosy
+    - cleanshot
+    - dbeaver-community
+    - docker-desktop
+    - dropbox
+    - figma
+    - firefox
+    - freedom
+    - google-chrome
+    - hazel
+    - istat-menus
+    - karabiner-elements
+    - keyboard-maestro
+    - lunar
+    - omnifocus
+    - the-unarchiver
+    - visual-studio-code

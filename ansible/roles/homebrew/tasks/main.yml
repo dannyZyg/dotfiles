@@ -4,6 +4,10 @@
   shell: command -v brew
   ignore_errors: true
   register: brew_exists
+  tags:
+    - brew_main
+    - brew_music
+    - brew_home
 
 - name: Upgrade all homebrew
   when:
@@ -14,23 +18,38 @@
     update_homebrew: true
     upgrade_all: true
 
-- name: Tap Homebrew repositories arm64
-  include_tasks: homebrew_taps.yml
-  when:
-    - ansible_facts['distribution'] == "MacOSX"
-    - ansible_architecture == "arm64"
-    - brew_exists
-
-- name: Install Homebrew casks arm64
-  include_tasks: homebrew_casks.yml
-  when:
-    - ansible_facts['distribution'] == "MacOSX"
-    - ansible_architecture == "arm64"
-    - brew_exists
-
-- name: Install Homebrew forumlae arm64
+- name: Install Homebrew formulae
   include_tasks: homebrew_formulae.yml
   when:
     - ansible_facts['distribution'] == "MacOSX"
     - ansible_architecture == "arm64"
     - brew_exists
+  tags:
+    - brew_main
+
+- name: Install Homebrew casks (main)
+  include_tasks: homebrew_casks_main.yml
+  when:
+    - ansible_facts['distribution'] == "MacOSX"
+    - ansible_architecture == "arm64"
+    - brew_exists
+  tags:
+    - brew_main
+
+- name: Install Homebrew casks (music)
+  include_tasks: homebrew_casks_music.yml
+  when:
+    - ansible_facts['distribution'] == "MacOSX"
+    - ansible_architecture == "arm64"
+    - brew_exists
+  tags:
+    - brew_music
+
+- name: Install Homebrew casks (home)
+  include_tasks: homebrew_casks_home.yml
+  when:
+    - ansible_facts['distribution'] == "MacOSX"
+    - ansible_architecture == "arm64"
+    - brew_exists
+  tags:
+    - brew_home

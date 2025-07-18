@@ -1,4 +1,0 @@
-- name: Install casks from casks.txt
-  ansible.builtin.shell: xargs brew install < "{{ role_path }}/files/casks.txt"
-  register: cask_installation
-  changed_when: "'already installed' not in cask_installation.stderr"

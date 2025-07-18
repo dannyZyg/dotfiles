@@ -1,4 +1,37 @@
-- name: Install formulae from formulae.txt
-  ansible.builtin.shell: xargs brew install < "{{ role_path }}/files/formulae.txt"
-  register: formulae_installation
-  changed_when: "'already installed' not in formulae_installation.stderr"
+- name: Install Homebrew formulae
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+    update_homebrew: true
+  tags:
+    - brew_main
+  loop:
+    - ack
+    - awscli
+    - btop
+    - cmatrix
+    - fd
+    - ffmpeg
+    - fzf
+    - git
+    - imagemagick
+    - jq
+    - lf
+    - luajit
+    - mas
+    - mpv
+    - mkvtoolnix
+    - neovim
+    - ranger
+    - resvg
+    - ripgrep
+    - sevenzip
+    - trash-cli
+    - tree
+    - unar
+    - watch
+    - wget
+    - xclip
+    - yarn
+    - yt-dlp
+    - zoxide

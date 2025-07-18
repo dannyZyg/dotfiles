@@ -1,6 +1,0 @@
-- name: Install rofi
-  become: true
-  apt:
-    update_cache: true
-    name:
-      - rofi

@@ -1,6 +1,0 @@
-- name: Tap a Homebrew repositories
-  when: brew_exists
-  community.general.homebrew_tap:
-    path: "{{ lookup('vars', 'brew_path') }}"
-    name:
-      - espanso/espanso

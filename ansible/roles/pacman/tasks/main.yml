@@ -1,7 +1,7 @@
 - name: Get pacman package list
   when: ansible_facts['distribution'] == "Archlinux"
   command:
-    cmd: cat ./packages/pacman.txt
+    cmd: cat "{{ role_path }}/files/pacman.txt"
   register: pacman_packages
   tags:
     - pacman
@@ -18,7 +18,7 @@
 
 - name: Install sound firmeware for Thinkpad T14
   become: true
-  when: ansible_facts['product_version'] == "ThinkPad T14 Gen 2i"
+  when: ansible_facts['distribution'] == "Archlinux" and ansible_facts['product_version'] == "ThinkPad T14 Gen 2i"
   pacman:
     name: sof-firmware
   tags:

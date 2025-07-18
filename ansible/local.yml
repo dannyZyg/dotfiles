@@ -3,12 +3,6 @@
   gather_facts: True
 
   pre_tasks:
-    - name: Set miniconda path
-      set_fact:
-        conda_path: "{{ lookup('env', 'HOME') }}/.config/miniconda"
-      tags:
-        - always
-
     - name: Set brew path on MacOSX silicon
       set_fact:
         brew_path: "/opt/homebrew/bin"
@@ -20,44 +14,6 @@
       set_fact:
         brew_path: "/usr/local/bin"
       when: ansible_distribution == 'MacOSX' and ansible_architecture == 'x86_64'
-      tags:
-        - always
-
-    - name: Set miniconda url on Linux
-      set_fact:
-        miniconda_url: >
-          https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-      when: ansible_system == "Linux"
-      tags:
-        - always
-
-    - name: Set miniconda url on Mac (intel)
-      set_fact:
-        miniconda_url: >
-          https://repo.anaconda.com/miniconda/Miniconda3-latest-MaxOSX-x86_64.sh
-      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'x86_64'
-      tags:
-        - always
-
-    - name: Set miniconda url on Mac (silicon)
-      set_fact:
-        miniconda_url: >
-          https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
-      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'arm64'
-      tags:
-        - always
-
-    - name: Set Bitwig extensions dir on Linux
-      set_fact:
-        bitwig_extensions_dir: "{{ lookup('env', 'HOME') }}/Bitwig Studio/Extensions"
-      when: ansible_system == "Linux"
-      tags:
-        - always
-
-    - name: Set Bitwig extensions dir on Mac
-      set_fact:
-        bitwig_extensions_dir: "{{ lookup('env', 'HOME') }}/Documents/Bitwig Studio/Extensions"
-      when: ansible_distribution == 'MacOSX'
       tags:
         - always
 
@@ -101,19 +57,6 @@
         - aur
         - packages
 
-    - name: update repositories
-      when: ansible_facts['os_family'] == "Debian"
-      apt: update_cache=yes
-      become: true
-      changed_when: False
-      tags:
-        - packages
-        - apt
-
-  tasks:
-    - name: Load debug tasks
-      import_tasks: tasks/debug.yml
-
   roles:
     - role: 1password
       tags: [1password, initial]
@@ -125,10 +68,9 @@
       tags: [node, npm]
 
     - role: python
-      tags: [python, poetry]
+      tags: [python]
 
     - role: homebrew
-      tags: [homebrew]
 
     - role: espanso
       tags: [espanso]
@@ -142,17 +84,8 @@
     - role: audio
       tags: [audio]
 
-    # - role: anki
-    #   tags: [anki]
-
     - role: aur
-      tags: [aur, initial]
-
-    - role: docker
-      tags: [docker]
-
-    - role: chrome
-      tags: [chrome]
+      tags: [aur]
 
     - role: shell
       tags: [shell]
@@ -163,20 +96,8 @@
     - role: fonts
       tags: [fonts]
 
-    - role: nvim
-      tags: [nvim]
-
-    - role: gnome
-      tags: [gnome]
-
     - role: repos
       tags: [repos]
 
-    - role: rofi
-      tags: [rofi]
-
     - role: rust
       tags: [rust]
-
-    - role: sxhkd
-      tags: [sxhkd]

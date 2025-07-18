@@ -3,6 +3,7 @@
     name: "{{ item }}"
     path: "{{ lookup('vars', 'brew_path') }}"
   with_items:
+    - neovim
     - bat
     - diff-so-fancy
     - eza

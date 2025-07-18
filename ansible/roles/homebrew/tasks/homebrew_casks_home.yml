@@ -1,0 +1,18 @@
+- name: Install Homebrew casks (home)
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: present
+    update_homebrew: true
+    accept_external_apps: true
+  tags:
+    - brew_home
+  loop:
+    - aegisub
+    - calibre
+    - carbon-copy-cloner
+    - chronosync
+    - discord
+    - libreoffice
+    - macfuse
+    - tor-browser
+    - vlc

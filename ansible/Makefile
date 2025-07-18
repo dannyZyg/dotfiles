@@ -29,9 +29,6 @@ npm: ## Install npm packages
 node-npm: ## Install Node, N and npm packages
 	ansible-playbook local.yml -t node,npm --ask-become-pass
 
-nvim: ## Clone, build and install neovim
-	ansible-playbook local.yml -t nvim --ask-become-pass
-
 espanso-unpack: ## Decrypt espanso repo files into the config path
 	ansible-playbook local.yml -t espanso --ask-vault-pass
 
