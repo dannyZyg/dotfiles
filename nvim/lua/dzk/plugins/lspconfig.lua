@@ -4,7 +4,22 @@ return  {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
 
-    vim.lsp.config['supercollider'] = {
+    local servers = {
+      "ansiblels",
+      "bashls",
+      "cmake",
+      "clangd",
+      "cssls",
+      "dockerls",
+      -- "jinja_lsp",
+      "pyright",
+      --"basedpyright",
+      "ruff",
+      "html",
+      "ts_ls",
+    }
+
+    supercollider_config = {
       cmd = {
         "/Users/danny/dev/LanguageServer.quark/sc_language_server/.venv/bin/python",
         "-Xfrozen_modules=off",
@@ -24,22 +39,17 @@ return  {
       settings = {},
     }
 
-    local servers = {
-      "ansiblels",
-      "bashls",
-      "cmake",
-      "clangd",
-      "cssls",
-      -- "docker-compose-language-service",
-      "dockerls",
-      -- "jinja_lsp",
-      "pyright",
-      --"basedpyright",
-      "ruff",
-      "html",
-      "ts_ls",
-      "supercollider",
-    }
+    local sc_lsp_quark = io.open("/Users/danny/dev/LanguageServer.quark/LanguageServer.quark", "r")
+
+    if sc_lsp_quark then
+        -- Directory exists (or at least the path is valid enough to attempt to open a file)
+        sc_lsp_quark:close() -- Close the file immediately
+
+        vim.lsp.config['supercollider'] = supercollider_config
+        table.insert(servers, "supercollider")
+    end
+
+
 
     for _, server in pairs(servers) do
       vim.lsp.enable(server)
