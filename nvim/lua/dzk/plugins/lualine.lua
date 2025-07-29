@@ -38,7 +38,15 @@ return {
       lualine_y = {},
       lualine_z = {},
     },
-    tabline = {},
+    tabline = {
+      lualine_b = {
+        {
+          "filename",
+          path = 1
+        }
+      },
+
+    },
     extensions = {},
   },
 }
