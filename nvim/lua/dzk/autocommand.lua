@@ -11,6 +11,36 @@ vim.cmd([[
   augroup END
 ]])
 
+vim.api.nvim_create_user_command("CopyGitPath", function()
+    local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+    if not git_root or git_root == "" then
+        print("Not inside a git repository")
+        return
+    end
+    local file_path = vim.fn.expand("%:p")
+    local relative_path = vim.fn.substitute(file_path, git_root .. "/", "", "")
+    vim.fn.setreg("+", relative_path)
+    print("Copied to clipboard: " .. relative_path)
+end, {})
+
+vim.api.nvim_create_user_command("CopyAbsolutePath", function()
+    local file_path = vim.fn.expand("%:p")
+    vim.fn.setreg("+", file_path)
+    print("Copied to clipboard: " .. file_path)
+end, {})
+
+vim.api.nvim_create_user_command("CopyFileName", function()
+    local file_name = vim.fn.expand("%:t")
+    vim.fn.setreg("+", file_name)
+    print("Copied to clipboard: " .. file_name)
+end, {})
+
+vim.api.nvim_create_user_command("CopyRelativePath", function()
+    local relative_path = vim.fn.expand("%:~:.")
+    vim.fn.setreg("+", relative_path)
+    print("Copied to clipboard: " .. relative_path)
+end, {})
+
 -- ts = 'number of spaces that <Tab> in file uses'
 -- sts = 'number of spaces that <Tab> uses while editing'
 -- sw = 'number of spaces to use for (auto)indent step'
