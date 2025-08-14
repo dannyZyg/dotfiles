@@ -87,6 +87,12 @@ end)
 vim.keymap.set("n", "<leader>fs", function()
 	require("telescope.builtin").grep_string()
 end)
+vim.keymap.set("n", "<leader>fc", function()
+	require("telescope.builtin").commands()
+end)
+vim.keymap.set("n", "<leader>fp", function()
+	require("telescope.builtin").commands({default_text = "Copy"})
+end)
 
 -- Format JSON
 vim.keymap.set("n", "<leader>jp", ":%!jq<CR>")
