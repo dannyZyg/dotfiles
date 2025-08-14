@@ -43,8 +43,7 @@ vim.keymap.set("n", "<S-h>", ":bprevious<CR>")
 
 -- Insert --
 -- Press jk fast to exit insert
-vim.keymap.set("i", "jk", "<ESC>")
-
+-- vim.keymap.set("i", "jk", "<ESC>")
 -- Visual
 
 -- Move text up and down
