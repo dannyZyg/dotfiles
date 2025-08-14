@@ -92,6 +92,9 @@ end)
 vim.keymap.set("n", "<leader>fp", function()
 	require("telescope.builtin").commands({default_text = "Copy"})
 end)
+vim.keymap.set("n", "<leader>fr", function()
+	require("telescope.builtin").resume()
+end)
 
 -- Format JSON
 vim.keymap.set("n", "<leader>jp", ":%!jq<CR>")
