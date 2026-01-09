@@ -32,7 +32,7 @@ elif [[ "$OSTYPE" == "linux"* ]]; then
 fi
 
 export EDITOR=nvim
-export TMUX_CONFIG="$HOME/.config/tmux/.tmux.conf"
+export TMUX_CONFIG="$HOME/.config/tmux/tmux.conf"
 export N_PREFIX="$HOME/.config/n"
 
 export PATH="$N_PREFIX/bin:$PATH"
