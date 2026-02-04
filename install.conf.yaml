@@ -28,6 +28,10 @@
     ~/.config/tmux/.tmux.conf:
       path: tmux/tmux.conf
 
+    ~/.config/yazi:
+      glob: true
+      path: yazi/**
+
     ~/.config/alacritty/alacritty.yml:
       path: alacritty/alacritty.yml
 

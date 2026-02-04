@@ -27,5 +27,6 @@ watch
 wget
 xclip
 yarn
+yazi
 yt-dlp
 zoxide
