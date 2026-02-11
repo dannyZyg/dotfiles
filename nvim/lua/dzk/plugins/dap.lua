@@ -13,11 +13,35 @@ return {
   {
     "jay-babu/mason-nvim-dap.nvim",
     enabled = true,
+    event = "VeryLazy",
+    dependencies = {"williamboman/mason.nvim", "mfussenegger/nvim-dap" },
+    opts = {
+      handlers = {
+        function(config)
+          require('mason-nvim-dap').default_setup(config)
+        end,
+        codelldb = function(config)
+
+          table.insert(config.configurations, {
+            name = "Attach to process",
+            type = 'codelldb',
+            request = 'attach',
+            pid = function()
+              return require("dap.utils").pick_process({ filter = "REAPER" })
+            end,
+            args = {},
+          })
+
+          require('mason-nvim-dap').default_setup(config)
+        end,
+      },
+    },
   },
 
   {
     "mfussenegger/nvim-dap",
     enabled = true,
+    event = "VeryLazy",
 
     init = function()
 
@@ -39,7 +63,7 @@ return {
       vim.keymap.set("n", "<leader>gb", dap.run_to_cursor)
 
       -- Eval var under cursor
-      vim.keymap.set("n", "<space>?", function()
+      vim.keymap.set("n", "<space>/", function()
         dapui.eval(nil, { enter = true })
       end)
 
