@@ -1,64 +1,80 @@
 # Ansible Bootstrap
 
-My personal ansible playbook to get a system up and running from nothing. This
-is a work in progress...
+My personal ansible playbook to get a system up and running from nothing.
 
-There is support for MacOS and waning support for Linux
+Supports MacOS (primary) and Linux (limited support).
 
 ## MacOS Setup
 
 ### Install Dependencies
 
-Install brew
+Install Homebrew:
 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-Install 1Password
+Install 1Password and Ansible:
 
-    /opt/homebrew/bin/brew install 1password
+    /opt/homebrew/bin/brew install 1password ansible
 
-Install ansible
+### Run the Playbook
 
-    /opt/homebrew/bin/brew install ansible
+Run the full playbook:
 
-### Run the installer
+    ansible-playbook local.yml --ask-vault-pass --ask-become-pass
 
-*You won't yet have ansible in your PATH (via brew), so run it with the full path initially*
+## Available Tags
 
-    /opt/homebrew/bin/ansible
+List all available tags:
 
-## Tasks
+    ansible-playbook local.yml --list-tags
 
-Run `make` to list all install options.
+Run specific tasks using the `-t` flag:
 
-The `all` command is still experimental as I debug running the whole playbook without errors...
+    ansible-playbook local.yml -t <tag>
 
+### Common Tags
+
+| Tag | Description |
+|-----|-------------|
+| `dotfiles` | Install dotfiles with dotbot |
+| `node`, `npm` | Install Node.js and npm packages |
+| `python` | Install Python tooling |
+| `brew_main` | Install Homebrew formulae and main casks |
+| `brew_home` | Install Homebrew home casks |
+| `brew_music` | Install Homebrew music casks |
+| `espanso` | Decrypt and install espanso config |
+| `shell` | Install zsh and shell tools |
+| `ssh` | Decrypt SSH config |
+| `rust` | Install Rust and cargo packages |
+| `repos` | Clone personal git repos |
+| `fonts` | Install fonts |
+
+### Commands Requiring Extra Flags
+
+Some tasks require vault password or sudo:
+
+```bash
+# Full playbook (requires vault + sudo)
+ansible-playbook local.yml --ask-vault-pass --ask-become-pass
+
+# Shell setup (requires vault + sudo)
+ansible-playbook local.yml -t shell --ask-vault-pass --ask-become-pass
+
+# SSH config (requires vault)
+ansible-playbook local.yml -t ssh --ask-vault-pass
+
+# Espanso config (requires vault)
+ansible-playbook local.yml -t espanso --ask-vault-pass
 ```
-all                  Run the full ansible playbook
-apple                Setup Apple system settings
-apt-install          Install pacman packages
-build-packages       Build packages from src
-cargo                Install cargo packages
-debug                Print out env vars
-dotfiles             Install dotfiles with dotbot
-espanso-pack         Encrypt the system espanso files - overwrites repo files
-espanso-unpack       Decrypt espanso repo files into the config path
-facts                Gather ansible facts
-flatpak-install      Installs flatpak packages
-help                 Show this help
-install-packages     Install all packages
-node-npm             Install Node, N and npm packages
-node                 Install Node, N and a version of node with N
-npm                  Install npm packages
-nvim                 Clone, build and install neovim
-pacman-aur-install   Install aur packages
-pacman-install       Install pacman packages
-pipx                 Installs pipx pachages
-pull-repos           Pulls my github repos
-python               Installs Python with conda
-rust                 Installs rust and global cargo packages
-shell                Installs zsh and related tools, sets the default shell
-system-files         Installs any system files
-```
 
-Run a specific option using `make all` for example.
+### Dry Run
+
+Use `--check` to see what would change without making changes:
+
+    ansible-playbook local.yml -t brew_main --check
+
+## Encrypting Espanso Config
+
+To encrypt the system espanso files back into the repo:
+
+    ./scripts/encrypt-espanso-conf.sh
