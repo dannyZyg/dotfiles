@@ -45,10 +45,10 @@ ansible-playbook local.yml -t bootstrap
 ```
 
 This installs the core setup:
-- Dotfiles (via dotbot)
 - Homebrew formulae and main casks
+- Dotfiles (via dotbot)
 - Node.js and npm packages
-- Python tooling
+- Python tooling (pyenv, poetry, uv)
 - Espanso text expansion
 - Shell configuration (zsh)
 - SSH config
