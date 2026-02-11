@@ -14,6 +14,6 @@ cp -rf "$ESPANSO_DIR/"* roles/espanso/files/
 
 ansible-vault encrypt \
   --encrypt-vault-id $VAULT_ID \
-  --vault-id $VAULT_ID@scripts/vault-password.sh \
+  --vault-id $VAULT_ID@scripts/vault-password-client.sh \
   roles/espanso/files/match/*.yml \
   roles/espanso/files/config/*.yml

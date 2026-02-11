@@ -157,13 +157,3 @@ op --version
 # Check if app integration is enabled (should prompt for Touch ID)
 op vault list
 ```
-
-**Vault password errors:**
-
-```bash
-# Test vault password retrieval
-./scripts/vault-password.sh
-
-# If this fails, verify the 1Password item exists and path is correct
-op read "op://Private/lhz6hvtgx5szolw62tk4zmhdia/password"
-```

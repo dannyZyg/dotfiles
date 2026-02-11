@@ -6,5 +6,5 @@ cp ~/.ssh/config ./roles/ssh/files/config
 
 ansible-vault encrypt \
   --encrypt-vault-id $VAULT_ID \
-  --vault-id $VAULT_ID@scripts/vault-password.sh \
+  --vault-id $VAULT_ID@scripts/vault-password-client.sh \
   ./roles/ssh/files/config
