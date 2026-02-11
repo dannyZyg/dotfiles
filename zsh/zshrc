@@ -7,11 +7,6 @@ export COLORTERM=truecolor
 export HOST_OS="$(uname -s)"
 export HOST_ARCH="$(uname -m)"
 
-# TODO: Keep an eye out for a different `--no-quarantine` solution.
-# Currently, you can't do `brew bundle --no-quarantine` as an option.
-# https://github.com/Homebrew/homebrew-bundle/issues/474
-export HOMEBREW_CASK_OPTS="--no-quarantine --no-binaries"
-
 # Handle Mac architectures and brew paths
 if [[ "$OSTYPE" == "darwin"* ]]; then
 
@@ -26,6 +21,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   export PATH=$(brew --prefix)/opt/llvm/bin/:$PATH
   export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
+  export PATH=$PATH:/Applications/calibre.app/Contents/MacOS
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
   export SSH_AUTH_SOCK=~/.1password/agent.sock
@@ -152,3 +149,8 @@ unset __conda_setup
 
 # Machine specific env
 [ -f "$HOME/.config/.env.sh" ] && source "$HOME/.config/.env.sh"
+
+# opencode
+export PATH=/Users/danny/.opencode/bin:$PATH
+
+eval "$(zoxide init zsh)"
