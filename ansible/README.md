@@ -60,10 +60,10 @@ Run optional tags as needed:
 
 ```bash
 # Music production apps (Ableton, audio plugins, etc.)
-ansible-playbook local.yml -t brew_music --ask-become-pass
+ansible-playbook local.yml -t brew_music
 
 # Home machine apps
-ansible-playbook local.yml -t brew_home --ask-become-pass
+ansible-playbook local.yml -t brew_home
 
 # Clone personal git repos
 ansible-playbook local.yml -t repos
