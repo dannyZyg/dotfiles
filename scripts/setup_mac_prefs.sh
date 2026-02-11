@@ -5,6 +5,21 @@ if [ "$(uname)" != "Darwin" ] ; then
   exit 1
 fi
 
+# Check if Terminal has Full Disk Access by testing write access to Safari's container
+check_full_disk_access() {
+	if defaults write com.apple.Safari __test_key -bool true 2>/dev/null; then
+		defaults delete com.apple.Safari __test_key 2>/dev/null
+		return 0
+	else
+		return 1
+	fi
+}
+
+HAS_FULL_DISK_ACCESS=false
+if check_full_disk_access; then
+	HAS_FULL_DISK_ACCESS=true
+fi
+
 dock() {
 	# Automatically hide or show the Dock （Dock を自動的に隠す）
 	defaults write com.apple.dock autohide -bool true
@@ -109,11 +124,23 @@ function login() {
 }
 
 mail() {
+	if [ "$HAS_FULL_DISK_ACCESS" = false ]; then
+		echo "Skipping Mail preferences: Terminal needs Full Disk Access permission."
+		echo "  To fix: System Settings > Privacy & Security > Full Disk Access > Add Terminal"
+		return 1
+	fi
+
 	# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 	defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 }
 
 safari() {
+	if [ "$HAS_FULL_DISK_ACCESS" = false ]; then
+		echo "Skipping Safari preferences: Terminal needs Full Disk Access permission."
+		echo "  To fix: System Settings > Privacy & Security > Full Disk Access > Add Terminal"
+		return 1
+	fi
+
 	# Safari
 	# Enable the `Develop` menu and the `Web Inspector` （開発メニューを表示）
 	defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
