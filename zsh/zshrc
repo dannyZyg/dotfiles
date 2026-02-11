@@ -2,39 +2,6 @@ stty stop undef # Stops Ctrl-s from freezing the terminal
 
 unsetopt BEEP
 
-export COLORTERM=truecolor
-
-export HOST_OS="$(uname -s)"
-export HOST_ARCH="$(uname -m)"
-
-# Handle Mac architectures and brew paths
-if [[ "$OSTYPE" == "darwin"* ]]; then
-
-  CPU=$(uname -p)
-  if [[ "$CPU" == "arm" ]]; then
-    export BREWPATH="/opt/homebrew/bin"
-    export PATH="$BREWPATH:$PATH"
-    export PATH="/opt/homebrew/sbin:$PATH"
-  else
-    export BREWPATH="/usr/local/bin"
-    export PATH="$BREWPATH:$PATH"
-  fi
-
-  export PATH=$(brew --prefix)/opt/llvm/bin/:$PATH
-  export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-
-  export PATH=$PATH:/Applications/calibre.app/Contents/MacOS
-
-elif [[ "$OSTYPE" == "linux"* ]]; then
-  export SSH_AUTH_SOCK=~/.1password/agent.sock
-fi
-
-export EDITOR=nvim
-export TMUX_CONFIG="$HOME/.config/tmux/tmux.conf"
-export N_PREFIX="$HOME/.config/n"
-
-export PATH="$N_PREFIX/bin:$PATH"
-
 # removes auto highlight on paste
 zle_highlight=('paste:none')
 
@@ -54,9 +21,6 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 
 source $ZDOTDIR/zsh-vim-mode
-
-
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 ############### ############## ############## ##############
 
@@ -92,66 +56,14 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
-
-# Added by serverless binary installer
-export PATH="$HOME/.serverless/bin:$PATH"
-
-# # python penv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
 if command -v pyenv 1>/dev/null 2>&1; then
 	eval "$(pyenv init --path)"
 fi
 
 [ -f "$HOME/sync/scripts/aws/aws.sh" ] && source "$HOME/sync/scripts/aws/aws.sh"
 
-jdk() {
-	version=$1
-	export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
-	java -version
-}
-
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
-
-if [[ "$OSTYPE" == "linux"* ]]; then
-	ANKI_PATH="$HOME/packages/anki-2.1.35-linux-amd64/bin"
-	export PATH="$ANKI_PATH:$PATH"
-fi
 
 eval "$(starship init zsh)"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$CONDA_PATH/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$CONDA_PATH/etc/profile.d/conda.sh" ]; then
-        . "$CONDA_PATH/etc/profile.d/conda.sh"
-    else
-        export PATH="$CONDA_PATH/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# Haskell ghcup-env
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
-
-# Machine specific env
-[ -f "$HOME/.config/.env.sh" ] && source "$HOME/.config/.env.sh"
-
-# opencode
-export PATH=/Users/danny/.opencode/bin:$PATH
 
 eval "$(zoxide init zsh)"

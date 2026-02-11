@@ -1,1 +1,6 @@
-source $HOME/.profile
+#!/bin/zsh
+
+# Source shell-agnostic environment
+[ -f "$HOME/.profile" ] && . "$HOME/.profile"
+
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
