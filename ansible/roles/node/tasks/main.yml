@@ -7,7 +7,7 @@
 
 - name: Install n on mac
   include_tasks: node_mac.yml
-  when: ansible_distribution == "MacOSX"
+  when: ansible_facts['distribution'] == "MacOSX"
 
 - name: Install N and global npm packages
   include_tasks: npm.yml

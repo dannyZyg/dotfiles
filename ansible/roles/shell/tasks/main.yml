@@ -2,4 +2,4 @@
   when: ansible_facts['distribution'] == "Archlinux"
 
 - include_tasks: shell_mac.yml
-  when: ansible_distribution == "MacOSX"
+  when: ansible_facts['distribution'] == "MacOSX"

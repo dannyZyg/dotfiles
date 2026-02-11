@@ -7,12 +7,12 @@
 - name: Set espanso path on Linux
   set_fact:
     espanso_path: "{{ lookup('env', 'HOME') }}/.config/espanso"
-  when: ansible_system == "Linux"
+  when: ansible_facts['system'] == "Linux"
 
 - name: Set espanso path on MacOSX
   set_fact:
     espanso_path: "{{ lookup('env', 'HOME') }}/Library/Application Support/espanso"
-  when: ansible_distribution == 'MacOSX'
+  when: ansible_facts['distribution'] == 'MacOSX'
 
 - name: Debug print out the espanso_path var
   debug: msg="{{ lookup('vars', 'espanso_path') }}"
@@ -32,5 +32,5 @@
     decrypt: yes
 
 - name: Install espanso for Mac
-  when: ansible_distribution == 'MacOSX' and espanso_exists.rc != 0
+  when: ansible_facts['distribution'] == 'MacOSX' and espanso_exists.rc != 0
   include_tasks: espanso_mac.yml

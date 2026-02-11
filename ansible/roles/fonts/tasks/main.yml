@@ -1,5 +1,5 @@
 - include_tasks: fonts_linux.yml
-  when: ansible_system == "Linux"
+  when: ansible_facts['system'] == "Linux"
 
 - include_tasks: fonts_mac.yml
-  when: ansible_distribution == "MacOSX"
+  when: ansible_facts['distribution'] == "MacOSX"

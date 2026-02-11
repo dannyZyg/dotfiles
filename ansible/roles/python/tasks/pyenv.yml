@@ -5,7 +5,7 @@
 
 - name: Install mac pyenv dependencies
   become_user: "{{ lookup('vars', 'username') }}"
-  when: ansible_distribution == "MacOSX" and pyenv_exists.rc != 0
+  when: ansible_facts['distribution'] == "MacOSX" and pyenv_exists.rc != 0
   homebrew:
     path: "{{ lookup('vars', 'brew_path') }}"
     name: "{{item}}"
@@ -16,7 +16,7 @@
     - openssl
 
 - name: Install pyenv mac
-  when: ansible_distribution == "MacOSX" and pyenv_exists.rc != 0
+  when: ansible_facts['distribution'] == "MacOSX" and pyenv_exists.rc != 0
   homebrew:
     name: pyenv
 
@@ -48,7 +48,7 @@
 - name: Install pyenv linux
   when:
     - pyenv_exists.rc != 0
-    - ansible_system == "Linux"
+    - ansible_facts['system'] == "Linux"
   get_url:
     url: https://pyenv.run
     dest: /tmp/pyenv.run
@@ -58,11 +58,11 @@
 - name: Run the install script
   when:
     - pyenv_download.changed
-    - ansible_system == "Linux"
+    - ansible_facts['system'] == "Linux"
   shell: /tmp/pyenv.run
 
 - name: Remove the pyenv installer
-  when: ansible_system == "Linux"
+  when: ansible_facts['system'] == "Linux"
   file:
     path: /tmp/pyenv.run
     state: absent

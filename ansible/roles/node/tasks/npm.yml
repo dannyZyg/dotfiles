@@ -3,6 +3,6 @@
   become_user: "{{ lookup('vars', 'username') }}"
   command: "n 24"
   environment:
-    PATH: "{{ lookup('env', 'HOME') }}/.config/npm-global/bin:{{ lookup('vars', 'brew_path') }}:{{ ansible_env.PATH }}"
+    PATH: "{{ lookup('env', 'HOME') }}/.config/npm-global/bin:{{ lookup('vars', 'brew_path') }}:{{ ansible_facts['env']['PATH'] }}"
     PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
     N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
