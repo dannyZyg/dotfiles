@@ -17,6 +17,10 @@
     path: "{{ lookup('vars', 'brew_path') }}"
     update_homebrew: true
     upgrade_all: true
+  tags:
+    - brew_music
+    - brew_home
+    - brew_main
 
 - name: Install Homebrew formulae
   include_tasks: homebrew_formulae.yml
