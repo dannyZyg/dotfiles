@@ -51,28 +51,26 @@
         - packages
 
   roles:
-    - role: 1password
-      tags: [1password, initial]
-
     - role: dotfiles
-      tags: [dotfiles]
+      tags: [dotfiles, bootstrap]
 
     - role: node
-      tags: [node, npm]
+      tags: [node, npm, bootstrap]
 
     - role: python
-      tags: [python]
+      tags: [python, bootstrap]
 
     - role: homebrew
+      tags: [bootstrap]
 
     - role: espanso
-      tags: [espanso]
+      tags: [espanso, bootstrap]
 
     - role: starship
-      tags: [starship, shell]
+      tags: [starship, shell, bootstrap]
 
     - role: ssh
-      tags: [ssh]
+      tags: [ssh, bootstrap]
 
     - role: audio
       tags: [audio]
@@ -81,7 +79,7 @@
       tags: [aur]
 
     - role: shell
-      tags: [shell]
+      tags: [shell, bootstrap]
 
     - role: flatpak
       tags: [flatpak]
