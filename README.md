@@ -25,4 +25,4 @@ help                 Show this help
 
 Otherwise, you can bootstrap an entire system (which can also handle the dotfiles).
 
-See `./ansible/README.md`
+See [Ansible Bootstrap](./ansible/README.md)
