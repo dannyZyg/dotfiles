@@ -25,7 +25,7 @@
       glob: true
       path: nvim/**
 
-    ~/.config/tmux/.tmux.conf:
+    ~/.config/tmux/tmux.conf:
       path: tmux/tmux.conf
 
     ~/.config/yazi:
