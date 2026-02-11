@@ -22,7 +22,6 @@
   include_tasks: homebrew_formulae.yml
   when:
     - ansible_facts['distribution'] == "MacOSX"
-    - ansible_facts['architecture'] == "arm64"
     - brew_exists is succeeded
   tags:
     - brew_main
@@ -31,7 +30,6 @@
   include_tasks: homebrew_casks_main.yml
   when:
     - ansible_facts['distribution'] == "MacOSX"
-    - ansible_facts['architecture'] == "arm64"
     - brew_exists is succeeded
   tags:
     - brew_main
@@ -40,7 +38,6 @@
   include_tasks: homebrew_casks_music.yml
   when:
     - ansible_facts['distribution'] == "MacOSX"
-    - ansible_facts['architecture'] == "arm64"
     - brew_exists is succeeded
   tags:
     - brew_music
@@ -49,7 +46,6 @@
   include_tasks: homebrew_casks_home.yml
   when:
     - ansible_facts['distribution'] == "MacOSX"
-    - ansible_facts['architecture'] == "arm64"
     - brew_exists is succeeded
   tags:
     - brew_home

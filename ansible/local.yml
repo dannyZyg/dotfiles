@@ -3,17 +3,10 @@
   gather_facts: True
 
   pre_tasks:
-    - name: Set brew path on MacOSX silicon
+    - name: Set brew path on MacOSX
       set_fact:
         brew_path: "/opt/homebrew/bin"
-      when: ansible_facts['distribution'] == 'MacOSX' and ansible_facts['architecture'] == 'arm64'
-      tags:
-        - always
-
-    - name: Set brew path on MacOSX intel
-      set_fact:
-        brew_path: "/usr/local/bin"
-      when: ansible_facts['distribution'] == 'MacOSX' and ansible_facts['architecture'] == 'x86_64'
+      when: ansible_facts['distribution'] == 'MacOSX'
       tags:
         - always
 
