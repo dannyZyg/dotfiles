@@ -43,8 +43,11 @@ Clone this repo and run the bootstrap:
 ```bash
 git clone https://github.com/dannyZyg/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles/ansible
-ansible-playbook local.yml -t bootstrap
+ansible-playbook local.yml -t bootstrap --ask-become-pass
 ```
+
+The `--ask-become-pass` flag prompts for your sudo password, which is needed
+for some casks that require elevated permissions (e.g., karabiner-elements, docker).
 
 This installs the core setup:
 - Homebrew formulae and main casks
@@ -61,10 +64,10 @@ Run optional tags as needed:
 
 ```bash
 # Music production apps (Ableton, audio plugins, etc.)
-ansible-playbook local.yml -t brew_music
+ansible-playbook local.yml -t brew_music --ask-become-pass
 
 # Home machine apps
-ansible-playbook local.yml -t brew_home
+ansible-playbook local.yml -t brew_home --ask-become-pass
 
 # Clone personal git repos
 ansible-playbook local.yml -t repos
