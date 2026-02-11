@@ -112,13 +112,19 @@ ansible-playbook local.yml -t bootstrap --check
 ansible-playbook local.yml
 ```
 
-## Vault Password
+## Vault Passwords
 
-The vault password is automatically retrieved from 1Password via the CLI.
-This is configured in `ansible.cfg` using the `vault_identity_list` setting.
+Vault passwords are automatically retrieved from 1Password via the CLI.
+Each vault-id has its own password stored in 1Password:
+- `ssh-config` - for SSH configuration
+- `espanso` - for Espanso text expansion configs
+
+This is configured in `ansible.cfg` using the `vault_identity_list` setting,
+which points to `scripts/vault-password-client.sh`.
 
 Encrypted files:
 - `roles/ssh/files/config` (vault-id: ssh-config)
+- `roles/espanso/files/config/*.yml` (vault-id: espanso)
 - `roles/espanso/files/match/*.yml` (vault-id: espanso)
 
 ### Encrypting Files
