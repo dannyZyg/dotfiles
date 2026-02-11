@@ -85,7 +85,7 @@ function finder() {
 
 	# change screenshot dir
 	mkdir -p ~/Pictures/screenshots/
-	defaults write com.apple.screencapture location ~/Pictures/screenshots/ && killall SystemUIServer
+	defaults write com.apple.screencapture location ~/Pictures/screenshots/ && killall ControlCenter
 
 	# Prevent Time Machine from prompting to use new hard drives as backup volume
 	defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
@@ -99,7 +99,7 @@ function keyboard() {
 	defaults write NSGlobalDomain KeyRepeat -int 3
 	defaults write NSGlobalDomain InitialKeyRepeat -int 13
 
-	defaults write NSGlobalDomain AppleLanguages -array "en_AU" "jp"
+	defaults write NSGlobalDomain AppleLanguages -array "en_AU" "ja"
 }
 
 function login() {
