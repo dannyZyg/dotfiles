@@ -8,11 +8,10 @@
     - brew_music
   loop:
     - audio-hijack
-    - bitwig-studio
     - cycling74-max
+    - fission
     - ilok-license-manager
     - obs
     - soundtoys
     - supercollider
-    - surge-synthesizer
     - vcv-rack

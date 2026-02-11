@@ -7,6 +7,7 @@
   tags:
     - brew_main
   loop:
+    - 1password
     - alfred
     - arc
     - balenaetcher
@@ -15,17 +16,27 @@
     - choosy
     - cleanshot
     - dbeaver-community
+    - docker
     - docker-desktop
     - dropbox
+    - espanso
     - figma
     - firefox
     - freedom
+    - ghostty
     - google-chrome
     - hazel
+    - insomnia
     - istat-menus
     - karabiner-elements
     - keyboard-maestro
     - lunar
+    - obsidian
     - omnifocus
+    - orion
+    - pgadmin4
+    - postman
     - the-unarchiver
     - visual-studio-code
+    - zoom
+    - zsa-wally

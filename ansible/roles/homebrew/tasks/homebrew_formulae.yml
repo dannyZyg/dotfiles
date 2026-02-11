@@ -7,32 +7,76 @@
     - brew_main
   loop:
     - ack
+    - ansible
     - awscli
+    - bat
     - btop
+    - bzip2
+    - cmake
     - cmatrix
+    - curl
+    - diff-so-fancy
+    - docker
+    - dust
+    - eza
     - fd
     - ffmpeg
     - fzf
     - git
+    - go
+    - gobject-introspection
+    - guile
+    - haskell-stack
+    - hugo
     - imagemagick
+    - iperf3
     - jq
+    - lazygit
     - lf
+    - libmtp
     - luajit
+    - luarocks
     - mas
-    - mpv
     - mkvtoolnix
+    - mpv
     - neovim
+    - nghttp2
+    - ninja
+    - nmap
+    - node
+    - nvm
+    - pipx
+    - portaudio
+    - pyenv
+    - pyinstaller
+    - qt
+    - qt@5
     - ranger
     - resvg
     - ripgrep
+    - rtmpdump
+    - ruby
     - sevenzip
+    - sox
+    - srt
+    - starship
+    - stow
+    - streamlink
+    - subversion
+    - tesseract-lang
+    - tmuxp
     - trash-cli
     - tree
     - unar
+    - uv
+    - vips
     - watch
+    - watchman
     - wget
     - xclip
     - yarn
     - yazi
     - yt-dlp
+    - zlib
     - zoxide
+    - zsh
