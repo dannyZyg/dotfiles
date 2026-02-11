@@ -21,6 +21,8 @@ Supports MacOS (primary) and Linux (limited support).
 /opt/homebrew/bin/brew install 1password-cli ansible
 ```
 
+Open a new terminal after this installation and ensure ansible is in the path.
+
 **3. Configure 1Password:**
 
 - Open 1Password app and sign in to your account
@@ -39,7 +41,7 @@ This should output your vault list (you may be prompted for Touch ID).
 Clone this repo and run the bootstrap:
 
 ```bash
-git clone https://github.com/yourusername/.dotfiles.git ~/.dotfiles
+git clone https://github.com/dannyZyg/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles/ansible
 ansible-playbook local.yml -t bootstrap
 ```
