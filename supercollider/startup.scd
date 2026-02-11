@@ -19,26 +19,84 @@ if (\SCNvim.asClass.notNil) {
 };
 
 ~getAudioDevice = {
-  var outputPreferences = [
-    "dzk AirPods Pro",
-    "WH-1000XM2",
-    "ULN-8mkIV",
+  var priorityDevices = [
     "MHLink [48646]",
+    "headphones",
+    "podsPlusMacMic",
+    "WH-1000XM2",
+    "internal",
+    "ULN-8mkIV",
     "External Headphones",
-    "外部",
-    "MacBook Airのス",
+    "外部ヘッドフォン",
+    "MacBook Airのスピーカー",
+    "BlackHole 16ch",
   ];
+
+  var devicePreferences = Dictionary.newFrom([
+
+    'BlackHole 16ch', Dictionary.newFrom(
+      [
+        \sampleRate, 48000,
+        \numOutputs, 2,
+        \numInputs, 0,
+      ]
+    ),
+    'MacBook Airのスピーカー', Dictionary.newFrom(
+      [
+        \sampleRate, 48000,
+        \numOutputs, 2,
+        \numInputs, 0,
+      ]),
+    'podsPlusMacMic', Dictionary.newFrom(
+      [
+        \sampleRate, 48000,
+        \numOutputs, 2,
+        \numInputs, 1,
+      ]),
+    'internal', Dictionary.newFrom(
+      [
+        \sampleRate, 48000,
+        \numOutputs, 2,
+        \numInputs, 1,
+      ]),
+    'headphones', Dictionary.newFrom(
+      [
+        \sampleRate, 48000,
+        \numOutputs, 2,
+        \numInputs, 1,
+      ]),
+    'MHLink [48646]', Dictionary.newFrom(
+      [
+        \sampleRate, 48000,
+        \numOutputs, 16,
+        \numInputs, 16,
+      ]),
+    'External Headphones', Dictionary.newFrom(
+      [
+        \sampleRate, 48000,
+        \numOutputs, 2,
+        \numInputs, 0,
+      ]),
+    'MacBook Air Speakers', Dictionary.newFrom(
+      [
+        \sampleRate, 48000,
+        \numOutputs, 2,
+        \numInputs, 0,
+      ]),
+  ]);
 
   // Select the first output device connected, in order of preference above
   Routine({
-    outputPreferences.do({ |output|
+    priorityDevices.do({ |priorityDevice|
+
       ServerOptions.outDevices.do({  |device|
-        if( output == device ) {
+        if( priorityDevice.asString() == device ) {
           var msg = "✅ Found preferred device:" + device;
           msg.postln;
-          device.yield;
+          Array.newFrom([priorityDevice, devicePreferences[priorityDevice.asSymbol()]]).yield;
         };
       });
+
     });
     0.yield;  // yield is required here
   }).next
@@ -47,25 +105,25 @@ if (\SCNvim.asClass.notNil) {
 s.reboot { // server options are only updated on reboot
 	// configure the sound server: here you could add hardware specific options
 	// see http://doc.sccode.org/Classes/ServerOptions.html
-  var device = ~getAudioDevice.();
-  var numOutputs = 16;
-  var numInputs = 16;
+  var preferredDevice = ~getAudioDevice.();
+  var deviceName = preferredDevice.at(0);
+  var devicePrefs = preferredDevice.at(1);
+  var sampleRate = devicePrefs[\sampleRate];
+  var numOutputs = devicePrefs[\numOutputs];
+  var numInputs = devicePrefs[\numInputs];
 
-	s.options.outDevice = device;
+  ("🔉 Setting out device as: " ++ deviceName ++ " with " ++ numOutputs ++ " outputs").postln;
+  ("🎙️ Setting in device as: " ++ deviceName ++ " with " ++ numInputs ++ " inputs").postln;
 
-
-
-  ("🔉 Setting out device as: " ++ device ++ " with " ++ numOutputs ++ " outputs").postln;
-  ("🎙️ Setting in device as: " ++ device ++ " with " ++ numInputs ++ " inputs").postln;
-
-	s.options.inDevice = device;
-	s.options.sampleRate = 48000;
+	s.options.outDevice = deviceName;
+	s.options.inDevice = deviceName;
+	s.options.sampleRate = sampleRate;
 	s.options.numBuffers = 1024 * 256; // increase this if you need to load more samples
 	s.options.memSize = 8192 * 32; // increase this if you get "alloc failed" messages
 	s.options.numWireBufs = 128; // increase this if you get "exceeded number of interconnect buffers" messages
 	s.options.maxNodes = 1024 * 32; // increase this if you are getting drop outs and the message "too many nodes"
-	s.options.numOutputBusChannels = 16; // set this to your hardware output channel size, if necessary
-	s.options.numInputBusChannels = 16; // set this to your hardware output channel size, if necessary
+	s.options.numOutputBusChannels = numOutputs; // set this to your hardware output channel size, if necessary
+	s.options.numInputBusChannels = numInputs; // set this to your hardware output channel size, if necessary
 	s.latency = 0.6; // increase this if you get "late" messages
 
   s.newBusAllocators;
