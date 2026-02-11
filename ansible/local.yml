@@ -51,6 +51,11 @@
         - packages
 
   roles:
+    - role: homebrew
+      tags: [bootstrap]
+      vars:
+        bootstrap_mode: true
+
     - role: dotfiles
       tags: [dotfiles, bootstrap]
 
@@ -60,23 +65,20 @@
     - role: python
       tags: [python, bootstrap]
 
-    - role: homebrew
-      tags: [bootstrap]
-
     - role: espanso
       tags: [espanso, bootstrap]
 
     - role: ssh
       tags: [ssh, bootstrap]
 
+    - role: shell
+      tags: [shell, bootstrap]
+
     - role: audio
       tags: [audio]
 
     - role: aur
       tags: [aur]
-
-    - role: shell
-      tags: [shell, bootstrap]
 
     - role: flatpak
       tags: [flatpak]

@@ -1,6 +1,7 @@
 - name: Check homebrew installed
   when:
     - ansible_facts['distribution'] == "MacOSX"
+    - bootstrap_mode | default(false) or "'brew_main' in ansible_run_tags" or "'brew_home' in ansible_run_tags" or "'brew_music' in ansible_run_tags"
   shell: command -v brew
   ignore_errors: true
   register: brew_exists
@@ -13,6 +14,7 @@
   when:
     - ansible_facts['distribution'] == "MacOSX"
     - brew_exists.rc == 0
+    - bootstrap_mode | default(false) or "'brew_main' in ansible_run_tags" or "'brew_home' in ansible_run_tags" or "'brew_music' in ansible_run_tags"
   community.general.homebrew:
     path: "{{ lookup('vars', 'brew_path') }}"
     update_homebrew: true
@@ -27,6 +29,7 @@
   when:
     - ansible_facts['distribution'] == "MacOSX"
     - brew_exists.rc == 0
+    - bootstrap_mode | default(false) or "'brew_main' in ansible_run_tags"
   tags:
     - brew_main
 
@@ -35,6 +38,7 @@
   when:
     - ansible_facts['distribution'] == "MacOSX"
     - brew_exists.rc == 0
+    - bootstrap_mode | default(false) or "'brew_main' in ansible_run_tags"
   tags:
     - brew_main
 
@@ -43,6 +47,7 @@
   when:
     - ansible_facts['distribution'] == "MacOSX"
     - brew_exists.rc == 0
+    - "'brew_music' in ansible_run_tags"
   tags:
     - brew_music
 
@@ -51,5 +56,6 @@
   when:
     - ansible_facts['distribution'] == "MacOSX"
     - brew_exists.rc == 0
+    - "'brew_home' in ansible_run_tags"
   tags:
     - brew_home
