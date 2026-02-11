@@ -41,16 +41,15 @@ Clone this repo and run the bootstrap:
 ```bash
 git clone https://github.com/yourusername/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles/ansible
-ansible-playbook local.yml -t bootstrap --ask-become-pass
+ansible-playbook local.yml -t bootstrap
 ```
 
 This installs the core setup:
 - Dotfiles (via dotbot)
 - Homebrew formulae and main casks
 - Node.js and npm packages
-- Python tooling (pyenv, poetry, uv)
+- Python tooling
 - Espanso text expansion
-- Starship prompt
 - Shell configuration (zsh)
 - SSH config
 
@@ -79,7 +78,7 @@ ansible-playbook local.yml -t rust
 
 | Tag | Description | Sudo Required |
 |-----|-------------|---------------|
-| `bootstrap` | Full core setup (dotfiles, brew, languages, shell) | Yes |
+| `bootstrap` | Full core setup (dotfiles, brew, languages, shell) | No |
 | `dotfiles` | Install dotfiles with dotbot | No |
 | `node`, `npm` | Install Node.js and npm packages | No |
 | `python` | Install Python tooling (pyenv, poetry, uv) | No |
@@ -87,8 +86,7 @@ ansible-playbook local.yml -t rust
 | `brew_home` | Install Homebrew home casks | No |
 | `brew_music` | Install Homebrew music casks | No |
 | `espanso` | Install espanso config | No |
-| `shell` | Install zsh and shell tools | Yes |
-| `starship` | Install starship prompt | Yes |
+| `shell` | Install zsh and shell tools | No |
 | `ssh` | Install SSH config | No |
 | `fonts` | Install fonts | No |
 | `repos` | Clone personal git repos | No |
@@ -111,7 +109,7 @@ ansible-playbook local.yml -t bootstrap --check
 **Run full playbook (everything):**
 
 ```bash
-ansible-playbook local.yml --ask-become-pass
+ansible-playbook local.yml
 ```
 
 ## Vault Password

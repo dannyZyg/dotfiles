@@ -66,9 +66,6 @@
     - role: espanso
       tags: [espanso, bootstrap]
 
-    - role: starship
-      tags: [starship, shell, bootstrap]
-
     - role: ssh
       tags: [ssh, bootstrap]
 
