@@ -63,3 +63,10 @@ vim.filetype.add {
     j2 = 'jinja',
   },
 }
+
+vim.filetype.add {
+  extension = {
+    gendsp = 'genexpr',
+    genexpr = 'genexpr',
+  },
+}
