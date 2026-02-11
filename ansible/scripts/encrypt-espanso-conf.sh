@@ -13,6 +13,7 @@ ESPANSO_DIR=$(espanso path | head -n 1 | sed -n 's/Config: \(.*\)/\1/p')
 cp -rf "$ESPANSO_DIR/"* roles/espanso/files/
 
 ansible-vault encrypt \
-  --vault-id $VAULT_ID@prompt \
+  --encrypt-vault-id $VAULT_ID \
+  --vault-id $VAULT_ID@scripts/vault-password.sh \
   roles/espanso/files/match/*.yml \
   roles/espanso/files/config/*.yml
