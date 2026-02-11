@@ -12,7 +12,7 @@
 - name: Upgrade all homebrew
   when:
     - ansible_facts['distribution'] == "MacOSX"
-    - brew_exists is succeeded
+    - brew_exists.rc == 0
   community.general.homebrew:
     path: "{{ lookup('vars', 'brew_path') }}"
     update_homebrew: true
@@ -22,7 +22,7 @@
   include_tasks: homebrew_formulae.yml
   when:
     - ansible_facts['distribution'] == "MacOSX"
-    - brew_exists is succeeded
+    - brew_exists.rc == 0
   tags:
     - brew_main
 
@@ -30,7 +30,7 @@
   include_tasks: homebrew_casks_main.yml
   when:
     - ansible_facts['distribution'] == "MacOSX"
-    - brew_exists is succeeded
+    - brew_exists.rc == 0
   tags:
     - brew_main
 
@@ -38,7 +38,7 @@
   include_tasks: homebrew_casks_music.yml
   when:
     - ansible_facts['distribution'] == "MacOSX"
-    - brew_exists is succeeded
+    - brew_exists.rc == 0
   tags:
     - brew_music
 
@@ -46,6 +46,6 @@
   include_tasks: homebrew_casks_home.yml
   when:
     - ansible_facts['distribution'] == "MacOSX"
-    - brew_exists is succeeded
+    - brew_exists.rc == 0
   tags:
     - brew_home
