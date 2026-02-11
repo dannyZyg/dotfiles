@@ -1,9 +1,0 @@
-aegisub
-calibre
-carbon-copy-cloner
-chronosync
-discord
-libreoffice
-macfuse
-tor-browser
-vlc
