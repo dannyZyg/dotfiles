@@ -33,9 +33,9 @@ return  {
       },
 
       filetypes = { "supercollider" },
-      -- root_dir = function(fname)
-      --     return "/"
-      -- end,
+      root_dir = function(bufnr, on_dir)
+        on_dir("/")
+      end,
       settings = {},
     }
 
