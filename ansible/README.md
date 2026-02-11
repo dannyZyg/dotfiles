@@ -76,21 +76,21 @@ ansible-playbook local.yml -t rust
 
 ## Available Tags
 
-| Tag | Description | Sudo Required |
-|-----|-------------|---------------|
-| `bootstrap` | Full core setup (dotfiles, brew, languages, shell) | No |
-| `dotfiles` | Install dotfiles with dotbot | No |
-| `node`, `npm` | Install Node.js and npm packages | No |
-| `python` | Install Python tooling (pyenv, poetry, uv) | No |
-| `brew_main` | Install Homebrew formulae and main casks | No |
-| `brew_home` | Install Homebrew home casks | No |
-| `brew_music` | Install Homebrew music casks | No |
-| `espanso` | Install espanso config | No |
-| `shell` | Install zsh and shell tools | No |
-| `ssh` | Install SSH config | No |
-| `fonts` | Install fonts | No |
-| `repos` | Clone personal git repos | No |
-| `rust` | Install Rust and cargo packages | No |
+| Tag | Description |
+|-----|-------------|
+| `bootstrap` | Full core setup (dotfiles, brew, languages, shell) |
+| `dotfiles` | Install dotfiles with dotbot |
+| `node`, `npm` | Install Node.js and npm packages |
+| `python` | Install Python tooling (pyenv, poetry, uv) |
+| `brew_main` | Install Homebrew formulae and main casks |
+| `brew_home` | Install Homebrew home casks |
+| `brew_music` | Install Homebrew music casks |
+| `espanso` | Install espanso config |
+| `shell` | Install zsh and shell tools |
+| `ssh` | Install SSH config |
+| `fonts` | Install fonts |
+| `repos` | Clone personal git repos |
+| `rust` | Install Rust and cargo packages |
 
 ## Useful Commands
 
