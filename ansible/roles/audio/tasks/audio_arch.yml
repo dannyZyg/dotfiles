@@ -35,8 +35,8 @@
 
 - name: Install tuned
   when:
-    - yay_exists
-    - tuned_exists is failed
+    - yay_exists.rc == 0
+    - tuned_exists.rc != 0
   shell: yay -S --noconfirm tuned
 
 - name: Check if tuned is installed (again, after install)
@@ -46,7 +46,7 @@
 
 - name: Start tuned service
   become: true
-  when: tuned_exists
+  when: tuned_exists.rc == 0
   ansible.builtin.systemd:
     name: tuned
     state: started

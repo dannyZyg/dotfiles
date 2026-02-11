@@ -5,6 +5,6 @@
 
 - name: Install Poetry
   become_user: "{{ lookup('vars', 'username') }}"
-  when: poetry_exists is failed
+  when: poetry_exists.rc != 0
   command: >
     sh -c "curl -sSL https://install.python-poetry.org | ~/.pyenv/shims/python -"

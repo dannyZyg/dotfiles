@@ -1,5 +1,5 @@
 - name: Install nodejs and npm on Arch
   become: true
-  when: node_exists is failed
+  when: node_exists.rc != 0
   pacman:
     name: ["nodejs", "npm"]

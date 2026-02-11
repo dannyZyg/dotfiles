@@ -1,5 +1,5 @@
 - name: Install espanso with homebrew
-  when: espanso_exists is failed
+  when: espanso_exists.rc != 0
   community.general.homebrew:
     path: "{{ lookup('vars', 'brew_path') }}"
     name: espanso

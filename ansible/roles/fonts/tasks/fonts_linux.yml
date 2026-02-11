@@ -10,7 +10,7 @@
 
 - name: Install unzip
   become: true
-  when: ansible_facts['distribution'] == "Archlinux" and unzip_exists is failed
+  when: ansible_facts['distribution'] == "Archlinux" and unzip_exists.rc != 0
   pacman:
     name: unzip
 
@@ -20,7 +20,7 @@
   ignore_errors: true
 
 - name: Download Fira Code font
-  when: unzip_exists and firacode_exists is failed
+  when: unzip_exists.rc == 0 and firacode_exists.rc != 0
   ansible.builtin.unarchive:
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
     dest: "{{ lookup('env', 'HOME') }}/.fonts/"
@@ -32,7 +32,7 @@
   ignore_errors: true
 
 - name: Download JetBrainsMono Font
-  when: unzip_exists and jetbrainsmono_exists is failed
+  when: unzip_exists.rc == 0 and jetbrainsmono_exists.rc != 0
   ansible.builtin.unarchive:
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip
     dest: "{{ lookup('env', 'HOME') }}/.fonts/"

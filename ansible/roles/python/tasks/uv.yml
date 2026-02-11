@@ -5,6 +5,6 @@
 
 - name: Install uv
   become_user: "{{ lookup('vars', 'username') }}"
-  when: uv_exists is failed
+  when: uv_exists.rc != 0
   command: >
     curl -LsSf https://astral.sh/uv/install.sh | sh

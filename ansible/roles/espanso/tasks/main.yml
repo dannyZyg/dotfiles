@@ -32,5 +32,5 @@
     decrypt: yes
 
 - name: Install espanso for Mac
-  when: ansible_distribution == 'MacOSX' and espanso_exists is failed
+  when: ansible_distribution == 'MacOSX' and espanso_exists.rc != 0
   include_tasks: espanso_mac.yml

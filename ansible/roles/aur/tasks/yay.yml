@@ -17,7 +17,7 @@
 - name: Clone yay github repo
   when:
     - ansible_facts['distribution'] == "Archlinux"
-    - yay_exists is failed
+    - yay_exists.rc != 0
   become_user: "{{ lookup('vars', 'username') }}"
   ansible.builtin.git:
     repo: "https://aur.archlinux.org/yay.git"
@@ -33,7 +33,7 @@
   become: true
   when:
     - ansible_facts['distribution'] == "Archlinux"
-    - yay_exists is failed
+    - yay_exists.rc != 0
   pacman: name={{item}}
   with_items:
     - git
@@ -45,7 +45,7 @@
 - name: Install yay
   when:
     - ansible_facts['distribution'] == "Archlinux"
-    - yay_exists is failed
+    - yay_exists.rc != 0
   shell: |
     cd {{ lookup('env', 'HOME') }}/packages/yay/
     echo 'y' | makepkg -si
@@ -55,7 +55,7 @@
 - name: Install AUR packages
   when:
     - ansible_facts['distribution'] == "Archlinux"
-    - yay_exists
+    - yay_exists.rc == 0
   shell: yay -S --noconfirm {{item}}
   with_items:
     - betterlockscreen-git

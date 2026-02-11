@@ -5,12 +5,12 @@
 
 - name: Install flatpak
   become: true
-  when: ansible_facts['distribution'] == "Archlinux" and flatpak_exists is failed
+  when: ansible_facts['distribution'] == "Archlinux" and flatpak_exists.rc != 0
   pacman:
     name: flatpak
 
 - name: Add flathub flatpak repo
-  when: flatpak_exists
+  when: flatpak_exists.rc == 0
   become_user: "{{ lookup('vars', 'username') }}"
   flatpak_remote:
     name: flathub
@@ -19,7 +19,7 @@
     method: user
 
 - name: Install flatpak packages
-  when: flatpak_exists
+  when: flatpak_exists.rc == 0
   become_user: "{{ lookup('vars', 'username') }}"
   community.general.flatpak:
     name: "{{item}}"

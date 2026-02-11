@@ -5,7 +5,7 @@
 
 - name: Install mac pyenv dependencies
   become_user: "{{ lookup('vars', 'username') }}"
-  when: ansible_distribution == "MacOSX" and pyenv_exists is failed
+  when: ansible_distribution == "MacOSX" and pyenv_exists.rc != 0
   homebrew:
     path: "{{ lookup('vars', 'brew_path') }}"
     name: "{{item}}"
@@ -16,14 +16,14 @@
     - openssl
 
 - name: Install pyenv mac
-  when: ansible_distribution == "MacOSX" and pyenv_exists is failed
+  when: ansible_distribution == "MacOSX" and pyenv_exists.rc != 0
   homebrew:
     name: pyenv
 
 - name: Install pyenv debian dependencies
   become: true
   when:
-    - pyenv_exists is failed
+    - pyenv_exists.rc != 0
     - ansible_facts['os_family'] == "Debian"
   apt:
     name:
@@ -47,7 +47,7 @@
 
 - name: Install pyenv linux
   when:
-    - pyenv_exists is failed
+    - pyenv_exists.rc != 0
     - ansible_system == "Linux"
   get_url:
     url: https://pyenv.run
@@ -69,9 +69,8 @@
 
 - name: Install python versions with pyenv
   become_user: "{{ lookup('vars', 'username') }}"
-  when: pyenv_exists
-  command: pyenv install "{{item}}"
-  ignore_errors: true
+  when: pyenv_exists.rc == 0
+  command: pyenv install --skip-existing "{{item}}"
   with_items:
     - 3.8.18
     - 3.11.6

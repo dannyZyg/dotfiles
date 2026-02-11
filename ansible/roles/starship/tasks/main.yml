@@ -4,7 +4,7 @@
   ignore_errors: true
 
 - name: Download starship installer
-  when: starship_exists is failed
+  when: starship_exists.rc != 0
   get_url:
     url: https://starship.rs/install.sh
     dest: "/tmp/install-starship.sh"
@@ -12,11 +12,11 @@
 
 - name: Install Starship
   become: true
-  when: starship_exists is failed
+  when: starship_exists.rc != 0
   command: "/tmp/install-starship.sh -y"
 
 - name: Remove starship installer
-  when: starship_exists
+  when: starship_exists.rc == 0
   ansible.builtin.file:
     path: "/tmp/install-starship.sh"
     state: absent
