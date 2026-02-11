@@ -1,4 +1,4 @@
-command_timeout = 750
+command_timeout = 1500
 
 # Show python version starting with venv
 [python]
@@ -6,3 +6,6 @@ pyenv_version_name = true
 
 [package]
 disabled = true
+
+[git_status]
+ignore_submodules = true
