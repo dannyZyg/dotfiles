@@ -1,7 +1,8 @@
 - name: Install desired version of Node using N
   when: ansible_facts['distribution'] == 'MacOSX'
   become_user: "{{ lookup('vars', 'username') }}"
-  command: "{{ lookup('vars', 'brew_path') }}/n 24"
+  command: "n 24"
   environment:
+    PATH: "{{ lookup('env', 'HOME') }}/.config/npm-global/bin:{{ lookup('vars', 'brew_path') }}:{{ ansible_env.PATH }}"
     PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
     N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
