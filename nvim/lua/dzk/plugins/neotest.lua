@@ -11,45 +11,33 @@ return {
     "nvim-neotest/neotest-python",
     "alfaix/neotest-gtest",
   },
-  opts = function()
-    local neotest = require("neotest")
-    neotest.setup({
-      adapters = {
-        require("neotest-gtest").setup({
-          -- is_test_file = function()
-          --   local _test_extensions = {
-          --     ["cpp"] = true,
-          --     ["cppm"] = true,
-          --     ["cc"] = true,
-          --     ["cxx"] = true,
-          --     ["c++"] = true,
-          --   }
-          --
-          --   local elems = vim.split(file_path, lib.files.sep, { plain = true })
-          --   local filename = elems[#elems]
-          --   if filename == "" then -- directory
-          --     return false
-          --   end
-          --   local extsplit = vim.split(filename, ".", { plain = true })
-          --   local extension = extsplit[#extsplit]
-          --   local fname_last_part = extsplit[#extsplit - 1]
-          --   local result = _test_extensions[extension]
-          --       and (vim.startswith(filename, "test_") or vim.endswith(fname_last_part, "_test") or vim.endswith(fname_last_part, "Test"))
-          --     or false
-          --   vim.notify(result)
-          --   return result
-          --
-          -- end,
-        }),
+  config = function()
+    local adapters = {}
 
-        require("neotest-python")({
-          dap = { justMyCode = false },
-        }),
+    -- Load neotest-gtest only if cpp parser is available
+    local ok_gtest, gtest = pcall(function()
+      return require("neotest-gtest").setup({})
+    end)
+    if ok_gtest then
+      table.insert(adapters, gtest)
+    else
+      vim.notify("neotest-gtest: cpp parser not ready, skipping adapter", vim.log.levels.WARN)
+    end
 
-        require("neotest-plenary"),
+    -- Load python adapter
+    local ok_python, python = pcall(require, "neotest-python")
+    if ok_python then
+      table.insert(adapters, python({ dap = { justMyCode = false } }))
+    end
 
-        require("neotest-python")({}),
-      },
+    -- Load plenary adapter
+    local ok_plenary, plenary = pcall(require, "neotest-plenary")
+    if ok_plenary then
+      table.insert(adapters, plenary)
+    end
+
+    require("neotest").setup({
+      adapters = adapters,
     })
   end,
 }
