@@ -1,0 +1,5 @@
+- name: Switch dotfiles remote from HTTPS to SSH
+  ansible.builtin.lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.dotfiles/.git/config"
+    regexp: '^\s*url\s*=\s*https://github\.com/dannyZyg/dotfiles(\.git)?$'
+    line: "\turl = git@github.com:dannyZyg/dotfiles.git"

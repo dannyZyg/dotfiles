@@ -77,6 +77,9 @@
     - role: shell
       tags: [shell, bootstrap]
 
+    - role: git_remote
+      tags: [bootstrap]
+
     - role: audio
       tags: [audio]
 
