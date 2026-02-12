@@ -4,20 +4,25 @@ return {
     enabled = true,
     build = ":TSUpdate",
     config = function()
+      -- Register genexpr filetype with treesitter
+      vim.filetype.add({ extension = { genexpr = "genexpr" } })
+      vim.treesitter.language.register("genexpr", "genexpr")
 
-      local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-      parser_config.genexpr = {
-        install_info = {
-          url = '~/dev/tree-sitter-genexpr',
-          files = { 'src/parser.c', 'src/scanner.c' },
-          maintainer = '@sadguitarius',
-        },
-        filetype = 'genexpr',
-      }
+      -- Custom parser config for genexpr (nvim-treesitter new API)
+      local parser_config = require("nvim-treesitter.parsers")
+      if parser_config.genexpr == nil then
+        parser_config.genexpr = {
+          install_info = {
+            url = vim.fn.expand("~/dev/tree-sitter-genexpr"),
+            files = { "src/parser.c", "src/scanner.c" },
+          },
+          filetype = "genexpr",
+        }
+      end
 
-      require'nvim-treesitter.configs'.setup {
+      require("nvim-treesitter.configs").setup({
         -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-        ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "genexpr" },
+        ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
@@ -43,7 +48,7 @@ return {
 
           additional_vim_regex_highlighting = false,
         },
-      }
-    end
-  }
+      })
+    end,
+  },
 }
