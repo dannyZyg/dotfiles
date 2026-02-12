@@ -27,7 +27,8 @@ Open a new terminal after this installation and ensure ansible is in the path.
 
 - Open 1Password app and sign in to your account
 - Enable CLI integration: **Settings > Developer > "Integrate with 1Password CLI"**
-- Ensure your ansible vault password is stored in 1Password
+- Ensure your ansible vault passwords are stored in 1Password (see Vault Passwords section)
+- Ensure your macOS user password is stored in 1Password (used for casks requiring sudo)
 - Verify CLI works:
 
 ```bash
@@ -43,11 +44,8 @@ Clone this repo and run the bootstrap:
 ```bash
 git clone https://github.com/dannyZyg/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles/ansible
-ansible-playbook local.yml -t bootstrap --ask-become-pass
+ansible-playbook local.yml -t bootstrap
 ```
-
-The `--ask-become-pass` flag prompts for your sudo password, which is needed
-for some casks that require elevated permissions (e.g., karabiner-elements, docker).
 
 This installs the core setup:
 - Homebrew formulae and main casks
@@ -64,10 +62,10 @@ Run optional tags as needed:
 
 ```bash
 # Music production apps (Ableton, audio plugins, etc.)
-ansible-playbook local.yml -t brew_music --ask-become-pass
+ansible-playbook local.yml -t brew_music
 
 # Home machine apps
-ansible-playbook local.yml -t brew_home --ask-become-pass
+ansible-playbook local.yml -t brew_home
 
 # Clone personal git repos
 ansible-playbook local.yml -t repos

@@ -4,7 +4,7 @@
     state: present
     update_homebrew: true
     accept_external_apps: true
-    sudo_password: "{{ ansible_become_password | default(omit) }}"
+    sudo_password: "{{ lookup('pipe', playbook_dir + '/scripts/op-askpass.sh') }}"
   tags:
     - brew_main
   loop:
