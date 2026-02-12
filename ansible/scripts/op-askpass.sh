@@ -21,4 +21,4 @@ if [[ -z "$OP_BIN" || ! -x "$OP_BIN" ]]; then
     exit 1
 fi
 
-"$OP_BIN" read "op://Private/Danny Mac Computer Password/password"
+"$OP_BIN" read --account "everyone.1password.com" "op://Private/Danny Mac Computer Password/password"

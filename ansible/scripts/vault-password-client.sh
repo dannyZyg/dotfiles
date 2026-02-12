@@ -24,10 +24,10 @@ done
 
 case "$VAULT_ID" in
     ssh-config)
-        op read "op://Private/Ansible Vault Encryption SSH Config/password"
+        op read --account "everyone.1password.com" "op://Private/Ansible Vault Encryption SSH Config/password"
         ;;
     espanso)
-        op read "op://Private/Ansible Vault Encryption Espanso/password"
+        op read --account "everyone.1password.com" "op://Private/Ansible Vault Encryption Espanso/password"
         ;;
     *)
         echo "ERROR: Unknown vault-id: $VAULT_ID" >&2
