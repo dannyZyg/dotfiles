@@ -74,3 +74,8 @@
   with_items:
     - 3.8.18
     - 3.11.6
+
+- name: Set global Python version
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: pyenv_exists.rc == 0
+  command: pyenv global 3.11.6
