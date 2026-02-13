@@ -14,5 +14,6 @@
     - item not in yazi_packages.stdout
   shell: ya pkg add {{ item }}
   loop:
+    - yazi-rs/plugins:full-border
     - Chromium-3-Oxide/everforest-medium
     - gosxrgxx/flexoki-light
