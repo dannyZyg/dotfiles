@@ -11,6 +11,9 @@
 - link:
     ~/.gitconfig:
 
+    ~/.config/lazygit/config.yml:
+      path: lazygit/config.yml
+
     ~/.profile:
       path: shell/profile
 
