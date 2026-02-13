@@ -1,0 +1,18 @@
+- name: Check if yazi is installed
+  shell: command -v yazi
+  register: yazi_exists
+  ignore_errors: true
+
+- name: Get installed yazi packages
+  when: yazi_exists.rc == 0
+  shell: ya pkg list
+  register: yazi_packages
+
+- name: Install yazi packages
+  when:
+    - yazi_exists.rc == 0
+    - item not in yazi_packages.stdout
+  shell: ya pkg add {{ item }}
+  loop:
+    - Chromium-3-Oxide/everforest-medium
+    - gosxrgxx/flexoki-light

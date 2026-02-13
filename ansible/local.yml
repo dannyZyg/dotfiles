@@ -97,3 +97,6 @@
 
     - role: rust
       tags: [rust]
+
+    - role: yazi
+      tags: [yazi, bootstrap]
