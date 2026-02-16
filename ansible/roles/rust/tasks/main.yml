@@ -14,3 +14,8 @@
 - name: install rust/cargo
   when: cargo_exists.rc != 0
   shell: /tmp/sh.rustup.rs -y --no-modify-path
+
+- name: Install tree-sitter-cli
+  shell: cargo install --locked tree-sitter-cli
+  environment:
+    PATH: "{{ lookup('env', 'HOME') }}/.cargo/bin:{{ ansible_facts['env']['PATH'] }}"
