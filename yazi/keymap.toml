@@ -130,6 +130,7 @@ keymap = [
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
 	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
 	{ on = [ "g", "i" ],       run = "cd '~/Library/Mobile Documents/com~apple~CloudDocs'", desc = "Go iCloud" },
+	{ on = [ "g", "a" ],       run = "cd '~/Library/Application Support'", desc = "Go Application Support" },
 
 	# Tabs
 	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
