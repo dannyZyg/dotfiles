@@ -1,0 +1,8 @@
+# Dependencies will be auto-installed by SuperCollider
+
+SuperDirt
+Dirt-Samples
+EuroCollider
+https://github.com/scztt/Log.quark
+https://github.com/scztt/UnitTest2.quark
+https://github.com/scztt/Deferred.quark
