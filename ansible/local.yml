@@ -96,7 +96,7 @@
       tags: [repos]
 
     - role: rust
-      tags: [rust]
+      tags: [rust, bootstrap]
 
     - role: yazi
       tags: [yazi, bootstrap]
