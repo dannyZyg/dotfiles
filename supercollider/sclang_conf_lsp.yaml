@@ -3,7 +3,7 @@ includePaths:
     -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/UnitTest2
     -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Log
     -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/Singleton
-    -   /Users/danny/Library/Application Support/SuperCollider/downloaded-quarks/LanguageServer
+    -   /Users/danny/dev/LanguageServer.quark
 excludePaths:
     []
 postInlineWarnings: false
