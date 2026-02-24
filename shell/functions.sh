@@ -60,5 +60,10 @@ function y() {
 }
 
 function comecocal() {
-  cd /Users/danny/dev/comeco_cal && uv run python main.py --spreadsheet-id $(op read "op://Private/Comeco Calendar ID/Calendar ID") --calendar-name Comeco
+  cd /Users/danny/dev/ComecoCal
+  GOOGLE_CREDENTIALS_JSON="op://Private/ComecoCal Google Calendar API Credentials/credential" \
+  op run --account everyone.1password.com -- \
+  uv run main.py \
+  --spreadsheet-id $(op read "op://Private/Comeco Calendar ID/Calendar ID" --account everyone.1password.com) \
+  --calendar-name Comeco
 }
