@@ -4,17 +4,27 @@
     path: "{{ lookup('env', 'HOME') }}/dev"
     state: directory
 
-- name: Cloning github repos
+- name: Check if repos already exist
   become_user: "{{ lookup('vars', 'username') }}"
-  ansible.builtin.git:
-    repo: "{{ item.url }}"
-    dest: "{{ lookup('env', 'HOME') }}/dev/{{ item.dir }}"
-    recursive: yes
-    update: yes
-    accept_hostkey: yes
-    version: main
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/dev/{{ item.dir }}"
+  register: repo_stat
   with_items:
     - { url: "git@github.com:dannyZyg/slice-of-life.git", dir: "slice-of-life" }
     - { url: "git@github.com:dannyZyg/devdoist.git", dir: "devdoist" }
     - { url: "git@github.com:dannyZyg/dk-personal-site.git", dir: "dk-personal-site" }
     - { url: "git@github.com:dannyZyg/tup.git", dir: "tup" }
+    - { url: "git@github.com:dannyZyg/SCRotoControl.git", dir: "SCRotoControl" }
+    - { url: "git@github.com:dannyZyg/tmux-delight.git", dir: "tmux-delight" }
+
+- name: Cloning github repos
+  become_user: "{{ lookup('vars', 'username') }}"
+  ansible.builtin.git:
+    repo: "{{ item.item.url }}"
+    dest: "{{ lookup('env', 'HOME') }}/dev/{{ item.item.dir }}"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: main
+  with_items: "{{ repo_stat.results }}"
+  when: not item.stat.exists
