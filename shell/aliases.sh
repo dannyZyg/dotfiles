@@ -57,3 +57,5 @@ alias gt="git tag"
 alias gm="git merge"
 alias gg="git log --graph --pretty=format:'%C(bold red)%h%Creset -%C(bold yellow)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias cgb="git rev-parse --abbrev-ref HEAD"
+
+alias tms="$HOME/dev/tmux-delight/tmux-session --layouts-dir $HOME/dev/tmux-layouts/"

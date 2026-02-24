@@ -16,6 +16,8 @@
     - { url: "git@github.com:dannyZyg/tup.git", dir: "tup" }
     - { url: "git@github.com:dannyZyg/SCRotoControl.git", dir: "SCRotoControl" }
     - { url: "git@github.com:dannyZyg/tmux-delight.git", dir: "tmux-delight" }
+    - { url: "git@github.com:dannyZyg/tmux-layouts.git", dir: "tmux-layouts" }
+    - { url: "git@github.com:dannyZyg/ComecoCal.git", dir: "ComecoCal" }
 
 - name: Cloning github repos
   become_user: "{{ lookup('vars', 'username') }}"
