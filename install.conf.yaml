@@ -11,6 +11,8 @@
 - link:
     ~/.gitconfig:
 
+    ~/.gitignore_global:
+
     ~/.config/lazygit/config.yml:
       path: lazygit/config.yml
 
