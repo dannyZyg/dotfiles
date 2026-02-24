@@ -58,3 +58,7 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+function comecocal() {
+  cd /Users/danny/dev/comeco_cal && uv run python main.py --spreadsheet-id $(op read "op://Private/Comeco Calendar ID/Calendar ID") --calendar-name Comeco
+}
