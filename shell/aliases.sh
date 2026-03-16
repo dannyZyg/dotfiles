@@ -31,6 +31,7 @@ alias ta="tmux -u -f $TMUX_CONFIG attach"
 alias tat="tmux -u -f $TMUX_CONFIG attach -t"
 alias tl="tmux -u -f $TMUX_CONFIG ls"
 alias tt="$EDITOR $TMUX_CONFIG"
+alias ts="$HOME/dev/tmux-delight/tmux-session --layouts-dir $HOME/dev/tmux-layouts/"
 
 # directory navigation
 alias -- -='cd -'
@@ -57,5 +58,3 @@ alias gt="git tag"
 alias gm="git merge"
 alias gg="git log --graph --pretty=format:'%C(bold red)%h%Creset -%C(bold yellow)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias cgb="git rev-parse --abbrev-ref HEAD"
-
-alias tms="$HOME/dev/tmux-delight/tmux-session --layouts-dir $HOME/dev/tmux-layouts/"
