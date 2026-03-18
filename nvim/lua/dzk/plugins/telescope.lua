@@ -18,8 +18,8 @@ return {
       local actions = require("telescope.actions")
       return {
         defaults = {
-          prompt_prefix = " ",
-          selection_caret = " ",
+          prompt_prefix = "🔍 ",
+          selection_caret = "▶ ",
           path_display = { "absolute" },
           mappings = {
             i = {
