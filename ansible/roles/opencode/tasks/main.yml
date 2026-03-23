@@ -1,0 +1,20 @@
+- name: Check if skills repo exists
+  become_user: "{{ lookup('vars', 'username') }}"
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/dev/skills"
+  register: skills_repo
+
+- name: Ensure opencode config directory exists
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/opencode"
+    state: directory
+  when: skills_repo.stat.exists
+
+- name: Symlink skills repo to opencode config
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dev/skills"
+    dest: "{{ lookup('env', 'HOME') }}/.config/opencode/skills"
+    state: link
+  when: skills_repo.stat.exists

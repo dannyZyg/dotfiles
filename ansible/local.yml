@@ -95,6 +95,9 @@
     - role: repos
       tags: [repos]
 
+    - role: opencode
+      tags: [opencode, bootstrap]
+
     - role: rust
       tags: [rust, bootstrap]
 
