@@ -10,6 +10,8 @@ fi
 
 ESPANSO_DIR=$(espanso path | head -n 1 | sed -n 's/Config: \(.*\)/\1/p')
 
+rm -rf roles/espanso/files/*
+
 cp -rf "$ESPANSO_DIR/"* roles/espanso/files/
 
 ansible-vault encrypt \
