@@ -62,8 +62,8 @@ function y() {
 function comecocal() {
   cd /Users/danny/dev/ComecoCal
   GOOGLE_CREDENTIALS_JSON="op://Private/ComecoCal Google Calendar API Credentials/credential" \
-  op run --account everyone.1password.com -- \
+  op run --account family-keig.1password.com -- \
   uv run main.py \
-  --spreadsheet-id $(op read "op://Private/Comeco Calendar ID/Calendar ID" --account everyone.1password.com) \
+  --spreadsheet-id $(op read "op://Private/Comeco Calendar ID/Calendar ID" --account family-keig.1password.com) \
   --calendar-name Comeco
 }
