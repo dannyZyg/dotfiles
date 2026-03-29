@@ -203,7 +203,8 @@ local cmake_build_and_install = function(should_recompile_sc)
             vim.fn.system({
               "nvim",
               "--server", socket,
-              "--remote-send", ":SCNvimRecompile<CR>"
+              "--remote-expr",
+              "luaeval('require(\"scnvim\").recompile()')"
             })
           end
 
