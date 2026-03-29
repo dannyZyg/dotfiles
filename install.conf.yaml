@@ -26,6 +26,10 @@
     ~/.config/zsh/zsh-vim-mode:
       path: zsh/zsh-vim-mode
 
+    ~/.config/ghostty/config:
+      create: true
+      path: ghostty/config
+
     ~/.config/nvim:
       glob: true
       path: nvim/**
