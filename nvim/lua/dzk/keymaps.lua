@@ -20,22 +20,10 @@ vim.keymap.set("v", "<C-V>", "v")
 -- Clear search highlight
 vim.keymap.set("n", "<leader>cs", ":noh<CR>")
 
--- Better window navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
-
 -- Easy quit, easy save
 vim.keymap.set("n", "<leader>w", ":w<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>!", ":q!<CR>")
-
--- Resize with arrows
-vim.keymap.set("n", "<C-Up>", ":resize +2<CR>")
-vim.keymap.set("n", "<C-Down>", ":resize -2<CR>")
-vim.keymap.set("n", "<C-Right>", ":vertical resize -2<CR>")
-vim.keymap.set("n", "<C-Left>", ":vertical resize +2<CR>")
 
 -- Navigate buffers
 vim.keymap.set("n", "<S-l>", ":bnext<CR>")
@@ -46,10 +34,6 @@ vim.keymap.set("n", "<S-h>", ":bprevious<CR>")
 -- vim.keymap.set("i", "jk", "<ESC>")
 -- Visual
 
--- Move text up and down
-vim.keymap.set("v", "<A-j>", ":m .+1<CR>==")
-vim.keymap.set("v", "<A-k>", ":m .-2<CR>==")
-
 -- Maintain what is in the buffer when pasting in visual mode
 vim.keymap.set("v", "p", '"_dP')
 
@@ -58,8 +42,6 @@ vim.keymap.set("v", "p", '"_dP')
 -- Move text up and down
 vim.keymap.set("x", "J", ":move '>+1<CR>gv-gv")
 vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv")
-vim.keymap.set("x", "<A-j>", ":move '>+1<CR>gv-gv")
-vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv")
 
 -- Terminal
 local term_opts = { silent = true }
