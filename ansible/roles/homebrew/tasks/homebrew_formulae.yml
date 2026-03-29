@@ -23,6 +23,7 @@
     - ffmpeg
     - fzf
     - git
+    - git-delta
     - go
     - gobject-introspection
     - guile

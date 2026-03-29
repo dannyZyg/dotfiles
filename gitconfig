@@ -6,10 +6,13 @@
 [pull]
 	ff = only
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
   excludesfile = ~/.gitignore_global
+[delta]
+    navigate = true    # use n/N to move between diff sections
+    side-by-side = true
 [interactive]
-	diffFilter = diff-so-fancy --patch
+  diffFilter = delta --color-only
 [color]
 	ui = true
 [color "diff-highlight"]
