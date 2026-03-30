@@ -19,6 +19,13 @@ return {
   },
   opts = function()
     return {
+      component_aliases = {
+        default = {
+          "on_exit_set_status",
+          -- "on_complete_notify" -- Disabled to prevent "Press ENTER" prompts in tmux
+          { "on_complete_dispose", require_view = { "SUCCESS", "FAILURE" } },
+        },
+      },
     }
   end
 }

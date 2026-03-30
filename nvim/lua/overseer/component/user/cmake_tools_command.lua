@@ -10,7 +10,7 @@ return {
     command_type = {
       desc = "Type of command to execute",
       type = "enum",
-      choices = { "api", "vim_command" },
+      choices = { "api", "vim_command", "lua_function" },
     },
     api_function = {
       desc = "cmake-tools API function name (e.g., 'build', 'run')",
@@ -29,6 +29,11 @@ return {
     },
     vim_command = {
       desc = "Vim command string to execute (e.g., 'CMakeBuild')",
+      type = "string",
+      optional = true,
+    },
+    lua_function = {
+      desc = "Global Lua function name to execute (e.g., '_G.my_function')",
       type = "string",
       optional = true,
     },
@@ -51,6 +56,12 @@ return {
           if not params.vim_command then
             my_task:set_status("FAILURE")
             my_task:set_result({ error = "vim_command is required for vim_command command type" })
+            return
+          end
+        elseif params.command_type == "lua_function" then
+          if not params.lua_function then
+            my_task:set_status("FAILURE")
+            my_task:set_result({ error = "lua_function is required for lua_function command type" })
             return
           end
         else
@@ -111,6 +122,37 @@ return {
           -- Finalize wrapper task as SUCCESS immediately after executing vim command
           -- Custom commands (like CMakeBuildAndInstall) spawn their own tasks
           -- The wrapper will auto-dispose via on_complete_dispose component
+          vim.schedule(function()
+            if my_task and my_task:is_running() then
+              my_task:finalize(STATUS.SUCCESS)
+            end
+          end)
+
+        elseif params.command_type == "lua_function" then
+          -- Lua function execution
+          local func_path = params.lua_function
+          
+          -- Parse the function path (e.g., "_G.my_function" or "module.function")
+          local ok_load, func = pcall(function()
+            return loadstring("return " .. func_path)()
+          end)
+          
+          if not ok_load or not func or type(func) ~= "function" then
+            my_task:set_status("FAILURE")
+            my_task:set_result({ error = "Function not found: " .. func_path })
+            return
+          end
+          
+          -- Execute the function
+          local ok_exec, err = pcall(func)
+          
+          if not ok_exec then
+            my_task:set_status("FAILURE")
+            my_task:set_result({ error = "Function failed: " .. tostring(err) })
+            return
+          end
+          
+          -- Finalize wrapper task as SUCCESS immediately
           vim.schedule(function()
             if my_task and my_task:is_running() then
               my_task:finalize(STATUS.SUCCESS)

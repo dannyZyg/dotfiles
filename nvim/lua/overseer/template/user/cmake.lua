@@ -127,6 +127,12 @@ return {
         type = "vim_command",
         vim_command = "CMakeBuildAndInstallAndRecompileSC",
       },
+      {
+        name = "CMake: Remote SC Plugin Build + SC Recompile",
+        desc = "Trigger remote build and install in supercollider_plugins instance",
+        type = "lua_function",
+        lua_function = "_G.trigger_cmake_sc_plugin_build_and_sc_recompile",
+      },
     }
 
     -- 4. Generate overseer task definitions
@@ -148,6 +154,8 @@ return {
             component_config.has_callback = task_def.has_callback
           elseif task_def.type == "vim_command" then
             component_config.vim_command = task_def.vim_command
+          elseif task_def.type == "lua_function" then
+            component_config.lua_function = task_def.lua_function
           end
 
           return {
