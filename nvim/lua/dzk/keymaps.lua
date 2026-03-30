@@ -22,7 +22,6 @@ vim.keymap.set("n", "<leader>cs", ":noh<CR>")
 
 -- Easy quit, easy save
 vim.keymap.set("n", "<leader>w", ":w<CR>")
-vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>!", ":q!<CR>")
 
 -- Navigate buffers
