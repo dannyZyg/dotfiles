@@ -43,6 +43,7 @@ local options = {
 	colorcolumn = "110",
 	cursorcolumn = true,
 	laststatus = 3, -- show only the global status line (not one per buffer)
+	exrc = true, -- allow external lua files to load (e.g. local directory .nvim.lua files)
 }
 
 vim.opt.shortmess:append("c")
