@@ -11,8 +11,15 @@ return {
   },
 
   {
+    "nvim-telescope/telescope-ui-select.nvim",
+    enabled = true,
+  },
+
+  {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { 
+      "nvim-lua/plenary.nvim",
+    },
     enabled = true,
     opts = function()
       local actions = require("telescope.actions")
@@ -108,11 +115,14 @@ return {
             override_file_sorter = true, -- override the file sorter
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
           },
-          -- Your extension configuration goes here:
-          -- extension_name = {
-          --   extension_config_key = value,
-          -- }
-          -- please take a look at the readme of the extension you want to configure
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown({
+              -- You can customize the dropdown appearance here
+              -- width = 0.8,
+              -- previewer = false,
+              -- prompt_title = false,
+            }),
+          },
         },
       }
     end,
@@ -121,6 +131,7 @@ return {
       local telescope = require("telescope")
       telescope.load_extension("fzf")
       telescope.load_extension("scdoc")
+      telescope.load_extension("ui-select")
     end,
   },
 }
