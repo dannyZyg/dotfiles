@@ -143,45 +143,4 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	end,
 })
 
-local cmake_build_and_install = function(should_recompile_sc)
-  should_recompile_sc = should_recompile_sc or false
-  local cmake = require('cmake-tools')
 
-  cmake.build({ fargs = {} }, function(build_result)
-    if build_result:is_ok() then
-      cmake.install({ fargs = {} }, function(install_result)
-        if install_result:is_ok() then
-          vim.notify('Build and install completed successfully', vim.log.levels.INFO)
-
-          if should_recompile_sc then
-            local pipe_path = vim.fn.expand("~/.cache/nvim/scnvim.pipe")
-            if vim.fn.filereadable(pipe_path) == 0 then
-              vim.notify("SCNvim instance not found, skipping recompile", vim.log.levels.WARN)
-              return
-            end
-            local socket = vim.fn.readfile(pipe_path)[1]
-            vim.fn.jobstart({
-              "nvim",
-              "--server", socket,
-              "--remote-expr",
-              "luaeval('require(\"scnvim\").recompile()')"
-            })
-          end
-
-        else
-          vim.notify('Install failed', vim.log.levels.ERROR)
-        end
-      end)
-    else
-      vim.notify('Build failed', vim.log.levels.ERROR)
-    end
-  end)
-end
-
-vim.api.nvim_create_user_command('CMakeBuildAndInstall', function()
-  cmake_build_and_install()
-end, {})
-
-vim.api.nvim_create_user_command('CMakeBuildAndInstallAndRecompileSC', function()
-  cmake_build_and_install(true)
-end, {})
