@@ -25,35 +25,17 @@ if (\SCNvim.asClass.notNil) {
 };
 
 ~meters = {
-    var allWindows = Window.allWindows ?? { [] }; // Guard against nil
+    var bringWindowToFront = { |name, onCreate|
+      var allWindows = Window.allWindows ?? { [] }; // Guard against nil
+      var match = allWindows.detect({ |w| w.name.contains(name) });
 
-    // 1. Server Meter
-    if(allWindows.any({ |w| w.name.contains("levels") }).not) {
-        ServerMeter(s, 0, 2);
-    } {
-        allWindows.detect({ |w| w.name.contains("levels") }).front;
+      if(match.isNil) { onCreate.value; } { match.front; };
     };
 
-    // 2. Scope
-    if(allWindows.any({ |w| w.name.contains("stetho") }).not) {
-        s.scope(numChannels: 2, index: 0);
-    } {
-        allWindows.detect({ |w| w.name.contains("stetho") }).front;
-    };
-
-    // 3. Server Tree
-    if(allWindows.any({ |w| w.name.contains("Plot Tree") }).not) {
-        s.plotTree;
-    } {
-        allWindows.detect({ |w| w.name.contains("Plot Tree") }).front;
-    };
-
-    // 4. FreqScope
-    if(allWindows.any({ |w| w.name.contains("Freq") }).not) {
-        FreqScope.new;
-    } {
-        allWindows.detect({ |w| w.name.contains("Freq") }).front;
-    };
+    bringWindowToFront.value("levels", {ServerMeter(s, 0, 2)});
+    bringWindowToFront.value("stetho", {s.scope(numChannels: 2, index: 0)});
+    bringWindowToFront.value("Plot Tree", {s.plotTree});
+    bringWindowToFront.value("Freq", {FreqScope.new});
 
     ~triggerKMMacro.value("SuperCollider Server Meters");
 };
