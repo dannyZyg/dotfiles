@@ -87,7 +87,7 @@ return  {
         end
 
         -- setup auto formatting
-        if client.supports_method("textDocument/formatting") then
+        if client:supports_method("textDocument/formatting") then
           vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = args.buf,
             callback = function()
