@@ -18,6 +18,46 @@ if (\SCNvim.asClass.notNil) {
 	}
 };
 
+~triggerKMMacro = { |macroName|
+    var cmd = "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%\"'".format(macroName);
+    cmd.unixCmd;
+    ("Macro Triggered: " ++ macroName).postln;
+};
+
+~meters = {
+    var allWindows = Window.allWindows ?? { [] }; // Guard against nil
+
+    // 1. Server Meter
+    if(allWindows.any({ |w| w.name.contains("levels") }).not) {
+        ServerMeter(s, 0, 2);
+    } {
+        allWindows.detect({ |w| w.name.contains("levels") }).front;
+    };
+
+    // 2. Scope
+    if(allWindows.any({ |w| w.name.contains("stetho") }).not) {
+        s.scope(numChannels: 2, index: 0);
+    } {
+        allWindows.detect({ |w| w.name.contains("stetho") }).front;
+    };
+
+    // 3. Server Tree
+    if(allWindows.any({ |w| w.name.contains("Plot Tree") }).not) {
+        s.plotTree;
+    } {
+        allWindows.detect({ |w| w.name.contains("Plot Tree") }).front;
+    };
+
+    // 4. FreqScope
+    if(allWindows.any({ |w| w.name.contains("Freq") }).not) {
+        FreqScope.new;
+    } {
+        allWindows.detect({ |w| w.name.contains("Freq") }).front;
+    };
+
+    ~triggerKMMacro.value("SuperCollider Server Meters");
+};
+
 ~getAudioDevice = {
   var priorityDevices = [
     "MHLink [48646]",
