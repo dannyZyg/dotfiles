@@ -37,9 +37,6 @@
     ~/.config/tmux/tmux.conf:
       path: tmux/tmux.conf
 
-    ~/.config/ghostty/config:
-      path: ghostty/config
-
     ~/.config/yazi:
       glob: true
       path: yazi/**
