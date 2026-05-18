@@ -60,15 +60,11 @@ vim.diagnostic.config({ virtual_text = true })
 
 vim.filetype.add {
   extension = {
+    gendsp = 'genexpr',
+    genexpr = 'genexpr',
     jinja = 'jinja',
     jinja2 = 'jinja',
     j2 = 'jinja',
-  },
-}
-
-vim.filetype.add {
-  extension = {
-    gendsp = 'genexpr',
-    genexpr = 'genexpr',
+    mdx = 'mdx',
   },
 }
