@@ -27,7 +27,7 @@ return {
             type = 'codelldb',
             request = 'attach',
             pid = function()
-              return require("dap.utils").pick_process({ filter = "REAPER" })
+              return require("dap.utils").pick_process()
             end,
             args = {},
           })
