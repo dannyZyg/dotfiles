@@ -9,7 +9,7 @@ return {
       harpoon:setup()
       -- REQUIRED
 
-      vim.keymap.set("n", "<leader>a", function()
+      vim.keymap.set("n", "<leader>ha", function()
         harpoon:list():add()
         vim.notify("🔱 Harpoon: added file")
       end)
