@@ -131,6 +131,15 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- Use the markdown treesitter parser for mdx files
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup("mdx_markdown_parser"),
+	pattern = "mdx",
+	callback = function()
+		pcall(vim.treesitter.start, nil, "markdown")
+	end,
+})
+
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	group = augroup("auto_create_dir"),
