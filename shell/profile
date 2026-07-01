@@ -16,9 +16,6 @@ export EDITOR="nvim"
 export PAGER="less"
 export COLORTERM=truecolor
 
-# Node (n)
-export N_PREFIX="$HOME/.config/n"
-
 # Platform-specific config
 if [ "$(uname)" = "Darwin" ]; then
   export BREWPATH="/opt/homebrew/bin"
@@ -39,8 +36,6 @@ elif [ "$(uname)" = "Linux" ]; then
   export SSH_AUTH_SOCK=~/.1password/agent.sock
 fi
 
-# PATH additions — n first so it wins over homebrew node
-export PATH="$N_PREFIX/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.config/npm-global/bin:$PATH"
 

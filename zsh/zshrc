@@ -1,6 +1,3 @@
-# Re-prepend n's node so it wins over /etc/paths.d homebrew (macOS path_helper runs after zprofile)
-export PATH="$HOME/.config/n/bin:$PATH"
-
 stty stop undef # Stops Ctrl-s from freezing the terminal
 
 unsetopt BEEP
@@ -70,3 +67,5 @@ fi
 eval "$(starship init zsh)"
 
 eval "$(zoxide init zsh)"
+
+eval "$(fnm env --use-on-cd --shell zsh)"
