@@ -14,11 +14,11 @@ alias more=less
 alias cp="cp -i"
 
 # Replace ls with exa
-alias ls="eza -F"
-alias la="eza -aF"
-alias lt="eza -FT"
-alias lta="eza -aFT"
-alias ll="eza -alF --colour-scale"
+alias ls="eza --classify=auto"
+alias la="eza -a --classify=auto"
+alias lt="eza --classify=auto --tree"
+alias lta="eza -a --classify=auto --tree"
+alias ll="eza -al --classify=auto --color-scale=all"
 
 # always use neovim
 alias v="nvim"
