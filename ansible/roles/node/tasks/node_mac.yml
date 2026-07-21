@@ -1,7 +1,7 @@
-- name: Install n on Mac
-  when: n_exists.rc != 0
+- name: Install fnm on Mac
+  when: fnm_exists.rc != 0
   become_user: "{{ lookup('vars', 'username') }}"
   homebrew:
     path: "{{ lookup('vars', 'brew_path') }}"
-    name: n
+    name: fnm
     state: present

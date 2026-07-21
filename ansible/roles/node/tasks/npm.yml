@@ -1,8 +1,8 @@
-- name: Install desired version of Node using N
+- name: Install desired version of Node using fnm
   when: ansible_facts['distribution'] == 'MacOSX'
   become_user: "{{ lookup('vars', 'username') }}"
-  command: "n 24"
+  shell: eval "$(fnm env)" && fnm install 24 && fnm default 24
+  args:
+    executable: /bin/bash
   environment:
-    PATH: "{{ lookup('env', 'HOME') }}/.config/npm-global/bin:{{ lookup('vars', 'brew_path') }}:{{ ansible_facts['env']['PATH'] }}"
-    PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
-    N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
+    FNM_DIR: "{{ lookup('env', 'HOME') }}/.local/share/fnm"

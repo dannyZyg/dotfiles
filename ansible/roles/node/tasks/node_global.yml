@@ -3,9 +3,9 @@
   register: node_exists
   ignore_errors: true
 
-- name: Check if n installed
-  shell: command -v n
-  register: n_exists
+- name: Check if fnm installed
+  shell: command -v fnm
+  register: fnm_exists
   ignore_errors: true
 
 - name: Creates npm-global directory
@@ -14,8 +14,8 @@
     path: "{{ lookup('env', 'HOME') }}/.config/npm-global"
     state: directory
 
-- name: Creates n directory
+- name: Creates fnm directory
   become_user: "{{ lookup('vars', 'username') }}"
   file:
-    path: "{{ lookup('env', 'HOME') }}/.config/n"
+    path: "{{ lookup('env', 'HOME') }}/.local/share/fnm"
     state: directory
